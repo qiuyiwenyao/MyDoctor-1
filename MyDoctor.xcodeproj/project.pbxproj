@@ -114,8 +114,6 @@
 		15AE537D1C02F0680013FF1B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE537B1C02F0680013FF1B /* LaunchScreen.xib */; };
 		15AE53891C02F0680013FF1B /* MyDoctorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AE53881C02F0680013FF1B /* MyDoctorTests.m */; };
 		6A2582B81C0FE21D005E3404 /* topImg2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6A2582B71C0FE21D005E3404 /* topImg2.jpg */; };
-		6A2582BF1C102434005E3404 /* 赞@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A2582BD1C102434005E3404 /* 赞@3x.png */; };
-		6A2582C01C102434005E3404 /* 未赞@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A2582BE1C102434005E3404 /* 未赞@3x.png */; };
 		6A2582C71C102ECF005E3404 /* 赞@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A2582C51C102ECF005E3404 /* 赞@2x.png */; };
 		6A2582C81C102ECF005E3404 /* 未赞@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A2582C61C102ECF005E3404 /* 未赞@2x.png */; };
 		6A3EF7AE1C054DA700923D03 /* purplelogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A3EF7AD1C054DA700923D03 /* purplelogo@2x.png */; };
@@ -149,6 +147,8 @@
 		6A3EF8621C06FDB300923D03 /* MDTransfuseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3EF8611C06FDB300923D03 /* MDTransfuseViewController.m */; };
 		6A45AAAB1C1124AD00555CF9 /* MDRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A45AAAA1C1124AD00555CF9 /* MDRequestModel.m */; };
 		6A45AAAE1C11728800555CF9 /* MDLectureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A45AAAD1C11728800555CF9 /* MDLectureModel.m */; };
+		6A45AAB51C152AB400555CF9 /* 未赞@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A45AAB31C152AB400555CF9 /* 未赞@3x.png */; };
+		6A45AAB61C152AB400555CF9 /* 赞@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A45AAB41C152AB400555CF9 /* 赞@3x.png */; };
 		6AF2021F1C083F4000933EAF /* activityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2021D1C083F4000933EAF /* activityCell.m */; };
 		6AF202201C083F4000933EAF /* activityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF2021E1C083F4000933EAF /* activityCell.xib */; };
 		6AF202271C08498100933EAF /* MDExpertConsultationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF202261C08498100933EAF /* MDExpertConsultationViewController.m */; };
@@ -173,7 +173,6 @@
 		6AF202761C0D968800933EAF /* NIDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF202751C0D968800933EAF /* NIDropDown.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6AF202791C0D979400933EAF /* 下拉框@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF202781C0D979400933EAF /* 下拉框@2x.png */; };
 		6AF2027B1C0D979A00933EAF /* 下拉框@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF2027A1C0D979A00933EAF /* 下拉框@3x.png */; };
-		6AF2027F1C0EC5BB00933EAF /* 赞@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF2027E1C0EC5BB00933EAF /* 赞@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -354,8 +353,6 @@
 		15AE53871C02F0680013FF1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15AE53881C02F0680013FF1B /* MyDoctorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyDoctorTests.m; sourceTree = "<group>"; };
 		6A2582B71C0FE21D005E3404 /* topImg2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = topImg2.jpg; sourceTree = "<group>"; };
-		6A2582BD1C102434005E3404 /* 赞@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "赞@3x.png"; sourceTree = "<group>"; };
-		6A2582BE1C102434005E3404 /* 未赞@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未赞@3x.png"; sourceTree = "<group>"; };
 		6A2582C51C102ECF005E3404 /* 赞@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "赞@2x.png"; sourceTree = "<group>"; };
 		6A2582C61C102ECF005E3404 /* 未赞@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未赞@2x.png"; sourceTree = "<group>"; };
 		6A3EF7AD1C054DA700923D03 /* purplelogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purplelogo@2x.png"; sourceTree = "<group>"; };
@@ -410,6 +407,8 @@
 		6A45AAAA1C1124AD00555CF9 /* MDRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDRequestModel.m; sourceTree = "<group>"; };
 		6A45AAAC1C11728800555CF9 /* MDLectureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDLectureModel.h; sourceTree = "<group>"; };
 		6A45AAAD1C11728800555CF9 /* MDLectureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDLectureModel.m; sourceTree = "<group>"; };
+		6A45AAB31C152AB400555CF9 /* 未赞@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未赞@3x.png"; sourceTree = "<group>"; };
+		6A45AAB41C152AB400555CF9 /* 赞@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "赞@3x.png"; sourceTree = "<group>"; };
 		6AF2021C1C083F4000933EAF /* activityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = activityCell.h; path = Home/View/activityCell.h; sourceTree = "<group>"; };
 		6AF2021D1C083F4000933EAF /* activityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = activityCell.m; path = Home/View/activityCell.m; sourceTree = "<group>"; };
 		6AF2021E1C083F4000933EAF /* activityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = activityCell.xib; path = Home/View/activityCell.xib; sourceTree = "<group>"; };
@@ -444,7 +443,6 @@
 		6AF202751C0D968800933EAF /* NIDropDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIDropDown.m; sourceTree = "<group>"; };
 		6AF202781C0D979400933EAF /* 下拉框@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "下拉框@2x.png"; sourceTree = "<group>"; };
 		6AF2027A1C0D979A00933EAF /* 下拉框@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "下拉框@3x.png"; sourceTree = "<group>"; };
-		6AF2027E1C0EC5BB00933EAF /* 赞@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "赞@3x.png"; path = "../赞@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -621,15 +619,14 @@
 		153ED81A1C08022E00171DFA /* 3x */ = {
 			isa = PBXGroup;
 			children = (
-				6AF2027E1C0EC5BB00933EAF /* 赞@3x.png */,
 				155CEBFD1C0D8817006B5CFA /* 箭头@3x.png */,
-				6A2582BD1C102434005E3404 /* 赞@3x.png */,
-				6A2582BE1C102434005E3404 /* 未赞@3x.png */,
 				155CEBF21C0D47FC006B5CFA /* 用户地址@3x.png */,
 				155CEBF31C0D47FC006B5CFA /* 用户电话@3x.png */,
 				155CEBF41C0D47FC006B5CFA /* 用户姓名@3x.png */,
 				155CEBEA1C0C2E9A006B5CFA /* 药@3x.png */,
 				153ED8601C0C17E700171DFA /* 搜索药品@3x.png */,
+				6A45AAB31C152AB400555CF9 /* 未赞@3x.png */,
+				6A45AAB41C152AB400555CF9 /* 赞@3x.png */,
 				6AF2027A1C0D979A00933EAF /* 下拉框@3x.png */,
 				153ED84B1C08536700171DFA /* 按钮框@3x.png */,
 				6AF2023E1C0B471B00933EAF /* topImg1@3x.png */,
@@ -796,6 +793,7 @@
 		15AE536B1C02F0680013FF1B /* MyDoctor */ = {
 			isa = PBXGroup;
 			children = (
+				6A45AABA1C15518900555CF9 /* DocMyView */,
 				159049651C069FA600EE51FB /* logIn */,
 				6A3EF7D31C058E6A00923D03 /* MyView */,
 				6A8F12B01C040825001ABE2F /* Other */,
@@ -976,6 +974,13 @@
 				6A3EF8611C06FDB300923D03 /* MDTransfuseViewController.m */,
 			);
 			name = "Nurse(照护)";
+			sourceTree = "<group>";
+		};
+		6A45AABA1C15518900555CF9 /* DocMyView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = DocMyView;
 			sourceTree = "<group>";
 		};
 		6A8F12B01C040825001ABE2F /* Other */ = {
@@ -1165,7 +1170,6 @@
 				1590498F1C06CD6100EE51FB /* 注册按钮@2x.png in Resources */,
 				159049891C06CD6100EE51FB /* 按钮页@2x.png in Resources */,
 				6A3EF7B21C054E1E00923D03 /* bluelogo@2x.png in Resources */,
-				6A2582C01C102434005E3404 /* 未赞@3x.png in Resources */,
 				155CEC001C0D8F29006B5CFA /* Icon@2x.png in Resources */,
 				1590498E1C06CD6100EE51FB /* 注册-添加照片@2x.png in Resources */,
 				153ED8281C08022E00171DFA /* 首页1@2x.png in Resources */,
@@ -1176,7 +1180,6 @@
 				1590498A1C06CD6100EE51FB /* 登录-框-图标1@2x.png in Resources */,
 				153ED8291C08022E00171DFA /* 首页图标@2x.png in Resources */,
 				159049901C06CD6100EE51FB /* mx_defaultSelect_phone@2x.png in Resources */,
-				6AF2027F1C0EC5BB00933EAF /* 赞@3x.png in Resources */,
 				6A3EF84A1C05FDE000923D03 /* navigationbar_back@2x.png in Resources */,
 				6A3EF7B11C054E1E00923D03 /* arrow@2x.png in Resources */,
 				153ED8611C0C17E700171DFA /* 搜索药品@3x.png in Resources */,
@@ -1190,11 +1193,11 @@
 				15AE537A1C02F0680013FF1B /* Images.xcassets in Resources */,
 				6A3EF7C21C05561500923D03 /* topImg@2x.png in Resources */,
 				155CEBF51C0D47FC006B5CFA /* 用户地址@3x.png in Resources */,
-				6A2582BF1C102434005E3404 /* 赞@3x.png in Resources */,
 				6AF202391C0B45F000933EAF /* 专家头像@2x.png in Resources */,
 				6A3EF7B81C054E3400923D03 /* notes@2x.png in Resources */,
 				6A2582C81C102ECF005E3404 /* 未赞@2x.png in Resources */,
 				153ED8301C08022E00171DFA /* 首页1@3x.png in Resources */,
+				6A45AAB51C152AB400555CF9 /* 未赞@3x.png in Resources */,
 				153ED84A1C08535E00171DFA /* 按钮框@2x.png in Resources */,
 				155CEBF11C0D47F0006B5CFA /* 用户姓名@2x.png in Resources */,
 				6AF202371C0B45C600933EAF /* 默认头像@3x.png in Resources */,
@@ -1210,6 +1213,7 @@
 				159049971C06CFD900EE51FB /* 绿色单选@2x.png in Resources */,
 				153ED82C1C08022E00171DFA /* 女性@3x.png in Resources */,
 				6AF2023B1C0B45F400933EAF /* 专家头像@3x.png in Resources */,
+				6A45AAB61C152AB400555CF9 /* 赞@3x.png in Resources */,
 				155CEBFC1C0D880C006B5CFA /* 箭头@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
