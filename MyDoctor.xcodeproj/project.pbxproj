@@ -163,6 +163,8 @@
 		6A45AAAE1C11728800555CF9 /* MDLectureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A45AAAD1C11728800555CF9 /* MDLectureModel.m */; };
 		6A45AAB51C152AB400555CF9 /* 未赞@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A45AAB31C152AB400555CF9 /* 未赞@3x.png */; };
 		6A45AAB61C152AB400555CF9 /* 赞@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A45AAB41C152AB400555CF9 /* 赞@3x.png */; };
+		6A45AAD01C15659900555CF9 /* DocMyPatientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A45AACD1C15659900555CF9 /* DocMyPatientsViewController.m */; };
+		6A45AAD11C15659900555CF9 /* DocMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A45AACF1C15659900555CF9 /* DocMyViewController.m */; };
 		6AF2021F1C083F4000933EAF /* activityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2021D1C083F4000933EAF /* activityCell.m */; };
 		6AF202201C083F4000933EAF /* activityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF2021E1C083F4000933EAF /* activityCell.xib */; };
 		6AF202271C08498100933EAF /* MDExpertConsultationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF202261C08498100933EAF /* MDExpertConsultationViewController.m */; };
@@ -451,6 +453,10 @@
 		6A45AAAD1C11728800555CF9 /* MDLectureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDLectureModel.m; sourceTree = "<group>"; };
 		6A45AAB31C152AB400555CF9 /* 未赞@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未赞@3x.png"; sourceTree = "<group>"; };
 		6A45AAB41C152AB400555CF9 /* 赞@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "赞@3x.png"; sourceTree = "<group>"; };
+		6A45AACC1C15659900555CF9 /* DocMyPatientsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocMyPatientsViewController.h; path = DocMyView/DocMyPatientsViewController.h; sourceTree = "<group>"; };
+		6A45AACD1C15659900555CF9 /* DocMyPatientsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocMyPatientsViewController.m; path = DocMyView/DocMyPatientsViewController.m; sourceTree = "<group>"; };
+		6A45AACE1C15659900555CF9 /* DocMyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocMyViewController.h; path = DocMyView/DocMyViewController.h; sourceTree = "<group>"; };
+		6A45AACF1C15659900555CF9 /* DocMyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocMyViewController.m; path = DocMyView/DocMyViewController.m; sourceTree = "<group>"; };
 		6AF2021C1C083F4000933EAF /* activityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = activityCell.h; path = Home/View/activityCell.h; sourceTree = "<group>"; };
 		6AF2021D1C083F4000933EAF /* activityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = activityCell.m; path = Home/View/activityCell.m; sourceTree = "<group>"; };
 		6AF2021E1C083F4000933EAF /* activityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = activityCell.xib; path = Home/View/activityCell.xib; sourceTree = "<group>"; };
@@ -837,12 +843,9 @@
 		15AE536B1C02F0680013FF1B /* MyDoctor */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				6A45AABA1C15518900555CF9 /* DocMyView */,
-=======
 				15FBDD511C15574B009E7E39 /* DoctorPatient */,
 				15CD4B661C15285A009B5E4B /* DoctorHome */,
->>>>>>> 3807142ca0022dd18dc119bc70f90004ecc03f83
 				159049651C069FA600EE51FB /* logIn */,
 				6A3EF7D31C058E6A00923D03 /* MyView */,
 				6A8F12B01C040825001ABE2F /* Other */,
@@ -1084,6 +1087,10 @@
 		6A45AABA1C15518900555CF9 /* DocMyView */ = {
 			isa = PBXGroup;
 			children = (
+				6A45AACC1C15659900555CF9 /* DocMyPatientsViewController.h */,
+				6A45AACD1C15659900555CF9 /* DocMyPatientsViewController.m */,
+				6A45AACE1C15659900555CF9 /* DocMyViewController.h */,
+				6A45AACF1C15659900555CF9 /* DocMyViewController.m */,
 			);
 			name = DocMyView;
 			sourceTree = "<group>";
@@ -1350,6 +1357,7 @@
 				155CEC2D1C0E81B8006B5CFA /* AFURLConnectionOperation.m in Sources */,
 				159049771C069FA600EE51FB /* BRSTextField.m in Sources */,
 				153C1E8B1C0405FE00F87014 /* WBToolBar.m in Sources */,
+				6A45AAD01C15659900555CF9 /* DocMyPatientsViewController.m in Sources */,
 				15FBDD501C1535D7009E7E39 /* DocHomeTableViewCell.m in Sources */,
 				6AF202541C0C1F2100933EAF /* MDMyDoctorCell.m in Sources */,
 				153ED8641C0C228500171DFA /* MDDrugVO.m in Sources */,
@@ -1366,6 +1374,7 @@
 				153C1E821C03FB8C00F87014 /* MX_MASLayoutConstraint.m in Sources */,
 				153C1E871C03FB8C00F87014 /* View+MASAdditions.m in Sources */,
 				155CEC281C0E81B8006B5CFA /* AFHTTPRequestOperation.m in Sources */,
+				6A45AAD11C15659900555CF9 /* DocMyViewController.m in Sources */,
 				155CEC2B1C0E81B8006B5CFA /* AFNetworkReachabilityManager.m in Sources */,
 				6A3EF8081C05A20400923D03 /* MDNurseViewController.m in Sources */,
 				153C1E831C03FB8C00F87014 /* MX_MASViewAttribute.m in Sources */,
