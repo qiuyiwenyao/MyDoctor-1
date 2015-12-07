@@ -14,6 +14,7 @@
 
 #import "DocHomeViewController.h"
 #import "DocPatientViewController.h"
+#import "DocMyViewController.h"
 
 @interface AppDelegate ()
 
@@ -24,7 +25,7 @@
     UINavigationController *homeNav;
     UINavigationController *serviceNav;
     UINavigationController *myNav;
-    MDMyViewController * my;
+    DocMyViewController * my;
     MDServiceViewController * service;
     MDHomeViewController * home;
     
@@ -89,7 +90,7 @@
     selectImage = [UIImage imageNamed:@"service"];
     serviceNav.tabBarItem=[[UITabBarItem alloc] initWithTitle:@"服务记录" image:[normalImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[selectImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
-    my=[[MDMyViewController alloc] init];
+    my=[[DocMyViewController alloc] init];
     myNav = [[UINavigationController alloc] initWithRootViewController:my];
     normalImage = [UIImage imageNamed:@"myback"];
     selectImage = [UIImage imageNamed:@"my"];
@@ -122,7 +123,7 @@
     selectImage = [UIImage imageNamed:@"service"];
     serviceNav.tabBarItem=[[UITabBarItem alloc] initWithTitle:@"患者" image:[normalImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[selectImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
-    my=[[MDMyViewController alloc] init];
+    my=[[DocMyViewController alloc] init];
     myNav = [[UINavigationController alloc] initWithRootViewController:my];
     normalImage = [UIImage imageNamed:@"myback"];
     selectImage = [UIImage imageNamed:@"my"];
