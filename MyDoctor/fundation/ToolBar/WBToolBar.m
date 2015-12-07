@@ -7,6 +7,8 @@
 //
 
 #import "WBToolBar.h"
+#import "MDConst.h"
+
 @implementation WBToolBar
 
 @synthesize dataSource,delegate;
@@ -53,21 +55,26 @@
         [self addSubview:button];
 
     }
-    UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(appWidth/3, 5, 1, kTollBarHeight-10)];
-    lineView1.backgroundColor = [UIColor lightGrayColor];
+    UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(appWidth/3,1, 1, kTollBarHeight-5)];
+    lineView1.backgroundColor = RedColor;
     [self addSubview:lineView1];
 //    if (dataSource.count==3) {
-        UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(2*appWidth/3, 5, 1, kTollBarHeight-10)];
-        lineView2.backgroundColor = [UIColor lightGrayColor];
+        UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(2*appWidth/3, 1, 1, kTollBarHeight-5)];
+        lineView2.backgroundColor = RedColor;
         [self addSubview:lineView2];
 //    }
-    UIView  *blackLineVIew=[[UIView alloc]initWithFrame:CGRectMake(0, kTollBarHeight-1, appWidth, 1)];
-    blackLineVIew.backgroundColor=ColorWithRGB(215, 215, 215, 1);
-    [self addSubview:blackLineVIew];
+    UIView *lineView3 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, appWidth, 1)];
+    lineView3.backgroundColor = RedColor;
+    [self addSubview:lineView3];
     
-    blueLineVIew=[[UIView alloc]initWithFrame:CGRectMake(0, kTollBarHeight-4, appWidth/3, 4)];
-    blueLineVIew.backgroundColor=ColorWithRGB(228, 71, 78, 1);
-    [self addSubview:blueLineVIew];
+    
+//    UIView  *blackLineVIew=[[UIView alloc]initWithFrame:CGRectMake(0, kTollBarHeight-1, appWidth, 1)];
+//    blackLineVIew.backgroundColor=ColorWithRGB(215, 215, 215, 1);
+//    [self addSubview:blackLineVIew];
+    
+//    blueLineVIew=[[UIView alloc]initWithFrame:CGRectMake(0, kTollBarHeight-4, appWidth/3, 4)];
+//    blueLineVIew.backgroundColor=ColorWithRGB(228, 71, 78, 1);
+//    [self addSubview:blueLineVIew];
 }
 
 -(void) tagSelected:(id)sender {
@@ -79,7 +86,7 @@
         }
         [UIView animateWithDuration:.2f animations:^(){
             lastSelectedElement = selectedButton;
-            blueLineVIew.frame = CGRectMake((selectedButton.tag-100)*appWidth/3, kTollBarHeight-4, appWidth/3, 4);
+//            blueLineVIew.frame = CGRectMake((selectedButton.tag-100)*appWidth/3, kTollBarHeight-4, appWidth/3, 4);
             selectedButton.selected=YES;
 
         }];

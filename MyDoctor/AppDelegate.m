@@ -12,6 +12,9 @@
 #import "MDHomeViewController.h"
 #import "BRSlogInViewController.h"
 
+#import "DocHomeViewController.h"
+#import "DocPatientViewController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -24,6 +27,9 @@
     MDMyViewController * my;
     MDServiceViewController * service;
     MDHomeViewController * home;
+    
+    DocHomeViewController * docHome;
+    DocPatientViewController * docPatient;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -43,7 +49,9 @@
     
     
 //    [self logIn];
-    [self showMainView];
+    //医生端
+    [self showDocView];
+//    [self showMainView];
     return YES;
 }
 
@@ -92,6 +100,38 @@
     [self.window makeKeyAndVisible];
     [self applicationWillEnterForeground:nil];//主动触发一次fromlastseen
 
+}
+-(void)showDocView
+{
+    _tabBarController = [[UITabBarController alloc] init];
+    _tabBarController.delegate = self;
+    _tabBarController.tabBar.backgroundImage = nil;
+    _tabBarController.tabBar.backgroundColor = [UIColor clearColor];
+    _tabBarController.tabBar.selectedImageTintColor = [UIColor colorWithRed:20/255.0 green:204/255.0 blue:164/255.0 alpha:1];
+    
+    docHome=[[DocHomeViewController alloc] init];
+    homeNav=[[UINavigationController alloc] initWithRootViewController:docHome];
+    UIImage * normalImage = [UIImage imageNamed:@"homeback"];
+    UIImage *selectImage = [UIImage imageNamed:@"home"];
+    homeNav.tabBarItem=[[UITabBarItem alloc] initWithTitle:@"首页" image:[normalImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[selectImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    
+    
+    docPatient=[[DocPatientViewController alloc] init];
+    serviceNav=[[UINavigationController alloc] initWithRootViewController:docPatient];
+    normalImage = [UIImage imageNamed:@"serviceback"];
+    selectImage = [UIImage imageNamed:@"service"];
+    serviceNav.tabBarItem=[[UITabBarItem alloc] initWithTitle:@"患者" image:[normalImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[selectImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    
+    my=[[MDMyViewController alloc] init];
+    myNav = [[UINavigationController alloc] initWithRootViewController:my];
+    normalImage = [UIImage imageNamed:@"myback"];
+    selectImage = [UIImage imageNamed:@"my"];
+    myNav.tabBarItem=[[UITabBarItem alloc] initWithTitle:@"我的" image:[normalImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[selectImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    _tabBarController.viewControllers = [NSArray arrayWithObjects:homeNav,serviceNav,myNav, nil];
+    
+    [self.window setRootViewController:_tabBarController];
+    [self.window makeKeyAndVisible];
+    [self applicationWillEnterForeground:nil];//主动触发一次fromlastseen
 }
 
 -(void)backselected1

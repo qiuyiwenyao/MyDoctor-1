@@ -10,4 +10,8 @@
 
 @interface DocServiceFolerVO : NSObject
 
+@property (nonatomic, strong) NSString * serviceType;
+@property (nonatomic, strong) NSString * serviceStatus;
+@property (nonatomic, strong) NSString * Time;
+
 @end

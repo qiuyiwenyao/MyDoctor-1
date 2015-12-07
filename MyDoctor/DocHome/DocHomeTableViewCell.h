@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MDConst.h"
 
 @interface DocHomeTableViewCell : UITableViewCell
+@property (nonatomic, strong) NSString * serviceType;
+@property (nonatomic, strong) NSString * serviceStatus;
+@property (nonatomic, strong) NSString * time;
+
+-(void)drawCell;
 
 @end

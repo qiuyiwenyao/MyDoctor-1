@@ -8,6 +8,7 @@
 
 #import "MDBaseViewController.h"
 
-@interface DocOnlineViewController : MDBaseViewController
+@interface DocOnlineViewController : MDBaseViewController<UITableViewDataSource,UITableViewDelegate>
+@property (nonatomic, strong)     UITableView * tableView;
 
 @end

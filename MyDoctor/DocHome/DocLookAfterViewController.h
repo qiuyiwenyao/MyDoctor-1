@@ -8,6 +8,7 @@
 
 #import "MDBaseViewController.h"
 
-@interface DocLookAfterViewController : MDBaseViewController
+@interface DocLookAfterViewController : MDBaseViewController<UITableViewDataSource,UITableViewDelegate>
+@property (nonatomic, strong)     UITableView * tableView;
 
 @end

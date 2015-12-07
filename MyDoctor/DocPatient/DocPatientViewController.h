@@ -7,7 +7,7 @@
 //
 
 #import "MDBaseViewController.h"
-
-@interface DocPatientViewController : MDBaseViewController
+#import "WBToolBar.h"
+@interface DocPatientViewController : MDBaseViewController<ToolBarDelegate>
 
 @end

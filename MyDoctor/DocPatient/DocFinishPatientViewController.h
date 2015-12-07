@@ -8,6 +8,7 @@
 
 #import "MDBaseViewController.h"
 
-@interface DocFinishPatientViewController : MDBaseViewController
+@interface DocFinishPatientViewController : MDBaseViewController<UITableViewDataSource,UITableViewDelegate>
+@property (nonatomic, strong)     UITableView * tableView;
 
 @end

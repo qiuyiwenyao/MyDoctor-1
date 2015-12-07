@@ -10,4 +10,8 @@
 
 @implementation DocPatientFolerVO
 
+@synthesize patientName;
+@synthesize patientTapy;
+@synthesize Time;
+
 @end

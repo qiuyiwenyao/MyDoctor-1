@@ -7,7 +7,8 @@
 //
 
 #import "MDBaseViewController.h"
+#import "WbToolBarFour.h"
 
-@interface DocHomeViewController : MDBaseViewController
+@interface DocHomeViewController : MDBaseViewController<ToolBarDelegate>
 
 @end
