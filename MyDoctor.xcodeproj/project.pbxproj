@@ -113,6 +113,20 @@
 		15AE537A1C02F0680013FF1B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15AE53791C02F0680013FF1B /* Images.xcassets */; };
 		15AE537D1C02F0680013FF1B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE537B1C02F0680013FF1B /* LaunchScreen.xib */; };
 		15AE53891C02F0680013FF1B /* MyDoctorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AE53881C02F0680013FF1B /* MyDoctorTests.m */; };
+		15FBDD3A1C1528F3009E7E39 /* DocHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD391C1528F3009E7E39 /* DocHomeViewController.m */; };
+		15FBDD3D1C152A18009E7E39 /* DocAllWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD3C1C152A18009E7E39 /* DocAllWorkViewController.m */; };
+		15FBDD441C152AC0009E7E39 /* DocLookAfterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD3F1C152AC0009E7E39 /* DocLookAfterViewController.m */; };
+		15FBDD451C152AC0009E7E39 /* DocPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD411C152AC0009E7E39 /* DocPhoneViewController.m */; };
+		15FBDD461C152AC0009E7E39 /* DocOnlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD431C152AC0009E7E39 /* DocOnlineViewController.m */; };
+		15FBDD491C152B56009E7E39 /* WbToolBarFour.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD481C152B56009E7E39 /* WbToolBarFour.m */; };
+		15FBDD4D1C153490009E7E39 /* DocServiceFolerVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD4C1C153490009E7E39 /* DocServiceFolerVO.m */; };
+		15FBDD501C1535D7009E7E39 /* DocHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD4F1C1535D7009E7E39 /* DocHomeTableViewCell.m */; };
+		15FBDD541C1557CB009E7E39 /* DocPatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD531C1557CB009E7E39 /* DocPatientViewController.m */; };
+		15FBDD571C15583A009E7E39 /* DocAllPatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD561C15583A009E7E39 /* DocAllPatientViewController.m */; };
+		15FBDD5A1C155868009E7E39 /* DocUnfinishPatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD591C155868009E7E39 /* DocUnfinishPatientViewController.m */; };
+		15FBDD5D1C155898009E7E39 /* DocFinishPatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD5C1C155898009E7E39 /* DocFinishPatientViewController.m */; };
+		15FBDD601C155A11009E7E39 /* DocPatientTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD5F1C155A11009E7E39 /* DocPatientTableViewCell.m */; };
+		15FBDD641C155B11009E7E39 /* DocPatientFolerVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD631C155B11009E7E39 /* DocPatientFolerVO.m */; };
 		6A2582B81C0FE21D005E3404 /* topImg2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6A2582B71C0FE21D005E3404 /* topImg2.jpg */; };
 		6A2582C71C102ECF005E3404 /* 赞@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A2582C51C102ECF005E3404 /* 赞@2x.png */; };
 		6A2582C81C102ECF005E3404 /* 未赞@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A2582C61C102ECF005E3404 /* 未赞@2x.png */; };
@@ -352,6 +366,34 @@
 		15AE53821C02F0680013FF1B /* MyDoctorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyDoctorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15AE53871C02F0680013FF1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15AE53881C02F0680013FF1B /* MyDoctorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyDoctorTests.m; sourceTree = "<group>"; };
+		15FBDD381C1528F3009E7E39 /* DocHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocHomeViewController.h; path = DocHome/DocHomeViewController.h; sourceTree = "<group>"; };
+		15FBDD391C1528F3009E7E39 /* DocHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocHomeViewController.m; path = DocHome/DocHomeViewController.m; sourceTree = "<group>"; };
+		15FBDD3B1C152A18009E7E39 /* DocAllWorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocAllWorkViewController.h; path = DocHome/DocAllWorkViewController.h; sourceTree = "<group>"; };
+		15FBDD3C1C152A18009E7E39 /* DocAllWorkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocAllWorkViewController.m; path = DocHome/DocAllWorkViewController.m; sourceTree = "<group>"; };
+		15FBDD3E1C152AC0009E7E39 /* DocLookAfterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocLookAfterViewController.h; path = DocHome/DocLookAfterViewController.h; sourceTree = "<group>"; };
+		15FBDD3F1C152AC0009E7E39 /* DocLookAfterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocLookAfterViewController.m; path = DocHome/DocLookAfterViewController.m; sourceTree = "<group>"; };
+		15FBDD401C152AC0009E7E39 /* DocPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocPhoneViewController.h; path = DocHome/DocPhoneViewController.h; sourceTree = "<group>"; };
+		15FBDD411C152AC0009E7E39 /* DocPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocPhoneViewController.m; path = DocHome/DocPhoneViewController.m; sourceTree = "<group>"; };
+		15FBDD421C152AC0009E7E39 /* DocOnlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocOnlineViewController.h; path = DocHome/DocOnlineViewController.h; sourceTree = "<group>"; };
+		15FBDD431C152AC0009E7E39 /* DocOnlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocOnlineViewController.m; path = DocHome/DocOnlineViewController.m; sourceTree = "<group>"; };
+		15FBDD471C152B56009E7E39 /* WbToolBarFour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WbToolBarFour.h; sourceTree = "<group>"; };
+		15FBDD481C152B56009E7E39 /* WbToolBarFour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WbToolBarFour.m; sourceTree = "<group>"; };
+		15FBDD4B1C153490009E7E39 /* DocServiceFolerVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocServiceFolerVO.h; path = DocHome/DocServiceFolerVO/DocServiceFolerVO.h; sourceTree = "<group>"; };
+		15FBDD4C1C153490009E7E39 /* DocServiceFolerVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocServiceFolerVO.m; path = DocHome/DocServiceFolerVO/DocServiceFolerVO.m; sourceTree = "<group>"; };
+		15FBDD4E1C1535D7009E7E39 /* DocHomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocHomeTableViewCell.h; path = DocHome/DocHomeTableViewCell.h; sourceTree = "<group>"; };
+		15FBDD4F1C1535D7009E7E39 /* DocHomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocHomeTableViewCell.m; path = DocHome/DocHomeTableViewCell.m; sourceTree = "<group>"; };
+		15FBDD521C1557CB009E7E39 /* DocPatientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocPatientViewController.h; path = DocPatient/DocPatientViewController.h; sourceTree = "<group>"; };
+		15FBDD531C1557CB009E7E39 /* DocPatientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocPatientViewController.m; path = DocPatient/DocPatientViewController.m; sourceTree = "<group>"; };
+		15FBDD551C15583A009E7E39 /* DocAllPatientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocAllPatientViewController.h; path = DocPatient/DocAllPatientViewController.h; sourceTree = "<group>"; };
+		15FBDD561C15583A009E7E39 /* DocAllPatientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocAllPatientViewController.m; path = DocPatient/DocAllPatientViewController.m; sourceTree = "<group>"; };
+		15FBDD581C155868009E7E39 /* DocUnfinishPatientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocUnfinishPatientViewController.h; path = DocPatient/DocUnfinishPatientViewController.h; sourceTree = "<group>"; };
+		15FBDD591C155868009E7E39 /* DocUnfinishPatientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocUnfinishPatientViewController.m; path = DocPatient/DocUnfinishPatientViewController.m; sourceTree = "<group>"; };
+		15FBDD5B1C155898009E7E39 /* DocFinishPatientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocFinishPatientViewController.h; path = DocPatient/DocFinishPatientViewController.h; sourceTree = "<group>"; };
+		15FBDD5C1C155898009E7E39 /* DocFinishPatientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocFinishPatientViewController.m; path = DocPatient/DocFinishPatientViewController.m; sourceTree = "<group>"; };
+		15FBDD5E1C155A11009E7E39 /* DocPatientTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocPatientTableViewCell.h; path = DocPatient/DocPatientTableViewCell.h; sourceTree = "<group>"; };
+		15FBDD5F1C155A11009E7E39 /* DocPatientTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocPatientTableViewCell.m; path = DocPatient/DocPatientTableViewCell.m; sourceTree = "<group>"; };
+		15FBDD621C155B11009E7E39 /* DocPatientFolerVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocPatientFolerVO.h; path = DocPatient/DocPatientFolerVO/DocPatientFolerVO.h; sourceTree = "<group>"; };
+		15FBDD631C155B11009E7E39 /* DocPatientFolerVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocPatientFolerVO.m; path = DocPatient/DocPatientFolerVO/DocPatientFolerVO.m; sourceTree = "<group>"; };
 		6A2582B71C0FE21D005E3404 /* topImg2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = topImg2.jpg; sourceTree = "<group>"; };
 		6A2582C51C102ECF005E3404 /* 赞@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "赞@2x.png"; sourceTree = "<group>"; };
 		6A2582C61C102ECF005E3404 /* 未赞@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未赞@2x.png"; sourceTree = "<group>"; };
@@ -555,6 +597,8 @@
 		153C1E881C0405FE00F87014 /* ToolBar */ = {
 			isa = PBXGroup;
 			children = (
+				15FBDD471C152B56009E7E39 /* WbToolBarFour.h */,
+				15FBDD481C152B56009E7E39 /* WbToolBarFour.m */,
 				153C1E891C0405FE00F87014 /* WBToolBar.h */,
 				153C1E8A1C0405FE00F87014 /* WBToolBar.m */,
 			);
@@ -793,7 +837,12 @@
 		15AE536B1C02F0680013FF1B /* MyDoctor */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				6A45AABA1C15518900555CF9 /* DocMyView */,
+=======
+				15FBDD511C15574B009E7E39 /* DoctorPatient */,
+				15CD4B661C15285A009B5E4B /* DoctorHome */,
+>>>>>>> 3807142ca0022dd18dc119bc70f90004ecc03f83
 				159049651C069FA600EE51FB /* logIn */,
 				6A3EF7D31C058E6A00923D03 /* MyView */,
 				6A8F12B01C040825001ABE2F /* Other */,
@@ -867,6 +916,62 @@
 				6A3EF83A1C05BAFE00923D03 /* MDOngoingViewController.m */,
 			);
 			name = Service;
+			sourceTree = "<group>";
+		};
+		15CD4B661C15285A009B5E4B /* DoctorHome */ = {
+			isa = PBXGroup;
+			children = (
+				15FBDD4A1C1533B8009E7E39 /* DocServiceFolerVO */,
+				15FBDD381C1528F3009E7E39 /* DocHomeViewController.h */,
+				15FBDD391C1528F3009E7E39 /* DocHomeViewController.m */,
+				15FBDD3B1C152A18009E7E39 /* DocAllWorkViewController.h */,
+				15FBDD3C1C152A18009E7E39 /* DocAllWorkViewController.m */,
+				15FBDD4E1C1535D7009E7E39 /* DocHomeTableViewCell.h */,
+				15FBDD4F1C1535D7009E7E39 /* DocHomeTableViewCell.m */,
+				15FBDD421C152AC0009E7E39 /* DocOnlineViewController.h */,
+				15FBDD431C152AC0009E7E39 /* DocOnlineViewController.m */,
+				15FBDD401C152AC0009E7E39 /* DocPhoneViewController.h */,
+				15FBDD411C152AC0009E7E39 /* DocPhoneViewController.m */,
+				15FBDD3E1C152AC0009E7E39 /* DocLookAfterViewController.h */,
+				15FBDD3F1C152AC0009E7E39 /* DocLookAfterViewController.m */,
+			);
+			name = DoctorHome;
+			sourceTree = "<group>";
+		};
+		15FBDD4A1C1533B8009E7E39 /* DocServiceFolerVO */ = {
+			isa = PBXGroup;
+			children = (
+				15FBDD4B1C153490009E7E39 /* DocServiceFolerVO.h */,
+				15FBDD4C1C153490009E7E39 /* DocServiceFolerVO.m */,
+			);
+			name = DocServiceFolerVO;
+			sourceTree = "<group>";
+		};
+		15FBDD511C15574B009E7E39 /* DoctorPatient */ = {
+			isa = PBXGroup;
+			children = (
+				15FBDD611C155AC9009E7E39 /* DocPatientFolerVO */,
+				15FBDD521C1557CB009E7E39 /* DocPatientViewController.h */,
+				15FBDD531C1557CB009E7E39 /* DocPatientViewController.m */,
+				15FBDD551C15583A009E7E39 /* DocAllPatientViewController.h */,
+				15FBDD561C15583A009E7E39 /* DocAllPatientViewController.m */,
+				15FBDD5E1C155A11009E7E39 /* DocPatientTableViewCell.h */,
+				15FBDD5F1C155A11009E7E39 /* DocPatientTableViewCell.m */,
+				15FBDD581C155868009E7E39 /* DocUnfinishPatientViewController.h */,
+				15FBDD591C155868009E7E39 /* DocUnfinishPatientViewController.m */,
+				15FBDD5B1C155898009E7E39 /* DocFinishPatientViewController.h */,
+				15FBDD5C1C155898009E7E39 /* DocFinishPatientViewController.m */,
+			);
+			name = DoctorPatient;
+			sourceTree = "<group>";
+		};
+		15FBDD611C155AC9009E7E39 /* DocPatientFolerVO */ = {
+			isa = PBXGroup;
+			children = (
+				15FBDD621C155B11009E7E39 /* DocPatientFolerVO.h */,
+				15FBDD631C155B11009E7E39 /* DocPatientFolerVO.m */,
+			);
+			name = DocPatientFolerVO;
 			sourceTree = "<group>";
 		};
 		6A3EF7C41C058B4D00923D03 /* Model */ = {
@@ -1237,17 +1342,21 @@
 				6A3EF8621C06FDB300923D03 /* MDTransfuseViewController.m in Sources */,
 				6AF2024D1C0C1A5600933EAF /* MDMyDoctorViewController.m in Sources */,
 				153C1E7F1C03FB8C00F87014 /* MX_MASCompositeConstraint.m in Sources */,
+				15FBDD441C152AC0009E7E39 /* DocLookAfterViewController.m in Sources */,
+				15FBDD4D1C153490009E7E39 /* DocServiceFolerVO.m in Sources */,
 				6A3EF8411C05BAFE00923D03 /* MDAllServiceViewController.m in Sources */,
 				6A3EF8451C05BAFE00923D03 /* MDServiceViewController.m in Sources */,
 				15AE53751C02F0680013FF1B /* MDBaseViewController.m in Sources */,
 				155CEC2D1C0E81B8006B5CFA /* AFURLConnectionOperation.m in Sources */,
 				159049771C069FA600EE51FB /* BRSTextField.m in Sources */,
 				153C1E8B1C0405FE00F87014 /* WBToolBar.m in Sources */,
+				15FBDD501C1535D7009E7E39 /* DocHomeTableViewCell.m in Sources */,
 				6AF202541C0C1F2100933EAF /* MDMyDoctorCell.m in Sources */,
 				153ED8641C0C228500171DFA /* MDDrugVO.m in Sources */,
 				6A3EF8141C05B5B800923D03 /* MDOrderDetailsViewController.m in Sources */,
 				6A3EF85F1C06FD7400923D03 /* MDExaminationViewController.m in Sources */,
 				155CEC361C0E81B8006B5CFA /* UIProgressView+AFNetworking.m in Sources */,
+				15FBDD3A1C1528F3009E7E39 /* DocHomeViewController.m in Sources */,
 				159049721C069FA600EE51FB /* BRSlogInViewController.m in Sources */,
 				153C1E851C03FB8C00F87014 /* NSArray+MASAdditions.m in Sources */,
 				155CEC321C0E81B8006B5CFA /* UIActivityIndicatorView+AFNetworking.m in Sources */,
@@ -1269,23 +1378,32 @@
 				6A3EF8531C06039C00923D03 /* MDConsultDrupViewController.m in Sources */,
 				153ED8481C08523600171DFA /* MDAddressViewController.m in Sources */,
 				155CEC2C1C0E81B8006B5CFA /* AFSecurityPolicy.m in Sources */,
+				15FBDD641C155B11009E7E39 /* DocPatientFolerVO.m in Sources */,
 				15AE536F1C02F0680013FF1B /* main.m in Sources */,
 				6AF202271C08498100933EAF /* MDExpertConsultationViewController.m in Sources */,
 				6AF2022D1C084FC900933EAF /* MDLectureViewController.m in Sources */,
 				153ED8391C082DA300171DFA /* MDNoPaymentViewController.m in Sources */,
+				15FBDD3D1C152A18009E7E39 /* DocAllWorkViewController.m in Sources */,
 				6A3EF8561C0603DE00923D03 /* MDActivityViewController.m in Sources */,
 				6AF202501C0C1B4F00933EAF /* MDMyDoctorModel.m in Sources */,
+				15FBDD5D1C155898009E7E39 /* DocFinishPatientViewController.m in Sources */,
 				153ED8431C083DB500171DFA /* KTSelectDatePicker.m in Sources */,
 				153C1E801C03FB8C00F87014 /* MX_MASConstraint.m in Sources */,
+				15FBDD571C15583A009E7E39 /* DocAllPatientViewController.m in Sources */,
 				153ED8441C083DB500171DFA /* KTSelectPickerView.m in Sources */,
 				155CEC381C0E81B8006B5CFA /* UIWebView+AFNetworking.m in Sources */,
 				155CEC2A1C0E81B8006B5CFA /* AFHTTPSessionManager.m in Sources */,
 				159049751C069FA600EE51FB /* BRSSignIn2ViewController.m in Sources */,
 				6A3EF8431C05BAFE00923D03 /* MDPaymentViewController.m in Sources */,
+				15FBDD491C152B56009E7E39 /* WbToolBarFour.m in Sources */,
+				15FBDD601C155A11009E7E39 /* DocPatientTableViewCell.m in Sources */,
 				6A3EF84D1C06037100923D03 /* MDnoticeCenterController.m in Sources */,
 				155CEC481C0E8993006B5CFA /* GTMBase64.m in Sources */,
 				155CEC371C0E81B8006B5CFA /* UIRefreshControl+AFNetworking.m in Sources */,
 				153ED8551C0BEC8000171DFA /* MDNewAddressViewController.m in Sources */,
+				15FBDD5A1C155868009E7E39 /* DocUnfinishPatientViewController.m in Sources */,
+				15FBDD451C152AC0009E7E39 /* DocPhoneViewController.m in Sources */,
+				15FBDD461C152AC0009E7E39 /* DocOnlineViewController.m in Sources */,
 				6AF2021F1C083F4000933EAF /* activityCell.m in Sources */,
 				6A3EF7DD1C058F1200923D03 /* MDMyViewController.m in Sources */,
 				155CEC301C0E81B8006B5CFA /* AFURLSessionManager.m in Sources */,
@@ -1295,6 +1413,7 @@
 				153ED8581C0BF73C00171DFA /* MDDrugTableViewController.m in Sources */,
 				6A3EF80E1C05ADF100923D03 /* MDHomeViewController.m in Sources */,
 				159049731C069FA600EE51FB /* BRSNewPageViewController.m in Sources */,
+				15FBDD541C1557CB009E7E39 /* DocPatientViewController.m in Sources */,
 				155CEC2E1C0E81B8006B5CFA /* AFURLRequestSerialization.m in Sources */,
 				155CEC291C0E81B8006B5CFA /* AFHTTPRequestOperationManager.m in Sources */,
 				155CEC351C0E81B8006B5CFA /* UIImageView+AFNetworking.m in Sources */,
