@@ -12,6 +12,7 @@
 #import "DocPhoneViewController.h"
 #import "DocLookAfterViewController.h"
 #import "WbToolBarFour.h"
+#import "DocRecordViewController.h"
 
 @interface DocHomeViewController ()
 
@@ -126,6 +127,11 @@
 {
     
     NSString * text= [[sender userInfo] objectForKey:@"text"];
+    if ([text isEqualToString:@"已完成"]) {
+        DocRecordViewController * recordVC = [[DocRecordViewController alloc] init];
+        recordVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:recordVC animated:YES];
+    }
   
 }
 

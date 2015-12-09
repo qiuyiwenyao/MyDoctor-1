@@ -53,8 +53,11 @@
         NSLog(@"width:%f  height:%f",self.frame.size.width,*height);
         [UIView commitAnimations];
         
-        [b.superview addSubview:self];
+        [b.superview.superview addSubview:self];
+        NSLog(@"===%@",b.superview.superview);
         [self addSubview:table];
+//        [table bringSubviewToFront:<#(nonnull UIView *)#>];
+//        [self.superview.superview.superview bringSubviewToFront:self];
     }
     return self;
 }
@@ -93,6 +96,7 @@
     }
     cell.textLabel.text =[list objectAtIndex:indexPath.row];
     cell.textLabel.textColor = [UIColor colorWithRed:97/255 green:103/255 blue:111/255 alpha:1];
+    cell.backgroundColor = ColorWithRGB(255, 255, 255, 0.7);
     
     UIView * v = [[UIView alloc] init];
     v.backgroundColor = RedColor;

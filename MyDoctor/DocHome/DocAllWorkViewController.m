@@ -34,13 +34,13 @@
     DocServiceFolerVO * sfv=[[DocServiceFolerVO alloc] init];
     sfv.serviceType=@"线上咨询";
     sfv.serviceStatus=@"未完成";
-    sfv.headImg = @"大爷.jpg";
+    sfv.headImg = @"大婶.jpg";
     sfv.Time=@"2015年12月11日  13:00";
     
     DocServiceFolerVO * sfv1=[[DocServiceFolerVO alloc] init];
     sfv1.serviceType=@"电话咨询";
     sfv1.serviceStatus=@"已完成";
-    sfv1.headImg = @"大婶.jpg";
+    sfv1.headImg = @"大叔";
     sfv1.Time=@"2015年12月11日  13:00";
     
     DocServiceFolerVO * sfv2=[[DocServiceFolerVO alloc] init];
@@ -105,21 +105,9 @@
 
     cell.selected = NO;
     // 带字典的通知
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"12" forKey:@"text"];
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:cell.serviceStatus forKey:@"text"];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"pushViewInDocHome" object:nil userInfo:userInfo];
-    
-
-    
-    if ([cell.serviceStatus isEqualToString:@"已完成"]) {
-//        recordVC.hidesBottomBarWhenPushed = YES;
-        DocRecordViewController * recordVC = [[DocRecordViewController alloc] init];
-        recordVC.titleLab = @"服务记录";
-
-        [self presentViewController:recordVC animated:YES completion:nil];
-    }
-    
-    
     
 }
 -(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath

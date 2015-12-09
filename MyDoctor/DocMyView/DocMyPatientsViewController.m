@@ -108,7 +108,7 @@
 
 -(void)createHeaderView
 {
-    _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, TOPHEIGHT+18, appWidth, appWidth/4)];
+    _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, appWidth, appWidth/4)];
     _headerView.backgroundColor = [UIColor clearColor];
 //    [self.view addSubview:_headerView];
     
@@ -140,12 +140,12 @@
 
 -(void)createTableView
 {
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, appWidth, appHeight) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, TOPHEIGHT, appWidth, appHeight-TOPHEIGHT) style:UITableViewStylePlain];
     _tableView.delegate  =self;
     _tableView.dataSource = self;
     _tableView.backgroundColor = [UIColor clearColor];
-    _tableView.contentInset = UIEdgeInsetsMake(TOPHEIGHT+18, 0, 0, 0);
-    _tableView.scrollIndicatorInsets = UIEdgeInsetsMake(18+TOPHEIGHT, 0, 0, 0);
+    _tableView.contentInset = UIEdgeInsetsMake(18, 0, 0, 0);
+    _tableView.scrollIndicatorInsets = UIEdgeInsetsMake(18, 0, 0, 0);
     [self.view addSubview:_tableView];
     
     _tableView.tableHeaderView = _headerView;
@@ -157,7 +157,7 @@
 -(void)requirBtnClick:(id)sender
 {
     NSArray * arr = [[NSArray alloc] init];
-    arr = [NSArray arrayWithObjects:@"Hello 0", @"Hello 1", @"Hello 2", @"Hello 3",nil];
+    arr = [NSArray arrayWithObjects:@"2015年10月",@"2015年11月",@"2015年12月",nil];
     if(dropDown == nil) {
         CGFloat f = _requirBtn.height*arr.count;
         dropDown = [[NIDropDown alloc]showDropDown:sender :&f :arr];

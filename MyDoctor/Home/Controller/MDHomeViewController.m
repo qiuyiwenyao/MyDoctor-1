@@ -30,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     currentPage = 0;
-    self.navigationItem.title=@"寻医问药";
+    self.navigationItem.title=@"e+健康";
     
     [self setNavigationBarWithrightBtn:@"通知" leftBtn:nil];
     self.automaticallyAdjustsScrollViewInsets = YES;

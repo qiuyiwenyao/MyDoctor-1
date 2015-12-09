@@ -40,7 +40,7 @@
     [self postRequest];
 
     
-//    [self setText];
+    [self setText];
     
     // Do any additional setup after loading the view.
 }
@@ -79,7 +79,7 @@
         [_dataSource addObject:model];
     }
     
-    [self setText];
+//    [self setText];
 //    healthEducateName": "健康讲座",
 //    "participateInPeople": "接受教育的人群",
 //    "starttime": "2015-11-30 21:10:53",
@@ -132,10 +132,11 @@
 -(void)setText
 {
     //取出数据模型
-    MDLectureModel * model = _dataSource[0];
+//    MDLectureModel * model = _dataSource[0];
     
     UILabel * startTimeLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, appWidth - 48*2, 0)];
-    startTimeLab.text = [NSString stringWithFormat:@"开始时间:%@",model.starttime];
+//    startTimeLab.text = [NSString stringWithFormat:@"开始时间:%@",model.starttime];
+    startTimeLab.text = @"开始时间:2015-12-08";
     startTimeLab.textAlignment = NSTextAlignmentLeft;
     startTimeLab.font = [UIFont systemFontOfSize:14];
     startTimeLab.textColor = ColorWithRGB(97, 103, 111, 1);
@@ -144,7 +145,8 @@
     [self.scrollView addSubview:startTimeLab];
     
     UILabel * endTimeLab = [[UILabel alloc] initWithFrame:CGRectMake(0, startTimeLab.y+startTimeLab.height+21, appWidth - 48*2, 0)];
-    endTimeLab.text = [NSString stringWithFormat:@"结束时间:%@",model.endtime];
+//    endTimeLab.text = [NSString stringWithFormat:@"结束时间:%@",model.endtime];
+    endTimeLab.text = @"结束时间:2015-12-09";
     endTimeLab.textAlignment = NSTextAlignmentLeft;
     endTimeLab.font = [UIFont systemFontOfSize:14];
     endTimeLab.textColor = ColorWithRGB(97, 103, 111, 1);
@@ -192,7 +194,7 @@
     {
         scrollViewHeight += view.frame.size.height;
     }
-    [self.scrollView setContentSize:(CGSizeMake(0, scrollViewHeight+21*3))];
+    [self.scrollView setContentSize:(CGSizeMake(0, scrollViewHeight+21*4))];
 
 }
 
