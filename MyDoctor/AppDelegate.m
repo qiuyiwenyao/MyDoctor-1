@@ -25,7 +25,8 @@
     UINavigationController *homeNav;
     UINavigationController *serviceNav;
     UINavigationController *myNav;
-    DocMyViewController * my;
+    MDMyViewController * my;
+    DocMyViewController * docMy;
     MDServiceViewController * service;
     MDHomeViewController * home;
     
@@ -52,7 +53,7 @@
 //    [self logIn];
     //医生端
     [self showDocView];
-//    [self showMainView];
+//   [self showMainView];
     return YES;
 }
 
@@ -90,7 +91,7 @@
     selectImage = [UIImage imageNamed:@"service"];
     serviceNav.tabBarItem=[[UITabBarItem alloc] initWithTitle:@"服务记录" image:[normalImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[selectImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
-    my=[[DocMyViewController alloc] init];
+    my=[[MDMyViewController alloc] init];
     myNav = [[UINavigationController alloc] initWithRootViewController:my];
     normalImage = [UIImage imageNamed:@"myback"];
     selectImage = [UIImage imageNamed:@"my"];
@@ -123,8 +124,8 @@
     selectImage = [UIImage imageNamed:@"service"];
     serviceNav.tabBarItem=[[UITabBarItem alloc] initWithTitle:@"患者" image:[normalImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[selectImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
-    my=[[DocMyViewController alloc] init];
-    myNav = [[UINavigationController alloc] initWithRootViewController:my];
+    docMy=[[DocMyViewController alloc] init];
+    myNav = [[UINavigationController alloc] initWithRootViewController:docMy];
     normalImage = [UIImage imageNamed:@"myback"];
     selectImage = [UIImage imageNamed:@"my"];
     myNav.tabBarItem=[[UITabBarItem alloc] initWithTitle:@"我的" image:[normalImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[selectImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];

@@ -33,18 +33,20 @@
     DocPatientFolerVO * sfv=[[DocPatientFolerVO alloc] init];
     sfv.patientTapy=@"线上咨询";
     sfv.patientName=@"小明";
+    sfv.headImg = @"大叔";
     sfv.Time=@"2015年12月11日  13:00";
     
     DocPatientFolerVO * sfv1=[[DocPatientFolerVO alloc] init];
     sfv1.patientTapy=@"电话咨询";
     sfv1.patientName=@"小黄";
+    sfv1.headImg = @"叔叔.jpg";
     sfv1.Time=@"2015年12月11日  13:00";
     
     DocPatientFolerVO * sfv2=[[DocPatientFolerVO alloc] init];
     sfv2.patientTapy=@"照护";
     sfv2.patientName=@"小白";
+    sfv2.headImg = @"大婶.jpg";
     sfv2.Time=@"2015年12月11日  13:00";
-    
     [dataArray addObject:sfv];
     [dataArray addObject:sfv1];
     [dataArray addObject:sfv2];
@@ -86,6 +88,7 @@
         cell.patientName=service.patientName;
         cell.PatientTapy=service.patientTapy;
         cell.time=service.Time;
+        cell.headImg = service.headImg;
     }
     [cell drawCell];
     

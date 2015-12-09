@@ -199,7 +199,7 @@
     cell.textLabel.text = item.title;
     cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:item.rightImg]];
     cell.imageView.image = [UIImage imageNamed:item.icon];
-    cell.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.7];
+    cell.backgroundColor = [UIColor colorWithRed:255 green:255 blue:255 alpha:0.7];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     return cell;

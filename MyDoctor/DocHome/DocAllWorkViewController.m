@@ -9,6 +9,7 @@
 #import "DocAllWorkViewController.h"
 #import "DocServiceFolerVO.h"
 #import "DocHomeTableViewCell.h"
+#import "DocRecordViewController.h"
 
 @interface DocAllWorkViewController ()
 
@@ -33,16 +34,19 @@
     DocServiceFolerVO * sfv=[[DocServiceFolerVO alloc] init];
     sfv.serviceType=@"线上咨询";
     sfv.serviceStatus=@"未完成";
+    sfv.headImg = @"大爷.jpg";
     sfv.Time=@"2015年12月11日  13:00";
     
     DocServiceFolerVO * sfv1=[[DocServiceFolerVO alloc] init];
     sfv1.serviceType=@"电话咨询";
     sfv1.serviceStatus=@"已完成";
+    sfv1.headImg = @"大婶.jpg";
     sfv1.Time=@"2015年12月11日  13:00";
     
     DocServiceFolerVO * sfv2=[[DocServiceFolerVO alloc] init];
     sfv2.serviceType=@"照护";
     sfv2.serviceStatus=@"已完成";
+    sfv2.headImg = @"叔叔.jpg";
     sfv2.Time=@"2015年12月11日  13:00";
     
     [dataArray addObject:sfv];
@@ -86,6 +90,7 @@
         cell.serviceType=service.serviceType;
         cell.serviceStatus=service.serviceStatus;
         cell.time=service.Time;
+        cell.headImg = service.headImg;
     }
     [cell drawCell];
     
@@ -93,12 +98,28 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    DocHomeTableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+//    NSLog(@"%@",cell.serviceStatus);
+
     cell.selected = NO;
     // 带字典的通知
     NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"12" forKey:@"text"];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"pushViewInDocHome" object:nil userInfo:userInfo];
+    
+
+    
+    if ([cell.serviceStatus isEqualToString:@"已完成"]) {
+//        recordVC.hidesBottomBarWhenPushed = YES;
+        DocRecordViewController * recordVC = [[DocRecordViewController alloc] init];
+        recordVC.titleLab = @"服务记录";
+
+        [self presentViewController:recordVC animated:YES completion:nil];
+    }
+    
+    
     
 }
 -(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath

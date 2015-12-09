@@ -8,6 +8,8 @@
 
 #import "DocMyPatientsViewController.h"
 #import "NIDropDown.h"
+#import "DocMyPatientsCell.h"
+#import "DocMyPatientsModel.h"
 
 @interface DocMyPatientsViewController ()<NIDropDownDelegate>
 {
@@ -18,12 +20,57 @@
 
 }
 @property(nonatomic,retain) UIButton * requirBtn;
+@property (nonatomic,strong) NSMutableArray * dataSource;
 
 @end
 
 
 
 @implementation DocMyPatientsViewController
+
+-(NSMutableArray *)dataSource
+{
+    if (_dataSource == nil) {
+        _dataSource = [[NSMutableArray alloc] init];
+        DocMyPatientsModel * group0 = [[DocMyPatientsModel alloc] init];
+        group0.headImg = @"大妈.jpg";
+        group0.name = @"张大妈";
+        group0.age = @"58";
+        group0.sex = @"女";
+        
+        DocMyPatientsModel * group1 = [[DocMyPatientsModel alloc] init];
+        group1.headImg = @"大叔";
+        group1.name = @"李大叔";
+        group1.age = @"44";
+        group1.sex = @"男";
+        
+        DocMyPatientsModel * group2 = [[DocMyPatientsModel alloc] init];
+        group2.headImg = @"大爷.jpg";
+        group2.name = @"赵大爷";
+        group2.age = @"68";
+        group2.sex = @"男";
+        
+        DocMyPatientsModel * group3 = [[DocMyPatientsModel alloc] init];
+        group3.headImg = @"叔叔.jpg";
+        group3.name = @"老王";
+        group3.age = @"39";
+        group3.sex = @"男";
+        
+        DocMyPatientsModel * group4 = [[DocMyPatientsModel alloc] init];
+        group4.headImg = @"大婶.jpg";
+        group4.name = @"张妈";
+        group4.age = @"58";
+        group4.sex = @"女";
+        
+        [_dataSource addObject:group0];
+        [_dataSource addObject:group1];
+        [_dataSource addObject:group2];
+        [_dataSource addObject:group3];
+        [_dataSource addObject:group4];
+
+    }
+    return _dataSource;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -81,7 +128,7 @@
     
     _requirBtn = [[UIButton alloc] init];
     [_requirBtn setTitle:@"2015年7月" forState:UIControlStateNormal];
-    _requirBtn.frame = CGRectMake(0, mySearchBar.y+mySearchBar.height+10, appWidth*25.0/62.0, _headerView.height - mySearchBar.height - 10);
+    _requirBtn.frame = CGRectMake(0, mySearchBar.y+mySearchBar.height+10, appWidth*25.0/62.0,appWidth*25.0/62.0*5.0/24.0-2 );
     [_requirBtn setBackgroundImage:[UIImage imageNamed:@"下拉框"] forState:UIControlStateNormal];
     [_requirBtn setTitleColor:ColorWithRGB(97, 103, 111, 1) forState:UIControlStateNormal];
     _requirBtn.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -93,14 +140,18 @@
 
 -(void)createTableView
 {
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, appWidth, appHeight - 18) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, appWidth, appHeight) style:UITableViewStylePlain];
     _tableView.delegate  =self;
     _tableView.dataSource = self;
+    _tableView.backgroundColor = [UIColor clearColor];
     _tableView.contentInset = UIEdgeInsetsMake(TOPHEIGHT+18, 0, 0, 0);
     _tableView.scrollIndicatorInsets = UIEdgeInsetsMake(18+TOPHEIGHT, 0, 0, 0);
     [self.view addSubview:_tableView];
     
     _tableView.tableHeaderView = _headerView;
+    
+    //注册nib
+    [_tableView registerNib:[UINib nibWithNibName:@"DocMyPatientsCell" bundle:nil] forCellReuseIdentifier:@"iden"];
 }
 
 -(void)requirBtnClick:(id)sender
@@ -183,7 +234,14 @@
     [searchResults addObjectsFromArray:tempResults];
 }
 
-#pragma UITableViewDataSource
+#pragma UITableViewDelegate
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    NSLog(@"=====%@",self.dataSource);
+    return self.dataSource.count;
+}
+
+
 -(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 {
     _tableView.tableHeaderView = _headerView;
@@ -197,12 +255,6 @@
     return 20;
 }
 
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 5;
-}
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 1;
@@ -211,12 +263,35 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString * iden = @"iden";
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:iden];
+    DocMyPatientsCell * cell = [tableView dequeueReusableCellWithIdentifier:iden];
     if (cell == 0) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
+        cell = [[DocMyPatientsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
     }
     
+    cell.backgroundColor = ColorWithRGB(255, 255, 255, 0.7);
+    
+    //取出数据源数据
+    DocMyPatientsModel * model = self.dataSource[indexPath.section];
+    cell.headerView.image = [UIImage imageNamed:model.headImg];
+    cell.nameLab.text = [NSString stringWithFormat:@"姓名: %@",model.name];
+    cell.ageLab.text = [NSString stringWithFormat:@"年龄: %@岁",model.age];
+    cell.sexyLab.text = [NSString stringWithFormat:@"性别: %@",model.sex];
+    
+    
     return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return appWidth/3;
+}
+
+//填充每个cell间距的view，使之透明
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView * view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor clearColor];
+    return view;
 }
 
 

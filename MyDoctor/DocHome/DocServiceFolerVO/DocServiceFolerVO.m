@@ -13,5 +13,6 @@
 @synthesize serviceType;
 @synthesize serviceStatus;
 @synthesize Time;
+@synthesize headImg;
 
 @end

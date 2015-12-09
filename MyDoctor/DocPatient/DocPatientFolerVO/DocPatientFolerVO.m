@@ -13,5 +13,6 @@
 @synthesize patientName;
 @synthesize patientTapy;
 @synthesize Time;
+@synthesize headImg;
 
 @end

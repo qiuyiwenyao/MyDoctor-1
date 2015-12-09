@@ -165,6 +165,15 @@
 		6A45AAB61C152AB400555CF9 /* 赞@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A45AAB41C152AB400555CF9 /* 赞@3x.png */; };
 		6A45AAD01C15659900555CF9 /* DocMyPatientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A45AACD1C15659900555CF9 /* DocMyPatientsViewController.m */; };
 		6A45AAD11C15659900555CF9 /* DocMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A45AACF1C15659900555CF9 /* DocMyViewController.m */; };
+		6A45AADD1C16BA0600555CF9 /* DocMyPatientsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A45AADB1C16BA0600555CF9 /* DocMyPatientsCell.m */; };
+		6A45AADE1C16BA0600555CF9 /* DocMyPatientsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A45AADC1C16BA0600555CF9 /* DocMyPatientsCell.xib */; };
+		6A45AAE11C16C5D700555CF9 /* 大爷.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6A45AADF1C16C5D700555CF9 /* 大爷.jpg */; };
+		6A45AAE21C16C5D700555CF9 /* 大妈.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6A45AAE01C16C5D700555CF9 /* 大妈.jpg */; };
+		6A45AAE61C16C89E00555CF9 /* 叔叔.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6A45AAE41C16C89E00555CF9 /* 叔叔.jpg */; };
+		6A45AAE71C16C89E00555CF9 /* 大婶.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6A45AAE51C16C89E00555CF9 /* 大婶.jpg */; };
+		6A45AAE91C16C8A900555CF9 /* 大叔.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A45AAE81C16C8A900555CF9 /* 大叔.png */; };
+		6A45AAEC1C16C94F00555CF9 /* DocMyPatientsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A45AAEB1C16C94F00555CF9 /* DocMyPatientsModel.m */; };
+		6A45AAF21C17225900555CF9 /* DocRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A45AAF11C17225900555CF9 /* DocRecordViewController.m */; };
 		6AF2021F1C083F4000933EAF /* activityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2021D1C083F4000933EAF /* activityCell.m */; };
 		6AF202201C083F4000933EAF /* activityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF2021E1C083F4000933EAF /* activityCell.xib */; };
 		6AF202271C08498100933EAF /* MDExpertConsultationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF202261C08498100933EAF /* MDExpertConsultationViewController.m */; };
@@ -457,6 +466,18 @@
 		6A45AACD1C15659900555CF9 /* DocMyPatientsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocMyPatientsViewController.m; path = DocMyView/DocMyPatientsViewController.m; sourceTree = "<group>"; };
 		6A45AACE1C15659900555CF9 /* DocMyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocMyViewController.h; path = DocMyView/DocMyViewController.h; sourceTree = "<group>"; };
 		6A45AACF1C15659900555CF9 /* DocMyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocMyViewController.m; path = DocMyView/DocMyViewController.m; sourceTree = "<group>"; };
+		6A45AADA1C16BA0600555CF9 /* DocMyPatientsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocMyPatientsCell.h; path = DocMyView/DocMyPatientsCell.h; sourceTree = "<group>"; };
+		6A45AADB1C16BA0600555CF9 /* DocMyPatientsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocMyPatientsCell.m; path = DocMyView/DocMyPatientsCell.m; sourceTree = "<group>"; };
+		6A45AADC1C16BA0600555CF9 /* DocMyPatientsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DocMyPatientsCell.xib; path = DocMyView/DocMyPatientsCell.xib; sourceTree = "<group>"; };
+		6A45AADF1C16C5D700555CF9 /* 大爷.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "大爷.jpg"; sourceTree = "<group>"; };
+		6A45AAE01C16C5D700555CF9 /* 大妈.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "大妈.jpg"; sourceTree = "<group>"; };
+		6A45AAE41C16C89E00555CF9 /* 叔叔.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "叔叔.jpg"; sourceTree = "<group>"; };
+		6A45AAE51C16C89E00555CF9 /* 大婶.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "大婶.jpg"; sourceTree = "<group>"; };
+		6A45AAE81C16C8A900555CF9 /* 大叔.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "大叔.png"; sourceTree = "<group>"; };
+		6A45AAEA1C16C94F00555CF9 /* DocMyPatientsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocMyPatientsModel.h; sourceTree = "<group>"; };
+		6A45AAEB1C16C94F00555CF9 /* DocMyPatientsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocMyPatientsModel.m; sourceTree = "<group>"; };
+		6A45AAF01C17225900555CF9 /* DocRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocRecordViewController.h; sourceTree = "<group>"; };
+		6A45AAF11C17225900555CF9 /* DocRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocRecordViewController.m; sourceTree = "<group>"; };
 		6AF2021C1C083F4000933EAF /* activityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = activityCell.h; path = Home/View/activityCell.h; sourceTree = "<group>"; };
 		6AF2021D1C083F4000933EAF /* activityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = activityCell.m; path = Home/View/activityCell.m; sourceTree = "<group>"; };
 		6AF2021E1C083F4000933EAF /* activityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = activityCell.xib; path = Home/View/activityCell.xib; sourceTree = "<group>"; };
@@ -552,6 +573,7 @@
 				153C1E601C03F4ED00F87014 /* home@2x.png */,
 				153C1E611C03F4ED00F87014 /* my@2x.png */,
 				153C1E621C03F4ED00F87014 /* service@2x.png */,
+				6A45AAE31C16C86800555CF9 /* 临时头像 */,
 			);
 			path = image;
 			sourceTree = "<group>";
@@ -937,6 +959,8 @@
 				15FBDD411C152AC0009E7E39 /* DocPhoneViewController.m */,
 				15FBDD3E1C152AC0009E7E39 /* DocLookAfterViewController.h */,
 				15FBDD3F1C152AC0009E7E39 /* DocLookAfterViewController.m */,
+				6A45AAF01C17225900555CF9 /* DocRecordViewController.h */,
+				6A45AAF11C17225900555CF9 /* DocRecordViewController.m */,
 			);
 			name = DoctorHome;
 			sourceTree = "<group>";
@@ -1087,12 +1111,53 @@
 		6A45AABA1C15518900555CF9 /* DocMyView */ = {
 			isa = PBXGroup;
 			children = (
-				6A45AACC1C15659900555CF9 /* DocMyPatientsViewController.h */,
-				6A45AACD1C15659900555CF9 /* DocMyPatientsViewController.m */,
-				6A45AACE1C15659900555CF9 /* DocMyViewController.h */,
-				6A45AACF1C15659900555CF9 /* DocMyViewController.m */,
+				6A45AAD21C16B97700555CF9 /* Model */,
+				6A45AAD31C16B98100555CF9 /* View */,
+				6A45AAD41C16B98600555CF9 /* Controller */,
 			);
 			name = DocMyView;
+			sourceTree = "<group>";
+		};
+		6A45AAD21C16B97700555CF9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6A45AAEA1C16C94F00555CF9 /* DocMyPatientsModel.h */,
+				6A45AAEB1C16C94F00555CF9 /* DocMyPatientsModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6A45AAD31C16B98100555CF9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6A45AADA1C16BA0600555CF9 /* DocMyPatientsCell.h */,
+				6A45AADB1C16BA0600555CF9 /* DocMyPatientsCell.m */,
+				6A45AADC1C16BA0600555CF9 /* DocMyPatientsCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		6A45AAD41C16B98600555CF9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6A45AACF1C15659900555CF9 /* DocMyViewController.m */,
+				6A45AACE1C15659900555CF9 /* DocMyViewController.h */,
+				6A45AACD1C15659900555CF9 /* DocMyPatientsViewController.m */,
+				6A45AACC1C15659900555CF9 /* DocMyPatientsViewController.h */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		6A45AAE31C16C86800555CF9 /* 临时头像 */ = {
+			isa = PBXGroup;
+			children = (
+				6A45AAE41C16C89E00555CF9 /* 叔叔.jpg */,
+				6A45AAE81C16C8A900555CF9 /* 大叔.png */,
+				6A45AAE51C16C89E00555CF9 /* 大婶.jpg */,
+				6A45AADF1C16C5D700555CF9 /* 大爷.jpg */,
+				6A45AAE01C16C5D700555CF9 /* 大妈.jpg */,
+			);
+			name = "临时头像";
 			sourceTree = "<group>";
 		};
 		6A8F12B01C040825001ABE2F /* Other */ = {
@@ -1263,6 +1328,7 @@
 				6AF202311C0B3BAA00933EAF /* background@2x.png in Resources */,
 				153ED8451C083DB500171DFA /* KTSelectPickerView.xib in Resources */,
 				1590499B1C0702E600EE51FB /* homeback@2x.png in Resources */,
+				6A45AAE91C16C8A900555CF9 /* 大叔.png in Resources */,
 				159049961C06CFD900EE51FB /* 灰色单选@2x.png in Resources */,
 				1590498C1C06CD6100EE51FB /* 登录-注册底@2x.png in Resources */,
 				1590499D1C0702E600EE51FB /* serviceback@2x.png in Resources */,
@@ -1271,10 +1337,12 @@
 				155CEBEB1C0C2E9A006B5CFA /* 药@3x.png in Resources */,
 				153C1E631C03F4ED00F87014 /* home@2x.png in Resources */,
 				6AF202551C0C1F2100933EAF /* MDMyDoctorCell.xib in Resources */,
+				6A45AAE61C16C89E00555CF9 /* 叔叔.jpg in Resources */,
 				6A2582C71C102ECF005E3404 /* 赞@2x.png in Resources */,
 				153ED82F1C08022E00171DFA /* 登录状态@3x.png in Resources */,
 				153C1EAB1C05571300F87014 /* servicekuang@2x.png in Resources */,
 				153ED82E1C08022E00171DFA /* 男性@3x.png in Resources */,
+				6A45AAE71C16C89E00555CF9 /* 大婶.jpg in Resources */,
 				15AE537D1C02F0680013FF1B /* LaunchScreen.xib in Resources */,
 				6A3EF7B61C054E2C00923D03 /* greenlogo@2x.png in Resources */,
 				6AF2023D1C0B471700933EAF /* topImg1@2x.png in Resources */,
@@ -1297,10 +1365,12 @@
 				153ED8611C0C17E700171DFA /* 搜索药品@3x.png in Resources */,
 				153ED85F1C0C17DC00171DFA /* 搜索药品@2x.png in Resources */,
 				153C1E641C03F4ED00F87014 /* my@2x.png in Resources */,
+				6A45AADE1C16BA0600555CF9 /* DocMyPatientsCell.xib in Resources */,
 				6A2582B81C0FE21D005E3404 /* topImg2.jpg in Resources */,
 				155CEBF01C0D47F0006B5CFA /* 用户电话@2x.png in Resources */,
 				6A3EF7B51C054E2C00923D03 /* feedback@2x.png in Resources */,
 				153ED8261C08022E00171DFA /* 男性@2x.png in Resources */,
+				6A45AAE21C16C5D700555CF9 /* 大妈.jpg in Resources */,
 				153ED8241C08022E00171DFA /* 女性@2x.png in Resources */,
 				15AE537A1C02F0680013FF1B /* Images.xcassets in Resources */,
 				6A3EF7C21C05561500923D03 /* topImg@2x.png in Resources */,
@@ -1311,6 +1381,7 @@
 				153ED8301C08022E00171DFA /* 首页1@3x.png in Resources */,
 				6A45AAB51C152AB400555CF9 /* 未赞@3x.png in Resources */,
 				153ED84A1C08535E00171DFA /* 按钮框@2x.png in Resources */,
+				6A45AAE11C16C5D700555CF9 /* 大爷.jpg in Resources */,
 				155CEBF11C0D47F0006B5CFA /* 用户姓名@2x.png in Resources */,
 				6AF202371C0B45C600933EAF /* 默认头像@3x.png in Resources */,
 				6AF202451C0BEC1D00933EAF /* 个人头像默认@2x.png in Resources */,
@@ -1369,6 +1440,7 @@
 				153C1E851C03FB8C00F87014 /* NSArray+MASAdditions.m in Sources */,
 				155CEC321C0E81B8006B5CFA /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				6A3EF7E01C058F8600923D03 /* MDMyViewItem.m in Sources */,
+				6A45AADD1C16BA0600555CF9 /* DocMyPatientsCell.m in Sources */,
 				6A3EF8421C05BAFE00923D03 /* MDOngoingViewController.m in Sources */,
 				153C1EA61C054D5100F87014 /* MDServiceFolerVO.m in Sources */,
 				153C1E821C03FB8C00F87014 /* MX_MASLayoutConstraint.m in Sources */,
@@ -1385,6 +1457,7 @@
 				153ED84F1C0BE03000171DFA /* MDUserInformationVO.m in Sources */,
 				155CEC2F1C0E81B8006B5CFA /* AFURLResponseSerialization.m in Sources */,
 				6A3EF8531C06039C00923D03 /* MDConsultDrupViewController.m in Sources */,
+				6A45AAF21C17225900555CF9 /* DocRecordViewController.m in Sources */,
 				153ED8481C08523600171DFA /* MDAddressViewController.m in Sources */,
 				155CEC2C1C0E81B8006B5CFA /* AFSecurityPolicy.m in Sources */,
 				15FBDD641C155B11009E7E39 /* DocPatientFolerVO.m in Sources */,
@@ -1427,6 +1500,7 @@
 				155CEC291C0E81B8006B5CFA /* AFHTTPRequestOperationManager.m in Sources */,
 				155CEC351C0E81B8006B5CFA /* UIImageView+AFNetworking.m in Sources */,
 				155CEC331C0E81B8006B5CFA /* UIAlertView+AFNetworking.m in Sources */,
+				6A45AAEC1C16C94F00555CF9 /* DocMyPatientsModel.m in Sources */,
 				153ED8671C0C266C00171DFA /* MDDrugTableViewCell.m in Sources */,
 				153C1E841C03FB8C00F87014 /* MX_MASViewConstraint.m in Sources */,
 				153C1E811C03FB8C00F87014 /* MX_MASConstraintMaker.m in Sources */,
@@ -1531,6 +1605,7 @@
 				INFOPLIST_FILE = MyDoctor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1651,6 +1726,7 @@
 				INFOPLIST_FILE = MyDoctor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1667,6 +1743,7 @@
 				INFOPLIST_FILE = MyDoctor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

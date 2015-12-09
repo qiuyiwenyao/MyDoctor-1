@@ -13,6 +13,11 @@
 @property (nonatomic, strong) NSString * patientName;
 @property (nonatomic, strong) NSString * PatientTapy;
 @property (nonatomic, strong) NSString * time;
+@property (nonatomic,strong) NSString * headImg;
+
+
+//头像
+
 
 -(void)drawCell;
 

@@ -33,16 +33,19 @@
     DocServiceFolerVO * sfv=[[DocServiceFolerVO alloc] init];
     sfv.serviceType=@"线上咨询";
     sfv.serviceStatus=@"未完成";
+    sfv.headImg = @"大爷.jpg";
     sfv.Time=@"2015年12月11日  13:00";
     
     DocServiceFolerVO * sfv1=[[DocServiceFolerVO alloc] init];
     sfv1.serviceType=@"线上咨询";
     sfv1.serviceStatus=@"已完成";
+    sfv1.headImg = @"大婶.jpg";
     sfv1.Time=@"2015年12月11日  13:00";
     
     DocServiceFolerVO * sfv2=[[DocServiceFolerVO alloc] init];
     sfv2.serviceType=@"线上咨询";
     sfv2.serviceStatus=@"已完成";
+    sfv2.headImg = @"叔叔.jpg";
     sfv2.Time=@"2015年12月11日  13:00";
     
     [dataArray addObject:sfv];
@@ -86,6 +89,7 @@
         cell.serviceType=service.serviceType;
         cell.serviceStatus=service.serviceStatus;
         cell.time=service.Time;
+        cell.headImg = service.headImg;
     }
     [cell drawCell];
     

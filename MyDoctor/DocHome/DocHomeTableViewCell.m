@@ -36,7 +36,7 @@
     
     
     UIImageView * headImage=[[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 90, 70)];
-    [headImage setImage:[UIImage imageNamed:@"默认头像"]];
+    [headImage setImage:[UIImage imageNamed:_headImg]];
     [view addSubview:headImage];
     
     UILabel * serviceStatus=[[UILabel alloc] init];

@@ -13,5 +13,6 @@
 @property (nonatomic, strong) NSString * serviceType;
 @property (nonatomic, strong) NSString * serviceStatus;
 @property (nonatomic, strong) NSString * Time;
+@property (nonatomic,strong) NSString * headImg;
 
 @end
