@@ -144,11 +144,11 @@
     _tableView.delegate  =self;
     _tableView.dataSource = self;
     _tableView.backgroundColor = [UIColor clearColor];
-    _tableView.contentInset = UIEdgeInsetsMake(18, 0, 0, 0);
-    _tableView.scrollIndicatorInsets = UIEdgeInsetsMake(18, 0, 0, 0);
+//    _tableView.contentInset = UIEdgeInsetsMake(18, 0, 0, 0);
+//    _tableView.scrollIndicatorInsets = UIEdgeInsetsMake(18, 0, 0, 0);
     [self.view addSubview:_tableView];
     
-    _tableView.tableHeaderView = _headerView;
+    _tableView.tableHeaderView = mySearchBar;
     
     //注册nib
     [_tableView registerNib:[UINib nibWithNibName:@"DocMyPatientsCell" bundle:nil] forCellReuseIdentifier:@"iden"];
@@ -244,8 +244,8 @@
 
 -(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 {
-    _tableView.tableHeaderView = _headerView;
-    [_tableView sendSubviewToBack:_headerView];
+    _tableView.tableHeaderView = mySearchBar;
+    [_tableView sendSubviewToBack:mySearchBar];
     
 }
 
@@ -289,6 +289,12 @@
 //填充每个cell间距的view，使之透明
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    if (section==0) {
+        UIView * view=[[UIView alloc] init];
+        [view addSubview:_requirBtn];
+        _requirBtn.frame=CGRectMake(0, 0, 60, 20);
+        return view;
+    }
     UIView * view = [[UIView alloc] init];
     view.backgroundColor = [UIColor clearColor];
     return view;
