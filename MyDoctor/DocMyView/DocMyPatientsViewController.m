@@ -108,7 +108,7 @@
 
 -(void)createHeaderView
 {
-    _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, appWidth, appWidth/4)];
+    _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, appWidth, 20)];
     _headerView.backgroundColor = [UIColor clearColor];
 //    [self.view addSubview:_headerView];
     
@@ -123,12 +123,11 @@
     backView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, appWidth, 40)];
     backView.backgroundColor=[UIColor clearColor];
     [backView addSubview:mySearchBar];
-    [_headerView addSubview:backView];
     
     
     _requirBtn = [[UIButton alloc] init];
     [_requirBtn setTitle:@"2015年7月" forState:UIControlStateNormal];
-    _requirBtn.frame = CGRectMake(0, mySearchBar.y+mySearchBar.height+10, appWidth*25.0/62.0,appWidth*25.0/62.0*5.0/24.0-2 );
+    _requirBtn.frame = CGRectMake(0, 0,100,20);
     [_requirBtn setBackgroundImage:[UIImage imageNamed:@"下拉框"] forState:UIControlStateNormal];
     [_requirBtn setTitleColor:ColorWithRGB(97, 103, 111, 1) forState:UIControlStateNormal];
     _requirBtn.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -204,8 +203,11 @@
 }
 -(BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
 {
-    
-    backView.frame= CGRectMake(0, 0, appWidth, 40);
+   
+//    _headerView.frame=CGRectMake(0, 40, 100, 20);
+//    _headerView.hidden=NO;
+//    backView.frame= CGRectMake(0, 0, appWidth, 40);
+    [_tableView reloadData];
     return YES;
 }
 
@@ -290,10 +292,8 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if (section==0) {
-        UIView * view=[[UIView alloc] init];
-        [view addSubview:_requirBtn];
-        _requirBtn.frame=CGRectMake(0, 0, 60, 20);
-        return view;
+        
+        return _headerView;
     }
     UIView * view = [[UIView alloc] init];
     view.backgroundColor = [UIColor clearColor];
