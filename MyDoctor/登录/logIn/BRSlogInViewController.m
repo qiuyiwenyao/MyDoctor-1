@@ -65,7 +65,7 @@
     NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
     date = [formatter stringFromDate:[NSDate date]];
-    NSString * url = @"http://111.160.245.75:8082/CommunityWs//servlet/ShequServlet?";
+    NSString * url =MDPath;// @"http://111.160.245.75:8082/CommunityWs//servlet/ShequServlet?";
     
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = url;
@@ -84,22 +84,22 @@
 {
     NSString * str = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
             //回馈数据
-            NSLog(@"%@", str);
-    
-            NSArray *array = [str componentsSeparatedByString:@","];
-            NSArray *success=[array[0] componentsSeparatedByString:@":"];
-    
-            if ([success[1] isEqualToString:@"true"]) {
-                [[NSNotificationCenter defaultCenter]
-                 postNotificationName:@"showBRSMainView" object:self];
-                NSUserDefaults *stdDefault = [NSUserDefaults standardUserDefaults];
-                [stdDefault setObject:logInField.text forKey:@"user_name"];
-                [self dismissViewControllerAnimated:YES completion:^{
-                    NSLog(@"back");
-                }];
-            }
+    NSLog(@"%@", str);
 
-    
+    NSArray *array = [str componentsSeparatedByString:@","];
+    NSArray *success=[array[0] componentsSeparatedByString:@":"];
+    NSArray * uisrId=[array[2] componentsSeparatedByString:@":"];
+    if ([success[1] isEqualToString:@"true"]) {
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"showBRSMainView" object:self];
+        NSUserDefaults *stdDefault = [NSUserDefaults standardUserDefaults];
+        [stdDefault setObject:logInField.text forKey:@"user_name"];
+        [stdDefault setObject:uisrId[2] forKey:@"user_Id"];
+        NSLog(@"%@",uisrId[2]);
+        [self dismissViewControllerAnimated:YES completion:^{
+            NSLog(@"back");
+        }];
+    }
 }
 
 -(void)logInView
@@ -345,15 +345,6 @@
     [logInField resignFirstResponder];
     [password resignFirstResponder];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 //转吗
 -(NSString *)GTMEncodeTest:(NSString *)text
@@ -374,28 +365,6 @@
 }
 
 
-/**
- 
- * GTM 解码
- 
- */
-
--(NSString *)GMTDecodeTest:(NSString *)text
-
-{
-    
-    NSString* encodeStr = text;
-    
-    NSString* decodeResult = nil;
-    
-    NSData* encodeData = [encodeStr dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSData* decodeData = [GTMBase64 decodeData:encodeData];
-    
-    decodeResult = [[NSString alloc] initWithData:decodeData encoding:NSUTF8StringEncoding];
-    
-    return decodeResult;
-}
 
 
 @end

@@ -127,6 +127,7 @@
 		15FBDD5D1C155898009E7E39 /* DocFinishPatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD5C1C155898009E7E39 /* DocFinishPatientViewController.m */; };
 		15FBDD601C155A11009E7E39 /* DocPatientTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD5F1C155A11009E7E39 /* DocPatientTableViewCell.m */; };
 		15FBDD641C155B11009E7E39 /* DocPatientFolerVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD631C155B11009E7E39 /* DocPatientFolerVO.m */; };
+		15FBDD6A1C1908B2009E7E39 /* MDDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD691C1908B2009E7E39 /* MDDataViewController.m */; };
 		6A2582B81C0FE21D005E3404 /* topImg2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6A2582B71C0FE21D005E3404 /* topImg2.jpg */; };
 		6A2582C71C102ECF005E3404 /* 赞@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A2582C51C102ECF005E3404 /* 赞@2x.png */; };
 		6A2582C81C102ECF005E3404 /* 未赞@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A2582C61C102ECF005E3404 /* 未赞@2x.png */; };
@@ -466,6 +467,8 @@
 		15FBDD5F1C155A11009E7E39 /* DocPatientTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocPatientTableViewCell.m; path = DocPatient/DocPatientTableViewCell.m; sourceTree = "<group>"; };
 		15FBDD621C155B11009E7E39 /* DocPatientFolerVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocPatientFolerVO.h; path = DocPatient/DocPatientFolerVO/DocPatientFolerVO.h; sourceTree = "<group>"; };
 		15FBDD631C155B11009E7E39 /* DocPatientFolerVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocPatientFolerVO.m; path = DocPatient/DocPatientFolerVO/DocPatientFolerVO.m; sourceTree = "<group>"; };
+		15FBDD681C1908B2009E7E39 /* MDDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDataViewController.h; sourceTree = "<group>"; };
+		15FBDD691C1908B2009E7E39 /* MDDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDataViewController.m; sourceTree = "<group>"; };
 		6A2582B71C0FE21D005E3404 /* topImg2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = topImg2.jpg; sourceTree = "<group>"; };
 		6A2582C51C102ECF005E3404 /* 赞@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "赞@2x.png"; sourceTree = "<group>"; };
 		6A2582C61C102ECF005E3404 /* 未赞@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未赞@2x.png"; sourceTree = "<group>"; };
@@ -1178,6 +1181,8 @@
 			children = (
 				6A3EF7DB1C058F1200923D03 /* MDMyViewController.h */,
 				6A3EF7DC1C058F1200923D03 /* MDMyViewController.m */,
+				15FBDD681C1908B2009E7E39 /* MDDataViewController.h */,
+				15FBDD691C1908B2009E7E39 /* MDDataViewController.m */,
 				6AF2024B1C0C1A5600933EAF /* MDMyDoctorViewController.h */,
 				6AF2024C1C0C1A5600933EAF /* MDMyDoctorViewController.m */,
 				6AF202691C0D71AB00933EAF /* MDFeedBackViewController.h */,
@@ -1714,6 +1719,7 @@
 			files = (
 				1590497D1C06A71000EE51FB /* BRSEndSignlnViewController.m in Sources */,
 				6A3EF8441C05BAFE00923D03 /* MDServiceTableViewCell.m in Sources */,
+				15FBDD6A1C1908B2009E7E39 /* MDDataViewController.m in Sources */,
 				6A3EF8621C06FDB300923D03 /* MDTransfuseViewController.m in Sources */,
 				6AF2024D1C0C1A5600933EAF /* MDMyDoctorViewController.m in Sources */,
 				153C1E7F1C03FB8C00F87014 /* MX_MASCompositeConstraint.m in Sources */,

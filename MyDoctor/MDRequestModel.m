@@ -20,48 +20,13 @@
 -(void)starRequest
 {
     
-//    AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
-//    //data Get请求如此设置
-//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-//    
-//    [manager POST:self.path parameters:self.parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSString * str = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-//        //回馈数据
-//        NSLog(@"%@", str);
-//        
-//        NSArray *array = [str componentsSeparatedByString:@","];
-//        NSArray *success=[array[0] componentsSeparatedByString:@":"];
-//        
-//        if ([success[1] isEqualToString:@"true"]) {
-//            [[NSNotificationCenter defaultCenter]
-//             postNotificationName:@"showBRSMainView" object:self];
-//           
-//        }
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"%@", error);
-//    }];
-//    
-//    
     
     
-    
-    
-//    self.ContentType = @"application/json";//设置请求数据类型
     AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
-//    manager.requestSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:self.ContentType];
+    
     [manager POST:self.path parameters:self.parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        if([responseObject isKindOfClass:[NSDictionary class]])
-//        {
-//            response = [[NSMutableDictionary alloc] initWithDictionary:responseObject];
-//        }
-//        else if ([responseObject isKindOfClass:[NSArray class]])
-//        {
-//            response = [[NSMutableArray alloc] initWithArray:responseObject];
-//
-//        }
-        
+        NSLog(@"operation====%@",operation);
         [self.delegate sendInfoFromRequest:responseObject andPath:self.path];
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

@@ -19,7 +19,9 @@
 @property (nonatomic,assign) int Offset;
 @property (nonatomic,strong) NSString * isOffset;
 
-
+@property(nonatomic, strong) UITableView *table;
+@property(nonatomic, strong) UIButton *btnSender;
+@property(nonatomic, retain) NSArray *list;
 -(void)hideDropDown:(UIButton *)b;
 - (id)showDropDown:(UIButton *)b:(CGFloat *)height:(NSArray *)arr;
 
