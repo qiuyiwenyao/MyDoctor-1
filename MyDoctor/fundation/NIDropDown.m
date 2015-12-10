@@ -21,15 +21,25 @@
 @synthesize btnSender;
 @synthesize list;
 @synthesize delegate;
+@synthesize Offset;
 
 - (id)showDropDown:(UIButton *)b:(CGFloat *)height:(NSArray *)arr {
+    
     btnSender = b;
+    if ([self.isOffset isEqualToString:@"1"]) {
+        Offset = 45;
+    }
+    else
+    {
+        Offset = 0;
+    }
+
     self = [super init];
     if (self) {
         // Initialization code
         CGRect btn = b.frame;
         
-        self.frame = CGRectMake(btn.origin.x, btn.origin.y+btn.size.height, btn.size.width, 0);
+        self.frame = CGRectMake(btn.origin.x, btn.origin.y+btn.size.height+Offset, btn.size.width, 0);
         self.list = [NSArray arrayWithArray:arr];
         self.layer.masksToBounds = NO;
         self.layer.cornerRadius = 8;
@@ -47,17 +57,19 @@
         table.separatorColor = [UIColor grayColor];
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:0.5];
-        self.frame = CGRectMake(btn.origin.x, btn.origin.y+btn.size.height, btn.size.width, *height);
+        self.frame = CGRectMake(btn.origin.x, btn.origin.y+btn.size.height+Offset, btn.size.width, *height);
         table.frame = CGRectMake(0, 0, btn.size.width, *height);
-        
-        NSLog(@"width:%f  height:%f",self.frame.size.width,*height);
         [UIView commitAnimations];
+        if ([_isOffset isEqualToString:@"1"]) {
+            [b.superview.superview addSubview:self];
+        }
+        else
+        {
+            [b.superview addSubview:self];
+        }
+
         
-        [b.superview.superview addSubview:self];
-        NSLog(@"===%@",b.superview.superview);
-        [self addSubview:table];
-//        [table bringSubviewToFront:<#(nonnull UIView *)#>];
-//        [self.superview.superview.superview bringSubviewToFront:self];
+          [self addSubview:table];
     }
     return self;
 }
@@ -67,7 +79,7 @@
     
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.5];
-    self.frame = CGRectMake(btn.origin.x, btn.origin.y+btn.size.height, btn.size.width, 0);
+    self.frame = CGRectMake(btn.origin.x, btn.origin.y+btn.size.height+Offset, btn.size.width, 0);
     table.frame = CGRectMake(0, 0, btn.size.width, 0);
     [UIView commitAnimations];
 }
@@ -77,6 +89,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     return 20;
 }
 

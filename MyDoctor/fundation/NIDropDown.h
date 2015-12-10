@@ -16,7 +16,11 @@
 @interface NIDropDown : UIView <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, retain) id <NIDropDownDelegate> delegate;
+@property (nonatomic,assign) int Offset;
+@property (nonatomic,strong) NSString * isOffset;
+
 
 -(void)hideDropDown:(UIButton *)b;
 - (id)showDropDown:(UIButton *)b:(CGFloat *)height:(NSArray *)arr;
+
 @end

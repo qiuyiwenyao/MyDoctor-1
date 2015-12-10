@@ -8,6 +8,7 @@
 
 #import "MDHospitalViewController.h"
 #import "BRSlogInViewController.h"
+#import "MDChatViewController.h"
 
 @interface MDHospitalViewController ()<UIAlertViewDelegate>
 
@@ -128,25 +129,29 @@
 -(void)consult:(UIButton *)button
 
 {
-    NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
-    NSString * str=[stdDefault objectForKey:@"user_name"];
-    if ([str length]>0) {
-        UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"正在咨询"
-                             
-                                                      message:nil
-                             
-                                                     delegate:self
-                             
-                                            cancelButtonTitle:@"好的"
-                             
-                                            otherButtonTitles:nil];
-        
-        [alert show];
-
-        
-    }else{
-        [self logInView];
-    }
+//    NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
+//    NSString * str=[stdDefault objectForKey:@"user_name"];
+//    if ([str length]>0) {
+//        UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"正在咨询"
+//                             
+//                                                      message:nil
+//                             
+//                                                     delegate:self
+//                             
+//                                            cancelButtonTitle:@"好的"
+//                             
+//                                            otherButtonTitles:nil];
+//        
+//        [alert show];
+//
+//        
+//    }else{
+//        [self logInView];
+//    }
+    MDChatViewController * chatVC = [[MDChatViewController alloc] init];
+    chatVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:chatVC animated:YES];
+    
 
 }
 -(void)callBtn:(UIButton *)button
