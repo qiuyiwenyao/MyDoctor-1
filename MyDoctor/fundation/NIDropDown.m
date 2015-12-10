@@ -57,10 +57,14 @@
         table.separatorColor = [UIColor grayColor];
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:0.5];
+        if (*height>100) {
+            *height=100;
+        }
         self.frame = CGRectMake(btn.origin.x, btn.origin.y+btn.size.height+Offset, btn.size.width, *height);
+        
         table.frame = CGRectMake(0, 0, btn.size.width, *height);
         [UIView commitAnimations];
-        if ([_isOffset isEqualToString:@"1"]) {
+        if ([_isOffset isEqualToString:@"1"]||[_isOffset isEqualToString:@"2"]) {
             [b.superview.superview addSubview:self];
         }
         else

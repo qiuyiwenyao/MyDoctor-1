@@ -23,7 +23,14 @@
     UIButton *maleButton;
     UIButton *femaleButton;
     int sex;
+    UIButton *year;
+    UIButton * month;
+    UIButton * day;
+    NIDropDown *dropDown;
     
+    NIDropDown *monthDown;
+    
+    NIDropDown * dayDown;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -122,6 +129,29 @@
     birthday.font=[UIFont boldSystemFontOfSize:15];
     [self.view addSubview:birthday];
     
+    year = [[UIButton alloc] initWithFrame:CGRectMake(80, 220, 70, 14)];
+    [year setTitle:@"1994" forState:UIControlStateNormal];
+    [year setBackgroundImage:[UIImage imageNamed:@"下拉框"] forState:UIControlStateNormal];
+    [year setTitleColor:ColorWithRGB(97, 103, 111, 1) forState:UIControlStateNormal];
+    year.titleLabel.font = [UIFont systemFontOfSize:14];
+    [year addTarget:self action:@selector(requirBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:year];
+    
+    month = [[UIButton alloc] initWithFrame:CGRectMake(160, 220, 50, 14)];
+    [month setTitle:@"2" forState:UIControlStateNormal];
+    [month setBackgroundImage:[UIImage imageNamed:@"下拉框"] forState:UIControlStateNormal];
+    [month setTitleColor:ColorWithRGB(97, 103, 111, 1) forState:UIControlStateNormal];
+    month.titleLabel.font = [UIFont systemFontOfSize:14];
+    [month addTarget:self action:@selector(month:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:month];
+    
+    day = [[UIButton alloc] initWithFrame:CGRectMake(220, 220, 50, 14)];
+    [day setTitle:@"1" forState:UIControlStateNormal];
+    [day setBackgroundImage:[UIImage imageNamed:@"下拉框"] forState:UIControlStateNormal];
+    [day setTitleColor:ColorWithRGB(97, 103, 111, 1) forState:UIControlStateNormal];
+    day.titleLabel.font = [UIFont systemFontOfSize:14];
+    [day addTarget:self action:@selector(day:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:day];
     
     for (int i=0; i<3; i++) {
         UIView * line=[[UIView alloc] initWithFrame:CGRectMake(0, 87+40*(1+i), appWidth, 1)];
@@ -210,5 +240,92 @@
     // Dispose of any resources that can be recreated.
 }
 
+//点击事件，使下拉框收回
+-(void)viewTapped:(UITapGestureRecognizer*)tapGr
+{
+    [dropDown hideDropDown:year];
+    [monthDown hideDropDown:month];
+    [dayDown hideDropDown:day];
+    [self rel];
+}
 
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    //    [textFiled resignFirstResponder];
+    [dropDown hideDropDown:year];
+    [monthDown hideDropDown:month];
+    [dayDown hideDropDown:day];
+    [self rel];
+}
+
+
+-(void)requirBtnClick:(id)sender
+{
+    //    dropDown.isOffset = @"1";
+    NSMutableArray * arr = [[NSMutableArray alloc] init];
+    for (int i=1970; i<2015; i++) {
+        NSString * str=[NSString stringWithFormat:@"%d",i];
+        [arr addObject:str];
+    }
+    if(dropDown == nil) {
+        CGFloat f = year.height*arr.count;
+        dropDown = [[NIDropDown alloc] init];
+        dropDown.isOffset = @"2";
+        [dropDown showDropDown:sender :&f :arr];
+        dropDown.delegate = self;
+    }
+    else {
+        [dropDown hideDropDown:sender];
+        [self rel];
+    }
+}
+-(void)month:(id)sender
+{
+    //    dropDown.isOffset = @"1";
+    NSMutableArray * arr = [[NSMutableArray alloc] init];
+    for (int i=1; i<13; i++) {
+        NSString * str=[NSString stringWithFormat:@"%d",i];
+        [arr addObject:str];
+    }
+    if(monthDown == nil) {
+        CGFloat f = month.height*arr.count;
+        monthDown = [[NIDropDown alloc] init];
+        monthDown.isOffset = @"2";
+        [monthDown showDropDown:sender :&f :arr];
+        monthDown.delegate = self;
+    }
+    else {
+        [monthDown hideDropDown:sender];
+        [self rel];
+    }
+}
+-(void)day:(id)sender
+{
+    //    dropDown.isOffset = @"1";
+    NSMutableArray * arr = [[NSMutableArray alloc] init];
+    for (int i=1; i<32; i++) {
+        NSString * str=[NSString stringWithFormat:@"%d",i];
+        [arr addObject:str];
+    }
+    if(dayDown == nil) {
+        CGFloat f = day.height*arr.count;
+        dayDown = [[NIDropDown alloc] init];
+        dayDown.isOffset = @"2";
+        [dayDown showDropDown:sender :&f :arr];
+        dayDown.delegate = self;
+    }
+    else {
+        [dayDown hideDropDown:sender];
+        [self rel];
+    }
+}
+
+- (void) niDropDownDelegateMethod: (NIDropDown *) sender {
+    [self rel];
+}
+
+-(void)rel{
+    dropDown = nil;
+    monthDown=nil;
+    dayDown=nil;
+}
 @end
