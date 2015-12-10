@@ -14,6 +14,7 @@
 #import "MDMyDoctorViewController.h"
 #import "MDFeedBackViewController.h"
 #import "BRSlogInViewController.h"
+#import "MDDataViewController.h"
 
 @interface MDMyViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -111,6 +112,9 @@
     signature.font=[UIFont systemFontOfSize:12];
     [nameView addSubview:userName];
     [nameView addSubview:signature];
+    UITapGestureRecognizer*tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(Actiondo)];
+    [nameView addGestureRecognizer:tapGesture];
+
     
     _tableView = [[UITableView alloc] init];
     _tableView.delegate = self;
@@ -299,5 +303,12 @@
     
     [self dismissViewControllerAnimated:YES completion:^{}];
     
+}
+
+-(void)Actiondo
+{
+    MDDataViewController * myDoctorVC = [[MDDataViewController alloc] init];
+    myDoctorVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:myDoctorVC animated:YES];
 }
 @end
