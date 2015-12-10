@@ -10,7 +10,7 @@
 #import "MDRequestModel.h"
 #import "GTMBase64.h"
 
-@interface MDFeedBackViewController ()<sendInfoToCtr,UITextViewDelegate>
+@interface MDFeedBackViewController ()<sendInfoToCtr,UITextViewDelegate,UIAlertViewDelegate>
 
 @property (nonatomic,strong) UITextView * textView;
 @property (nonatomic,strong) NSString * fbType;
@@ -94,12 +94,7 @@
     [self.view addSubview:sendBtn];
 }
 
-//-(BOOL)textViewShouldEndEditing:(UITextView *)textView
-//{
-//    NSLog(@"1234");
-//    return YES;
-//}
-
+//Return键提交
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString*)text
 {
     if ([text isEqualToString:@"\n"]) {
@@ -112,7 +107,6 @@
 
     return YES;
 }
-
 
 //点击空白键盘收回
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -160,17 +154,21 @@
         _fbType = @"建议";
     }
     
+    
     NSString* date;
     NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
     date = [formatter stringFromDate:[NSDate date]];
-        int userId = 7;
+    
+    NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
+    int userId = [[stdDefault objectForKey:@"user_Id"] intValue];
+    NSLog(@"%d",userId);
 
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = MDPath;
     NSString * addFeedBack=[NSString stringWithFormat:@"10105@`3@`3@`%@@`1@`3@`%d@`%@@`%@",date,userId,_fbType,_textView.text];
     addFeedBack=[self GTMEncodeTest:addFeedBack];
-    //    //post键值对
+    //post键值对
     model.parameters = @{@"b":addFeedBack};
     model.delegate = self;
     [model starRequest];
@@ -178,12 +176,51 @@
 
 }
 
+#pragma mark - 数据请求回调
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path
 {
-//    NSLog(@"%@",response);
     NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    NSLog(@"%@",dic);
-//    NSString
+    
+    if ([[dic objectForKey:@"success"] isEqualToNumber:[NSNumber numberWithInt:1]]) {
+        NSLog(@"success");
+        UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"反馈成功!"
+                             
+                                                      message:nil
+                             
+                                                     delegate:self
+                             
+                                            cancelButtonTitle:@"好的"
+                             
+                                            otherButtonTitles:nil];
+        
+        [alert show];
+    }
+    
+    else
+    {
+        UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"反馈失败，请重试"
+                             
+                                                      message:nil
+                             
+                                                     delegate:self
+                             
+                                            cancelButtonTitle:@"好的"
+                             
+                                            otherButtonTitles:nil];
+        
+        [alert show];
+
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if ([alertView.title isEqualToString:@"反馈成功!"]) {
+        [_textView removeFromSuperview];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+
 }
 
 //转吗

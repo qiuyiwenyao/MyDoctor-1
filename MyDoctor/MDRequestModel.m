@@ -26,7 +26,6 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     [manager POST:self.path parameters:self.parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"operation====%@",operation);
         [self.delegate sendInfoFromRequest:responseObject andPath:self.path];
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
