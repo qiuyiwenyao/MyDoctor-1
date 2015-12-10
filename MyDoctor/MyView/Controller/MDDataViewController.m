@@ -8,6 +8,8 @@
 
 #import "MDDataViewController.h"
 #import "BRSTextField.h"
+#import "MDRequestModel.h"
+#import "GTMBase64.h"
 
 @interface MDDataViewController ()
 
@@ -131,6 +133,7 @@
     
     year = [[UIButton alloc] initWithFrame:CGRectMake(80, 220, 70, 14)];
     [year setTitle:@"1994" forState:UIControlStateNormal];
+    year.tag=11;
     [year setBackgroundImage:[UIImage imageNamed:@"下拉框"] forState:UIControlStateNormal];
     [year setTitleColor:ColorWithRGB(97, 103, 111, 1) forState:UIControlStateNormal];
     year.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -138,7 +141,8 @@
     [self.view addSubview:year];
     
     month = [[UIButton alloc] initWithFrame:CGRectMake(160, 220, 50, 14)];
-    [month setTitle:@"2" forState:UIControlStateNormal];
+    [month setTitle:@"02" forState:UIControlStateNormal];
+    month.tag=12;
     [month setBackgroundImage:[UIImage imageNamed:@"下拉框"] forState:UIControlStateNormal];
     [month setTitleColor:ColorWithRGB(97, 103, 111, 1) forState:UIControlStateNormal];
     month.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -146,7 +150,8 @@
     [self.view addSubview:month];
     
     day = [[UIButton alloc] initWithFrame:CGRectMake(220, 220, 50, 14)];
-    [day setTitle:@"1" forState:UIControlStateNormal];
+    [day setTitle:@"01" forState:UIControlStateNormal];
+    day.tag=13;
     [day setBackgroundImage:[UIImage imageNamed:@"下拉框"] forState:UIControlStateNormal];
     [day setTitleColor:ColorWithRGB(97, 103, 111, 1) forState:UIControlStateNormal];
     day.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -190,7 +195,7 @@
 -(void)Actiondo
 {
     [name resignFirstResponder];
-    
+    [IdNumber resignFirstResponder];
 }
 
 -(void)finish
@@ -214,20 +219,62 @@
 
 -(void)finishButton:(UIButton *)button
 {
-    [self.navigationController popViewControllerAnimated:YES];
     
-//    if ([name.text length]>0&&[phone.text length]>0&&[address.text length]>0&&[buildingNumber.text length]>0) {
+    if ([name.text length]>0&&[IdNumber.text length]>0) {
+        [self postRequest];
+        
+
+    }
+
+}
+
+#pragma mark - POST请求
+- (void)postRequest
+{
+    NSString* date;
+    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+    date = [formatter stringFromDate:[NSDate date]];
+    NSString * url =MDPath;// @"http://111.160.245.75:8082/CommunityWs//servlet/ShequServlet?";
+    NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
+    NSString * str=[stdDefault objectForKey:@"user_name"];
+    NSString * userId=[stdDefault objectForKey:@"user_Id"];
+    MDRequestModel * model = [[MDRequestModel alloc] init];
+    model.path = url;
+    NSString * birthday1=[NSString stringWithFormat:@"%@-%@-%@ 00:00:00",year.titleLabel.text,month.titleLabel.text,day.titleLabel.text];
+    NSString * nameAndPassword=[NSString stringWithFormat:@"10104@`3@`3@`%@@`1@`3@`%@@`%@@`%d@`%@@`%@@`%@",date,userId,name.text,sex,str,IdNumber.text,birthday1];
+    nameAndPassword=[self GTMEncodeTest:nameAndPassword];
+    //    //post键值对
+    NSLog(@"%@",nameAndPassword);
+    model.parameters = @{@"b":nameAndPassword};
+    model.delegate = self;
+    [model starRequest];
     
-//        NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
-//        [userInfo setObject:name.text forKey:@"name"];
-//        [userInfo setObject:phone.text forKey:@"phone"];
-//        [userInfo setObject:address.text forKey:@"address"];
-//        [userInfo setObject:buildingNumber.text forKey:@"buildingNumber"];
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"addNewAddress" object:nil userInfo:userInfo];
-//    }
     
+}
+
+//请求数据回调
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path
+{
+    NSString * str = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+    //回馈数据
+    NSLog(@"%@", str);
     
+    NSArray *array = [str componentsSeparatedByString:@","];
+    NSArray *success=[array[0] componentsSeparatedByString:@":"];
     
+    if ([success[1] isEqualToString:@"true"]) {
+        
+        [self.navigationController popViewControllerAnimated:YES];
+
+//        [[NSNotificationCenter defaultCenter]
+//         postNotificationName:@"showBRSMainView" object:self];
+//        NSUserDefaults *stdDefault = [NSUserDefaults standardUserDefaults];
+//        [stdDefault setObject:logInField.text forKey:@"user_name"];
+//        [self dismissViewControllerAnimated:YES completion:^{
+//            NSLog(@"back");
+//        }];
+    }
 }
 -(void)backBtnClick
 {
@@ -283,7 +330,11 @@
     //    dropDown.isOffset = @"1";
     NSMutableArray * arr = [[NSMutableArray alloc] init];
     for (int i=1; i<13; i++) {
-        NSString * str=[NSString stringWithFormat:@"%d",i];
+         NSString * str=[NSString stringWithFormat:@"%d",i];
+        if (i<10) {
+            str=[NSString stringWithFormat:@"0%d",i];
+        }
+       
         [arr addObject:str];
     }
     if(monthDown == nil) {
@@ -304,6 +355,9 @@
     NSMutableArray * arr = [[NSMutableArray alloc] init];
     for (int i=1; i<32; i++) {
         NSString * str=[NSString stringWithFormat:@"%d",i];
+        if (i<10) {
+            str=[NSString stringWithFormat:@"0%d",i];
+        }
         [arr addObject:str];
     }
     if(dayDown == nil) {
@@ -321,6 +375,7 @@
 
 - (void) niDropDownDelegateMethod: (NIDropDown *) sender {
     [self rel];
+//    NSLog(@"%ld--%@", (long)sender.btnSender.tag,year.titleLabel.text);
 }
 
 -(void)rel{
@@ -328,4 +383,22 @@
     monthDown=nil;
     dayDown=nil;
 }
+//转吗
+-(NSString *)GTMEncodeTest:(NSString *)text
+{
+    
+    NSString* originStr = text;
+    
+    NSString* encodeResult = nil;
+    
+    NSData* originData = [originStr dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSData* encodeData = [GTMBase64 encodeData:originData];
+    
+    encodeResult = [[NSString alloc] initWithData:encodeData encoding:NSUTF8StringEncoding];
+    
+    return encodeResult;
+}
+
+
 @end

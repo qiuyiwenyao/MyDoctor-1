@@ -11,9 +11,7 @@
 #import "MDConst.h"
 
 @interface NIDropDown ()
-@property(nonatomic, strong) UITableView *table;
-@property(nonatomic, strong) UIButton *btnSender;
-@property(nonatomic, retain) NSArray *list;
+
 @end
 
 @implementation NIDropDown

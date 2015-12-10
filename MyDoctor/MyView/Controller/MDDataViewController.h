@@ -8,6 +8,8 @@
 
 #import "MDBaseViewController.h"
 #import "NIDropDown.h"
-@interface MDDataViewController : MDBaseViewController<NIDropDownDelegate,UITextFieldDelegate>
+#import "MDRequestModel.h"
+
+@interface MDDataViewController : MDBaseViewController<NIDropDownDelegate,UITextFieldDelegate,sendInfoToCtr>
 
 @end
