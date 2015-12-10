@@ -52,8 +52,8 @@
     
 //    [self logIn];
     //医生端
-    [self showDocView];
-//   [self showMainView];
+//    [self showDocView];
+   [self showMainView];
     return YES;
 }
 

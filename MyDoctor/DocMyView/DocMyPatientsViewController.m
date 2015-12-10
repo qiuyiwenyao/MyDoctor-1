@@ -11,7 +11,7 @@
 #import "DocMyPatientsCell.h"
 #import "DocMyPatientsModel.h"
 
-@interface DocMyPatientsViewController ()<NIDropDownDelegate>
+@interface DocMyPatientsViewController ()<NIDropDownDelegate,UIGestureRecognizerDelegate>
 {
     UIView * _headerView;
     UITableView * _tableView;
@@ -120,9 +120,9 @@
     searchDisplayController.active = NO;
     searchDisplayController.searchResultsDataSource = self;
     searchDisplayController.searchResultsDelegate = self;
-    backView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, appWidth, 40)];
-    backView.backgroundColor=[UIColor clearColor];
-    [backView addSubview:mySearchBar];
+//    backView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, appWidth, 40)];
+//    backView.backgroundColor=[UIColor clearColor];
+//    [backView addSubview:mySearchBar];
     
     
     _requirBtn = [[UIButton alloc] init];
@@ -147,19 +147,52 @@
 //    _tableView.scrollIndicatorInsets = UIEdgeInsetsMake(18, 0, 0, 0);
     [self.view addSubview:_tableView];
     
-    _tableView.tableHeaderView = mySearchBar;
+//    _tableView.tableHeaderView = mySearchBar;
     
     //注册nib
     [_tableView registerNib:[UINib nibWithNibName:@"DocMyPatientsCell" bundle:nil] forCellReuseIdentifier:@"iden"];
+    
+    //scrollView添加点击事件，使下拉框收回
+    UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+    tapGr.cancelsTouchesInView = NO;
+    tapGr.delegate = self;
+//    [_tableView addGestureRecognizer:tapGr];
+
 }
+
+//判断点击的是哪个view，确定是否响应事件
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if(touch.view != _tableView.tableHeaderView){
+        return NO;
+    }else
+        return YES;
+}
+
+//点击事件，使下拉框收回
+-(void)viewTapped:(UITapGestureRecognizer*)tapGr
+{
+    [dropDown hideDropDown:_requirBtn];
+    [self rel];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    //    [textFiled resignFirstResponder];
+    [dropDown hideDropDown:_requirBtn];
+    [self rel];
+}
+
 
 -(void)requirBtnClick:(id)sender
 {
+//    dropDown.isOffset = @"1";
+
     NSArray * arr = [[NSArray alloc] init];
     arr = [NSArray arrayWithObjects:@"2015年10月",@"2015年11月",@"2015年12月",nil];
     if(dropDown == nil) {
         CGFloat f = _requirBtn.height*arr.count;
-        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :arr];
+        dropDown = [[NIDropDown alloc] init];
+        dropDown.isOffset = @"1";
+        [dropDown showDropDown:sender :&f :arr];
         dropDown.delegate = self;
         
     }
@@ -183,7 +216,7 @@
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
     mySearchBar.showsCancelButton = YES;
-    backView.frame=CGRectMake(0, 20, appWidth, appHeight);
+//    backView.frame=CGRectMake(0, 20, appWidth, appHeight);
     NSArray *subViews;
     
     if (is_IOS_7) {
@@ -239,7 +272,6 @@
 #pragma UITableViewDelegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSLog(@"=====%@",self.dataSource);
     return self.dataSource.count;
 }
 
@@ -253,8 +285,13 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-   
-    return 20;
+    if (section == 0) {
+        return 30;
+    }
+    else
+    {
+        return 20;
+    }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -292,8 +329,9 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if (section==0) {
-        
+        [_tableView sendSubviewToBack:_headerView];
         return _headerView;
+        
     }
     UIView * view = [[UIView alloc] init];
     view.backgroundColor = [UIColor clearColor];

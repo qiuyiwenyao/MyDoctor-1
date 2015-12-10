@@ -118,7 +118,7 @@
 //    [textFiled resignFirstResponder];
     [dropDown hideDropDown:_requirBtn];
         [self rel];
-    NSLog(@"12");
+//    NSLog(@"12");
 }
 
 -(void)requirBtnClick:(id)sender
@@ -129,6 +129,7 @@
         CGFloat f = _requirBtn.height*arr.count;
         dropDown = [[NIDropDown alloc]showDropDown:sender :&f :arr];
         dropDown.delegate = self;
+        dropDown.isOffset = 0;
 
     }
     else {
