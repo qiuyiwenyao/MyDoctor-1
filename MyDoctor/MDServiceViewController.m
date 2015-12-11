@@ -14,6 +14,7 @@
 #import "MDOrderDetailsViewController.h"
 #import "MDNoPaymentViewController.h"
 #import "BRSlogInViewController.h"
+#import "MDCommentViewController.h"
 
 @interface MDServiceViewController ()
 
@@ -127,7 +128,15 @@
         ndvc.hidesBottomBarWhenPushed=YES;
         [self.navigationController pushViewController:ndvc animated:YES];
 
-    }else{
+    }
+    else if ([text isEqualToString:@"commentVC"])
+    {
+        MDCommentViewController * commentVC = [[MDCommentViewController alloc] init];
+        commentVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:commentVC animated:YES];
+    }
+    
+    else{
     MDOrderDetailsViewController * odvc=[[MDOrderDetailsViewController alloc] init];
     odvc.hidesBottomBarWhenPushed=YES;
     

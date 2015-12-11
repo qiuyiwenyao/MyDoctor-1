@@ -105,7 +105,12 @@
 
     cell.selected = NO;
     // 带字典的通知
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:cell.serviceStatus forKey:@"text"];
+//    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"text",cell.serviceType];
+    
+//    NSDictionary * userInfo =[ [NSDictionary alloc] initWithObjectsAndKeys:@"text",cell.serviceStatus,@"text2",cell.serviceStatus ,nil];
+    
+    NSDictionary *userInfo = @{@"text":cell.serviceStatus,@"text2":cell.serviceType};
+    
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"pushViewInDocHome" object:nil userInfo:userInfo];
     
