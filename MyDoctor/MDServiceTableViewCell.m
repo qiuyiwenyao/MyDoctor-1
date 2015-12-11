@@ -31,7 +31,7 @@
     background.alpha=0.6;
     [view addSubview:background];
     
-    [self addSubview:view];
+    [self.contentView addSubview:view];
     
     UILabel * type=[[UILabel alloc] initWithFrame:CGRectMake(10, 8, 100, 20)];
     type.text=_serviceType;

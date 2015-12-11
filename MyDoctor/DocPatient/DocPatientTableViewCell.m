@@ -31,7 +31,7 @@
     background.alpha=0.6;
     [view addSubview:background];
     
-    [self addSubview:view];
+    [self.contentView addSubview:view];
     
     
     UIImageView * headImage=[[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 90, 70)];
