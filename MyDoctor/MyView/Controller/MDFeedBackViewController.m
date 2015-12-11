@@ -109,7 +109,7 @@
 }
 
 //点击空白键盘收回
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [_textView resignFirstResponder];
 }

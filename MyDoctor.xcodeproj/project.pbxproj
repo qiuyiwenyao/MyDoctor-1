@@ -236,6 +236,7 @@
 		6A65220A1C19065E00227C63 /* send@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A6521DE1C19065E00227C63 /* send@2x.png */; };
 		6A65220D1C19068C00227C63 /* messageReceived.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 6A65220B1C19068C00227C63 /* messageReceived.aiff */; };
 		6A65220E1C19068C00227C63 /* messageSent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 6A65220C1C19068C00227C63 /* messageSent.aiff */; };
+		6A6522111C1A620200227C63 /* MDCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6522101C1A620200227C63 /* MDCommentViewController.m */; };
 		6AF2021F1C083F4000933EAF /* activityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2021D1C083F4000933EAF /* activityCell.m */; };
 		6AF202201C083F4000933EAF /* activityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF2021E1C083F4000933EAF /* activityCell.xib */; };
 		6AF202271C08498100933EAF /* MDExpertConsultationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF202261C08498100933EAF /* MDExpertConsultationViewController.m */; };
@@ -616,6 +617,8 @@
 		6A6521DE1C19065E00227C63 /* send@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send@2x.png"; sourceTree = "<group>"; };
 		6A65220B1C19068C00227C63 /* messageReceived.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = messageReceived.aiff; sourceTree = "<group>"; };
 		6A65220C1C19068C00227C63 /* messageSent.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = messageSent.aiff; sourceTree = "<group>"; };
+		6A65220F1C1A620200227C63 /* MDCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDCommentViewController.h; path = Service/MDCommentViewController.h; sourceTree = "<group>"; };
+		6A6522101C1A620200227C63 /* MDCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDCommentViewController.m; path = Service/MDCommentViewController.m; sourceTree = "<group>"; };
 		6AF2021C1C083F4000933EAF /* activityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = activityCell.h; path = Home/View/activityCell.h; sourceTree = "<group>"; };
 		6AF2021D1C083F4000933EAF /* activityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = activityCell.m; path = Home/View/activityCell.m; sourceTree = "<group>"; };
 		6AF2021E1C083F4000933EAF /* activityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = activityCell.xib; path = Home/View/activityCell.xib; sourceTree = "<group>"; };
@@ -1079,6 +1082,8 @@
 				6A3EF83C1C05BAFE00923D03 /* MDPaymentViewController.m */,
 				6A3EF8391C05BAFE00923D03 /* MDOngoingViewController.h */,
 				6A3EF83A1C05BAFE00923D03 /* MDOngoingViewController.m */,
+				6A65220F1C1A620200227C63 /* MDCommentViewController.h */,
+				6A6522101C1A620200227C63 /* MDCommentViewController.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -1732,6 +1737,7 @@
 				159049771C069FA600EE51FB /* BRSTextField.m in Sources */,
 				153C1E8B1C0405FE00F87014 /* WBToolBar.m in Sources */,
 				6A45AAD01C15659900555CF9 /* DocMyPatientsViewController.m in Sources */,
+				6A6522111C1A620200227C63 /* MDCommentViewController.m in Sources */,
 				15FBDD501C1535D7009E7E39 /* DocHomeTableViewCell.m in Sources */,
 				6AF202541C0C1F2100933EAF /* MDMyDoctorCell.m in Sources */,
 				6A6520ED1C182C6400227C63 /* JSMessageTextView.m in Sources */,

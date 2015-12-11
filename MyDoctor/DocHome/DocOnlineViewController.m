@@ -97,10 +97,10 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+    DocHomeTableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.selected = NO;
     // 带字典的通知
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"12" forKey:@"text"];
+    NSDictionary *userInfo = @{@"text":cell.serviceStatus,@"text2":cell.serviceType};
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"pushViewInDocHome" object:nil userInfo:userInfo];
     

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MDConst.h"
-@interface MDServiceTableViewCell : UITableViewCell
+@interface MDServiceTableViewCell : UITableViewCell<UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSString * serviceType;
 @property (nonatomic, strong) NSString * serviceName;
@@ -16,5 +16,6 @@
 @property (nonatomic, strong) NSString * nowCondition;
 @property (nonatomic, strong) NSString * deleteOrCancel;
 @property (nonatomic, strong) NSString * paymentOrRemind;
+@property (nonatomic,strong) UIButton * deleteOrCancelBtn;
 -(void)drawCell;
 @end

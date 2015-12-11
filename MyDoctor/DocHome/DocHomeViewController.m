@@ -13,6 +13,7 @@
 #import "DocLookAfterViewController.h"
 #import "WbToolBarFour.h"
 #import "DocRecordViewController.h"
+#import "MDChatViewController.h"
 
 @interface DocHomeViewController ()
 
@@ -127,11 +128,19 @@
 {
     
     NSString * text= [[sender userInfo] objectForKey:@"text"];
+    NSString * text2 = [[sender userInfo] objectForKey:@"text2"];
+    if ([text2 isEqualToString:@"线上咨询"]) {
+        MDChatViewController * chatVC = [[MDChatViewController alloc] init];
+        chatVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:chatVC animated:YES];
+        return;
+    }
     if ([text isEqualToString:@"已完成"]) {
         DocRecordViewController * recordVC = [[DocRecordViewController alloc] init];
         recordVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:recordVC animated:YES];
     }
+    
   
 }
 

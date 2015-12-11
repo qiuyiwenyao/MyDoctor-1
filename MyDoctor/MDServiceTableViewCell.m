@@ -83,13 +83,13 @@
         make.size.mas_equalTo(CGSizeMake(100,20));
     }];
     
-    UIButton * deleteOrCancel=[[UIButton alloc] init];
-    [deleteOrCancel addTarget:self action:@selector(deleteOrCancel:) forControlEvents:UIControlEventTouchUpInside];
-    deleteOrCancel.titleLabel.font=[UIFont systemFontOfSize:15];
-    [deleteOrCancel setTitle:_deleteOrCancel forState:UIControlStateNormal];
-    [deleteOrCancel setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [view addSubview:deleteOrCancel];
-    [deleteOrCancel mas_makeConstraints:^(MX_MASConstraintMaker *make) {
+    _deleteOrCancelBtn=[[UIButton alloc] init];
+    [_deleteOrCancelBtn addTarget:self action:@selector(deleteOrCancel:) forControlEvents:UIControlEventTouchUpInside];
+    _deleteOrCancelBtn.titleLabel.font=[UIFont systemFontOfSize:15];
+    [_deleteOrCancelBtn setTitle:_deleteOrCancel forState:UIControlStateNormal];
+    [_deleteOrCancelBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [view addSubview:_deleteOrCancelBtn];
+    [_deleteOrCancelBtn mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.right.equalTo(view.mas_right).with.offset(-80);
         make.bottom.equalTo(view.mas_bottom).with.offset(-5);
         make.size.mas_equalTo(CGSizeMake(60,20));
@@ -112,11 +112,61 @@
 
 -(void)deleteOrCancel:(UIButton *)button
 {
+    if ([button.titleLabel.text isEqualToString:@"取消订单"]) {
+        MDLog(@"取消");
+        UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"取消成功!"
+                             
+                                                      message:nil
+                             
+                                                     delegate:self
+                             
+                                            cancelButtonTitle:@"好的"
+                             
+                                            otherButtonTitles:nil];
+        
+        [alert show];
+
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if ([alertView.title isEqualToString:@"取消成功!"])
+    {
+        self.deleteOrCancel = @"删除订单";
+        [_deleteOrCancelBtn setTitle:self.deleteOrCancel forState:UIControlStateNormal];
+        
+    }
     
 }
+
+
 -(void)paymentOrRemind:(UIButton *)button
 {
     
+    if ([self.paymentOrRemind isEqualToString:@"追加评价"]
+) {
+        // 带字典的通知
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"commentVC" forKey:@"text"];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"pushViewInParent" object:nil userInfo:userInfo];
+    }
+    else if ([self.paymentOrRemind isEqualToString:@"提醒发货"])
+    {
+        UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"已提醒，请稍后"
+                             
+                                                      message:nil
+                             
+                                                     delegate:self
+                             
+                                            cancelButtonTitle:@"好的"
+                             
+                                            otherButtonTitles:nil];
+        
+        [alert show];
+
+    }
+
 }
 
 @end
