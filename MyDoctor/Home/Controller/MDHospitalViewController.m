@@ -91,7 +91,7 @@
     //下方两个按钮的设置
     
     UIButton * consultBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    consultBtn.layer.cornerRadius = 2.0;
+    consultBtn.layer.cornerRadius = 5.0;
     consultBtn.layer.masksToBounds = YES;
     [consultBtn setTitle:@"图文咨询" forState:UIControlStateNormal];
     [consultBtn addTarget:self action:@selector(consult:) forControlEvents:UIControlEventTouchUpInside];
@@ -102,7 +102,7 @@
     
     UIButton * callBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [callBtn setBackgroundColor:RedColor];
-    callBtn.layer.cornerRadius = 2.0;
+    callBtn.layer.cornerRadius = 5.0;
     callBtn.layer.masksToBounds = YES;
     [callBtn addTarget:self action:@selector(callBtn:) forControlEvents:UIControlEventTouchUpInside];
     [callBtn setTitle:@"一键呼叫" forState:UIControlStateNormal];
@@ -129,25 +129,7 @@
 -(void)consult:(UIButton *)button
 
 {
-//    NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
-//    NSString * str=[stdDefault objectForKey:@"user_name"];
-//    if ([str length]>0) {
-//        UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"正在咨询"
-//                             
-//                                                      message:nil
-//                             
-//                                                     delegate:self
-//                             
-//                                            cancelButtonTitle:@"好的"
-//                             
-//                                            otherButtonTitles:nil];
-//        
-//        [alert show];
-//
-//        
-//    }else{
-//        [self logInView];
-//    }
+
     MDChatViewController * chatVC = [[MDChatViewController alloc] init];
     chatVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chatVC animated:YES];
