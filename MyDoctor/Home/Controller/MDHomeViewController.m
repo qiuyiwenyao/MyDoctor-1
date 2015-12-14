@@ -15,6 +15,7 @@
 #import "MDNurseViewController.h"
 #import "MDActivityViewController.h"
 #import "AdView.h"
+#import "MDSmallADView.h"
 
 @interface MDHomeViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -39,9 +40,16 @@
     
     [self creatADView];
     
-    
-    //通知按钮点击
+       //通知按钮点击
     [self.rightBtn addTarget:self action:@selector(noticeClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    MDSmallADView * adview = [[MDSmallADView alloc] init];
+    adview.adTitleArray = @[@"1221",@"222",@"333"];
+//    MDSmallADView * adview = [[MDSmallADView alloc] initWithFrame:CGRectMake(0, TOPHEIGHT, appWidth, 30)];
+//    [adview setFrame:CGRectMake(0, 0, appWidth, 30)];
+    adview=[adview initWithFrame:CGRectMake(0, 0, appWidth, 30)];
+    [self.view addSubview:adview];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,8 +85,8 @@
     _tableView.bounces = YES;
     _tableView.showsHorizontalScrollIndicator = NO;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.contentInset = UIEdgeInsetsMake(18, 0, 0, 0);
-    _tableView.scrollIndicatorInsets = UIEdgeInsetsMake(18, 0, 0, 0);
+    _tableView.contentInset = UIEdgeInsetsMake(50, 0, 0, 0);
+    _tableView.scrollIndicatorInsets = UIEdgeInsetsMake(50, 0, 0, 0);
     
 
     [self.view addSubview:_tableView];
@@ -87,19 +95,19 @@
 -(void)creatADView
 {
     NSArray *imagesURL = @[@"topImg1@2x.png",@"topImg2.jpg",@"topImg@2x.png"];
-    adView = [AdView adScrollViewWithFrame:CGRectMake(0, 0, appWidth, appWidth * 0.42) localImageLinkURL:imagesURL  pageControlShowStyle:UIPageControlShowStyleLeft];
+    adView = [AdView adScrollViewWithFrame:CGRectMake(0, 0, appWidth, appWidth * 0.42) localImageLinkURL:imagesURL  pageControlShowStyle:UIPageControlShowStyleRight];
     
     //    是否需要支持定时循环滚动，默认为YES
         adView.isNeedCycleRoll = YES;
 //    self.automaticallyAdjustsScrollViewInsets = NO;
     
-//    NSArray *titles = @[@"感谢您的支持，如果下载的",
-//                        @"代码在使用过程中出现问题",
-//                        @"您可以发邮件到qzycoder@163.com",
-//                        ];
-//
-//    
-//    [adView setAdTitleArray:titles withShowStyle:AdTitleShowStyleRight];
+    NSArray *titles = @[@"感谢您的支持，如果下载的",
+                        @"代码在使用过程中出现问题",
+                        @"您可以发邮件到qzycoder@163.com",
+                        ];
+
+    
+    [adView setAdTitleArray:titles withShowStyle:AdTitleShowStyleRight];
     //    设置图片滚动时间,默认3s
     adView.adMoveTime = 3.0;
     

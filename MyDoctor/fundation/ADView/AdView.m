@@ -296,7 +296,7 @@
     }
     else
     {
-        _pageControl.frame = CGRectMake( kAdViewWidth - 20*_pageControl.numberOfPages, kAdViewHeight - 40, 20*_pageControl.numberOfPages, 20);
+        _pageControl.frame = CGRectMake( kAdViewWidth - 20*_pageControl.numberOfPages, kAdViewHeight - 20, 20*_pageControl.numberOfPages, 20);
     }
     _pageControl.currentPage = 0;
     _pageControl.enabled = NO;
