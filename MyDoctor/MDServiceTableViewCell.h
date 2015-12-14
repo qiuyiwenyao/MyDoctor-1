@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSString * nowCondition;
 @property (nonatomic, strong) NSString * deleteOrCancel;
 @property (nonatomic, strong) NSString * paymentOrRemind;
+@property (nonatomic, strong) NSString * chouseView;
 @property (nonatomic,strong) UIButton * deleteOrCancelBtn;
 -(void)drawCell;
 @end
