@@ -98,6 +98,7 @@
     for (UIView *item in cell.contentView.subviews) {
         [item removeFromSuperview];
     }
+    cell.tag=indexPath.row;
     if ([dataArray count]>0) {
         MDServiceFolerVO * service=dataArray[indexPath.row];
         cell.serviceType=service.serviceType;
@@ -136,6 +137,7 @@
     return [dataArray count];
     
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
