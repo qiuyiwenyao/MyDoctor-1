@@ -14,13 +14,14 @@
 #import "MDConsultDrupViewController.h"
 #import "MDNurseViewController.h"
 #import "MDActivityViewController.h"
+#import "AdView.h"
 
-@interface MDHomeViewController ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
+@interface MDHomeViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView * _tableView;
     NSMutableArray * _listArray;
-    UIScrollView * _headerView;
-    int currentPage;
+    AdView * adView;
+
 }
 
 @end
@@ -29,7 +30,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    currentPage = 0;
     self.navigationItem.title=@"e+健康";
     
     [self setNavigationBarWithrightBtn:@"通知" leftBtn:nil];
@@ -37,7 +37,7 @@
     
     [self createView];
     
-    [self setHeaderView];
+    [self creatADView];
     
     
     //通知按钮点击
@@ -69,7 +69,7 @@
         _listArray = [NSMutableArray arrayWithObjects:group0,group1,group2,group3, nil];
     }
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(21, TOPHEIGHT, SCREENWIDTH - 42, appHeight-TOPHEIGHT - 49) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, TOPHEIGHT, SCREENWIDTH, appHeight-TOPHEIGHT - 49) style:UITableViewStylePlain];
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -79,101 +79,45 @@
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.contentInset = UIEdgeInsetsMake(18, 0, 0, 0);
     _tableView.scrollIndicatorInsets = UIEdgeInsetsMake(18, 0, 0, 0);
+    
 
     [self.view addSubview:_tableView];
 }
 
--(void)setHeaderView
+-(void)creatADView
 {
-    NSMutableArray * imageArr = [[NSMutableArray alloc] initWithObjects:@"topImg",@"topImg1",@"topImg2.jpg",@"topImg",@"topImg1", nil];
-    _headerView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH - 42, (SCREENWIDTH - 42)*0.42)];
-    CGFloat width = SCREENWIDTH - 42;
-    _headerView.contentSize = CGSizeMake(width*imageArr.count, width*0.42);
-    _headerView.bounces = NO;
-    _headerView.pagingEnabled = YES;
-    _headerView.showsHorizontalScrollIndicator = NO;
-    _headerView.delegate = self;
-//    _headerView.contentOffset = CGPointMake(width, 0);
+    NSArray *imagesURL = @[@"topImg1@2x.png",@"topImg2.jpg",@"topImg@2x.png"];
+    adView = [AdView adScrollViewWithFrame:CGRectMake(0, 0, appWidth, appWidth * 0.42) localImageLinkURL:imagesURL  pageControlShowStyle:UIPageControlShowStyleLeft];
     
-    for (int i = 0; i < imageArr.count; i ++) {
-        UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(width * i, 0, width, width*0.42)];
-        imageView.image = [UIImage imageNamed:imageArr[i]];
-        [_headerView addSubview:imageView];
-    }
+    //    是否需要支持定时循环滚动，默认为YES
+        adView.isNeedCycleRoll = YES;
+//    self.automaticallyAdjustsScrollViewInsets = NO;
     
-    //UIpageController设置
-    UIPageControl * pageController = [[UIPageControl alloc] initWithFrame:CGRectMake(_headerView.frame.size.width - 60, _headerView.frame.size.height - 15, 40, 10)];
-    pageController.backgroundColor = [UIColor clearColor];
-    pageController.numberOfPages = imageArr.count - 2;
-    pageController.currentPage = 0;
-    pageController.pageIndicatorTintColor = [UIColor whiteColor];
-    pageController.currentPageIndicatorTintColor = [UIColor colorWithRed:65.0/255.0 green:65.0/255.0 blue:65.0/255.0 alpha:1.0];
-    pageController.center = CGPointMake(_headerView.frame.size.width - 40,  _headerView.frame.size.height - 10);
-    [pageController addTarget:self action:@selector(pageController:) forControlEvents:UIControlEventValueChanged];
-    pageController.tag = 100;
-    [_tableView addSubview:pageController];
+//    NSArray *titles = @[@"感谢您的支持，如果下载的",
+//                        @"代码在使用过程中出现问题",
+//                        @"您可以发邮件到qzycoder@163.com",
+//                        ];
+//
+//    
+//    [adView setAdTitleArray:titles withShowStyle:AdTitleShowStyleRight];
+    //    设置图片滚动时间,默认3s
+    adView.adMoveTime = 3.0;
     
-    [NSTimer scheduledTimerWithTimeInterval:2.5 target:self selector:@selector(timeChange:) userInfo:nil repeats:YES];
-}
-
-//自动滚动
--(void)timeChange:(NSTimer *)timer
-{
-    UIPageControl *pageControl = (UIPageControl *)[self.view viewWithTag:100];
-    pageControl.currentPage = currentPage;
-    currentPage ++;
-
-    [UIView animateWithDuration:0.5 animations:^{
-        _headerView.contentOffset = CGPointMake((SCREENWIDTH - 42)*currentPage, 0);
-
-    }];
-    if (_headerView.contentOffset.x > (SCREENWIDTH - 42)*2) {
-            _headerView.contentOffset = CGPointMake(0, 0);
-            currentPage = 0;
-    }
-   
-}
-
-#pragma mark - pageControl的方法
-- (void)pageController:(UIPageControl *)pageControl
-{
-    currentPage = (int)pageControl.currentPage;
-    [UIView animateWithDuration:0.5 animations:^{
-        _headerView.contentOffset = CGPointMake((SCREENWIDTH - 42)*currentPage, 0);
-    }];
+    //图片被点击后回调的方法
+    adView.callBack = ^(NSInteger index,NSString * imageURL)
+    {
+//        NSLog(@"被点中图片的索引:%ld---地址:%@",(long)index,imageURL);
+    };
     
 }
 
-#pragma mark - UIScrollViewDelegate
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    
-    //由tag值找到pageControl
-    UIPageControl *pageControl = (UIPageControl *)[self.view viewWithTag:100];
-    //找到当前scrollView的偏移量
-    CGPoint point = scrollView.contentOffset;
-    //找到目前是第几页
-    currentPage = point.x / (SCREENWIDTH - 42);
-    if (currentPage == 0||currentPage == 4) {
-        if (currentPage == 0) {
-            currentPage = 3;
-        }else
-        {
-            currentPage = 1;
-        }
-        _headerView.contentOffset = CGPointMake(currentPage *  (SCREENWIDTH - 42), 0);
+#pragma mark UITableViewDelegate协议方法
 
-    }
-    //将页数赋给UIPageControl
-    pageControl.currentPage = currentPage-1;
-}
-
-#pragma mark 协议方法
-
+//设置tableHeaderView
 -(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 {
-    _tableView.tableHeaderView = _headerView;
-    [_tableView sendSubviewToBack:_headerView];
+    _tableView.tableHeaderView = adView;
+        [_tableView sendSubviewToBack:adView];
     
 }
 //
