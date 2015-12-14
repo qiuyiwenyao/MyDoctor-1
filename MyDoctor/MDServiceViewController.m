@@ -62,8 +62,6 @@
 }
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"pushViewInParent" object:nil];
-    
-    
 }
 -(void)draw
 {

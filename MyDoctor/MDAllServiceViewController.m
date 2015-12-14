@@ -26,8 +26,7 @@
     [self dataArray];
     [self TableView];
     
-    
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteEditingStyle:) name:@"deleteEditingStyle" object:nil];
 }
 
 -(void)dataArray
@@ -86,7 +85,9 @@
     [self.view addSubview:_tableView];
     [_tableView reloadData];
 }
-
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"deleteEditingStyle" object:nil];
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *Cell=@"HeaderCell";
     MDServiceTableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:Cell];
@@ -104,6 +105,7 @@
         cell.serviceType=service.serviceType;
         cell.serviceName=service.serviceName;
         cell.money=service.money;
+        cell.chouseView=@"全部";
         cell.nowCondition=service.nowCondition;
         cell.deleteOrCancel=service.deleteOrCancel;
         cell.paymentOrRemind=service.paymentOrRemind;
@@ -137,7 +139,19 @@
     return [dataArray count];
     
 }
-
+-(void)deleteEditingStyle:(id)sender
+{
+    NSString * text= [[sender userInfo] objectForKey:@"cellTag"];
+    NSString * view= [[sender userInfo] objectForKey:@"页面"];
+    if ([view isEqualToString:@"全部"]) {
+        int cellTag=[text intValue];
+        [dataArray removeObjectAtIndex:cellTag];
+        [_tableView reloadData];
+    }
+//     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:cellTag inSection:0];
+//    [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
+   
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

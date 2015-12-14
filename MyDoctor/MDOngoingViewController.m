@@ -27,10 +27,11 @@
     [self dataArray];
     [self TableView];
     
-    
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteEditingStyle:) name:@"deleteEditingStyle" object:nil];
 }
-
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"deleteEditingStyle" object:nil];
+}
 -(void)dataArray
 {
     dataArray=[[NSMutableArray alloc] init];
@@ -78,6 +79,7 @@
         cell.serviceType=service.serviceType;
         cell.serviceName=service.serviceName;
         cell.money=service.money;
+        cell.chouseView=@"进行中";
         cell.nowCondition=service.nowCondition;
         cell.deleteOrCancel=service.deleteOrCancel;
         cell.paymentOrRemind=service.paymentOrRemind;
@@ -120,6 +122,15 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
+-(void)deleteEditingStyle:(id)sender
+{
+    NSString * text= [[sender userInfo] objectForKey:@"cellTag"];
+    NSString * view= [[sender userInfo] objectForKey:@"页面"];
+    if ([view isEqualToString:@"进行中"]) {
+        int cellTag=[text intValue];
+        [dataArray removeObjectAtIndex:cellTag];
+        [_tableView reloadData];
+    }
+}
 
 @end

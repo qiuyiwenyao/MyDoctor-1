@@ -127,6 +127,16 @@
         [alert show];
 
     }
+    
+    if ([button.titleLabel.text isEqualToString:@"删除订单"]) {
+        
+        NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithObject:[NSString stringWithFormat:@"%ld",(long)self.tag] forKey:@"cellTag"];
+        
+        [userInfo setValue:self.chouseView forKeyPath:@"页面"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"deleteEditingStyle" object:nil userInfo:userInfo];
+        
+    }
+
 }
 
 -(void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
