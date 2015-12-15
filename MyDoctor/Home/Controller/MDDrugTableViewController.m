@@ -12,6 +12,8 @@
 #import "MDDrugVO.h"
 #import "MDDrugTableViewCell.h"
 #import "MDNurseRootViewController.h"
+#import "MDSmallADView.h"
+#import "MDDrupDetailViewController.h"
 
 @interface MDDrugTableViewController ()  {
     
@@ -47,6 +49,7 @@
     //数据
     [self dataArray];
     [self TableView];
+    
 }
 -(void)dataArray
 {
@@ -224,10 +227,10 @@
     [_searchDrug resignFirstResponder];
     UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.selected = NO;
-    MDNurseRootViewController * nurse=[[MDNurseRootViewController alloc] init];
-    nurse.hidesBottomBarWhenPushed=YES;
-    nurse.navigationItem.title=@"商品详情";
-    [self.navigationController pushViewController:nurse animated:YES];
+    MDDrupDetailViewController * detailVC = [[MDDrupDetailViewController alloc] init];
+    detailVC.hidesBottomBarWhenPushed=YES;
+    detailVC.navigationItem.title=@"商品详情";
+    [self.navigationController pushViewController:detailVC animated:YES];
     
 }
 

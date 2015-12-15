@@ -21,7 +21,9 @@
 {
     UITableView * _tableView;
     NSMutableArray * _listArray;
-    AdView * adView;
+    AdView * _adView;
+    UIView * _headerView;
+    MDSmallADView * _smallADView;
 
 }
 
@@ -38,17 +40,10 @@
     
     [self createView];
     
-    [self creatADView];
+    [self createHeadView];
     
        //通知按钮点击
     [self.rightBtn addTarget:self action:@selector(noticeClick) forControlEvents:UIControlEventTouchUpInside];
-    
-    MDSmallADView * adview = [[MDSmallADView alloc] init];
-    adview.adTitleArray = @[@"1221",@"222",@"333"];
-//    MDSmallADView * adview = [[MDSmallADView alloc] initWithFrame:CGRectMake(0, TOPHEIGHT, appWidth, 30)];
-//    [adview setFrame:CGRectMake(0, 0, appWidth, 30)];
-    adview=[adview initWithFrame:CGRectMake(0, 0, appWidth, 30)];
-    [self.view addSubview:adview];
     
 }
 
@@ -85,37 +80,47 @@
     _tableView.bounces = YES;
     _tableView.showsHorizontalScrollIndicator = NO;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.contentInset = UIEdgeInsetsMake(50, 0, 0, 0);
-    _tableView.scrollIndicatorInsets = UIEdgeInsetsMake(50, 0, 0, 0);
+    _tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    _tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     
 
     [self.view addSubview:_tableView];
 }
 
--(void)creatADView
+-(void)createHeadView
 {
     NSArray *imagesURL = @[@"topImg1@2x.png",@"topImg2.jpg",@"topImg@2x.png"];
-    adView = [AdView adScrollViewWithFrame:CGRectMake(0, 0, appWidth, appWidth * 0.42) localImageLinkURL:imagesURL  pageControlShowStyle:UIPageControlShowStyleRight];
+    _adView = [AdView adScrollViewWithFrame:CGRectMake(0, 30, appWidth, appWidth * 0.42) localImageLinkURL:imagesURL  pageControlShowStyle:UIPageControlShowStyleRight];
     
     //    是否需要支持定时循环滚动，默认为YES
-        adView.isNeedCycleRoll = YES;
+//        _adView.isNeedCycleRoll = YES;
 //    self.automaticallyAdjustsScrollViewInsets = NO;
     
-    NSArray *titles = @[@"感谢您的支持，如果下载的",
-                        @"代码在使用过程中出现问题",
-                        @"您可以发邮件到qzycoder@163.com",
-                        ];
-
-    
-    [adView setAdTitleArray:titles withShowStyle:AdTitleShowStyleRight];
+//    NSArray *titles = @[@"感谢您的支持，如果下载的",
+//                        @"代码在使用过程中出现问题",
+//                        @"您可以发邮件到qzycoder@163.com",
+//                        ];
+//
+//    
+//    [adView setAdTitleArray:titles withShowStyle:AdTitleShowStyleRight];
     //    设置图片滚动时间,默认3s
-    adView.adMoveTime = 3.0;
+    _adView.adMoveTime = 3.0;
     
     //图片被点击后回调的方法
-    adView.callBack = ^(NSInteger index,NSString * imageURL)
+    _adView.callBack = ^(NSInteger index,NSString * imageURL)
     {
 //        NSLog(@"被点中图片的索引:%ld---地址:%@",(long)index,imageURL);
     };
+    
+    _smallADView = [[MDSmallADView alloc] initWithFrame:CGRectMake(0, 0, appWidth, 30)];
+    _smallADView.adTitleArray = @[@"12月大促药店选择康爱多药店，100%正品",@"康一家服务到家,健康生活在你家",@"国家药监局认证，一站式网上购药"];
+    [_smallADView setText];
+
+    _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, appWidth, _adView.height+_smallADView.height)];
+    
+    [_headerView addSubview:_smallADView];
+    [_headerView addSubview:_adView];
+    
     
 }
 
@@ -124,8 +129,8 @@
 //设置tableHeaderView
 -(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 {
-    _tableView.tableHeaderView = adView;
-        [_tableView sendSubviewToBack:adView];
+    _tableView.tableHeaderView = _headerView;
+        [_tableView sendSubviewToBack:_headerView];
     
 }
 //

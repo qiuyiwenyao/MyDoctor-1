@@ -254,7 +254,7 @@
 }
 
 //请求数据回调
--(void)sendInfoFromRequest:(id)response andPath:(NSString *)path
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
     NSString * str = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
     //回馈数据

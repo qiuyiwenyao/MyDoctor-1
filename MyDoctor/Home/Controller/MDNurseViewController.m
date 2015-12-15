@@ -68,7 +68,7 @@
     [model starRequest];
 }
 
--(void)sendInfoFromRequest:(id)response andPath:(NSString *)path
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
     NSLog(@"======%@",[NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil]);
     NSString * str = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];

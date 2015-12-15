@@ -66,7 +66,7 @@
 
 }
 
--(void)sendInfoFromRequest:(id)response andPath:(NSString *)path
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
     NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
     NSLog(@"%@",dic);

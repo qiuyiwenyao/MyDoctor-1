@@ -9,6 +9,7 @@
 #import "MDConsultDrupViewController.h"
 #import "MDDrugTableViewController.h"
 #import "MDConst.h"
+#import "MDSmallADView.h"
 
 @interface MDConsultDrupViewController ()
 
@@ -30,6 +31,8 @@
     //返回按钮点击
     [self.leftBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self searchview];
+    
+    [self createADView];
   
 }
 -(void)searchview{
@@ -85,6 +88,22 @@
         }
     }
 }
+
+//下方滚动广告位
+-(void)createADView
+{
+    UIButton * bottonBtn = (UIButton *)[self.view viewWithTag:19];
+    MDSmallADView * adView = [[MDSmallADView alloc] initWithFrame:CGRectMake(0, 0, appWidth, 50)];
+    adView.adTitleArray = @[@"12月大促药店选择康爱多药店，100%正品",@"康一家服务到家,健康生活在你家",@"国家药监局认证，一站式网上购药"];
+    [adView setText];
+    
+    [self.view addSubview:adView];
+    
+    [adView mas_makeConstraints:^(MX_MASConstraintMaker *make) {
+        make.top.equalTo(bottonBtn.mas_bottom).with.offset(10);
+    }];
+}
+
 
 -(void)medicineButton:(UIButton *)button
 {

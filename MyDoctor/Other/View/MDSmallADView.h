@@ -18,6 +18,6 @@
 @property (retain,nonatomic,readonly) UIScrollView * adScrollView;
 @property (retain,nonatomic) NSArray * imageLinkURL;
 
-
+-(void)setText;
 
 @end

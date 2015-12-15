@@ -10,6 +10,7 @@
 
 @interface MDLectureModel : NSObject
 
+@property (nonatomic,assign) int id;
 @property (nonatomic,copy) NSString * healthEducateName;//讲座标题
 @property (nonatomic,copy) NSString * participateInPeople;//接受教育的人群
 @property (nonatomic,copy) NSString * starttime;

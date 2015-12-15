@@ -13,6 +13,9 @@
 
 
 @interface MDLectureViewController ()<UIAlertViewDelegate,sendInfoToCtr>
+{
+    int lectureID;
+}
 
 @property(nonatomic,strong)NSMutableArray *dataSource;
 
@@ -40,7 +43,7 @@
     [self postRequest];
 
     
-    [self setText];
+//    [self setText];
     
     // Do any additional setup after loading the view.
 }
@@ -60,6 +63,7 @@
     
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = MDPath;
+    model.methodNum = 10201;
     NSString * nameAndPassword=[NSString stringWithFormat:@"10201@`3@`3@`%@@`1@`3",date];
     nameAndPassword=[self GTMEncodeTest:nameAndPassword];
     //    //post键值对
@@ -68,19 +72,38 @@
     [model starRequest];
 }
 
--(void)sendInfoFromRequest:(id)response andPath:(NSString *)path
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    _dataSource = [[NSMutableArray alloc] init];
-//    NSString * str = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-    NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    for (NSDictionary * dic in [dictionary objectForKey:@"obj"]) {
-        MDLectureModel * model = [[MDLectureModel alloc] init];
-        [model setValuesForKeysWithDictionary:dic];
-        [_dataSource addObject:model];
+    if (num == 10201) {
+        _dataSource = [[NSMutableArray alloc] init];
+        NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+        for (NSDictionary * dic in [dictionary objectForKey:@"obj"]) {
+            MDLectureModel * model = [[MDLectureModel alloc] init];
+            [model setValuesForKeysWithDictionary:dic];
+            lectureID = model.id;
+            [_dataSource addObject:model];
+        }
+        
+        [self setText];
+
+    }else if (num == 10202)
+    {
+//        NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+        if ([[dic objectForKey:@"msg"] isEqualToString:@"已经报名"]) {
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"预约成功" message:nil delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
+            [alert show];
+
+        }
+        else
+        {
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"预约失败，请重试" message:nil delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
+            [alert show];
+        }
+        MDLog(@"%@",[dic objectForKey:@"msg"]);
     }
-    
-//    [self setText];
-//    healthEducateName": "健康讲座",
+//    MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    //    healthEducateName": "健康讲座",
 //    "participateInPeople": "接受教育的人群",
 //    "starttime": "2015-11-30 21:10:53",
 //    "endtime": "2015-12-03 21:11:00",
@@ -116,27 +139,37 @@
 
 -(void)orderBtnClick
 {
-    UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"预约成功"
-                         
-                                                  message:nil
-                         
-                                                 delegate:self
-                         
-                                        cancelButtonTitle:@"好的"
-                         
-                                        otherButtonTitles:nil];
+    NSString* date;
+    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+    date = [formatter stringFromDate:[NSDate date]];
     
-    [alert show];
+    MDRequestModel * model = [[MDRequestModel alloc] init];
+    model.path = MDPath;
+    model.methodNum = 10202;
+//    model.methodNum = 10201;
+    NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
+    int userId = [[stdDefault objectForKey:@"user_Id"] intValue];
+    NSString * nameAndPassword=[NSString stringWithFormat:@"%d@`3@`3@`%@@`1@`3@`%d@`%d",model.methodNum,date,userId,lectureID];
+    nameAndPassword=[self GTMEncodeTest:nameAndPassword];
+    //    //post键值对
+    model.parameters = @{@"b":nameAndPassword};
+    model.delegate = self;
+    [model starRequest];
+
+    
+    
 }
 
 -(void)setText
 {
     //取出数据模型
-//    MDLectureModel * model = _dataSource[0];
+    MDLectureModel * model = _dataSource[0];
+    MDLog(@"%@",_dataSource);
     
     UILabel * startTimeLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, appWidth - 48*2, 0)];
-//    startTimeLab.text = [NSString stringWithFormat:@"开始时间:%@",model.starttime];
-    startTimeLab.text = @"开始时间:2015-12-08";
+    startTimeLab.text = [NSString stringWithFormat:@"开始时间:%@",model.starttime];
+//    startTimeLab.text = @"开始时间:2015-12-08";
     startTimeLab.textAlignment = NSTextAlignmentLeft;
     startTimeLab.font = [UIFont systemFontOfSize:14];
     startTimeLab.textColor = ColorWithRGB(97, 103, 111, 1);
@@ -145,8 +178,8 @@
     [self.scrollView addSubview:startTimeLab];
     
     UILabel * endTimeLab = [[UILabel alloc] initWithFrame:CGRectMake(0, startTimeLab.y+startTimeLab.height+21, appWidth - 48*2, 0)];
-//    endTimeLab.text = [NSString stringWithFormat:@"结束时间:%@",model.endtime];
-    endTimeLab.text = @"结束时间:2015-12-09";
+    endTimeLab.text = [NSString stringWithFormat:@"结束时间:%@",model.endtime];
+//    endTimeLab.text = @"结束时间:2015-12-09";
     endTimeLab.textAlignment = NSTextAlignmentLeft;
     endTimeLab.font = [UIFont systemFontOfSize:14];
     endTimeLab.textColor = ColorWithRGB(97, 103, 111, 1);

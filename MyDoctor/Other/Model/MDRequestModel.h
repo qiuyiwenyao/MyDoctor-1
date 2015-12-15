@@ -10,7 +10,7 @@
 
 @protocol sendInfoToCtr <NSObject>
 
--(void)sendInfoFromRequest:(id)response andPath:(NSString *)path;
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num;
 
 @end
 
@@ -24,6 +24,8 @@
 @property (nonatomic,copy) NSString * ContentType;
 
 @property (nonatomic,strong) NSDictionary * parameters;
+
+@property (nonatomic,assign) int methodNum;
 
 @property (nonatomic,weak) id<sendInfoToCtr>delegate;
 

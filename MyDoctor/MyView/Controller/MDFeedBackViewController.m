@@ -88,7 +88,8 @@
     
     UIButton * sendBtn = [[UIButton alloc] init];
     sendBtn.frame = CGRectMake(_textView.x, titleLab.y+titleLab.height+70, _textView.width, _textView.width/9);
-    sendBtn.backgroundColor = [UIColor orangeColor];
+    sendBtn.backgroundColor = RedColor;
+    sendBtn.layer.cornerRadius = 5.0;
     [sendBtn setTitle:@"发送" forState:UIControlStateNormal];
     [sendBtn addTarget:self action:@selector(sendBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:sendBtn];
@@ -177,7 +178,7 @@
 }
 
 #pragma mark - 数据请求回调
--(void)sendInfoFromRequest:(id)response andPath:(NSString *)path
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
     NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
     

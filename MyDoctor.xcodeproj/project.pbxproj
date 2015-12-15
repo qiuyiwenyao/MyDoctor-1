@@ -258,6 +258,7 @@
 		6A65234C1C1E930E00227C63 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A65233A1C1E930E00227C63 /* UIImageView+HighlightedWebCache.m */; };
 		6A65234D1C1E930E00227C63 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A65233C1C1E930E00227C63 /* UIImageView+WebCache.m */; };
 		6A65234E1C1E930E00227C63 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A65233E1C1E930E00227C63 /* UIView+WebCacheOperation.m */; };
+		6A6523511C1FBC4000227C63 /* MDDrupDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6523501C1FBC4000227C63 /* MDDrupDetailViewController.m */; };
 		6AF2021F1C083F4000933EAF /* activityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2021D1C083F4000933EAF /* activityCell.m */; };
 		6AF202201C083F4000933EAF /* activityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF2021E1C083F4000933EAF /* activityCell.xib */; };
 		6AF202271C08498100933EAF /* MDExpertConsultationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF202261C08498100933EAF /* MDExpertConsultationViewController.m */; };
@@ -680,6 +681,8 @@
 		6A65233C1C1E930E00227C63 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		6A65233D1C1E930E00227C63 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		6A65233E1C1E930E00227C63 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		6A65234F1C1FBC4000227C63 /* MDDrupDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDrupDetailViewController.h; sourceTree = "<group>"; };
+		6A6523501C1FBC4000227C63 /* MDDrupDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDrupDetailViewController.m; sourceTree = "<group>"; };
 		6AF2021C1C083F4000933EAF /* activityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = activityCell.h; path = Home/View/activityCell.h; sourceTree = "<group>"; };
 		6AF2021D1C083F4000933EAF /* activityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = activityCell.m; path = Home/View/activityCell.m; sourceTree = "<group>"; };
 		6AF2021E1C083F4000933EAF /* activityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = activityCell.xib; path = Home/View/activityCell.xib; sourceTree = "<group>"; };
@@ -941,6 +944,8 @@
 				6A3EF8521C06039C00923D03 /* MDConsultDrupViewController.m */,
 				153ED8561C0BF73C00171DFA /* MDDrugTableViewController.h */,
 				153ED8571C0BF73C00171DFA /* MDDrugTableViewController.m */,
+				6A65234F1C1FBC4000227C63 /* MDDrupDetailViewController.h */,
+				6A6523501C1FBC4000227C63 /* MDDrupDetailViewController.m */,
 			);
 			name = "Drug(药品)";
 			sourceTree = "<group>";
@@ -1899,6 +1904,7 @@
 				6A45AAF21C17225900555CF9 /* DocRecordViewController.m in Sources */,
 				6A6520E91C182C6400227C63 /* JSDismissiveTextView.m in Sources */,
 				6A6523491C1E930E00227C63 /* UIImage+GIF.m in Sources */,
+				6A6523511C1FBC4000227C63 /* MDDrupDetailViewController.m in Sources */,
 				6A6523431C1E930E00227C63 /* SDWebImageDecoder.m in Sources */,
 				153ED8481C08523600171DFA /* MDAddressViewController.m in Sources */,
 				155CEC2C1C0E81B8006B5CFA /* AFSecurityPolicy.m in Sources */,
