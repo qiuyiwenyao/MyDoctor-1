@@ -15,8 +15,12 @@
 #define autoSizeScaleX  (appWidth>320?appWidth/320:1)
 #define autoSizeScaleY  (appHeight>568?appHeight/568:1)
 #define T4FontSize (15*autoSizeScaleX)
+#import "FileUtils.h"
+#define IMAGECACHE  @"IMAGE/"
+#import "MDRequestModel.h"
+#import "GTMBase64.h"
 
-@interface BRSEndSignlnViewController ()
+@interface BRSEndSignlnViewController ()<sendInfoToCtr>
 
 @end
 
@@ -122,15 +126,33 @@
 //        return;
 //    }
     
-//    FileUtils *fileUtil = [FileUtils sharedFileUtils];
-//    //创建文件下载目录
-//    NSString *path = [fileUtil createCachePath:IMAGECACHE];
-//    
-//    NSString *uniquePath=[path stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.png",[WBUserVO userVO].ID]];
-//    BOOL result=[UIImagePNGRepresentation(image222)writeToFile: uniquePath atomically:YES];
-//    
-//    
-//    NSString * url=[NSString stringWithFormat:@"%@/api/v1/photos.json?auto_save=true",BASE_URL];
+    FileUtils * fileUtil = [FileUtils sharedFileUtils];
+    //创建文件下载目录
+    NSString *path = [fileUtil createCachePath:IMAGECACHE];
+    NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
+    NSString * str=[stdDefault objectForKey:@"user_name"];
+    NSString * user_Id=[stdDefault objectForKey:@"user_Id"];
+    NSString *uniquePath=[path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",str]];
+    BOOL result=[UIImagePNGRepresentation(image222)writeToFile: uniquePath atomically:YES];
+
+    NSString* date;
+    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+    date = [formatter stringFromDate:[NSDate date]];
+    NSString * url =MDPath;// @"http://111.160.245.75:8082/CommunityWs//servlet/ShequServlet?";
+    
+
+    
+    MDRequestModel * model = [[MDRequestModel alloc] init];
+    model.path = url;
+    NSString * nameAndPassword=[NSString stringWithFormat:@"10103@`3@`3@`%@@`1@`3@`%@@`%@",date,user_Id,uniquePath];
+    nameAndPassword=[self GTMEncodeTest:nameAndPassword];
+    //    //post键值对
+    model.parameters = @{@"b":nameAndPassword};
+    model.delegate = self;
+    [model starRequest];
+    
+    //    NSString * url=[NSString stringWithFormat:@"%@/api/v1/photos.json?auto_save=true",BASE_URL];
 //    NSMutableDictionary * attach=[[NSMutableDictionary alloc] init];
 //    [attach setObject:uniquePath forKey:@"[uploading][]data"];
 //    MXNetModel *netModel = [MXNetModel shareNetModel];
@@ -153,17 +175,36 @@
 //        
 //    }];
 //
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-        NSLog(@"back");
-    }];
+   
     
 }
+//请求数据回调
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
+{
+    NSString * str = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+    //回馈数据
+    NSLog(@"%@", str);
+    [self dismissViewControllerAnimated:YES completion:^{
+        NSLog(@"back");
+    }];
+//    NSArray *array = [str componentsSeparatedByString:@","];
+//    NSArray *success=[array[0] componentsSeparatedByString:@":"];
+//    NSArray * uisrId=[array[2] componentsSeparatedByString:@":"];
+//    if ([success[1] isEqualToString:@"true"]) {
+//        [[NSNotificationCenter defaultCenter]
+//         postNotificationName:@"showBRSMainView" object:self];
+//        NSUserDefaults *stdDefault = [NSUserDefaults standardUserDefaults];
+//        [stdDefault setObject:logInField.text forKey:@"user_name"];
+//        [stdDefault setObject:uisrId[2] forKey:@"user_Id"];
+//        NSLog(@"%@",uisrId[2]);
+//        [self dismissViewControllerAnimated:YES completion:^{
+//            NSLog(@"back");
+//        }];
+//    }
+}
 -(void)back
-
 {
     [self.navigationController popViewControllerAnimated:YES];
-    
 }
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -255,14 +296,22 @@
     [self dismissViewControllerAnimated:YES completion:^{}];
     
 }
-/*
-#pragma mark - Navigation
+//转吗
+-(NSString *)GTMEncodeTest:(NSString *)text
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+{
+    
+    NSString* originStr = text;
+    
+    NSString* encodeResult = nil;
+    
+    NSData* originData = [originStr dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSData* encodeData = [GTMBase64 encodeData:originData];
+    
+    encodeResult = [[NSString alloc] initWithData:encodeData encoding:NSUTF8StringEncoding];
+    
+    return encodeResult;
 }
-*/
 
 @end

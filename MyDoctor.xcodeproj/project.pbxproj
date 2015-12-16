@@ -50,6 +50,7 @@
 		153ED85F1C0C17DC00171DFA /* 搜索药品@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 153ED85E1C0C17DC00171DFA /* 搜索药品@2x.png */; };
 		153ED8611C0C17E700171DFA /* 搜索药品@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 153ED8601C0C17E700171DFA /* 搜索药品@3x.png */; };
 		153ED8671C0C266C00171DFA /* MDDrugTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 153ED8661C0C266C00171DFA /* MDDrugTableViewCell.m */; };
+		15528BAD1C20FAB500B1F409 /* MDUserVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 15528BAC1C20FAB500B1F409 /* MDUserVO.m */; };
 		155CEBE91C0C2E8E006B5CFA /* 药@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 155CEBE81C0C2E8E006B5CFA /* 药@2x.png */; };
 		155CEBEB1C0C2E9A006B5CFA /* 药@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 155CEBEA1C0C2E9A006B5CFA /* 药@3x.png */; };
 		155CEBEF1C0D47F0006B5CFA /* 用户地址@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 155CEBEC1C0D47F0006B5CFA /* 用户地址@2x.png */; };
@@ -84,6 +85,7 @@
 		155CEC401C0E8367006B5CFA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 155CEC3F1C0E8367006B5CFA /* UIKit.framework */; };
 		155CEC421C0E8371006B5CFA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 155CEC411C0E8371006B5CFA /* Foundation.framework */; };
 		155CEC481C0E8993006B5CFA /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 155CEC461C0E8993006B5CFA /* GTMBase64.m */; };
+		1578343C1C20051E00421167 /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1578343B1C20051E00421167 /* FileUtils.m */; };
 		159049721C069FA600EE51FB /* BRSlogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 159049671C069FA600EE51FB /* BRSlogInViewController.m */; };
 		159049731C069FA600EE51FB /* BRSNewPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 159049691C069FA600EE51FB /* BRSNewPageViewController.m */; };
 		159049741C069FA600EE51FB /* BRSNewPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1590496B1C069FA600EE51FB /* BRSNewPasswordViewController.m */; };
@@ -367,6 +369,8 @@
 		153ED8601C0C17E700171DFA /* 搜索药品@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索药品@3x.png"; sourceTree = "<group>"; };
 		153ED8651C0C266C00171DFA /* MDDrugTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDDrugTableViewCell.h; path = Home/View/MDDrugTableViewCell.h; sourceTree = "<group>"; };
 		153ED8661C0C266C00171DFA /* MDDrugTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDDrugTableViewCell.m; path = Home/View/MDDrugTableViewCell.m; sourceTree = "<group>"; };
+		15528BAB1C20FAB500B1F409 /* MDUserVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDUserVO.h; sourceTree = "<group>"; };
+		15528BAC1C20FAB500B1F409 /* MDUserVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDUserVO.m; sourceTree = "<group>"; };
 		155CEBE81C0C2E8E006B5CFA /* 药@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "药@2x.png"; sourceTree = "<group>"; };
 		155CEBEA1C0C2E9A006B5CFA /* 药@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "药@3x.png"; sourceTree = "<group>"; };
 		155CEBEC1C0D47F0006B5CFA /* 用户地址@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "用户地址@2x.png"; sourceTree = "<group>"; };
@@ -422,6 +426,8 @@
 		155CEC451C0E8993006B5CFA /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
 		155CEC461C0E8993006B5CFA /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
 		155CEC471C0E8993006B5CFA /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		1578343A1C20051E00421167 /* FileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileUtils.h; path = FileUtils/FileUtils.h; sourceTree = "<group>"; };
+		1578343B1C20051E00421167 /* FileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileUtils.m; path = FileUtils/FileUtils.m; sourceTree = "<group>"; };
 		159049661C069FA600EE51FB /* BRSlogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSlogInViewController.h; sourceTree = "<group>"; };
 		159049671C069FA600EE51FB /* BRSlogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRSlogInViewController.m; sourceTree = "<group>"; };
 		159049681C069FA600EE51FB /* BRSNewPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSNewPageViewController.h; sourceTree = "<group>"; };
@@ -792,6 +798,7 @@
 		153C1E661C03FB8C00F87014 /* fundation */ = {
 			isa = PBXGroup;
 			children = (
+				157834391C20050B00421167 /* FileUtils */,
 				6A6522EC1C1E92EC00227C63 /* SDWebImage */,
 				6A6522121C1ACD8E00227C63 /* ADView */,
 				6A6520CE1C182C3C00227C63 /* MessagesTableViewController */,
@@ -1037,6 +1044,15 @@
 			path = gtmbase64;
 			sourceTree = "<group>";
 		};
+		157834391C20050B00421167 /* FileUtils */ = {
+			isa = PBXGroup;
+			children = (
+				1578343A1C20051E00421167 /* FileUtils.h */,
+				1578343B1C20051E00421167 /* FileUtils.m */,
+			);
+			name = FileUtils;
+			sourceTree = "<group>";
+		};
 		159049651C069FA600EE51FB /* logIn */ = {
 			isa = PBXGroup;
 			children = (
@@ -1090,6 +1106,7 @@
 				6A8F12B01C040825001ABE2F /* Other */,
 				15AE53961C03EEE20013FF1B /* Service */,
 				15AE53951C03EEDD0013FF1B /* Home */,
+				153C1E8C1C0406C200F87014 /* MDConst.h */,
 				15AE53731C02F0680013FF1B /* MDBaseViewController.h */,
 				15AE53741C02F0680013FF1B /* MDBaseViewController.m */,
 				6A3EF8461C05BB1D00923D03 /* AppDelegate.h */,
@@ -1136,7 +1153,6 @@
 				6A3EF7F01C059C9800923D03 /* Controller */,
 				6A3EF7C61C058B5200923D03 /* View */,
 				6A3EF7C41C058B4D00923D03 /* Model */,
-				153C1E8C1C0406C200F87014 /* MDConst.h */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -1277,6 +1293,8 @@
 		6A3EF7D71C058E6A00923D03 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				15528BAB1C20FAB500B1F409 /* MDUserVO.h */,
+				15528BAC1C20FAB500B1F409 /* MDUserVO.m */,
 				6A3EF7DE1C058F8600923D03 /* MDMyViewItem.h */,
 				6A3EF7DF1C058F8600923D03 /* MDMyViewItem.m */,
 				6AF2024E1C0C1B4F00933EAF /* MDMyDoctorModel.h */,
@@ -1908,6 +1926,7 @@
 				153C1E861C03FB8C00F87014 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				6AB9B1061C2010B7004BF6A7 /* MDnoticeCenterCell.m in Sources */,
 				6A65234A1C1E930E00227C63 /* UIImage+MultiFormat.m in Sources */,
+				15528BAD1C20FAB500B1F409 /* MDUserVO.m in Sources */,
 				159049761C069FA600EE51FB /* BRSSignInViewController.m in Sources */,
 				153ED84F1C0BE03000171DFA /* MDUserInformationVO.m in Sources */,
 				155CEC2F1C0E81B8006B5CFA /* AFURLResponseSerialization.m in Sources */,
@@ -1960,6 +1979,7 @@
 				155CEC341C0E81B8006B5CFA /* UIButton+AFNetworking.m in Sources */,
 				6A6520E81C182C6400227C63 /* JSBubbleView.m in Sources */,
 				6A3EF85C1C06FD5900923D03 /* MDRecoveryViewController.m in Sources */,
+				1578343C1C20051E00421167 /* FileUtils.m in Sources */,
 				6A6523441C1E930E00227C63 /* SDWebImageDownloader.m in Sources */,
 				6A6522851C1E8B4700227C63 /* MDSmallADView.m in Sources */,
 				6A3EF8481C05BB1D00923D03 /* AppDelegate.m in Sources */,

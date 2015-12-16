@@ -16,6 +16,7 @@
 #import "UIKit+AFNetworking.h"
 #import "GTMBase64.h"
 #import "MDRequestModel.h"
+#import "MDUserVO.h"
 
 @interface BRSlogInViewController ()<sendInfoToCtr>
 
@@ -82,20 +83,24 @@
 //请求数据回调
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    NSString * str = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
             //回馈数据
-    NSLog(@"%@", str);
+    
+    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+    NSLog(@"%@",dic);
+    MDUserVO *user = [MDUserVO convertFromAccountHomeUser:dic];
 
-    NSArray *array = [str componentsSeparatedByString:@","];
-    NSArray *success=[array[0] componentsSeparatedByString:@":"];
-    NSArray * uisrId=[array[2] componentsSeparatedByString:@":"];
-    if ([success[1] isEqualToString:@"true"]) {
+    
+    [MDUserVO  initWithCoder:user];
+    
+    NSLog(@"%@",[dic objectForKey:@"msg"]);
+    
+    if ([[dic objectForKey:@"msg"] isEqualToString:@"登录成功"]) {
         [[NSNotificationCenter defaultCenter]
          postNotificationName:@"showBRSMainView" object:self];
         NSUserDefaults *stdDefault = [NSUserDefaults standardUserDefaults];
         [stdDefault setObject:logInField.text forKey:@"user_name"];
-        [stdDefault setObject:uisrId[2] forKey:@"user_Id"];
-        NSLog(@"%@",uisrId[2]);
+        [stdDefault setObject:[MDUserVO userVO].userID forKey:@"user_Id"];
+        NSLog(@"%@",[MDUserVO userVO].userID);
         [self dismissViewControllerAnimated:YES completion:^{
             NSLog(@"back");
         }];
