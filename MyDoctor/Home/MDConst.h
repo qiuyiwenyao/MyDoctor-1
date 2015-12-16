@@ -9,7 +9,7 @@
 #ifndef MyDoctor_Header_h
 #define MyDoctor_Header_h
 
-
+#import "MDUserVO.h"
 
 //状态栏与导航栏总高度
 #define TOPHEIGHT ([[UIApplication sharedApplication] statusBarFrame].size.height+self.navigationController.navigationBar.frame.size.height)

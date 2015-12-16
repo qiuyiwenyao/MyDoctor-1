@@ -15,8 +15,12 @@
 #import "MDFeedBackViewController.h"
 #import "BRSlogInViewController.h"
 #import "MDDataViewController.h"
+#import "FileUtils.h"
+#define IMAGECACHE  @"IMAGE/"
+#import "MDRequestModel.h"
+#import "GTMBase64.h"
 
-@interface MDMyViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface MDMyViewController ()<UITableViewDataSource,UITableViewDelegate,sendInfoToCtr>
 {
     UITableView * _tableView;
     UIButton *headButton;
@@ -295,6 +299,37 @@
     [picker dismissViewControllerAnimated:YES completion:^{}];
     image222 = [info objectForKey:UIImagePickerControllerEditedImage];
     
+    FileUtils * fileUtil = [FileUtils sharedFileUtils];
+    //创建文件下载目录
+    NSString *path = [fileUtil createCachePath:IMAGECACHE];
+    NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
+    NSString * str=[stdDefault objectForKey:@"user_name"];
+//    NSString * user_Id=[stdDefault objectForKey:@"user_Id"];
+    NSString *uniquePath=[path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpg",str]];
+    BOOL result=[UIImageJPEGRepresentation(image222, 0.8)writeToFile:uniquePath atomically:YES];
+    NSString* date;
+    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+    date = [formatter stringFromDate:[NSDate date]];
+    NSString * url =MDPath;// @"http://111.160.245.75:8082/CommunityWs//servlet/ShequServlet?";
+    MDRequestModel * model = [[MDRequestModel alloc] init];
+    model.path = url;
+    NSLog(@"%@",[MDUserVO userVO].userID);
+    NSString * nameAndPassword=[NSString stringWithFormat:@"10103@`3@`3@`%@@`1@`3@`%@@`%@",date,[MDUserVO userVO].userID,uniquePath];
+    nameAndPassword=[self GTMEncodeTest:nameAndPassword];
+    //    //post键值对
+    model.parameters = @{@"b":nameAndPassword};
+    model.delegate = self;
+    [model starRequest];
+    
+    
+}
+//请求数据回调
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
+{
+    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+    //回馈数据
+    NSLog(@"%@", dic);
     [headButton setBackgroundImage:image222 forState:UIControlStateNormal];
 }
 
@@ -310,5 +345,22 @@
     MDDataViewController * myDoctorVC = [[MDDataViewController alloc] init];
     myDoctorVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:myDoctorVC animated:YES];
+}
+//转吗
+-(NSString *)GTMEncodeTest:(NSString *)text
+
+{
+    
+    NSString* originStr = text;
+    
+    NSString* encodeResult = nil;
+    
+    NSData* originData = [originStr dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSData* encodeData = [GTMBase64 encodeData:originData];
+    
+    encodeResult = [[NSString alloc] initWithData:encodeData encoding:NSUTF8StringEncoding];
+    
+    return encodeResult;
 }
 @end

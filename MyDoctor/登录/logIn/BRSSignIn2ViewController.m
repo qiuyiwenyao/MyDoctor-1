@@ -455,21 +455,23 @@
 //请求数据回调
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    NSString * str = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-            //回馈数据
-            NSLog(@"%@", str);
+    NSMutableDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+    NSLog(@"%@",dic);
+    [dic setValue:number.text forKey:@"user_Name"];
+    MDUserVO *user = [MDUserVO registeredFromDignInUser:dic];
     
-            NSArray *array = [str componentsSeparatedByString:@","];
-            NSArray *success=[array[0] componentsSeparatedByString:@":"];
-    
-            if ([success[1] isEqualToString:@"true"]) {
-                NSUserDefaults *stdDefault = [NSUserDefaults standardUserDefaults];
-                [stdDefault setObject:self.login_name forKey:@"user_name"];
-                [stdDefault setObject:number.text forKey:@"Name"];
-                BRSEndSignlnViewController * esv=[[BRSEndSignlnViewController alloc] init];
-                [self.navigationController pushViewController:esv animated:YES];
+    [MDUserVO  initWithCoder:user];
+    //回馈数据
+    NSLog(@"%d",[[dic objectForKey:@"success"] intValue]);
 
-}
+    if ([[dic objectForKey:@"success"] intValue] ==1) {
+        NSUserDefaults *stdDefault = [NSUserDefaults standardUserDefaults];
+        [stdDefault setObject:self.login_name forKey:@"user_name"];
+        [stdDefault setObject:[MDUserVO userVO].userID forKey:@"user_Id"];
+        BRSEndSignlnViewController * esv=[[BRSEndSignlnViewController alloc] init];
+        [self.navigationController pushViewController:esv animated:YES];
+
+    }
 }
 
 //转吗
