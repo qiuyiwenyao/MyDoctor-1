@@ -7,8 +7,10 @@
 //
 
 #import "MDDrupDetailViewController.h"
+#import "MDRequestModel.h"
+#import "GTMBase64.h"
 
-@interface MDDrupDetailViewController ()
+@interface MDDrupDetailViewController ()<sendInfoToCtr>
 
 @end
 
@@ -21,6 +23,8 @@
     [self.leftBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     [self createView];
+    
+    [self requestData];
 
     // Do any additional setup after loading the view.
 }
@@ -199,6 +203,95 @@
 
     
 }
+
+
+-(void)requestData
+{
+    
+//    NSString* date;
+//    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+//    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+//    date = [formatter stringFromDate:[NSDate date]];
+//    
+//    int pageSize = 10;
+//    int pageIndex = 1;
+//    int maxId = 0;
+//    
+//    MDRequestModel * model = [[MDRequestModel alloc] init];
+//    model.path = MDPath;
+//    NSString * getNoticeInfo=[NSString stringWithFormat:@"10501@`3@`3@`%@@`1@`3@`%d@`%d@`%d",date,pageSize,pageIndex,maxId];
+//    getNoticeInfo=[self GTMEncodeTest:getNoticeInfo];
+//    //post键值对
+//    model.parameters = @{@"b":getNoticeInfo};
+//    model.delegate = self;
+//    [model starRequest];
+
+    NSString* date;
+    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+    date = [formatter stringFromDate:[NSDate date]];
+    MDRequestModel * model = [[MDRequestModel alloc] init];
+    model.path = MDPath;
+    model.methodNum = 10305;
+    NSString * value = [NSString stringWithFormat:@"%d@`3@`3@`%@@`1@`3@`%d",model.methodNum,date,1];
+    value=[self GTMEncodeTest:value];
+    //post键值对
+    model.parameters = @{@"b":value};
+    model.delegate = self;
+    [model starRequest];
+}
+
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
+{
+    /*
+    "obj": {
+        "id": 1,
+        "photo": "照片",
+        "medicineBarcode": "条码",
+        "medicineName": "药品名称",
+        "commonName": "通用名称",
+        "function": "功能主治",
+        "medicinedosage": "用法用量",
+        "untowardeffect": "不良反应",
+        "taboo": "禁忌",
+        "pinyinCode": "拼音码",
+        "categaryId": 1,
+        "unit": "单位",
+        "specification": "规格",
+        "formulation": "剂型",
+        "habitat": "产地",
+        "packageQuantity": 1,
+        "validity": "有效期",
+        "qualityStandard": "质量标准",
+        "managementMode": "经营方式",
+        "batchNumber": "批号",
+        "retailPrice": 0,
+        "purchasePrice": 0,
+        "wholesalePrice": 0,
+        "medicineInsuranceId": "12123",
+        "medicinesource": 1
+    },*/
+    MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+}
+
+//转吗
+-(NSString *)GTMEncodeTest:(NSString *)text
+
+{
+    
+    NSString* originStr = text;
+    
+    NSString* encodeResult = nil;
+    
+    NSData* originData = [originStr dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSData* encodeData = [GTMBase64 encodeData:originData];
+    
+    encodeResult = [[NSString alloc] initWithData:encodeData encoding:NSUTF8StringEncoding];
+    
+    return encodeResult;
+}
+
 
 
 /*

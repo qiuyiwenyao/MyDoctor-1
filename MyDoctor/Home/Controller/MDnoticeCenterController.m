@@ -68,8 +68,9 @@
 
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    NSLog(@"%@",dic);
+    MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+//    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+//    NSLog(@"%@",dic);
 }
 
 - (void)didReceiveMemoryWarning {
