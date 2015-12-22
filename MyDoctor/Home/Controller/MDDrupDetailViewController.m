@@ -9,8 +9,13 @@
 #import "MDDrupDetailViewController.h"
 #import "MDRequestModel.h"
 #import "GTMBase64.h"
+#import "MDDrupDetailModel.h"
+#import "UIImageView+WebCache.h"
 
 @interface MDDrupDetailViewController ()<sendInfoToCtr>
+{
+    NSMutableArray * dataSource;
+}
 
 @end
 
@@ -22,10 +27,11 @@
     //返回按钮点击
     [self.leftBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
-    [self createView];
-    
     [self requestData];
-
+    
+//    [self createView];
+    
+    
     // Do any additional setup after loading the view.
 }
 
@@ -44,7 +50,24 @@
 
 -(void)createView
 {
-    UIImageView * topImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"葵花胃康灵"]];
+//    @property (nonatomic,assign) int id;
+//    @property (nonatomic,assign) NSString * photo;
+//    @property (nonatomic,assign) NSString * medicineName;
+//    @property (nonatomic,assign) NSString * commonName;
+//    @property (nonatomic,assign) NSString * function;
+//    @property (nonatomic,assign) NSString * medicinedosage;
+//    @property (nonatomic,assign) NSString * untowardeffect;
+//    @property (nonatomic,assign) NSString * taboo;
+//    @property (nonatomic,assign) NSString * pinyinCode;
+//    @property (nonatomic,assign) int categaryId;
+//    @property (nonatomic,assign) NSString * unit;
+//    @property (nonatomic,assign) NSString * specification;
+//    @property (nonatomic,assign) NSString * validity;
+    MDDrupDetailModel * model = dataSource[0];
+    NSLog(@"%@",model.validity);
+    
+    UIImageView * topImageView = [[UIImageView alloc] init];
+    [topImageView sd_setImageWithURL:[NSURL URLWithString:model.photo] placeholderImage:nil];
     [self.view addSubview:topImageView];
     [topImageView mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX);
@@ -69,7 +92,7 @@
 //    UIScrollView * bgView = [ui];
     //文字设置
     UILabel * titleLab = [[UILabel alloc] init];
-    titleLab.text = @"葵花胃康灵";
+    titleLab.text = model.commonName;
     titleLab.textAlignment = NSTextAlignmentCenter;
     titleLab.backgroundColor = [UIColor clearColor];
     titleLab.font = [UIFont systemFontOfSize:17];
@@ -119,31 +142,34 @@
     }];
     
     UILabel * nameLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, appWidth - 90, 0)];
-    nameLab.text = @" 商品名称：胃康灵颗粒(葵花)";
-    [nameLab sizeToFit];
+    nameLab.text = [NSString stringWithFormat:@"【药 品 名 称】: %@",model.commonName];
     nameLab.textColor = ColorWithRGB(97, 103, 111, 1);
     nameLab.textAlignment = NSTextAlignmentLeft;
     nameLab.font = [UIFont systemFontOfSize:14];
+    nameLab.numberOfLines = 0;
+    [nameLab sizeToFit];
     [scrollView addSubview:nameLab];
     
     UILabel * sizeLab = [[UILabel alloc] initWithFrame:CGRectMake(0, nameLab.y+nameLab.height+12, appWidth - 90, 0)];
-    sizeLab.text = @"【规格型号】4g*10袋";
-    [sizeLab sizeToFit];
+    sizeLab.text = [NSString stringWithFormat:@"【规 格 型 号】%@",model.specification];
     sizeLab.textColor = ColorWithRGB(97, 103, 111, 1);
     sizeLab.textAlignment = NSTextAlignmentLeft;
     sizeLab.font = [UIFont systemFontOfSize:14];
+    sizeLab.numberOfLines = 0;
+    [sizeLab sizeToFit];
     [scrollView addSubview:sizeLab];
     
     UILabel * unitLab = [[UILabel alloc] initWithFrame:CGRectMake(0, sizeLab.y+sizeLab.height+12, appWidth - 90, 0)];
-    unitLab.text = @"【单位】盒";
-    [unitLab sizeToFit];
+    unitLab.text = [NSString stringWithFormat:@"【功 能 主 治】%@",model.function];
     unitLab.textColor = ColorWithRGB(97, 103, 111, 1);
     unitLab.textAlignment = NSTextAlignmentLeft;
     unitLab.font = [UIFont systemFontOfSize:14];
+    unitLab.numberOfLines = 0;
+    [unitLab sizeToFit];
     [scrollView addSubview:unitLab];
     
     UILabel * usageLab = [[UILabel alloc] initWithFrame:CGRectMake(0, unitLab.y+unitLab.height+12, appWidth - 90, 0)];
-    usageLab.text = @"【用法用量】开水冲服。一次1袋，一日3次，饭后服用。";
+    usageLab.text = [NSString stringWithFormat:@"【用 法 用 量】%@",model.medicinedosage];
     usageLab.textColor = ColorWithRGB(97, 103, 111, 1);
     usageLab.textAlignment = NSTextAlignmentLeft;
     usageLab.font = [UIFont systemFontOfSize:14];
@@ -162,7 +188,7 @@
 
     
     UILabel * functionLab = [[UILabel alloc] initWithFrame:CGRectMake(0, usageLab.y+usageLab.height+12, appWidth - 92, 0)];
-    functionLab.text = @"【适应症/功能主治】柔肝和胃，散淤止血，缓急止痛、去腐生新。用于肝胃不和、淤血阻络所致的胃脘疼痛、连及两肋、暖气、返酸；急、慢性胃炎，胃、十二指肠溃疡，胃出血见上述证候者。";
+    functionLab.text = [NSString stringWithFormat:@"【不 良 反 应】%@",model.untowardeffect];
     functionLab.textColor = ColorWithRGB(97, 103, 111, 1);
     functionLab.textAlignment = NSTextAlignmentLeft;
     functionLab.font = [UIFont systemFontOfSize:14];
@@ -171,20 +197,22 @@
     [scrollView addSubview:functionLab];
     
     UILabel * ValidLab = [[UILabel alloc] initWithFrame:CGRectMake(0, functionLab.y+functionLab.height+12, scrollView.width, 0)];
-    ValidLab.text = @"【有 效 期】36  月";
-    [ValidLab sizeToFit];
+    ValidLab.text = [NSString stringWithFormat:@"【禁 忌】%@",model.taboo];
     ValidLab.textColor = ColorWithRGB(97, 103, 111, 1);
     ValidLab.textAlignment = NSTextAlignmentLeft;
     ValidLab.font = [UIFont systemFontOfSize:14];
+    [ValidLab sizeToFit];
+    ValidLab.numberOfLines = 0;
     [scrollView addSubview:ValidLab];
     
     UILabel * approvalNumLab = [[UILabel alloc] initWithFrame:CGRectMake(0, ValidLab.y+ValidLab.height+12, appWidth - 90, 0)];
-    approvalNumLab.text = @"【批准文号】国药准字Z20090010";
+    approvalNumLab.text = [NSString stringWithFormat:@"【保 质 期】%@",model.validity];
     approvalNumLab.numberOfLines = 0;
     [approvalNumLab sizeToFit];
     approvalNumLab.textColor = ColorWithRGB(97, 103, 111, 1);
     approvalNumLab.textAlignment = NSTextAlignmentLeft;
     approvalNumLab.font = [UIFont systemFontOfSize:14];
+    [approvalNumLab sizeToFit];
     [scrollView addSubview:approvalNumLab];
     
     UILabel * productionLab = [[UILabel alloc] initWithFrame:CGRectMake(0, approvalNumLab.y+approvalNumLab.height+12,appWidth - 90, 0)];
@@ -206,7 +234,7 @@
     
 }
 
-
+//请求数据
 -(void)requestData
 {
     
@@ -235,7 +263,7 @@
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = MDPath;
     model.methodNum = 10305;
-    NSString * value = [NSString stringWithFormat:@"%d@`3@`3@`%@@`1@`3@`%d",model.methodNum,date,1];
+    NSString * value = [NSString stringWithFormat:@"%d@`3@`3@`%@@`1@`3@`%d",model.methodNum,date,self.drugID];
     value=[self GTMEncodeTest:value];
     //post键值对
     model.parameters = @{@"b":value};
@@ -246,34 +274,29 @@
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
     /*
-    "obj": {
-        "id": 1,
-        "photo": "照片",
-        "medicineBarcode": "条码",
-        "medicineName": "药品名称",
-        "commonName": "通用名称",
-        "function": "功能主治",
-        "medicinedosage": "用法用量",
-        "untowardeffect": "不良反应",
-        "taboo": "禁忌",
-        "pinyinCode": "拼音码",
-        "categaryId": 1,
-        "unit": "单位",
-        "specification": "规格",
-        "formulation": "剂型",
-        "habitat": "产地",
-        "packageQuantity": 1,
-        "validity": "有效期",
-        "qualityStandard": "质量标准",
-        "managementMode": "经营方式",
-        "batchNumber": "批号",
-        "retailPrice": 0,
-        "purchasePrice": 0,
-        "wholesalePrice": 0,
-        "medicineInsuranceId": "12123",
-        "medicinesource": 1
-    },*/
-    MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+     "id": 3,
+     "photo": "http://p3.maiyaole.com/img/50082/50082920/org_org.jpg?a=421394179",
+     "medicineName": "美林 布洛芬混悬液 30ml",
+     "commonName": "布洛芬混悬液",
+     "function": "用于儿童普通感冒或流行性感冒引起的发热。也用于缓解儿童轻至中度疼痛如头痛、关节痛，神经痛，偏头痛，肌肉痛，牙痛。",
+     "medicinedosage": "口服，12岁以下小儿用量见下： 1—3岁，体重10—15公斤，一次用量4毫升。4—6岁，体重16—21公斤， 一次用量5毫升。 7—9岁，体重22—27公斤，一次用量8毫升。 10—12岁，体重28—32公斤，一次用量10毫升。 若持续疼痛或发热，可每隔4—6小时重复用药一次，24小时不超过4次。",
+     "untowardeffect": "1.少数病人可出现恶心、呕吐、胃烧灼感或轻度消化不良，胃肠道溃疡及出血、转氨酶升高、头痛、头晕、耳鸣、视力模糊、精神紧张、嗜睡、下肢水肿或体重骤增。2.罕见皮疹、过敏性肾炎、膀胱炎、肾病综合症、肾乳头坏死或肾功能衰竭、支气管痉挛。",
+     "taboo": "1.对其他非甾体抗炎药过敏者禁用。2.对阿司匹林过敏的哮喘患者禁用。",
+     "pinyinCode": "BuLuoFenHunXuanYe",
+     "categaryId": 2,
+     "unit": "1",
+     "specification": "30ml*1瓶/盒",
+     "validity": "暂定36个月"    },*/
+//    MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+    MDDrupDetailModel * model = [[MDDrupDetailModel alloc] init];
+    [model setValuesForKeysWithDictionary:[dictionary objectForKey:@"obj"]];
+    
+    dataSource = [[NSMutableArray alloc] initWithObjects:model, nil];
+    
+    MDLog(@"=====%@",model.validity);
+    
+    [self createView];
 }
 
 //转吗

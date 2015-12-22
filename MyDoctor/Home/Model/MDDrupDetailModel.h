@@ -6,31 +6,19 @@
 //  Copyright © 2015年 com.mingxing. All rights reserved.
 //
 /*
-"id": 1,
-"photo": "照片",
-"medicineBarcode": "条码",
-"medicineName": "药品名称",
-"commonName": "通用名称",
-"function": "功能主治",
-"medicinedosage": "用法用量",
-"untowardeffect": "不良反应",
-"taboo": "禁忌",
-"pinyinCode": "拼音码",
-"categaryId": 1,
-"unit": "单位",
-"specification": "规格",
-"formulation": "剂型",
-"habitat": "产地",
-"packageQuantity": 1,
-"validity": "有效期",
-"qualityStandard": "质量标准",
-"managementMode": "经营方式",
-"batchNumber": "批号",
-"retailPrice": 0,
-"purchasePrice": 0,
-"wholesalePrice": 0,
-"medicineInsuranceId": "12123",
-"medicinesource": 1
+ "id": 3,
+ "photo": "http://p3.maiyaole.com/img/50082/50082920/org_org.jpg?a=421394179",
+ "medicineName": "美林 布洛芬混悬液 30ml",
+ "commonName": "布洛芬混悬液",
+ "function": "用于儿童普通感冒或流行性感冒引起的发热。也用于缓解儿童轻至中度疼痛如头痛、关节痛，神经痛，偏头痛，肌肉痛，牙痛。",
+ "medicinedosage": "口服，12岁以下小儿用量见下： 1—3岁，体重10—15公斤，一次用量4毫升。4—6岁，体重16—21公斤， 一次用量5毫升。 7—9岁，体重22—27公斤，一次用量8毫升。 10—12岁，体重28—32公斤，一次用量10毫升。 若持续疼痛或发热，可每隔4—6小时重复用药一次，24小时不超过4次。",
+ "untowardeffect": "1.少数病人可出现恶心、呕吐、胃烧灼感或轻度消化不良，胃肠道溃疡及出血、转氨酶升高、头痛、头晕、耳鸣、视力模糊、精神紧张、嗜睡、下肢水肿或体重骤增。2.罕见皮疹、过敏性肾炎、膀胱炎、肾病综合症、肾乳头坏死或肾功能衰竭、支气管痉挛。",
+ "taboo": "1.对其他非甾体抗炎药过敏者禁用。2.对阿司匹林过敏的哮喘患者禁用。",
+ "pinyinCode": "BuLuoFenHunXuanYe",
+ "categaryId": 2,
+ "unit": "1",
+ "specification": "30ml*1瓶/盒",
+ "validity": "暂定36个月"
  */
 
 #import <Foundation/Foundation.h>
@@ -39,7 +27,6 @@
 
 @property (nonatomic,assign) int id;
 @property (nonatomic,assign) NSString * photo;
-@property (nonatomic,assign) NSString * medicineBarcode;
 @property (nonatomic,assign) NSString * medicineName;
 @property (nonatomic,assign) NSString * commonName;
 @property (nonatomic,assign) NSString * function;
@@ -50,18 +37,7 @@
 @property (nonatomic,assign) int categaryId;
 @property (nonatomic,assign) NSString * unit;
 @property (nonatomic,assign) NSString * specification;
-@property (nonatomic,assign) NSString * formulation;
-@property (nonatomic,assign) NSString * habitat;
-@property (nonatomic,assign) int packageQuantity;
 @property (nonatomic,assign) NSString * validity;
-@property (nonatomic,assign) NSString * qualityStandard;
-@property (nonatomic,assign) NSString * managementMode;
-@property (nonatomic,assign) NSString * batchNumber;
-@property (nonatomic,assign) int retailPrice;
-@property (nonatomic,assign) int purchasePrice;
-@property (nonatomic,assign) int wholesalePrice;
-@property (nonatomic,assign) NSString * medicineInsuranceId;
-@property (nonatomic,assign) int medicinesource;
 
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key;
 

@@ -11,5 +11,6 @@
 @interface MDDrupDetailViewController : MDBaseViewController
 
 @property (nonatomic,copy) NSString * drupName;
+@property (nonatomic,assign) int drugID;
 
 @end

@@ -281,6 +281,10 @@
     cell.selected = NO;
     MDDrupDetailViewController * detailVC = [[MDDrupDetailViewController alloc] init];
     detailVC.hidesBottomBarWhenPushed=YES;
+    
+     MDDrugVO * service=dataArray[indexPath.row];
+    detailVC.drugID = [service.ID intValue];
+    
     detailVC.navigationItem.title=@"商品详情";
     [self.navigationController pushViewController:detailVC animated:YES];
     
