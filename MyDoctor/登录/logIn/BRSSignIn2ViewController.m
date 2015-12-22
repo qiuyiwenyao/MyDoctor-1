@@ -298,6 +298,8 @@
                 [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:self.login_name password:password2.text completion:^(NSDictionary *loginInfo, EMError *error) {
                     if (!error && loginInfo) {
                         MDLog(@"环信登陆成功！！%@",loginInfo);
+                        //设置是否自动登录
+                        [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
                     }
                 } onQueue:nil];
 

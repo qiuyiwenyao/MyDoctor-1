@@ -200,8 +200,11 @@
 #pragma mark - Actions
 - (void)sendPressed:(UIButton *)sender
 {
+    
     [self.delegate sendPressed:sender
                       withText:[self.inputToolBarView.textView.text trimWhitespace]];
+    
+//    NSLog(@"%@",self.inputToolBarView.textView.text );
 }
 
 
