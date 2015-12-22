@@ -51,6 +51,7 @@
 		153ED8611C0C17E700171DFA /* 搜索药品@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 153ED8601C0C17E700171DFA /* 搜索药品@3x.png */; };
 		153ED8671C0C266C00171DFA /* MDDrugTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 153ED8661C0C266C00171DFA /* MDDrugTableViewCell.m */; };
 		15528BAD1C20FAB500B1F409 /* MDUserVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 15528BAC1C20FAB500B1F409 /* MDUserVO.m */; };
+		15528BC91C28DFCF00B1F409 /* MDConsultDrugModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15528BC81C28DFCF00B1F409 /* MDConsultDrugModel.m */; };
 		155CEBE91C0C2E8E006B5CFA /* 药@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 155CEBE81C0C2E8E006B5CFA /* 药@2x.png */; };
 		155CEBEB1C0C2E9A006B5CFA /* 药@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 155CEBEA1C0C2E9A006B5CFA /* 药@3x.png */; };
 		155CEBEF1C0D47F0006B5CFA /* 用户地址@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 155CEBEC1C0D47F0006B5CFA /* 用户地址@2x.png */; };
@@ -377,6 +378,8 @@
 		153ED8661C0C266C00171DFA /* MDDrugTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDDrugTableViewCell.m; path = Home/View/MDDrugTableViewCell.m; sourceTree = "<group>"; };
 		15528BAB1C20FAB500B1F409 /* MDUserVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDUserVO.h; sourceTree = "<group>"; };
 		15528BAC1C20FAB500B1F409 /* MDUserVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDUserVO.m; sourceTree = "<group>"; };
+		15528BC71C28DFCF00B1F409 /* MDConsultDrugModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDConsultDrugModel.h; path = Home/Model/MDConsultDrugModel.h; sourceTree = "<group>"; };
+		15528BC81C28DFCF00B1F409 /* MDConsultDrugModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDConsultDrugModel.m; path = Home/Model/MDConsultDrugModel.m; sourceTree = "<group>"; };
 		155CEBE81C0C2E8E006B5CFA /* 药@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "药@2x.png"; sourceTree = "<group>"; };
 		155CEBEA1C0C2E9A006B5CFA /* 药@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "药@3x.png"; sourceTree = "<group>"; };
 		155CEBEC1C0D47F0006B5CFA /* 用户地址@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "用户地址@2x.png"; sourceTree = "<group>"; };
@@ -1265,6 +1268,8 @@
 				6AB9B13F1C210B65004BF6A7 /* MDDrupDetailModel.m */,
 				6AB9B1411C210F3B004BF6A7 /* MDnoticeCenterModel.h */,
 				6AB9B1421C210F3B004BF6A7 /* MDnoticeCenterModel.m */,
+				15528BC71C28DFCF00B1F409 /* MDConsultDrugModel.h */,
+				15528BC81C28DFCF00B1F409 /* MDConsultDrugModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1939,6 +1944,7 @@
 				153C1EA61C054D5100F87014 /* MDServiceFolerVO.m in Sources */,
 				6AB9B0FC1C200EC5004BF6A7 /* MDLectureModel.m in Sources */,
 				153C1E821C03FB8C00F87014 /* MX_MASLayoutConstraint.m in Sources */,
+				15528BC91C28DFCF00B1F409 /* MDConsultDrugModel.m in Sources */,
 				153C1E871C03FB8C00F87014 /* View+MASAdditions.m in Sources */,
 				155CEC281C0E81B8006B5CFA /* AFHTTPRequestOperation.m in Sources */,
 				6A6520EF1C182C6400227C63 /* UIButton+JSMessagesView.m in Sources */,

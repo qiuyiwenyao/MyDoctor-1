@@ -10,9 +10,18 @@
 
 @interface MDDrugVO : NSObject
 
-@property (nonatomic,copy) NSString * Namedrug;
-@property (nonatomic,copy) NSString * numberDrug;
-@property (nonatomic,copy) NSString * imageDrug;
-@property (nonatomic,copy) NSString * moneyDrug;
-@property (nonatomic,copy) NSString * detailsDrug;
+@property (nonatomic,copy) NSString * Untowardeffect;
+@property (nonatomic,copy) NSString * Photo;
+@property (nonatomic,copy) NSString * Medicinedosage;
+@property (nonatomic,copy) NSString * Function;
+@property (nonatomic,copy) NSString * MedicineName;
+@property (nonatomic,copy) NSString * Taboo;
+@property (nonatomic,copy) NSString * Habitat;
+@property (nonatomic,copy) NSString * ID;
+@property (nonatomic,copy) NSString * CommonName;
+@property (nonatomic,copy) NSString * Specification;
+@property (nonatomic,copy) NSString * Validity;
+@property (nonatomic,copy) NSString * CategaryID;
+@property (nonatomic,copy) NSString * OrderFlag;
+
 @end

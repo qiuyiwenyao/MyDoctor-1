@@ -8,6 +8,7 @@
 
 #import "MDDrugTableViewCell.h"
 #import "MDConst.h"
+#import "UIImageView+WebCache.h"
 
 @implementation MDDrugTableViewCell
 
@@ -29,7 +30,7 @@
     
     
     UIImageView * headImage=[[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 85, 70)];
-    [headImage setImage:[UIImage imageNamed:@"药"]];
+    [headImage sd_setImageWithURL:_image placeholderImage:[UIImage imageNamed:@"药"]];
     [view addSubview:headImage];
     
     UILabel * name=[[UILabel alloc] initWithFrame:CGRectMake(120, 20, appWidth-120-10, 25)];

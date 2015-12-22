@@ -10,10 +10,17 @@
 
 @implementation MDDrugVO
 
-@synthesize Namedrug;
-@synthesize detailsDrug;
-@synthesize numberDrug;
-@synthesize imageDrug;
-@synthesize moneyDrug;
-
+@synthesize Untowardeffect;
+@synthesize Photo;
+@synthesize Medicinedosage;
+@synthesize Function;
+@synthesize MedicineName;
+@synthesize Taboo;
+@synthesize Habitat;
+@synthesize ID;
+@synthesize CommonName;
+@synthesize Specification;
+@synthesize Validity;
+@synthesize CategaryID;
+@synthesize OrderFlag;
 @end

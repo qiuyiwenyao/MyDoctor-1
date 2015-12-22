@@ -165,7 +165,7 @@
 //        if(object){
     
     NSString *identifierForVendor = [[UIDevice currentDevice].identifierForVendor UUIDString];//设备标示
-    NSString * phoneNum = @"18234085032";
+//    NSString * phoneNum = @"18234085032";
     
     NSString* date;
     NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
@@ -175,7 +175,7 @@
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = MDPath;
     model.methodNum = 99999;
-    NSString * idenAndNum=[NSString stringWithFormat:@"%d@`3@`3@`%@@`1@`3@`%@@`%@",model.methodNum,date,phoneNum,identifierForVendor];
+    NSString * idenAndNum=[NSString stringWithFormat:@"%d@`3@`3@`%@@`1@`3@`%@@`%@",model.methodNum,date,number.text,identifierForVendor];
     idenAndNum=[self GTMEncodeTest:idenAndNum];
     //    //post键值对
     model.parameters = @{@"b":idenAndNum};

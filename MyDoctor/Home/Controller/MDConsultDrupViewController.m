@@ -10,8 +10,15 @@
 #import "MDDrugTableViewController.h"
 #import "MDConst.h"
 #import "MDSmallADView.h"
+#import "MDConst.h"
+#import "AFNetworking.h"
+#import "UIKit+AFNetworking.h"
+#import "GTMBase64.h"
+#import "MDRequestModel.h"
+#import "MDUserVO.h"
+#import "MDConsultDrugModel.h"
 
-@interface MDConsultDrupViewController ()
+@interface MDConsultDrupViewController ()<sendInfoToCtr>
 
 @end
 
@@ -20,21 +27,73 @@
 {
     UITableView *_tableView;
     UIView * backView;
-    NSArray * amedicineArray;
+    NSMutableArray * amedicineArray;
+    
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.navigationItem.title = @"药品咨询";
-    amedicineArray=[[NSArray alloc] initWithObjects:@"感冒发烧",@"内分泌失常",@"家庭常备",@"抗寄生虫类",@"儿科用药",@"肾病",@"妇科用药",@"性病",@"男科用药",@"抗结核",@"肠胃用药",@"免疫功能调节",@"皮肤用药",@"水电解质及酸碱",@"呼吸系统类",@"五官用药",@"维生素及营养类",@"肝胆用药",@"肿瘤类",@"其他", nil];
+    amedicineArray=[[NSMutableArray alloc] init];
+    [self postRequest];
+    
     [self setNavigationBarWithrightBtn:nil leftBtn:@"navigationbar_back"];
     //返回按钮点击
     [self.leftBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self searchview];
     
-    [self createADView];
-  
+    
 }
+
+#pragma mark - POST请求
+- (void)postRequest
+{
+    NSString* date;
+    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+    date = [formatter stringFromDate:[NSDate date]];
+    NSString * url =MDPath;// @"http://111.160.245.75:8082/CommunityWs//servlet/ShequServlet?";
+    
+    MDRequestModel * model = [[MDRequestModel alloc] init];
+    model.path = url;
+    NSString * nameAndPassword=[NSString stringWithFormat:@"10302@`3@`3@`%@@`1@`3@`%@@`%@@`%@",date,@"2",@"10",@"1"];
+    nameAndPassword=[self GTMEncodeTest:nameAndPassword];
+    //    //post键值对
+    model.parameters = @{@"b":nameAndPassword};
+    model.delegate = self;
+    [model starRequest];
+    
+    
+}
+//请求数据回调
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
+{
+    //回馈数据
+    
+    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+    NSLog(@"%@",[dic objectForKey:@"success"]);
+    
+    if ([dic objectForKey:@"success"]) {
+        
+        NSArray * array=[[NSArray alloc] init];
+        array=[dic objectForKey:@"obj"];
+        for (int i =0; i<[array count]; i++) {
+            NSDictionary * type=[[NSDictionary alloc] init];
+            type=array[i];
+            MDConsultDrugModel * consult=[[MDConsultDrugModel alloc] init];
+            consult.DrugTypeId=[type objectForKey:@"ID"];
+            consult.TypeName=[type objectForKey:@"CategaryName"];
+            
+            [amedicineArray addObject:consult];
+        }
+        
+    }
+    
+    [self medicineButton];
+}
+
+
+
 -(void)searchview{
     mySearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, appWidth, 40)];
     mySearchBar.delegate = self;
@@ -61,22 +120,26 @@
     [self.view addSubview:backView];
 //    [self.view addSubview:_tableView];
      dataArray = [@[@"百度",@"六六",@"谷歌",@"苹果",@"and",@"table",@"view",@"and",@"and",@"苹果IOS",@"谷歌android",@"微软",@"微软WP",@"table",@"table",@"table",@"六六",@"六六",@"六六",@"table",@"table",@"table"]mutableCopy];
-    [self medicineButton];
+//    [self medicineButton];
 }
 -(void)medicineButton
 {
     int a=0;
-    for (int i=0; i<10; i++) {
+    for (int i=0; i<([amedicineArray count]+1)/2; i++) {
         for (int j=0; j<2; j++) {
             UIButton * medicineButton=[[UIButton alloc] init];
-            [medicineButton addTarget:self action:@selector(medicineButton:) forControlEvents:UIControlEventTouchUpInside];
             medicineButton.tag=a;
+            [medicineButton addTarget:self action:@selector(medicineButton:) forControlEvents:UIControlEventTouchUpInside];
             medicineButton.titleLabel.font=[UIFont systemFontOfSize:15];
-            [medicineButton setTitle:amedicineArray[a] forState:UIControlStateNormal];
+            MDConsultDrugModel * consult=amedicineArray[a];
+            [medicineButton setTitle:consult.TypeName forState:UIControlStateNormal];
             [medicineButton setBackgroundImage:[UIImage imageNamed:@"按钮框"] forState:UIControlStateNormal];
             [medicineButton setBackgroundColor:[UIColor clearColor]];
             [medicineButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             a++;
+            if (a==[amedicineArray count]) {
+                break;
+            }
             [backView addSubview:medicineButton];
             
             [medicineButton mas_makeConstraints:^(MX_MASConstraintMaker *make) {
@@ -87,12 +150,14 @@
             
         }
     }
+    [self createADView];
+
 }
 
 //下方滚动广告位
 -(void)createADView
 {
-    UIButton * bottonBtn = (UIButton *)[self.view viewWithTag:19];
+    UIButton * bottonBtn = (UIButton *)[self.view viewWithTag:6];
     MDSmallADView * adView = [[MDSmallADView alloc] initWithFrame:CGRectMake(0, 0, appWidth, 50)];
     adView.adTitleArray = @[@"12月大促药店选择康爱多药店，100%正品",@"康一家服务到家,健康生活在你家",@"国家药监局认证，一站式网上购药"];
     [adView setText];
@@ -108,6 +173,9 @@
 -(void)medicineButton:(UIButton *)button
 {
     MDDrugTableViewController * drugTable=[[MDDrugTableViewController alloc] init];
+    MDConsultDrugModel * dic=amedicineArray[button.tag];
+    drugTable.DrugTypeId=dic.DrugTypeId;
+    drugTable.TypeName=dic.TypeName;
     drugTable.hidesBottomBarWhenPushed=YES;
     [self.navigationController pushViewController:drugTable animated:YES];
 }
@@ -209,5 +277,21 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+//转吗
+-(NSString *)GTMEncodeTest:(NSString *)text
 
+{
+    
+    NSString* originStr = text;
+    
+    NSString* encodeResult = nil;
+    
+    NSData* originData = [originStr dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSData* encodeData = [GTMBase64 encodeData:originData];
+    
+    encodeResult = [[NSString alloc] initWithData:encodeData encoding:NSUTF8StringEncoding];
+    
+    return encodeResult;
+}
 @end

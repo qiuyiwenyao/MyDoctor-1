@@ -14,8 +14,14 @@
 #import "MDNurseRootViewController.h"
 #import "MDSmallADView.h"
 #import "MDDrupDetailViewController.h"
+#import "AFNetworking.h"
+#import "UIKit+AFNetworking.h"
+#import "GTMBase64.h"
+#import "MDRequestModel.h"
+#import "MDUserVO.h"
 
-@interface MDDrugTableViewController ()  {
+@interface MDDrugTableViewController ()  <sendInfoToCtr>
+{
     
     NSMutableArray *_dataArr;//数据源
     UITableView *_tableView;
@@ -47,41 +53,73 @@
     //排序
     [self sorting];
     //数据
-    [self dataArray];
-    [self TableView];
-    
-}
--(void)dataArray
-{
     dataArray=[[NSMutableArray alloc] init];
-    MDDrugVO * drug1=[[MDDrugVO alloc] init];
-    drug1.Namedrug=@"葵花胃康灵胶囊0.4g";
-    drug1.numberDrug=@"*48粒";
-    drug1.moneyDrug=@"¥15元";
-    drug1.detailsDrug=@"药品简介";
-    [dataArray addObject:drug1];
+
+    [self postRequest];
     
-    MDDrugVO * drug2=[[MDDrugVO alloc] init];
-    drug2.Namedrug=@"葵花胃康灵胶囊0.4g";
-    drug2.numberDrug=@"*48粒";
-    drug2.moneyDrug=@"¥15元";
-    drug2.detailsDrug=@"药品简介";
-    [dataArray addObject:drug2];
-    
-    MDDrugVO * drug3=[[MDDrugVO alloc] init];
-    drug3.Namedrug=@"葵花胃康灵胶囊0.4g";
-    drug3.numberDrug=@"*48粒";
-    drug3.moneyDrug=@"¥15元";
-    drug3.detailsDrug=@"药品简介";
-    [dataArray addObject:drug3];
-    
-    MDDrugVO * drug4=[[MDDrugVO alloc] init];
-    drug4.Namedrug=@"葵花胃康灵胶囊0.4g";
-    drug4.numberDrug=@"*48粒";
-    drug4.moneyDrug=@"¥15元";
-    drug4.detailsDrug=@"药品简介";
-    [dataArray addObject:drug4];
+    [self TableView];
+
 }
+#pragma mark - POST请求
+- (void)postRequest
+{
+    NSString* date;
+    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+    date = [formatter stringFromDate:[NSDate date]];
+    NSString * url =MDPath;// @"http://111.160.245.75:8082/CommunityWs//servlet/ShequServlet?";
+    
+    MDRequestModel * model = [[MDRequestModel alloc] init];
+    model.path = url;
+    NSString * nameAndPassword=[NSString stringWithFormat:@"10303@`3@`3@`%@@`1@`3@`%@@`%@@`%@",date,_DrugTypeId,@"10",@"1"];
+    nameAndPassword=[self GTMEncodeTest:nameAndPassword];
+    //    //post键值对
+    NSLog(@"http://111.160.245.75:8082/CommunityWs//servlet/ShequServlet?b=%@",nameAndPassword);
+    model.parameters = @{@"b":nameAndPassword};
+    model.delegate = self;
+    [model starRequest];
+    
+    
+}
+//请求数据回调
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
+{
+    //回馈数据
+    
+    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+    NSLog(@"%@",dic);
+    
+    if ([dic objectForKey:@"success"]) {
+        
+        NSArray * array=[[NSArray alloc] init];
+        array=[dic objectForKey:@"obj"];
+        for (int i =0; i<[array count]; i++) {
+            NSDictionary * type=[[NSDictionary alloc] init];
+            type=array[i];
+            MDDrugVO * drug=[[MDDrugVO alloc] init];
+            drug.Untowardeffect=[type objectForKey:@"Untowardeffect"];
+            drug.Photo=[type objectForKey:@"Photo"];
+            drug.Medicinedosage=[type objectForKey:@"Medicinedosage"];
+            drug.Function=[type objectForKey:@"Function"];
+            drug.MedicineName=[type objectForKey:@"MedicineName"];
+            drug.Taboo=[type objectForKey:@"Taboo"];
+            drug.Habitat=[type objectForKey:@"Habitat"];
+            drug.ID=[type objectForKey:@"ID"];
+            drug.CommonName=[type objectForKey:@"CommonName"];
+            drug.Specification=[type objectForKey:@"Specification"];
+            drug.Validity=[type objectForKey:@"Validity"];
+            drug.Specification=[type objectForKey:@"Specification"];
+            drug.CategaryID=[type objectForKey:@"CategaryID"];
+            drug.OrderFlag=[type objectForKey:@"OrderFlag"];
+            [dataArray addObject:drug];
+            
+//            [amedicineArray addObject:consult];
+        }
+        
+    }
+    [_tableView reloadData];
+}
+
 -(void)TableView
 {
     
@@ -111,7 +149,6 @@
     
     _searchDrug.returnKeyType = UIReturnKeySearch;  //键盘返回类型
     _searchDrug.delegate = self;
-    _searchDrug.keyboardType = UIKeyboardTypeNumberPad;//键盘显示类型
     _searchDrug.layer.backgroundColor=(__bridge CGColorRef)([UIColor colorWithRed:222/255.0 green:222/255.0 blue:222/255.0 alpha:1]);
     UIImageView *image=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"搜索药品"]];
     _searchDrug.leftView=image;
@@ -125,7 +162,7 @@
     [search addTarget:self action:@selector(search) forControlEvents:UIControlEventTouchUpInside];
     search.titleLabel.font=[UIFont boldSystemFontOfSize:14];
     [search setTitle:@"确定" forState:UIControlStateNormal];
-    [search setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+    [search setTitleColor:RedColor forState:UIControlStateNormal];
     [search setBackgroundColor:[UIColor clearColor]];
     search.hidden=YES;
     search.layer.cornerRadius =5;
@@ -136,7 +173,21 @@
 -(void)search
 {
     //搜索
-    NSLog(@"search");
+    NSString* date;
+    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+    date = [formatter stringFromDate:[NSDate date]];
+    NSString * url =MDPath;// @"http://111.160.245.75:8082/CommunityWs//servlet/ShequServlet?";
+    
+    MDRequestModel * model = [[MDRequestModel alloc] init];
+    model.path = url;
+    NSString * nameAndPassword=[NSString stringWithFormat:@"10303@`3@`3@`%@@`1@`3@`%@@`%@@`%@@`%@",date,_searchDrug.text,@"10",@"1",@"0"];
+    nameAndPassword=[self GTMEncodeTest:nameAndPassword];
+    //    //post键值对
+    NSLog(@"http://111.160.245.75:8082/CommunityWs//servlet/ShequServlet?b=%@",nameAndPassword);
+    model.parameters = @{@"b":nameAndPassword};
+    model.delegate = self;
+    [model starRequest];
 }
 
 -(void)backBtnClick
@@ -208,9 +259,10 @@
     }
     if ([dataArray count]>0) {
         MDDrugVO * service=dataArray[indexPath.row];
-        cell.name=service.Namedrug;
-        cell.number=service.numberDrug;
-        cell.money=service.moneyDrug;
+        cell.name=service.CommonName;
+        cell.image=service.Photo;
+        cell.number=service.Specification;
+        cell.money=service.Validity;
     }
     [cell drawCell];
     
@@ -284,5 +336,21 @@
     [self search];
     return YES;
 }
+//转吗
+-(NSString *)GTMEncodeTest:(NSString *)text
 
+{
+    
+    NSString* originStr = text;
+    
+    NSString* encodeResult = nil;
+    
+    NSData* originData = [originStr dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSData* encodeData = [GTMBase64 encodeData:originData];
+    
+    encodeResult = [[NSString alloc] initWithData:encodeData encoding:NSUTF8StringEncoding];
+    
+    return encodeResult;
+}
 @end
