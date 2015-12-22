@@ -10,4 +10,7 @@
 
 @interface MDDrugTableViewController : MDBaseViewController<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
+@property (nonatomic, copy) NSString * DrugTypeId;
+@property (nonatomic, copy) NSString * TypeName;
+
 @end
