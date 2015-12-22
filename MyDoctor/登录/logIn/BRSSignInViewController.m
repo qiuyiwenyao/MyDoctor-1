@@ -12,11 +12,13 @@
 #import "MX_MASConstraintMaker.h"
 #import "View+MASAdditions.h"
 #import "MDConst.h"
+#import "MDRequestModel.h"
+#import "GTMBase64.h"
 #define autoSizeScaleX  (appWidth>320?appWidth/320:1)
 #define autoSizeScaleY  (appHeight>568?appHeight/568:1)
 #define T4FontSize (15*autoSizeScaleX)
 
-@interface BRSSignInViewController ()
+@interface BRSSignInViewController ()<sendInfoToCtr>
 
 @end
 
@@ -31,6 +33,8 @@
     NSTimer *myTimer;
     NSInteger time;
     NSString *str;
+    
+    NSString * msgCode;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -160,6 +164,27 @@
 //        NSLog(@"reply == %@", object);
 //        if(object){
     
+    NSString *identifierForVendor = [[UIDevice currentDevice].identifierForVendor UUIDString];//设备标示
+    NSString * phoneNum = @"18234085032";
+    
+    NSString* date;
+    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+    date = [formatter stringFromDate:[NSDate date]];
+    
+    MDRequestModel * model = [[MDRequestModel alloc] init];
+    model.path = MDPath;
+    model.methodNum = 99999;
+    NSString * idenAndNum=[NSString stringWithFormat:@"%d@`3@`3@`%@@`1@`3@`%@@`%@",model.methodNum,date,phoneNum,identifierForVendor];
+    idenAndNum=[self GTMEncodeTest:idenAndNum];
+    //    //post键值对
+    model.parameters = @{@"b":idenAndNum};
+    model.delegate = self;
+    [model starRequest];
+
+    
+
+    
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"验证码" message:@"验证码已发送"  delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil,nil];
             //                alert.alertViewStyle=UIAlertViewStylePlainTextInput;
             [alert show];
@@ -182,6 +207,19 @@
     
    
 }
+
+
+//数据请求回调
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
+{
+    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+//    NSString * msgCode = [dic objectForKey:@"msg"];
+    msgCode = [NSString stringWithString:[dic objectForKey:@"msg"]];
+    
+}
+
+
 -(void)scrollTimer
 {
     UIButton * button1=(UIButton *)[self.view viewWithTag:100];
@@ -203,6 +241,7 @@
         [alert show];
         return;
     }
+
     
     
 //    MXNetModel *netModel = [MXNetModel shareNetModel];
@@ -221,7 +260,16 @@
                 UITextField * textField2=(id)[self.view viewWithTag:2];
                 si2.login_name=textField1.text;
                 si2.auth_code=textField2.text;
-                [self.navigationController pushViewController:si2 animated:YES];
+    
+    if ([textField2.text isEqualToString:msgCode]) {
+        [self.navigationController pushViewController:si2 animated:YES];
+    }else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"验证码错误" message:nil delegate:self cancelButtonTitle:@"重试" otherButtonTitles: nil];
+                    [alert show];
+    }
+    
+//                [self.navigationController pushViewController:si2 animated:YES];
 //            }else{
 //                BRSNewPasswordViewController * npv=[[BRSNewPasswordViewController alloc] init];
 //                UITextField * textField1=(id)[self.view viewWithTag:1];
@@ -330,5 +378,24 @@
         return NO;
     }
 }
+
+//转吗
+-(NSString *)GTMEncodeTest:(NSString *)text
+
+{
+    
+    NSString* originStr = text;
+    
+    NSString* encodeResult = nil;
+    
+    NSData* originData = [originStr dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSData* encodeData = [GTMBase64 encodeData:originData];
+    
+    encodeResult = [[NSString alloc] initWithData:encodeData encoding:NSUTF8StringEncoding];
+    
+    return encodeResult;
+}
+
 
 @end

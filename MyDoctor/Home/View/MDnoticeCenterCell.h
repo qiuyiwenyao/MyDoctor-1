@@ -12,6 +12,8 @@
 @property(nonatomic,strong) NSString * title;
 @property(nonatomic,strong) NSString * time;
 @property(nonatomic,strong) NSString * detail;
+@property (nonatomic,strong) UILabel * contentLab;
+@property (nonatomic,assign) CGFloat cellHeight;
 
 
 -(void)drawCell;

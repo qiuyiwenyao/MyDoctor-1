@@ -10,6 +10,7 @@
 #import "BRSlogInViewController.h"
 #import "MDChatViewController.h"
 
+
 @interface MDHospitalViewController ()<UIAlertViewDelegate>
 
 @end
@@ -26,7 +27,8 @@
     [self.leftBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
     // Do any additional setup after loading the view.
     [self createView];
-}
+    
+    }
 
 -(void)backBtnClick
 {
@@ -141,23 +143,15 @@
     NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
     NSString * str=[stdDefault objectForKey:@"user_name"];
     if ([str length]>0) {
-        UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"正在呼叫"
-                             
-                                                      message:nil
-                             
-                                                     delegate:self
-                             
-                                            cancelButtonTitle:@"好的"
-                             
-                                            otherButtonTitles:nil];
+        NSString * phoneNum = [NSString stringWithFormat:@"tel:1008611"];
         
-        [alert show];
-
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNum]];
+        
         
     }else{
        [self logInView];
     }
-
+   
 }
 -(void)logInView
 {

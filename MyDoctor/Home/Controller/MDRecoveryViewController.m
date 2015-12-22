@@ -57,6 +57,8 @@
     _requirBtn = [[UIButton alloc] init];
     NSDictionary * dic2 = @{NSFontAttributeName:[UIFont systemFontOfSize:10]};
     [_requirBtn setTitle:@"大型手术术后康复" forState:UIControlStateNormal];
+    _requirBtn.titleLabel.textAlignment = NSTextAlignmentLeft;
+    _requirBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -3, 0, 14);
     _requirBtn.frame = CGRectMake(requirLab.width+5, 0, [_requirBtn.titleLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine attributes:dic2 context:nil].size.width+20, requirLab.height);
     [_requirBtn setBackgroundImage:[UIImage imageNamed:@"下拉框"] forState:UIControlStateNormal];
     [_requirBtn setTitleColor:ColorWithRGB(97, 103, 111, 1) forState:UIControlStateNormal];
@@ -124,11 +126,12 @@
 -(void)requirBtnClick:(id)sender
 {
     NSArray * arr = [[NSArray alloc] init];
-    arr = [NSArray arrayWithObjects:@"Hello 0", @"Hello 1", @"Hello 2", @"Hello 3",nil];
+    arr = [NSArray arrayWithObjects:@"膝关节术后康复", @"跟腱断裂术后康复", @"半月板损伤康复", @"脑血栓康复训练",nil];
     if(dropDown == nil) {
         CGFloat f = _requirBtn.height*arr.count;
         dropDown = [[NIDropDown alloc]showDropDown:sender :&f :arr];
         dropDown.delegate = self;
+        dropDown.font = 10;
         dropDown.isOffset = 0;
 
     }

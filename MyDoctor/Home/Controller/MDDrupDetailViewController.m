@@ -29,6 +29,7 @@
     // Do any additional setup after loading the view.
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -43,12 +44,13 @@
 
 -(void)createView
 {
-    UIImageView * topImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"topImg"]];
+    UIImageView * topImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"葵花胃康灵"]];
     [self.view addSubview:topImageView];
     [topImageView mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX);
         make.top.equalTo(self.view.mas_top).with.offset(TOPHEIGHT+18);
         make.left.equalTo(self.view.mas_left).with.offset(15);
+        make.height.equalTo(@((appWidth - 30)/2));
         
     }];
 

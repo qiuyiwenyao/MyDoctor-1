@@ -8,9 +8,10 @@
 
 #import "MDnoticeCenterController.h"
 #import "MDnoticeCenterCell.h"
-#import "MDNurseRootViewController.h"
 #import "MDRequestModel.h"
 #import "GTMBase64.h"
+#import "MDnoticeCenterModel.h"
+#import "MDNoticeDetailViewController.h"
 
 @interface MDnoticeCenterController ()<UITableViewDataSource,UITableViewDelegate,sendInfoToCtr>
 {
@@ -22,6 +23,47 @@
 @end
 
 @implementation MDnoticeCenterController
+
+//临时数据懒加载
+-(NSMutableArray *)dataSource
+{
+    if (_dataSource == nil) {
+        _dataSource = [[NSMutableArray alloc] init];
+        MDnoticeCenterModel * group0 = [[MDnoticeCenterModel alloc] init];
+        group0.TiTle = @"关于社区医院冬季体检的通知";
+        group0.AddTime = @"2015-12-09";
+        group0.Content = @"为了让广大居民度过一个健康祥和的冬季，居委会特邀社区医院的医护人员来我社区为广大居民进行一次全面的免费普查活动";
+        
+        MDnoticeCenterModel * group1 = [[MDnoticeCenterModel alloc] init];
+        group1.TiTle = @"关于社区医院冬季体检的通知";
+        group1.AddTime = @"2015-12-09";
+        group1.Content = @"为了让广大居民度过一个健康祥和的冬季，居委会特邀社区医院的医护人员来我社区为广大居民进行一次全面的免费普查活动";
+
+        MDnoticeCenterModel * group2 = [[MDnoticeCenterModel alloc] init];
+        group2.TiTle = @"关于社区医院冬季体检的通知";
+        group2.AddTime = @"2015-12-09";
+        group2.Content = @"为了让广大居民度过一个健康祥和的冬季，居委会特邀社区医院的医护人员来我社区为广大居民进行一次全面的免费普查活动";
+
+        MDnoticeCenterModel * group3 = [[MDnoticeCenterModel alloc] init];
+        group3.TiTle = @"关于社区医院冬季体检的通知";
+        group3.AddTime = @"2015-12-09";
+        group3.Content = @"为了让广大居民度过一个健康祥和的冬季，居委会特邀社区医院的医护人员来我社区为广大居民进行一次全面的免费普查活动";
+
+        MDnoticeCenterModel * group4 = [[MDnoticeCenterModel alloc] init];
+        group4.TiTle = @"关于社区医院冬季体检的通知";
+        group4.AddTime = @"2015-12-09";
+        group4.Content = @"为了让广大居民度过一个健康祥和的冬季，居委会特邀社区医院的医护人员来我社区为广大居民进行一次全面的免费普查活动";
+        
+        [_dataSource addObject:group0];
+        [_dataSource addObject:group0];
+        [_dataSource addObject:group0];
+        [_dataSource addObject:group0];
+        [_dataSource addObject:group0];
+        
+    }
+    return _dataSource;
+
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -85,6 +127,7 @@
     _tableView.dataSource = self;
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    [_tableView registerClass:[MDnoticeCenterCell class] forCellReuseIdentifier:@"iden"];
     [self.view addSubview:_tableView];
 
 }
@@ -92,7 +135,7 @@
 #pragma mark - TableViewDelegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return self.dataSource.count;
 }
 
 
@@ -108,7 +151,11 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return _tableView.width/4;
+    
+    MDnoticeCenterCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+
+    
+    return cell.cellHeight;
 }
 
 //填充每个cell间距的view，使之透明
@@ -127,19 +174,23 @@
         cell = [[MDnoticeCenterCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:iden];
     }
     cell.backgroundColor=ColorWithRGB(255, 255, 255, 0.7);
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     for (UIView *item in cell.contentView.subviews) {
         [item removeFromSuperview];
     }
-//    if ([_dataSource count]>0) {
-//        MDDrugVO * service=dataArray[indexPath.row];
+    if ([_dataSource count]>0) {
+        MDnoticeCenterModel * model = _dataSource[indexPath.section];
 //        cell.name=service.Namedrug;
 //        cell.number=service.numberDrug;
 //        cell.money=service.moneyDrug;
-//    }
-//
-    cell.title = @"标题";
-    cell.time = @"2015-09-08";
-    cell.detail = @"内容:从健康的四大基石（合理膳食、适量运动、戒烟";
+        cell.title = model.TiTle;
+        cell.time = model.AddTime;
+        cell.detail = [NSString stringWithFormat:@"   %@",model.Content];
+    }
+
+//    cell.title = @"标题";
+//    cell.time = @"2015-09-08";
+//    cell.detail = @"内容:从健康的四大基石（合理膳食、适量运动、戒烟内容:从健康的四大基石（合理膳食、适量运动、戒烟内容:从健康的四大基石（合理膳食、适量运动、戒烟内容:从健康的四大基石（合理膳食、适量运动、戒烟内容:从健康的四大基石（合理膳食、适量运动、戒烟";
     
     [cell drawCell];
 
@@ -149,12 +200,16 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MDNurseRootViewController * noticeDetail = [[MDNurseRootViewController alloc] init];
-    noticeDetail.titleLab = @"通知公告";
-    noticeDetail.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:noticeDetail animated:YES];
+    MDNoticeDetailViewController * noticeDetailVC = [[MDNoticeDetailViewController alloc] init];
+    noticeDetailVC.titleLab = @"通知公告";
+    noticeDetailVC.rightDownBtn.hidden = YES;
+    
+    noticeDetailVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:noticeDetailVC animated:YES];
     
 }
+
+
 
 -(NSString *)GTMEncodeTest:(NSString *)text
 

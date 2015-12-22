@@ -16,6 +16,8 @@
 #import "MDActivityViewController.h"
 #import "AdView.h"
 #import "MDSmallADView.h"
+#import "MDActivityBtnCell.h"
+#import "MDHomeCell1.h"
 
 @interface MDHomeViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -33,6 +35,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+//    NSString * str1 = [[UIDevice currentDevice] uniqueDeviceIdentifier];
+//    NSString *identifierForVendor = [[UIDevice currentDevice].identifierForVendor UUIDString];
+//    MDLog(@"%@",identifierForVendor);
+
     self.navigationItem.title=@"e+健康";
     
     [self setNavigationBarWithrightBtn:@"通知" leftBtn:nil];
@@ -63,10 +70,10 @@
 
 -(void)createView
 {
-    NSArray * group0 = @[@"greenlogo",@"寻医"];
-    NSArray * group1 = @[@"purplelogo",@"问药"];
-    NSArray * group2 = @[@"bluelogo",@"照护"];
-    NSArray * group3 = @[@"greenlogo",@"活动"];
+    NSArray * group0 = @[@"greenlogo",@"寻医",@"您有一条新消息"];
+    NSArray * group1 = @[@"purplelogo",@"问药",@""];
+    NSArray * group2 = @[@"bluelogo",@"照护",@""];
+    NSArray * group3 = @[@"greenlogo",@"活动",@""];
     
     if (_listArray == nil) {
         _listArray = [NSMutableArray arrayWithObjects:group0,group1,group2,group3, nil];
@@ -82,6 +89,10 @@
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     _tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+    
+    [_tableView registerNib:[UINib nibWithNibName:@"MDActivityBtnCell" bundle:nil] forCellReuseIdentifier:@"iden1"];
+    
+    [_tableView registerNib:[UINib nibWithNibName:@"MDHomeCell1" bundle:nil] forCellReuseIdentifier:@"iden2"];
     
 
     [self.view addSubview:_tableView];
@@ -146,23 +157,39 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * iden = @"iden";
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:iden];
+    if (indexPath.section == 3) {
+        static NSString * iden = @"iden1";
+        MDActivityBtnCell * cell = [tableView dequeueReusableCellWithIdentifier:iden];
+        if (cell == nil) {
+            cell = [[MDActivityBtnCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
+        }
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+
+        return cell;
+    }
+    else
+    {
+    static NSString * iden = @"iden2";
+    MDHomeCell1 * cell = [tableView dequeueReusableCellWithIdentifier:iden];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
+        cell = [[MDHomeCell1 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
     }
     
-    cell.imageView.image = [UIImage imageNamed:_listArray[indexPath.section][0]];
-    cell.textLabel.text = _listArray[indexPath.section][1];
+    
+    
+    cell.headView.image = [UIImage imageNamed:_listArray[indexPath.section][0]];
+        cell.messageLab.text = _listArray[indexPath.section][2];
+    cell.titleLab.text = _listArray[indexPath.section][1];
     cell.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.7];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     return cell;
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return (SCREENWIDTH - 42)/4;
+    return appWidth*0.22;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

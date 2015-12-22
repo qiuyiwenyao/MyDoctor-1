@@ -179,22 +179,14 @@
     NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
     NSString * str=[stdDefault objectForKey:@"user_name"];
     if ([str length]>0) {
-        UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"正在咨询"
-                             
-                                                      message:nil
-                             
-                                                     delegate:self
-                             
-                                            cancelButtonTitle:@"好的"
-                             
-                                            otherButtonTitles:nil];
+        NSString * phoneNum = [NSString stringWithFormat:@"tel:1008611"];
         
-        [alert show];
-        
-        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNum]];
     }else{
         [self logInView];
     }
+    
+
 
 }
 

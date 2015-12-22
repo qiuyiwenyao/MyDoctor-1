@@ -316,7 +316,9 @@
     if(dropDown == nil) {
         CGFloat f = year.height*arr.count;
         dropDown = [[NIDropDown alloc] init];
-        dropDown.isOffset = @"2";
+        dropDown.Offset = 23;
+        dropDown.textshowStyle = TextShowStyleCenter;
+        dropDown.font = 13;
         [dropDown showDropDown:sender :&f :arr];
         dropDown.delegate = self;
     }

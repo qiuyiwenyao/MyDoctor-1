@@ -14,8 +14,9 @@
 #import "WbToolBarFour.h"
 #import "DocRecordViewController.h"
 #import "MDChatViewController.h"
+#import "NIDropDown.h"
 
-@interface DocHomeViewController ()
+@interface DocHomeViewController ()<NIDropDownDelegate>
 
 @end
 
@@ -27,11 +28,20 @@
     DocLookAfterViewController * lookAfter;
     WbToolBarFour * bar;
     int firstShow;
+    NIDropDown * dropDown;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     firstShow=1;
     self.navigationItem.title=@"医生";
+    
+    [self setNavigationBarWithrightBtn:@"通知" leftBtn:@"下拉框"];
+    
+    [self.leftBtn addTarget:self action:@selector(requirBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.leftBtn.width = 80;
+    [self.leftBtn setTitle:@"在线" forState:UIControlStateNormal];
+    self.leftBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [self.leftBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushViewInParent:) name:@"pushViewInDocHome" object:nil];
     
@@ -66,6 +76,38 @@
     }
     
 }
+
+//-(void)
+-(void)requirBtnClick:(id)sender
+{
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"在线",@"离线",@"忙碌",nil];
+    if(dropDown == nil) {
+        CGFloat f = self.leftBtn.height*arr.count;
+        dropDown = [[NIDropDown alloc] init];
+//        dropDown.isOffset = @"1";
+        dropDown.Offset = 22;
+        dropDown.font = 14;
+        dropDown.textshowStyle = NSTextAlignmentCenter;
+        [dropDown showDropDown:sender :&f :arr];
+        dropDown.delegate = self;
+        
+    }
+    else {
+        [dropDown hideDropDown:sender];
+        [self rel];
+    }
+    
+}
+
+- (void) niDropDownDelegateMethod: (NIDropDown *) sender {
+    [self rel];
+}
+
+-(void)rel{
+    dropDown = nil;
+}
+
 
 
 - (void)didReceiveMemoryWarning {

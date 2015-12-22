@@ -99,7 +99,6 @@
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString*)text
 {
     if ([text isEqualToString:@"\n"]) {
-        [textView resignFirstResponder];
         
         [self sendBtnClick:nil];
         
@@ -161,10 +160,8 @@
     [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
     date = [formatter stringFromDate:[NSDate date]];
     
-    NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
-    int userId = [[stdDefault objectForKey:@"user_Id"] intValue];
-    NSLog(@"%d",userId);
-
+    int userId = [[MDUserVO userVO].userID intValue];
+    MDLog(@"%d",userId);
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = MDPath;
     NSString * addFeedBack=[NSString stringWithFormat:@"10105@`3@`3@`%@@`1@`3@`%d@`%@@`%@",date,userId,_fbType,_textView.text];

@@ -265,6 +265,12 @@
 		6AB9B13D1C2013D0004BF6A7 /* demo-avatar-woz.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AB9B1331C2013D0004BF6A7 /* demo-avatar-woz.png */; };
 		6AB9B1401C210B65004BF6A7 /* MDDrupDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB9B13F1C210B65004BF6A7 /* MDDrupDetailModel.m */; };
 		6AB9B1431C210F3B004BF6A7 /* MDnoticeCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB9B1421C210F3B004BF6A7 /* MDnoticeCenterModel.m */; };
+		6AB9B1471C215905004BF6A7 /* 葵花胃康灵.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AB9B1461C215905004BF6A7 /* 葵花胃康灵.png */; };
+		6AB9B14A1C23934C004BF6A7 /* MDNoticeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB9B1491C23934C004BF6A7 /* MDNoticeDetailViewController.m */; };
+		6AB9B14E1C239E21004BF6A7 /* MDActivityBtnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB9B14C1C239E21004BF6A7 /* MDActivityBtnCell.m */; };
+		6AB9B14F1C239E21004BF6A7 /* MDActivityBtnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AB9B14D1C239E21004BF6A7 /* MDActivityBtnCell.xib */; };
+		6AB9B1531C23B4DB004BF6A7 /* MDHomeCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB9B1511C23B4DB004BF6A7 /* MDHomeCell1.m */; };
+		6AB9B1541C23B4DB004BF6A7 /* MDHomeCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AB9B1521C23B4DB004BF6A7 /* MDHomeCell1.xib */; };
 		6AF2021F1C083F4000933EAF /* activityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2021D1C083F4000933EAF /* activityCell.m */; };
 		6AF202201C083F4000933EAF /* activityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF2021E1C083F4000933EAF /* activityCell.xib */; };
 		6AF202271C08498100933EAF /* MDExpertConsultationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF202261C08498100933EAF /* MDExpertConsultationViewController.m */; };
@@ -699,6 +705,16 @@
 		6AB9B13F1C210B65004BF6A7 /* MDDrupDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDDrupDetailModel.m; path = Home/Model/MDDrupDetailModel.m; sourceTree = "<group>"; };
 		6AB9B1411C210F3B004BF6A7 /* MDnoticeCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDnoticeCenterModel.h; path = Home/Model/MDnoticeCenterModel.h; sourceTree = "<group>"; };
 		6AB9B1421C210F3B004BF6A7 /* MDnoticeCenterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDnoticeCenterModel.m; path = Home/Model/MDnoticeCenterModel.m; sourceTree = "<group>"; };
+		6AB9B1441C213F2A004BF6A7 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		6AB9B1461C215905004BF6A7 /* 葵花胃康灵.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "葵花胃康灵.png"; sourceTree = "<group>"; };
+		6AB9B1481C23934C004BF6A7 /* MDNoticeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDNoticeDetailViewController.h; sourceTree = "<group>"; };
+		6AB9B1491C23934C004BF6A7 /* MDNoticeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDNoticeDetailViewController.m; sourceTree = "<group>"; };
+		6AB9B14B1C239E21004BF6A7 /* MDActivityBtnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDActivityBtnCell.h; path = Home/View/MDActivityBtnCell.h; sourceTree = "<group>"; };
+		6AB9B14C1C239E21004BF6A7 /* MDActivityBtnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDActivityBtnCell.m; path = Home/View/MDActivityBtnCell.m; sourceTree = "<group>"; };
+		6AB9B14D1C239E21004BF6A7 /* MDActivityBtnCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MDActivityBtnCell.xib; path = Home/View/MDActivityBtnCell.xib; sourceTree = "<group>"; };
+		6AB9B1501C23B4DB004BF6A7 /* MDHomeCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDHomeCell1.h; path = Home/View/MDHomeCell1.h; sourceTree = "<group>"; };
+		6AB9B1511C23B4DB004BF6A7 /* MDHomeCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDHomeCell1.m; path = Home/View/MDHomeCell1.m; sourceTree = "<group>"; };
+		6AB9B1521C23B4DB004BF6A7 /* MDHomeCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MDHomeCell1.xib; path = Home/View/MDHomeCell1.xib; sourceTree = "<group>"; };
 		6AF2021C1C083F4000933EAF /* activityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = activityCell.h; path = Home/View/activityCell.h; sourceTree = "<group>"; };
 		6AF2021D1C083F4000933EAF /* activityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = activityCell.m; path = Home/View/activityCell.m; sourceTree = "<group>"; };
 		6AF2021E1C083F4000933EAF /* activityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = activityCell.xib; path = Home/View/activityCell.xib; sourceTree = "<group>"; };
@@ -1025,6 +1041,7 @@
 		155CEC431C0E8383006B5CFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6AB9B1441C213F2A004BF6A7 /* CoreTelephony.framework */,
 				155CEC411C0E8371006B5CFA /* Foundation.framework */,
 				155CEC3F1C0E8367006B5CFA /* UIKit.framework */,
 				155CEC3D1C0E8360006B5CFA /* CoreGraphics.framework */,
@@ -1113,6 +1130,7 @@
 				6A3EF8471C05BB1D00923D03 /* AppDelegate.m */,
 				153C1E661C03FB8C00F87014 /* fundation */,
 				153C1E5F1C03F4ED00F87014 /* image */,
+				6AB9B1461C215905004BF6A7 /* 葵花胃康灵.png */,
 				15AE53761C02F0680013FF1B /* Main.storyboard */,
 				15AE53791C02F0680013FF1B /* Images.xcassets */,
 				15AE537B1C02F0680013FF1B /* LaunchScreen.xib */,
@@ -1261,6 +1279,12 @@
 				153ED8661C0C266C00171DFA /* MDDrugTableViewCell.m */,
 				6AB9B1041C2010B7004BF6A7 /* MDnoticeCenterCell.h */,
 				6AB9B1051C2010B7004BF6A7 /* MDnoticeCenterCell.m */,
+				6AB9B1501C23B4DB004BF6A7 /* MDHomeCell1.h */,
+				6AB9B1511C23B4DB004BF6A7 /* MDHomeCell1.m */,
+				6AB9B1521C23B4DB004BF6A7 /* MDHomeCell1.xib */,
+				6AB9B14B1C239E21004BF6A7 /* MDActivityBtnCell.h */,
+				6AB9B14C1C239E21004BF6A7 /* MDActivityBtnCell.m */,
+				6AB9B14D1C239E21004BF6A7 /* MDActivityBtnCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1322,6 +1346,8 @@
 				6A3EF80B1C05A62E00923D03 /* MDHomeViewController.m */,
 				6A3EF84B1C06037100923D03 /* MDnoticeCenterController.h */,
 				6A3EF84C1C06037100923D03 /* MDnoticeCenterController.m */,
+				6AB9B1481C23934C004BF6A7 /* MDNoticeDetailViewController.h */,
+				6AB9B1491C23934C004BF6A7 /* MDNoticeDetailViewController.m */,
 				6A3EF84E1C06038B00923D03 /* MDHospitalViewController.h */,
 				6A3EF84F1C06038B00923D03 /* MDHospitalViewController.m */,
 				153ED8591C0BF74D00171DFA /* Drug(药品) */,
@@ -1808,6 +1834,7 @@
 				6A65238A1C20080000227C63 /* bubble-default-outgoing-selected.png in Resources */,
 				6A6523911C20080000227C63 /* bubble-flat-incoming@2x.png in Resources */,
 				6A65238B1C20080000227C63 /* bubble-default-outgoing-selected@2x.png in Resources */,
+				6AB9B14F1C239E21004BF6A7 /* MDActivityBtnCell.xib in Resources */,
 				6A2582B81C0FE21D005E3404 /* topImg2.jpg in Resources */,
 				155CEBF01C0D47F0006B5CFA /* 用户电话@2x.png in Resources */,
 				6A6523831C20080000227C63 /* bubble-default-incoming-green@2x.png in Resources */,
@@ -1842,7 +1869,9 @@
 				6AF202451C0BEC1D00933EAF /* 个人头像默认@2x.png in Resources */,
 				153ED8311C08022E00171DFA /* 首页图标@3x.png in Resources */,
 				155CEBEF1C0D47F0006B5CFA /* 用户地址@2x.png in Resources */,
+				6AB9B1541C23B4DB004BF6A7 /* MDHomeCell1.xib in Resources */,
 				155CEBE91C0C2E8E006B5CFA /* 药@2x.png in Resources */,
+				6AB9B1471C215905004BF6A7 /* 葵花胃康灵.png in Resources */,
 				6A6523551C2007DC00227C63 /* messageSent.aiff in Resources */,
 				155CEBF61C0D47FC006B5CFA /* 用户电话@3x.png in Resources */,
 				6A3EF7BC1C054E4000923D03 /* mydoctor@2x.png in Resources */,
@@ -1923,6 +1952,7 @@
 				6A65234E1C1E930E00227C63 /* UIView+WebCacheOperation.m in Sources */,
 				6A6520EE1C182C6400227C63 /* NSString+JSMessagesView.m in Sources */,
 				6A3EF8591C06D24600923D03 /* MDNurseRootViewController.m in Sources */,
+				6AB9B1531C23B4DB004BF6A7 /* MDHomeCell1.m in Sources */,
 				153C1E861C03FB8C00F87014 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				6AB9B1061C2010B7004BF6A7 /* MDnoticeCenterCell.m in Sources */,
 				6A65234A1C1E930E00227C63 /* UIImage+MultiFormat.m in Sources */,
@@ -1969,6 +1999,7 @@
 				155CEC481C0E8993006B5CFA /* GTMBase64.m in Sources */,
 				155CEC371C0E81B8006B5CFA /* UIRefreshControl+AFNetworking.m in Sources */,
 				153ED8551C0BEC8000171DFA /* MDNewAddressViewController.m in Sources */,
+				6AB9B14E1C239E21004BF6A7 /* MDActivityBtnCell.m in Sources */,
 				15FBDD5A1C155868009E7E39 /* DocUnfinishPatientViewController.m in Sources */,
 				15FBDD451C152AC0009E7E39 /* DocPhoneViewController.m in Sources */,
 				15FBDD461C152AC0009E7E39 /* DocOnlineViewController.m in Sources */,
@@ -2000,6 +2031,7 @@
 				153ED8671C0C266C00171DFA /* MDDrugTableViewCell.m in Sources */,
 				153C1E841C03FB8C00F87014 /* MX_MASViewConstraint.m in Sources */,
 				153C1E811C03FB8C00F87014 /* MX_MASConstraintMaker.m in Sources */,
+				6AB9B14A1C23934C004BF6A7 /* MDNoticeDetailViewController.m in Sources */,
 				6A6520E71C182C6400227C63 /* JSBubbleMessageCell.m in Sources */,
 				6AF2026B1C0D71AB00933EAF /* MDFeedBackViewController.m in Sources */,
 				6A3EF8501C06038B00923D03 /* MDHospitalViewController.m in Sources */,
@@ -2103,6 +2135,10 @@
 				INFOPLIST_FILE = MyDoctor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MyDoctor/fundation/EaseMobSDK/lib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -2224,6 +2260,10 @@
 				INFOPLIST_FILE = MyDoctor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MyDoctor/fundation/EaseMobSDK/lib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -2241,6 +2281,10 @@
 				INFOPLIST_FILE = MyDoctor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MyDoctor/fundation/EaseMobSDK/lib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

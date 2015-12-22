@@ -9,12 +9,16 @@
 #import "MDnoticeCenterCell.h"
 #import "UIView+ViewExtension.h"
 #import "MDConst.h"
+#import "MX_MASConstraintMaker.h"
+#import "View+MASAdditions.h"
 
 @implementation MDnoticeCenterCell
 
 -(void)drawCell
 {
-    UILabel * titleLab = [[UILabel alloc] initWithFrame:CGRectMake(30, 50.0/1920.0*appHeight, self.frame.size.width - 60, 0)];
+    _cellHeight = 0;
+    
+    UILabel * titleLab = [[UILabel alloc] initWithFrame:CGRectMake(30, 30/1920.0*appHeight, self.frame.size.width - 60, 0)];
     titleLab.text = _title;
     titleLab.font = [UIFont boldSystemFontOfSize:15];
     titleLab.textAlignment = NSTextAlignmentLeft;
@@ -31,14 +35,27 @@
     [timeLab sizeToFit];
     [self.contentView addSubview:timeLab];
     
-    UILabel * detailLab = [[UILabel alloc] initWithFrame:CGRectMake(30, timeLab.y+timeLab.height+3, self.frame.size.width - 60, 0)];
-    detailLab.text = _detail;
-    detailLab.textColor = [UIColor colorWithRed:97/255.0 green:103/255.0 blue:111/255.0 alpha:1];
-    detailLab.font = [UIFont boldSystemFontOfSize:11];
-    detailLab.textAlignment = NSTextAlignmentLeft;
-    detailLab.numberOfLines = 0;
-    [detailLab sizeToFit];
-    [self.contentView addSubview:detailLab];
+    _contentLab = [[UILabel alloc] initWithFrame:CGRectMake(30, timeLab.y+timeLab.height+3,appWidth - 42 - 60, 0)];
+    _contentLab.text = _detail;
+//    _contentLab.backgroundColor = RedColor;
+    _contentLab.textColor = [UIColor colorWithRed:97/255.0 green:103/255.0 blue:111/255.0 alpha:1];
+    _contentLab.font = [UIFont boldSystemFontOfSize:11];
+    _contentLab.textAlignment = NSTextAlignmentLeft;
+    _contentLab.numberOfLines = 0;
+    [_contentLab sizeToFit];
+    [self.contentView addSubview:_contentLab];
+    
+//    [_contentLab mas_makeConstraints:^(MX_MASConstraintMaker *make) {
+//        make.right.equalTo(self.contentView.mas_right).with.offset(-30);
+//        make.top.equalTo(timeLab.mas_bottom).with.offset(3);
+//        make.left.equalTo(self.contentView.mas_left).with.offset(30);
+//        make.height.equalTo(@(80));
+//        make.bottom.equalTo(self.contentView.mas_bottom).with.offset(-3);
+//    }];
+    
+    _cellHeight = _cellHeight + _contentLab.y+_contentLab.height+10;
+    
+//    NSLog(@"%f",_cellHeight);
 }
 
 - (void)awakeFromNib {

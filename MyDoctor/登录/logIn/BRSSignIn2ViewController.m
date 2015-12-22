@@ -456,13 +456,15 @@
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
     NSMutableDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    NSLog(@"%@",dic);
+//    NSLog(@"%@",dic);
+    MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    
     [dic setValue:number.text forKey:@"user_Name"];
     MDUserVO *user = [MDUserVO registeredFromDignInUser:dic];
     
     [MDUserVO  initWithCoder:user];
     //回馈数据
-    NSLog(@"%d",[[dic objectForKey:@"success"] intValue]);
+//    NSLog(@"%d",[[dic objectForKey:@"success"] intValue]);
 
     if ([[dic objectForKey:@"success"] intValue] ==1) {
         NSUserDefaults *stdDefault = [NSUserDefaults standardUserDefaults];

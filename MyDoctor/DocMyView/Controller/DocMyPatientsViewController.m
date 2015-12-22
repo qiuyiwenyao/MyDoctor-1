@@ -130,6 +130,7 @@
     _requirBtn.frame = CGRectMake(0, 0,100,20);
     [_requirBtn setBackgroundImage:[UIImage imageNamed:@"下拉框"] forState:UIControlStateNormal];
     [_requirBtn setTitleColor:ColorWithRGB(97, 103, 111, 1) forState:UIControlStateNormal];
+    _requirBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
     _requirBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [_requirBtn addTarget:self action:@selector(requirBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -191,7 +192,9 @@
     if(dropDown == nil) {
         CGFloat f = _requirBtn.height*arr.count;
         dropDown = [[NIDropDown alloc] init];
-        dropDown.isOffset = @"1";
+        dropDown.Offset = 45;
+        dropDown.textshowStyle = TextShowStyleLeft;
+        dropDown.font = 13;
         [dropDown showDropDown:sender :&f :arr];
         dropDown.delegate = self;
         

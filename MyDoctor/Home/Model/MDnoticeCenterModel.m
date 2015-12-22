@@ -10,6 +10,10 @@
 
 @implementation MDnoticeCenterModel
 
+//@synthesize TiTle;
+//@synthesize AddTime;
+//@synthesize Content;
+
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
     

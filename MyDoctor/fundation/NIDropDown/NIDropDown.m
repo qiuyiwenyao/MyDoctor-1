@@ -24,13 +24,13 @@
 - (id)showDropDown:(UIButton *)b:(CGFloat *)height:(NSArray *)arr {
     
     btnSender = b;
-    if ([self.isOffset isEqualToString:@"1"]) {
-        Offset = 45;
-    }
-    else
-    {
-        Offset = 0;
-    }
+//    if (self.Offset != 0) {
+//        Offset = 45;
+//    }
+//    else
+//    {
+//        Offset = 0;
+//    }
 
     self = [super init];
     if (self) {
@@ -62,7 +62,7 @@
         
         table.frame = CGRectMake(0, 0, btn.size.width, *height);
         [UIView commitAnimations];
-        if ([_isOffset isEqualToString:@"1"]||[_isOffset isEqualToString:@"2"]) {
+        if (self.Offset != 0) {
             [b.superview.superview addSubview:self];
         }
         else
@@ -106,8 +106,24 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        cell.textLabel.font = [UIFont systemFontOfSize:15];
-        cell.textLabel.textAlignment = UITextAlignmentCenter;
+        cell.textLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        cell.textLabel.font = [UIFont systemFontOfSize:self.font];
+        
+//        cell.textLabel.textAlignment = NSTextAlignmentLeft;
+        
+        if (_textshowStyle == TextShowStyleLeft) {
+            cell.textLabel.textAlignment = NSTextAlignmentLeft;
+        }
+        else if (_textshowStyle == TextShowStyleRight)
+        {
+            cell.textLabel.textAlignment = NSTextAlignmentRight;
+
+        }
+        else
+        {
+            cell.textLabel.textAlignment = NSTextAlignmentCenter;
+
+        }
     }
     cell.textLabel.text =[list objectAtIndex:indexPath.row];
     cell.textLabel.textColor = [UIColor colorWithRed:97/255 green:103/255 blue:111/255 alpha:1];
