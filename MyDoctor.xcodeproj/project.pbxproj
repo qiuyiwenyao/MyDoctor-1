@@ -86,6 +86,7 @@
 		155CEC401C0E8367006B5CFA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 155CEC3F1C0E8367006B5CFA /* UIKit.framework */; };
 		155CEC421C0E8371006B5CFA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 155CEC411C0E8371006B5CFA /* Foundation.framework */; };
 		155CEC481C0E8993006B5CFA /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 155CEC461C0E8993006B5CFA /* GTMBase64.m */; };
+		156263071C293C8E00B725EF /* MyDoctor.c in Sources */ = {isa = PBXBuildFile; fileRef = 156263051C293C8E00B725EF /* MyDoctor.c */; };
 		1578343C1C20051E00421167 /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1578343B1C20051E00421167 /* FileUtils.m */; };
 		159049721C069FA600EE51FB /* BRSlogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 159049671C069FA600EE51FB /* BRSlogInViewController.m */; };
 		159049731C069FA600EE51FB /* BRSNewPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 159049691C069FA600EE51FB /* BRSNewPageViewController.m */; };
@@ -448,6 +449,8 @@
 		155CEC451C0E8993006B5CFA /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
 		155CEC461C0E8993006B5CFA /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
 		155CEC471C0E8993006B5CFA /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		156263051C293C8E00B725EF /* MyDoctor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MyDoctor.c; sourceTree = "<group>"; };
+		156263061C293C8E00B725EF /* MyDoctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDoctor.h; sourceTree = "<group>"; };
 		1578343A1C20051E00421167 /* FileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileUtils.h; path = FileUtils/FileUtils.h; sourceTree = "<group>"; };
 		1578343B1C20051E00421167 /* FileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileUtils.m; path = FileUtils/FileUtils.m; sourceTree = "<group>"; };
 		159049661C069FA600EE51FB /* BRSlogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSlogInViewController.h; sourceTree = "<group>"; };
@@ -1268,6 +1271,8 @@
 				15AE53791C02F0680013FF1B /* Images.xcassets */,
 				15AE537B1C02F0680013FF1B /* LaunchScreen.xib */,
 				15AE536C1C02F0680013FF1B /* Supporting Files */,
+				156263051C293C8E00B725EF /* MyDoctor.c */,
+				156263061C293C8E00B725EF /* MyDoctor.h */,
 			);
 			path = MyDoctor;
 			sourceTree = "<group>";
@@ -2395,6 +2400,7 @@
 				6A6520F21C182C6400227C63 /* UIView+AnimationOptionsForCurve.m in Sources */,
 				153C1E801C03FB8C00F87014 /* MX_MASConstraint.m in Sources */,
 				15FBDD571C15583A009E7E39 /* DocAllPatientViewController.m in Sources */,
+				156263071C293C8E00B725EF /* MyDoctor.c in Sources */,
 				6AB9B1431C210F3B004BF6A7 /* MDnoticeCenterModel.m in Sources */,
 				153ED8441C083DB500171DFA /* KTSelectPickerView.m in Sources */,
 				155CEC381C0E81B8006B5CFA /* UIWebView+AFNetworking.m in Sources */,
