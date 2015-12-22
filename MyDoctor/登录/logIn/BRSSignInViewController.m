@@ -165,7 +165,7 @@
 //        if(object){
     
     NSString *identifierForVendor = [[UIDevice currentDevice].identifierForVendor UUIDString];//设备标示
-    NSString * phoneNum = @"18234085032";
+//    NSString * phoneNum = @"18234085032";
     
     NSString* date;
     NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
@@ -175,7 +175,7 @@
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = MDPath;
     model.methodNum = 99999;
-    NSString * idenAndNum=[NSString stringWithFormat:@"%d@`3@`3@`%@@`1@`3@`%@@`%@",model.methodNum,date,phoneNum,identifierForVendor];
+    NSString * idenAndNum=[NSString stringWithFormat:@"%d@`3@`3@`%@@`1@`3@`%@@`%@",model.methodNum,date,number.text,identifierForVendor];
     idenAndNum=[self GTMEncodeTest:idenAndNum];
     //    //post键值对
     model.parameters = @{@"b":idenAndNum};
@@ -261,6 +261,10 @@
                 si2.login_name=textField1.text;
                 si2.auth_code=textField2.text;
     
+    [self.navigationController pushViewController:si2 animated:YES];
+
+    
+    /*验证码
     if ([textField2.text isEqualToString:msgCode]) {
         [self.navigationController pushViewController:si2 animated:YES];
     }else
@@ -268,6 +272,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"验证码错误" message:nil delegate:self cancelButtonTitle:@"重试" otherButtonTitles: nil];
                     [alert show];
     }
+     */
     
 //                [self.navigationController pushViewController:si2 animated:YES];
 //            }else{
