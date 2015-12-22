@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyDoctor/&#x767b;&#x5f55;/logIn/BRSlogInViewController.m"
-            timestampString = "471935214.372533"
+            timestampString = "472465171.150384"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "241"
-            endingLineNumber = "241"
+            startingLineNumber = "243"
+            endingLineNumber = "243"
             landmarkName = "-back:"
             landmarkType = "5">
          </BreakpointContent>
@@ -244,38 +244,6 @@
             startingLineNumber = "318"
             endingLineNumber = "318"
             landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyDoctor/&#x767b;&#x5f55;/logIn/BRSlogInViewController.m"
-            timestampString = "471935214.372533"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "-sendInfoFromRequest:andPath:number:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyDoctor/&#x767b;&#x5f55;/logIn/BRSlogInViewController.m"
-            timestampString = "471935214.372533"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "-sendInfoFromRequest:andPath:number:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

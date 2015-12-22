@@ -20,7 +20,10 @@
 @end
 
 @implementation MDChatViewController
-
+{
+    int sendOrput;
+    NSMutableArray * tapyArray;
+}
 @synthesize messageArray;
 
 
@@ -30,9 +33,10 @@
     [super viewDidLoad];
     self.delegate = self;
     self.dataSource = self;
-    
-    self.title = @"ChatMessage";
-    EMConversation *conversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"13662142222" conversationType:eConversationTypeChat];
+    sendOrput=0;
+    self.title = @"聊天";
+    tapyArray=[[NSMutableArray alloc] init];
+    EMConversation *conversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"18234087856" conversationType:eConversationTypeChat];
     conversation.enableReceiveMessage=YES;
     
     [[EaseMob sharedInstance].chatManager removeDelegate:self];
@@ -70,16 +74,19 @@
     
 //    [self sendMessage:message progress:(id<IEMChatProgressDelegate>) error:(EMError *__autoreleasing *)];
     
+    if (sender==nil) {
+        sendOrput=0;
+    }else{
+        sendOrput=1;
+    }
+    [tapyArray addObject:[NSString stringWithFormat:@"%d",sendOrput]];
+    
     EMChatText *txtChat = [[EMChatText alloc] initWithText:text];
     EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithChatObject:txtChat];
-    
     // 生成message
-    EMMessage *message = [[EMMessage alloc] initWithReceiver:@"13662142222" bodies:@[body]];
+    EMMessage *message = [[EMMessage alloc] initWithReceiver:@"18234087856" bodies:@[body]];
     message.messageType = eMessageTypeChat;
-    
-    
     EMError *error = nil;
-    
     id <IChatManager> chatManager = [[EaseMob sharedInstance] chatManager];
     //    [chatManager asyncResendMessage:message progress:nil];
     [chatManager sendMessage:message progress:nil error:&error];
@@ -88,7 +95,7 @@
         [a show];
     }else {
     }
-    
+    sendOrput=0;
     
     [self.messageArray addObject:[NSDictionary dictionaryWithObject:text forKey:@"Text"]];
     
@@ -112,7 +119,7 @@
 
 - (JSBubbleMessageType)messageTypeForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return (indexPath.row % 2) ? JSBubbleMessageTypeIncoming : JSBubbleMessageTypeOutgoing;
+    return [tapyArray[indexPath.row] intValue];
 }
 
 - (JSBubbleMessageStyle)messageStyleForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -248,8 +255,10 @@
         case eMessageBodyType_Text:
         {
             // 收到的文字消息
+            sendOrput=1;
             NSString *txt = ((EMTextMessageBody *)msgBody).text;
             NSLog(@"收到的文字是 txt -- %@",txt);
+            [self  sendPressed:nil withText:txt];
         }
             break;
         case eMessageBodyType_Image:

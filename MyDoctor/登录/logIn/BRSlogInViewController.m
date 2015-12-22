@@ -32,6 +32,8 @@
     //下载进度
     NSProgress * _progress;
     NSURLSessionDownloadTask * _task;
+    
+    
 
 }
 #define autoSizeScaleX  (appWidth>320?appWidth/320:1)
