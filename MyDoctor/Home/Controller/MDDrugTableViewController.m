@@ -85,7 +85,7 @@
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
     //回馈数据
-    
+    [dataArray removeAllObjects];
     NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
     NSLog(@"%@",dic);
     
@@ -181,7 +181,7 @@
     
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = url;
-    NSString * nameAndPassword=[NSString stringWithFormat:@"10303@`3@`3@`%@@`1@`3@`%@@`%@@`%@@`%@",date,_searchDrug.text,@"10",@"1",@"0"];
+    NSString * nameAndPassword=[NSString stringWithFormat:@"10304@`3@`3@`%@@`1@`3@`%@@`%@@`%@@`%@",date,_searchDrug.text,@"10",@"1",@"0"];
     nameAndPassword=[self GTMEncodeTest:nameAndPassword];
     //    //post键值对
     NSLog(@"http://111.160.245.75:8082/CommunityWs//servlet/ShequServlet?b=%@",nameAndPassword);
