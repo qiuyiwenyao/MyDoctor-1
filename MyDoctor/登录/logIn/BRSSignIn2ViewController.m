@@ -21,6 +21,7 @@
 #import "UIKit+AFNetworking.h"
 #import "GTMBase64.h"
 #import "MDRequestModel.h"
+#import "EaseMob.h"
 
 
 #define autoSizeScaleX  (appWidth>320?appWidth/320:1)
@@ -286,6 +287,27 @@
     
     if ([password.text isEqualToString:password2.text]&&[password.text length]>=6) {
         [self postRequest];
+        
+        //环信注册
+        [[EaseMob sharedInstance].chatManager asyncRegisterNewAccount:self.login_name password:password.text withCompletion:^(NSString *username, NSString *password, EMError *error) {
+            MDLog(@"=============");
+            if (!error) {
+                MDLog(@"环信注册成功");
+                
+                //环信登陆
+                [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:self.login_name password:password2.text completion:^(NSDictionary *loginInfo, EMError *error) {
+                    if (!error && loginInfo) {
+                        MDLog(@"环信登陆成功！！%@",loginInfo);
+                    }
+                } onQueue:nil];
+
+            }
+            else
+            {
+                MDLog(@"环信错误：%@",error);
+            }
+        } onQueue:nil];
+
         
 //        MXNetModel *netModel = [MXNetModel shareNetModel];
 //        NSString *tmpUrl = @"/connectors/regist_user";

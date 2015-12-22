@@ -261,6 +261,10 @@
                 si2.login_name=textField1.text;
                 si2.auth_code=textField2.text;
     
+    [self.navigationController pushViewController:si2 animated:YES];
+
+    
+    /*验证码
     if ([textField2.text isEqualToString:msgCode]) {
         [self.navigationController pushViewController:si2 animated:YES];
     }else
@@ -268,6 +272,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"验证码错误" message:nil delegate:self cancelButtonTitle:@"重试" otherButtonTitles: nil];
                     [alert show];
     }
+     */
     
 //                [self.navigationController pushViewController:si2 animated:YES];
 //            }else{

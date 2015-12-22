@@ -17,6 +17,7 @@
 #import "GTMBase64.h"
 #import "MDRequestModel.h"
 #import "MDUserVO.h"
+#import "EaseMob.h"
 
 @interface BRSlogInViewController ()<sendInfoToCtr>
 
@@ -253,6 +254,14 @@
     
     //5.post请求
     [self postRequest];
+    
+    //环信登陆
+    [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:logInField.text password:password.text completion:^(NSDictionary *loginInfo, EMError *error) {
+        if (!error && loginInfo) {
+            MDLog(@"环信登陆成功！！%@",loginInfo);
+        }
+    } onQueue:nil];
+
     
 //    MXKit *MXObj = [MXKit shareMXKit];
 //    [MXObj init:MX_URL withPort:MX_PORT withMqttUrl:MX_IM_URL withMqttPort:MX_IM_PORT];

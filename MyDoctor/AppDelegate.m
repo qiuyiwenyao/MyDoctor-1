@@ -15,6 +15,7 @@
 #import "DocHomeViewController.h"
 #import "DocPatientViewController.h"
 #import "DocMyViewController.h"
+#import "EaseMob.h"
 
 @interface AppDelegate ()
 
@@ -35,6 +36,11 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    
+    [[EaseMob sharedInstance] registerSDKWithAppKey:@"crossgk#ehealth" apnsCertName:nil];//环信
+    [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
+
 
     NSString *homeDirectory = NSHomeDirectory();
     NSLog(@"path:%@", homeDirectory);
