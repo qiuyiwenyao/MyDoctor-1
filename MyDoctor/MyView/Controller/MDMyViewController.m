@@ -19,6 +19,8 @@
 #define IMAGECACHE  @"IMAGE/"
 #import "MDRequestModel.h"
 #import "GTMBase64.h"
+#import "AFNetworking.h"
+#import "UIKit+AFNetworking.h"
 
 @interface MDMyViewController ()<UITableViewDataSource,UITableViewDelegate,sendInfoToCtr>
 {
@@ -300,29 +302,107 @@
     image222 = [info objectForKey:UIImagePickerControllerEditedImage];
     
     FileUtils * fileUtil = [FileUtils sharedFileUtils];
-    //创建文件下载目录
+//    //创建文件下载目录
     NSString *path = [fileUtil createCachePath:IMAGECACHE];
     NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
     NSString * str=[stdDefault objectForKey:@"user_name"];
-//    NSString * user_Id=[stdDefault objectForKey:@"user_Id"];
+////    NSString * user_Id=[stdDefault objectForKey:@"user_Id"];
     NSString *uniquePath=[path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpg",str]];
-    BOOL result=[UIImageJPEGRepresentation(image222, 0.8)writeToFile:uniquePath atomically:YES];
-    NSString* date;
-    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
-    date = [formatter stringFromDate:[NSDate date]];
-    NSString * url =MDPath;// @"http://111.160.245.75:8082/CommunityWs//servlet/ShequServlet?";
-    MDRequestModel * model = [[MDRequestModel alloc] init];
-    model.path = url;
-    NSLog(@"%@",[MDUserVO userVO].userID);
-    NSString * nameAndPassword=[NSString stringWithFormat:@"10103@`3@`3@`%@@`1@`3@`%@@`%@",date,[MDUserVO userVO].userID,uniquePath];
-    nameAndPassword=[self GTMEncodeTest:nameAndPassword];
-    //    //post键值对
-    model.parameters = @{@"b":nameAndPassword};
-    model.delegate = self;
-    [model starRequest];
+//    BOOL result=[UIImageJPEGRepresentation(image222, 0.8)writeToFile:uniquePath atomically:YES];
+//    NSString* date;
+//    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+//    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+//    date = [formatter stringFromDate:[NSDate date]];
+//    NSString * url =MDPath;// @"http://111.160.245.75:8082/CommunityWs//servlet/ShequServlet?";
+//    MDRequestModel * model = [[MDRequestModel alloc] init];
+//    model.path = url;
+//    NSLog(@"%@",[MDUserVO userVO].userID);
+//    NSString * nameAndPassword=[NSString stringWithFormat:@"10103@`3@`3@`%@@`1@`3@`%@@`%@",date,[MDUserVO userVO].userID,uniquePath];
+//    nameAndPassword=[self GTMEncodeTest:nameAndPassword];
+//    //    //post键值对
+//    model.parameters = @{@"b":nameAndPassword};
+//    model.delegate = self;
+//    [model starRequest];
+//
     
     
+    
+    NSData* imageData = UIImageJPEGRepresentation(image222, 0.5);
+//
+//    NSMutableDictionary *parameter = [[NSMutableDictionary alloc] init];
+//    [parameter setObject:@"test222" forKey:@"b"];
+//    [parameter setObject:[MDUserVO userVO].userID forKey:@"name"];
+//    [parameter setObject:imageData forKey:@"f1"];
+//    
+//    NSURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://rmabcdef001:8080/CommunityWs/servlet/UploadPhoto" parameters:parameter constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//    
+//    } error:nil];
+//    
+//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//    
+//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"%@",responseObject);
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"%@",operation);
+//    }];
+    
+    
+    NSMutableDictionary *parameter = [[NSMutableDictionary alloc] init];
+    [parameter setObject:@"test222" forKey:@"b"];
+    [parameter setObject:[MDUserVO userVO].userID forKey:@"name"];
+    [parameter setObject:imageData forKey:@"f1"];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager setRequestSerializer:[AFJSONRequestSerializer serializer]];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+//    [manager.requestSerializer setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+//    
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/plain", nil];
+    
+    
+//    [manager POST:@"http://rmabcdef001:8080/CommunityWs/servlet/UploadPhoto" parameters:parameter constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//        [formData appendPartWithFileData:imageData name:@"f1"fileName:@"test.jpg"mimeType:@"image/jpg"];
+//    }success:^(AFHTTPRequestOperation *operation,id responseObject) {
+//        // upload succ
+//        NSLog(@"%@",operation);
+//    }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
+//        NSLog(@"#######upload error%@", error);
+//    }];
+    
+    [self uploadImage2Server:imageData callback:^(BOOL error, NSDictionary *resport) {
+        NSLog(@"%@",resport);
+    }];
+    
+    
+//    
+//    NSData *data = (UIImageJPEGRepresentation(image222, 0.7));
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    
+//    [manager.responseSerializer setAcceptableContentTypes: [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", nil]];
+//    
+//    NSDictionary *parameters = @{@"b":@"test222",
+//                                 
+//                                 @"username":[MDUserVO userVO].userID,
+//                                 
+//                                 @"file":data,
+//                                 
+//                                 @"flag":@"1"};
+//    
+//    NSLog(@"%@",data);
+//    NSLog(@"%@",parameters);
+//    [manager POST:@"http://rmabcdef001:8080/CommunityWs/servlet/UploadPhoto" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//        [formData appendPartWithFormData:data name:@"file"];
+//    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSString *str =  [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+//        
+//        UIImage *image = [UIImage imageWithData:responseObject];
+//        
+//        NSLog(@"结果是 == %@ ",image);
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//          NSLog(@"Error: %@", error);
+//    }];
 }
 //请求数据回调
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
@@ -363,4 +443,26 @@
     
     return encodeResult;
 }
+
+-(void)uploadImage2Server:(NSData *)data callback:(void (^)(BOOL, NSDictionary *))callback
+{
+//    NSURL *url = [NSURL URLWithString:@"http://rmabcdef001:8080/CommunityWs/servlet/UploadPhoto"];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:@"http://rmabcdef001:8080/CommunityWs/servlet/UploadPhoto" parameters:@{@"b":@"test222",@"username":@"1",@"fl":@"data",@"flag":@"1"} constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        NSLog(@"%@",data);
+        [formData appendPartWithFileData:data name:@"img" fileName:@"1234567.jpeg" mimeType:@"image/jpeg"];
+        NSLog(@"-----------------=====");
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"=================");
+        callback(YES,responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"=================");
+        callback(YES,nil);
+    }];
+    
+}
+
 @end

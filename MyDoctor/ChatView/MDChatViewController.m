@@ -47,7 +47,7 @@
     
     self.messageArray = [NSMutableArray array];
     self.timestamps = [NSMutableArray array];
-    
+//    [self addtext];
 }
 
 -(void)dealloc
@@ -65,19 +65,8 @@
 #pragma mark - Messages view delegate
 - (void)sendPressed:(UIButton *)sender withText:(NSString *)text
 {
-//    EMChatText *txtChat = [[EMChatText alloc] initWithText:@"要发送的消息"];
-//    EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithChatObject:txtChat];
-    
-    // 生成message
-//    EMMessage *message = [[EMMessage alloc] initWithReceiver:@"6001" bodies:@[body]];
-//    message.messageType = eMessageTypeChat;
-    
-//    [self sendMessage:message progress:(id<IEMChatProgressDelegate>) error:(EMError *__autoreleasing *)];
-    
     if (sender==nil) {
         sendOrput=0;
-        
-        
     }else{
         sendOrput=1;
         
@@ -234,6 +223,33 @@
     NSLog(@"Chose image!  Details:  %@", info);
     
     self.willSendImage = [info objectForKey:UIImagePickerControllerEditedImage];
+    
+    if (picker) {
+        sendOrput=1;
+        NSLog(@"%@",self.willSendImage);
+        EMChatImage *imgChat = [[EMChatImage alloc] initWithUIImage:self.willSendImage displayName:@"displayName"];
+        EMImageMessageBody *body = [[EMImageMessageBody alloc] initWithChatObject:imgChat];
+        // 生成message
+        
+        EMMessage *message = [[EMMessage alloc] initWithReceiver:@"18234087856" bodies:@[body]];
+        message.messageType = eMessageTypeChat;
+        EMError *error = nil;
+        id <IChatManager> chatManager = [[EaseMob sharedInstance] chatManager];
+        [chatManager sendMessage:message progress:nil error:&error];
+        if (error) {
+            UIAlertView * a = [[UIAlertView alloc] initWithTitle:@"error" message:@"发送失败" delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+            [a show];
+        }else {
+        }
+    }else{
+        sendOrput=0;
+        
+    }
+    [tapyArray addObject:[NSString stringWithFormat:@"%d",sendOrput]];
+    sendOrput=0;
+    
+    
+    
     [self.messageArray addObject:[NSDictionary dictionaryWithObject:self.willSendImage forKey:@"Image"]];
     [self.timestamps addObject:[NSDate date]];
     [self.tableView reloadData];
@@ -282,6 +298,41 @@
             NSLog(@"小图的secret -- %@"    ,body.thumbnailSecretKey);
             NSLog(@"小图的W -- %f ,大图的H -- %f",body.thumbnailSize.width,body.thumbnailSize.height);
             NSLog(@"小图的下载状态 -- %lu",body.thumbnailDownloadStatus);
+            
+            
+            id <IChatManager> chatManager = [[EaseMob sharedInstance] chatManager];
+            //获取缩略图
+            [chatManager asyncFetchMessageThumbnail:message progress:nil completion:^(EMMessage *aMessage, EMError *error) {
+                if (!error) {
+                    id<IEMMessageBody> msgBody = aMessage.messageBodies.firstObject;
+                    EMImageMessageBody *body1 = ((EMImageMessageBody *)msgBody);
+                    
+                    
+                    //                    UIImageView * imageV = [[UIImageView alloc] init];
+                    //                    [imageV sd_setImageWithURL:[NSURL URLWithString:body1.thumbnailRemotePath]];
+                    //                    [imageV sd_setImageWithURL:[NSURL URLWithString:@"/Users/WuJun/Library/Developer/CoreSimulator/Devices/57BBA3B7-984B-4421-8A28-1C98C0206CBD/data/Containers/Data/Application/273F97E8-22BC-4529-BB51-69FDF1249326/Library/appdata/18234087856/chat/13662142222/messages/thumb_43833480-a953-11e5-81af-217f4f418613"] placeholderImage:[UIImage imageNamed:@"葵花胃康灵.png"]];
+                    NSLog(@"%@",body1.thumbnailLocalPath);
+                    NSString *homeDirectory = NSHomeDirectory();
+                    NSLog(@"path:%@", homeDirectory);
+                    UIImage *imgFromUrl3=[[UIImage alloc]initWithContentsOfFile:body1.thumbnailLocalPath];//[NSString stringWithFormat:@"%@/Library/appdata/18234087856/chat/13662142222/messages/thumb_759ea8a0-a953-11e5-ace3-e70dc9229b06",homeDirectory]];
+                    
+                    
+                    NSLog(@"%@",imgFromUrl3);
+                    
+                    [tapyArray addObject:@"0"];
+                    [self.messageArray addObject:[NSDictionary dictionaryWithObject:imgFromUrl3 forKey:@"Image"]];
+                    [self.timestamps addObject:[NSDate date]];
+                    [self.tableView reloadData];
+                    [self scrollToBottomAnimated:YES];
+                    
+                    [self dismissViewControllerAnimated:YES completion:NULL];
+                    
+                }else{
+                    //                    [weakSelf showHint:NSLocalizedString(@"message.thumImageFail", @"thumbnail for failure!")];
+                }
+                
+            } onQueue:nil];
+            
         }
             break;
         case eMessageBodyType_Location:
@@ -338,7 +389,39 @@
             break;
     }
 }
-
+-(void) addtext{
+    //1.
+    EMConversation *conversation2 =  [[EaseMob sharedInstance].chatManager conversationForChatter:@"18234087856" conversationType:0] ;
+    NSString * context = @"";//用于制作对话框中的内容.(现在还没有分自己发送的还是别人发送的.)
+    NSArray * arrcon;
+    NSArray * arr;
+    long long timestamp = [[NSDate date] timeIntervalSince1970] * 1000 + 1;//制作时间戳
+    arr = [conversation2 loadAllMessages]; // 获得内存中所有的会话.
+    arrcon = [conversation2 loadNumbersOfMessages:10 before:timestamp]; //根据时间获得5调会话. (时间戳作用:获得timestamp这个时间以前的所有/5会话)
+    // 2.
+    for (EMMessage * hehe in arrcon) {
+        id<IEMMessageBody> messageBody = [hehe.messageBodies firstObject];
+        NSString *messageStr = nil;
+        //3.
+        messageStr = ((EMTextMessageBody *)messageBody).text;
+        //        [context stringByAppendingFormat:@"%@",messageStr ];
+        
+        if (![hehe.from isEqualToString:@"18234087856"]) {//如果是自己发送的.
+            context = [NSString stringWithFormat:@"%@\n\t\t\t\t\t我说:%@",context,messageStr];
+             sendOrput=1;
+            NSLog(@"%@",context);
+        }else{
+            context = [NSString stringWithFormat:@"%@\n%@",context,messageStr];
+            sendOrput=0;
+        }
+        
+    }
+    [tapyArray addObject:[NSString stringWithFormat:@"%d",sendOrput]];
+    UIButton * button=[[UIButton alloc] init];
+            [self sendPressed:button withText:context];
+    
+    sendOrput=0;
+}
 
 
 @end
