@@ -22,31 +22,40 @@
 #import "GTMBase64.h"
 #import "MDRequestModel.h"
 #import "EaseMob.h"
+#import "NIDropDown.h"
 
 
 #define autoSizeScaleX  (appWidth>320?appWidth/320:1)
 #define autoSizeScaleY  (appHeight>568?appHeight/568:1)
 #define T4FontSize (15*autoSizeScaleX)
-@interface BRSSignIn2ViewController ()<sendInfoToCtr>
+@interface BRSSignIn2ViewController ()<sendInfoToCtr,NIDropDownDelegate>
+
+@property(nonatomic,retain) UIButton * selectButton;
 
 @end
 
+
 @implementation BRSSignIn2ViewController
+
 {
     UITextField * number;
     UITextField * password;
     UITextField * password2;
     UITextField * IdNumber;
-    UITextField * village;
+//    UITextField * village;
     UITextField * housenumber;
-    
     
     UITextField *sexField;
     UIButton *maleButton;
     UIButton *femaleButton;
     int sex;
     
+    NIDropDown * dropDown;
+    int villageID;
+    
 }
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -208,18 +217,29 @@
     }];
     
     
-    village = [[UITextField alloc] init];
-    [village setBorderStyle:UITextBorderStyleLine]; //外框类型
-    village.returnKeyType = UIReturnKeyNext;  //键盘返回类型
-    village.delegate = self;
-    village.backgroundColor=[UIColor whiteColor];
-    village.keyboardType = UIKeyboardTypeDefault;//键盘显示类型
-    village.tag=4;
-    village.layer.borderColor=[[UIColor colorWithRed:222/255.0 green:222/255.0 blue:222/255.0 alpha:1]CGColor];
-    village.layer.borderWidth= 1.0f;
-    village.placeholder=@"小区名称";
-    village.leftViewMode = UITextFieldViewModeAlways;
-    [self.view addSubview:village];
+    _selectButton = [[UIButton alloc] init];
+//    [UIButton setBorderStyle:UITextBorderStyleLine]; //外框类型
+//    village.returnKeyType = UIReturnKeyNext;  //键盘返回类型
+//    village.delegate = self;
+    _selectButton.backgroundColor=[UIColor whiteColor];
+//    village.keyboardType = UIKeyboardTypeDefault;//键盘显示类型
+//    selectButton.tag=4;
+    _selectButton.layer.borderColor=[[UIColor colorWithRed:222/255.0 green:222/255.0 blue:222/255.0 alpha:1]CGColor];
+    _selectButton.layer.borderWidth= 1.0f;
+//    village.placeholder=@"小区名称";
+    [_selectButton setTitle:@"请选择小区" forState:UIControlStateNormal];
+    [_selectButton setTitleColor:[UIColor colorWithRed:188.0/255.0 green:188.0/255.0 blue:188.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+    _selectButton.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
+    [_selectButton addTarget:self action:@selector(selectBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+//    village.leftViewMode = UITextFieldViewModeAlways;
+    [self.view addSubview:_selectButton];
+    
+    //view添加点击事件，使下拉框收回
+//    UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+//    tapGr.cancelsTouchesInView = NO;
+//    tapGr.delegate = self;
+//    [self.view addGestureRecognizer:tapGr];
+
     
     housenumber = [[UITextField alloc] init];
     [housenumber setBorderStyle:UITextBorderStyleLine]; //外框类型
@@ -234,7 +254,7 @@
     housenumber.leftViewMode = UITextFieldViewModeAlways;
     [self.view addSubview:housenumber];
     
-    [village mas_makeConstraints:^(MX_MASConstraintMaker *make) {
+    [_selectButton mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
         make.top.equalTo(self.view.mas_top).with.offset(185+50);
         make.left.equalTo(self.view.mas_left).with.offset(15);
@@ -429,9 +449,78 @@
     [password resignFirstResponder];
     [password2 resignFirstResponder];
     [IdNumber resignFirstResponder];
-    [village resignFirstResponder];
+    [_selectButton resignFirstResponder];
     [housenumber resignFirstResponder];
 }
+
+//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+//    //    [textFiled resignFirstResponder];
+//    [dropDown hideDropDown:_selectButton];
+//    [self rel];
+//    //    NSLog(@"12");
+//}
+
+
+//小区选择下拉框
+-(void)selectBtnClick:(id)sender
+{
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"建昌里", @"建明里", @"长青北里", @"育红东里",@"育红东里平方",@"育红路7号院",@"中山北里",@"诗景颂苑",@"红波西里",nil];
+    
+//    NSDictionary * villageDic = @[@"建昌里":3;@"建明里":4;@"长青北里":6;@"育红东里":7;@"育红东里平方":8;@"育红路7号院":9;@"中山北里":10;@"诗景颂苑":12;@"红波西里";13];
+//    NSDictionary * villageDic =  [NSDictionary dictionaryWithObjectsAndKeys:@"建昌里",3,@"建明里",4,@"长青北里",6,@"育红东里",7,@"育红东里平方",8,@"育红路7号院",9,@"中山北里",10,@"诗景颂苑",12,@"红波西里",13, nil];
+    
+    if(dropDown == nil) {
+        CGFloat f = _selectButton.height*arr.count;//_selectButton.height*arr.count;
+        dropDown = [[NIDropDown alloc] init];
+        dropDown.Offset = 1;
+        dropDown.delegate = self;
+        [dropDown showDropDown:sender :&f :arr];
+        dropDown.font = 10;
+//        dropDown.isOffset = 0;
+//        dropDown.Offset = 400;
+//        dropDown.textshowStyle = TextShowStyleCenter;
+        
+    }
+    else {
+        [dropDown hideDropDown:sender];
+        [self rel];
+    }
+    
+}
+
+- (void) niDropDownDelegateMethod: (NIDropDown *) sender {
+    [self rel];
+}
+
+-(void)rel{
+    dropDown = nil;
+}
+
+////判断点击的是哪个view，确定是否响应事件
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+//    if(touch.view != self.view){
+//        return NO;
+//    }else
+//        return YES;
+//}
+//
+////点击事件，使下拉框收回
+//-(void)viewTapped:(UITapGestureRecognizer*)tapGr
+//{
+//    [dropDown hideDropDown:selectButton];
+//    [self rel];
+//    NSLog(@"12");
+//}
+//
+//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+//    //    [textFiled resignFirstResponder];
+//    [dropDown hideDropDown:selectButton];
+//    [self rel];
+//        NSLog(@"12333");
+//}
+
+
 
 #pragma mark - POST请求
 - (void)postRequest
@@ -442,13 +531,17 @@
     [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
     date = [formatter stringFromDate:[NSDate date]];
     NSString * url = @"http://111.160.245.75:8082/CommunityWs//servlet/ShequServlet?";
+    NSDictionary * villageDic =  @{@"建昌里":@3,@"建明里":@4,@"长青北里":@6,@"育红东里":@7,@"育红东里平方":@8,@"育红路7号院":@9,@"中山北里":@10,@"诗景颂苑":@12,@"红波西里":@13};
+    villageID = (int)[villageDic objectForKey:_selectButton.titleLabel.text];
+    NSLog(@"villageDic%@",villageDic);
+    
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = url;
     NSArray *array = [housenumber.text componentsSeparatedByString:@"-"];
     if ([array count]==1) {
         array=[housenumber.text componentsSeparatedByString:@"－"];
     }
-    NSString * nameAndPassword=[NSString stringWithFormat:@"10101@`3@`3@`%@@`1@`3@`%@@`%@@`%@@`%@@`%@@`%@",date,number.text,self.login_name,password.text,village.text,array[0],array[1]];
+    NSString * nameAndPassword=[NSString stringWithFormat:@"10101@`3@`3@`%@@`1@`3@`%@@`%@@`%@@`%d@`%@@`%@",date,number.text,self.login_name,password.text,villageID,array[0],array[1]];
     nameAndPassword=[self GTMEncodeTest:nameAndPassword];
 
     //    //post键值对
@@ -481,7 +574,7 @@
 {
     NSMutableDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
 //    NSLog(@"%@",dic);
-    MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    MDLog(@"登陆信息：%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
     
     [dic setValue:number.text forKey:@"user_Name"];
     MDUserVO *user = [MDUserVO registeredFromDignInUser:dic];

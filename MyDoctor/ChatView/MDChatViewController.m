@@ -36,7 +36,7 @@
     sendOrput=0;
     self.title = @"聊天";
     tapyArray=[[NSMutableArray alloc] init];
-    EMConversation *conversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"18234087856" conversationType:eConversationTypeChat];
+    EMConversation *conversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"13662142222" conversationType:eConversationTypeChat];
     conversation.enableReceiveMessage=YES;
     
     [[EaseMob sharedInstance].chatManager removeDelegate:self];
@@ -73,7 +73,7 @@
         EMChatText *txtChat = [[EMChatText alloc] initWithText:text];
         EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithChatObject:txtChat];
         // 生成message
-        EMMessage *message = [[EMMessage alloc] initWithReceiver:@"18234087856" bodies:@[body]];
+        EMMessage *message = [[EMMessage alloc] initWithReceiver:@"13662142222" bodies:@[body]];
         message.messageType = eMessageTypeChat;
         EMError *error = nil;
         id <IChatManager> chatManager = [[EaseMob sharedInstance] chatManager];
