@@ -95,7 +95,7 @@
     
     [MDUserVO  initWithCoder:user];
     
-    NSLog(@"%@",[dic objectForKey:@"msg"]);
+    NSLog(@"%@",dic);
     
     if ([[dic objectForKey:@"msg"] isEqualToString:@"登录成功"]) {
         [[NSNotificationCenter defaultCenter]
@@ -259,7 +259,7 @@
     
     //环信登陆
     [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:logInField.text password:password.text completion:^(NSDictionary *loginInfo, EMError *error) {
-        if (!error && loginInfo) {
+        if (loginInfo) {
             MDLog(@"环信登陆成功！！%@",loginInfo);
             //设置是否自动登录
             [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];

@@ -76,25 +76,29 @@
     
     if (sender==nil) {
         sendOrput=0;
+        
+        
     }else{
         sendOrput=1;
+        
+        EMChatText *txtChat = [[EMChatText alloc] initWithText:text];
+        EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithChatObject:txtChat];
+        // 生成message
+        EMMessage *message = [[EMMessage alloc] initWithReceiver:@"18234087856" bodies:@[body]];
+        message.messageType = eMessageTypeChat;
+        EMError *error = nil;
+        id <IChatManager> chatManager = [[EaseMob sharedInstance] chatManager];
+        //    [chatManager asyncResendMessage:message progress:nil];
+        [chatManager sendMessage:message progress:nil error:&error];
+        if (error) {
+            UIAlertView * a = [[UIAlertView alloc] initWithTitle:@"error" message:@"发送失败" delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+            [a show];
+        }else {
+        }
     }
     [tapyArray addObject:[NSString stringWithFormat:@"%d",sendOrput]];
     
-    EMChatText *txtChat = [[EMChatText alloc] initWithText:text];
-    EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithChatObject:txtChat];
-    // 生成message
-    EMMessage *message = [[EMMessage alloc] initWithReceiver:@"18234087856" bodies:@[body]];
-    message.messageType = eMessageTypeChat;
-    EMError *error = nil;
-    id <IChatManager> chatManager = [[EaseMob sharedInstance] chatManager];
-    //    [chatManager asyncResendMessage:message progress:nil];
-    [chatManager sendMessage:message progress:nil error:&error];
-    if (error) {
-        UIAlertView * a = [[UIAlertView alloc] initWithTitle:@"error" message:@"发送失败" delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
-        [a show];
-    }else {
-    }
+   
     sendOrput=0;
     
     [self.messageArray addObject:[NSDictionary dictionaryWithObject:text forKey:@"Text"]];
