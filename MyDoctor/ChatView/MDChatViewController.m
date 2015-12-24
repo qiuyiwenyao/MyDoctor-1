@@ -231,7 +231,7 @@
         EMImageMessageBody *body = [[EMImageMessageBody alloc] initWithChatObject:imgChat];
         // 生成message
         
-        EMMessage *message = [[EMMessage alloc] initWithReceiver:@"18234087856" bodies:@[body]];
+        EMMessage *message = [[EMMessage alloc] initWithReceiver:@"13662142222" bodies:@[body]];
         message.messageType = eMessageTypeChat;
         EMError *error = nil;
         id <IChatManager> chatManager = [[EaseMob sharedInstance] chatManager];
@@ -391,7 +391,7 @@
 }
 -(void) addtext{
     //1.
-    EMConversation *conversation2 =  [[EaseMob sharedInstance].chatManager conversationForChatter:@"18234087856" conversationType:0] ;
+    EMConversation *conversation2 =  [[EaseMob sharedInstance].chatManager conversationForChatter:@"13662142222" conversationType:0] ;
     NSString * context = @"";//用于制作对话框中的内容.(现在还没有分自己发送的还是别人发送的.)
     NSArray * arrcon;
     NSArray * arr;
