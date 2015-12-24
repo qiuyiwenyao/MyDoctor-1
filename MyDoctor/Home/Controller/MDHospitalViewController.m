@@ -9,7 +9,8 @@
 #import "MDHospitalViewController.h"
 #import "BRSlogInViewController.h"
 #import "MDChatViewController.h"
-
+#import "ChatViewController.h"
+#import "EaseMob.h"
 
 @interface MDHospitalViewController ()<UIAlertViewDelegate>
 
@@ -132,9 +133,18 @@
 
 {
 
-    MDChatViewController * chatVC = [[MDChatViewController alloc] init];
-    chatVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:chatVC animated:YES];
+//    MDChatViewController * chatVC = [[MDChatViewController alloc] init];
+//    chatVC.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:chatVC animated:YES];
+    
+    
+    EMConversation *conversation =  [[EaseMob sharedInstance].chatManager conversationForChatter:@"13662142222" conversationType:0] ;
+    NSString *chatter = conversation.chatter;
+    ChatViewController * chatController = [[ChatViewController alloc] initWithChatter:chatter
+                                                conversationType:conversation.conversationType];
+    chatController.title = @"医生";
+    chatController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:chatController animated:YES];
     
 
 }
