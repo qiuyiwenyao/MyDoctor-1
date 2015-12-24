@@ -286,6 +286,11 @@
 		6AB9B5F81C28E43A004BF6A7 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB9B5F71C28E43A004BF6A7 /* libresolv.tbd */; };
 		6AB9B5FA1C28E45A004BF6A7 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB9B5F91C28E45A004BF6A7 /* libiconv.tbd */; };
 		6AB9B5FC1C28E469004BF6A7 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB9B5FB1C28E469004BF6A7 /* libz.tbd */; };
+		6AB9B6881C2B8A9D004BF6A7 /* MDDoctorServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB9B6871C2B8A9D004BF6A7 /* MDDoctorServiceViewController.m */; };
+		6AB9B68C1C2B8B91004BF6A7 /* MDDoctorServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB9B68A1C2B8B91004BF6A7 /* MDDoctorServiceCell.m */; };
+		6AB9B68D1C2B8B91004BF6A7 /* MDDoctorServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AB9B68B1C2B8B91004BF6A7 /* MDDoctorServiceCell.xib */; };
+		6AB9B6901C2BA47C004BF6A7 /* MDMoreDocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB9B68F1C2BA47C004BF6A7 /* MDMoreDocViewController.m */; };
+		6AB9B6931C2BBCCD004BF6A7 /* MDDocModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB9B6921C2BBCCD004BF6A7 /* MDDocModel.m */; };
 		6AF2021F1C083F4000933EAF /* activityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2021D1C083F4000933EAF /* activityCell.m */; };
 		6AF202201C083F4000933EAF /* activityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF2021E1C083F4000933EAF /* activityCell.xib */; };
 		6AF202271C08498100933EAF /* MDExpertConsultationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF202261C08498100933EAF /* MDExpertConsultationViewController.m */; };
@@ -831,6 +836,15 @@
 		6AB9B5F71C28E43A004BF6A7 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		6AB9B5F91C28E45A004BF6A7 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		6AB9B5FB1C28E469004BF6A7 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		6AB9B6861C2B8A9D004BF6A7 /* MDDoctorServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDoctorServiceViewController.h; sourceTree = "<group>"; };
+		6AB9B6871C2B8A9D004BF6A7 /* MDDoctorServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDoctorServiceViewController.m; sourceTree = "<group>"; };
+		6AB9B6891C2B8B91004BF6A7 /* MDDoctorServiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDDoctorServiceCell.h; path = Home/View/MDDoctorServiceCell.h; sourceTree = "<group>"; };
+		6AB9B68A1C2B8B91004BF6A7 /* MDDoctorServiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDDoctorServiceCell.m; path = Home/View/MDDoctorServiceCell.m; sourceTree = "<group>"; };
+		6AB9B68B1C2B8B91004BF6A7 /* MDDoctorServiceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MDDoctorServiceCell.xib; path = Home/View/MDDoctorServiceCell.xib; sourceTree = "<group>"; };
+		6AB9B68E1C2BA47C004BF6A7 /* MDMoreDocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMoreDocViewController.h; sourceTree = "<group>"; };
+		6AB9B68F1C2BA47C004BF6A7 /* MDMoreDocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMoreDocViewController.m; sourceTree = "<group>"; };
+		6AB9B6911C2BBCCD004BF6A7 /* MDDocModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDDocModel.h; path = Home/Model/MDDocModel.h; sourceTree = "<group>"; };
+		6AB9B6921C2BBCCD004BF6A7 /* MDDocModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDDocModel.m; path = Home/Model/MDDocModel.m; sourceTree = "<group>"; };
 		6AF2021C1C083F4000933EAF /* activityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = activityCell.h; path = Home/View/activityCell.h; sourceTree = "<group>"; };
 		6AF2021D1C083F4000933EAF /* activityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = activityCell.m; path = Home/View/activityCell.m; sourceTree = "<group>"; };
 		6AF2021E1C083F4000933EAF /* activityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = activityCell.xib; path = Home/View/activityCell.xib; sourceTree = "<group>"; };
@@ -1405,6 +1419,8 @@
 				6AB9B1421C210F3B004BF6A7 /* MDnoticeCenterModel.m */,
 				15528BC71C28DFCF00B1F409 /* MDConsultDrugModel.h */,
 				15528BC81C28DFCF00B1F409 /* MDConsultDrugModel.m */,
+				6AB9B6911C2BBCCD004BF6A7 /* MDDocModel.h */,
+				6AB9B6921C2BBCCD004BF6A7 /* MDDocModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1425,6 +1441,9 @@
 				6AB9B14B1C239E21004BF6A7 /* MDActivityBtnCell.h */,
 				6AB9B14C1C239E21004BF6A7 /* MDActivityBtnCell.m */,
 				6AB9B14D1C239E21004BF6A7 /* MDActivityBtnCell.xib */,
+				6AB9B6891C2B8B91004BF6A7 /* MDDoctorServiceCell.h */,
+				6AB9B68A1C2B8B91004BF6A7 /* MDDoctorServiceCell.m */,
+				6AB9B68B1C2B8B91004BF6A7 /* MDDoctorServiceCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1490,6 +1509,10 @@
 				6AB9B1491C23934C004BF6A7 /* MDNoticeDetailViewController.m */,
 				6A3EF84E1C06038B00923D03 /* MDHospitalViewController.h */,
 				6A3EF84F1C06038B00923D03 /* MDHospitalViewController.m */,
+				6AB9B6861C2B8A9D004BF6A7 /* MDDoctorServiceViewController.h */,
+				6AB9B6871C2B8A9D004BF6A7 /* MDDoctorServiceViewController.m */,
+				6AB9B68E1C2BA47C004BF6A7 /* MDMoreDocViewController.h */,
+				6AB9B68F1C2BA47C004BF6A7 /* MDMoreDocViewController.m */,
 				153ED8591C0BF74D00171DFA /* Drug(药品) */,
 				6A3EF8061C05A20400923D03 /* MDNurseViewController.h */,
 				6A3EF8071C05A20400923D03 /* MDNurseViewController.m */,
@@ -2266,6 +2289,7 @@
 				6A6523951C20080000227C63 /* bubble-flat-outgoing-selected@2x.png in Resources */,
 				6AF202391C0B45F000933EAF /* 专家头像@2x.png in Resources */,
 				6A65239D1C20080000227C63 /* bubble-square-outgoing-selected@2x.png in Resources */,
+				6AB9B68D1C2B8B91004BF6A7 /* MDDoctorServiceCell.xib in Resources */,
 				6A6523971C20080000227C63 /* bubble-flat-outgoing@2x.png in Resources */,
 				6AB9B1391C2013D0004BF6A7 /* 大叔.png in Resources */,
 				6A3EF7B81C054E3400923D03 /* notes@2x.png in Resources */,
@@ -2361,6 +2385,7 @@
 				6AB9B1141C2011DA004BF6A7 /* DocMyViewController.m in Sources */,
 				6A6520EB1C182C6400227C63 /* JSMessageSoundEffect.m in Sources */,
 				6A3EF8081C05A20400923D03 /* MDNurseViewController.m in Sources */,
+				6AB9B6931C2BBCCD004BF6A7 /* MDDocModel.m in Sources */,
 				6A651F241C18260200227C63 /* MDChatViewController.m in Sources */,
 				153C1E831C03FB8C00F87014 /* MX_MASViewAttribute.m in Sources */,
 				155CEC311C0E81B8006B5CFA /* AFNetworkActivityIndicatorManager.m in Sources */,
@@ -2395,6 +2420,7 @@
 				15FBDD3D1C152A18009E7E39 /* DocAllWorkViewController.m in Sources */,
 				6A3EF8561C0603DE00923D03 /* MDActivityViewController.m in Sources */,
 				6AF202501C0C1B4F00933EAF /* MDMyDoctorModel.m in Sources */,
+				6AB9B6901C2BA47C004BF6A7 /* MDMoreDocViewController.m in Sources */,
 				15FBDD5D1C155898009E7E39 /* DocFinishPatientViewController.m in Sources */,
 				153ED8431C083DB500171DFA /* KTSelectDatePicker.m in Sources */,
 				6A6520F21C182C6400227C63 /* UIView+AnimationOptionsForCurve.m in Sources */,
@@ -2424,6 +2450,7 @@
 				6A3EF7DD1C058F1200923D03 /* MDMyViewController.m in Sources */,
 				155CEC301C0E81B8006B5CFA /* AFURLSessionManager.m in Sources */,
 				155CEC341C0E81B8006B5CFA /* UIButton+AFNetworking.m in Sources */,
+				6AB9B68C1C2B8B91004BF6A7 /* MDDoctorServiceCell.m in Sources */,
 				6A6520E81C182C6400227C63 /* JSBubbleView.m in Sources */,
 				6A3EF85C1C06FD5900923D03 /* MDRecoveryViewController.m in Sources */,
 				1578343C1C20051E00421167 /* FileUtils.m in Sources */,
@@ -2448,6 +2475,7 @@
 				153C1E841C03FB8C00F87014 /* MX_MASViewConstraint.m in Sources */,
 				153C1E811C03FB8C00F87014 /* MX_MASConstraintMaker.m in Sources */,
 				6AB9B14A1C23934C004BF6A7 /* MDNoticeDetailViewController.m in Sources */,
+				6AB9B6881C2B8A9D004BF6A7 /* MDDoctorServiceViewController.m in Sources */,
 				6A6520E71C182C6400227C63 /* JSBubbleMessageCell.m in Sources */,
 				6AF2026B1C0D71AB00933EAF /* MDFeedBackViewController.m in Sources */,
 				6A3EF8501C06038B00923D03 /* MDHospitalViewController.m in Sources */,

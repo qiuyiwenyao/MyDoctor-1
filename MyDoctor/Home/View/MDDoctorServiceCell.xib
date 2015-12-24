@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="MDDoctorServiceCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="84.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="默认头像.png" translatesAutoresizingMaskIntoConstraints="NO" id="Jd3-p3-f3a">
+                        <rect key="frame" x="20" y="18" width="50" height="50"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Jd3-p3-f3a" secondAttribute="height" multiplier="1:1" id="2Bi-HV-DPw"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="内科" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lty-ir-CvP">
+                        <rect key="frame" x="188" y="8" width="105" height="21"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.40784313725490196" green="0.40784313725490196" blue="0.40784313725490196" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="吴彦祖医生" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLH-rh-Vpz">
+                        <rect key="frame" x="78" y="8" width="102" height="21"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.062745098039215685" green="0.062745098039215685" blue="0.062745098039215685" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="各种胃腔镜手术" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ust-dJ-mEB">
+                        <rect key="frame" x="78" y="55" width="281" height="21"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="天津市第一中心医院" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="StV-cU-EMB">
+                        <rect key="frame" x="78" y="32" width="181" height="21"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <animations/>
+                <constraints>
+                    <constraint firstItem="Lty-ir-CvP" firstAttribute="leading" secondItem="tLH-rh-Vpz" secondAttribute="trailing" constant="8" id="1W4-Xh-9xY"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ust-dJ-mEB" secondAttribute="trailing" constant="8" id="3C2-kr-Re2"/>
+                    <constraint firstAttribute="topMargin" secondItem="tLH-rh-Vpz" secondAttribute="top" id="3aS-9O-9RV"/>
+                    <constraint firstItem="StV-cU-EMB" firstAttribute="leading" secondItem="Jd3-p3-f3a" secondAttribute="trailing" constant="8" id="4jZ-bR-P3q"/>
+                    <constraint firstAttribute="topMargin" secondItem="Lty-ir-CvP" secondAttribute="top" id="5ki-24-4uZ"/>
+                    <constraint firstItem="StV-cU-EMB" firstAttribute="top" secondItem="tLH-rh-Vpz" secondAttribute="bottom" constant="3" id="8z5-Uc-Krc"/>
+                    <constraint firstItem="Jd3-p3-f3a" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="AS7-gc-qhC"/>
+                    <constraint firstItem="ust-dJ-mEB" firstAttribute="leading" secondItem="Jd3-p3-f3a" secondAttribute="trailing" constant="8" id="BRK-Bq-OvS"/>
+                    <constraint firstItem="Jd3-p3-f3a" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="12" id="GER-wO-bfJ"/>
+                    <constraint firstItem="ust-dJ-mEB" firstAttribute="width" secondItem="StV-cU-EMB" secondAttribute="width" id="HNQ-Tc-z9C"/>
+                    <constraint firstItem="StV-cU-EMB" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="I1M-PO-4Pk"/>
+                    <constraint firstItem="tLH-rh-Vpz" firstAttribute="leading" secondItem="StV-cU-EMB" secondAttribute="leading" id="Mn5-tf-FOO"/>
+                    <constraint firstItem="ust-dJ-mEB" firstAttribute="top" secondItem="StV-cU-EMB" secondAttribute="bottom" constant="2" id="PUQ-sC-wco"/>
+                    <constraint firstItem="tLH-rh-Vpz" firstAttribute="leading" secondItem="Jd3-p3-f3a" secondAttribute="trailing" constant="8" id="QJA-m0-QPl"/>
+                    <constraint firstItem="Lty-ir-CvP" firstAttribute="leading" secondItem="tLH-rh-Vpz" secondAttribute="trailing" constant="8" id="StQ-OY-FUC"/>
+                    <constraint firstAttribute="topMargin" secondItem="tLH-rh-Vpz" secondAttribute="top" id="XG9-SU-UyM"/>
+                    <constraint firstItem="ust-dJ-mEB" firstAttribute="leading" secondItem="StV-cU-EMB" secondAttribute="leading" id="d5D-xe-G9U"/>
+                    <constraint firstAttribute="topMargin" secondItem="Lty-ir-CvP" secondAttribute="top" id="j8P-tw-3lZ"/>
+                    <constraint firstItem="Jd3-p3-f3a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="lJ4-fn-Opx"/>
+                    <constraint firstItem="StV-cU-EMB" firstAttribute="top" secondItem="tLH-rh-Vpz" secondAttribute="bottom" constant="3" id="ofJ-fm-ouh"/>
+                    <constraint firstItem="StV-cU-EMB" firstAttribute="leading" secondItem="Jd3-p3-f3a" secondAttribute="trailing" constant="8" id="ojJ-tE-sSR"/>
+                    <constraint firstItem="ust-dJ-mEB" firstAttribute="leading" secondItem="Jd3-p3-f3a" secondAttribute="trailing" constant="8" id="tjh-Jx-H3M"/>
+                    <constraint firstItem="ust-dJ-mEB" firstAttribute="top" secondItem="StV-cU-EMB" secondAttribute="bottom" constant="2" id="u4W-Vv-ZdS"/>
+                    <constraint firstItem="tLH-rh-Vpz" firstAttribute="leading" secondItem="Jd3-p3-f3a" secondAttribute="trailing" constant="8" id="x8t-YA-Dni"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="3aS-9O-9RV"/>
+                        <exclude reference="Mn5-tf-FOO"/>
+                        <exclude reference="QJA-m0-QPl"/>
+                        <exclude reference="4jZ-bR-P3q"/>
+                        <exclude reference="I1M-PO-4Pk"/>
+                        <exclude reference="ofJ-fm-ouh"/>
+                        <exclude reference="PUQ-sC-wco"/>
+                        <exclude reference="tjh-Jx-H3M"/>
+                        <exclude reference="1W4-Xh-9xY"/>
+                        <exclude reference="5ki-24-4uZ"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <animations/>
+            <connections>
+                <outlet property="branchLab" destination="Lty-ir-CvP" id="3pW-oL-Jw0"/>
+                <outlet property="headView" destination="Jd3-p3-f3a" id="KCs-J0-YI7"/>
+                <outlet property="hospitalLab" destination="StV-cU-EMB" id="bRb-OD-1ZH"/>
+                <outlet property="majorLab" destination="ust-dJ-mEB" id="3In-6C-s6I"/>
+                <outlet property="nameLab" destination="tLH-rh-Vpz" id="FHe-wU-tCY"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="默认头像.png" width="99" height="77"/>
+    </resources>
+</document>

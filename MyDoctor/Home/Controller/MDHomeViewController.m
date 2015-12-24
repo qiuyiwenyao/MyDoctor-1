@@ -18,6 +18,7 @@
 #import "MDSmallADView.h"
 #import "MDActivityBtnCell.h"
 #import "MDHomeCell1.h"
+#import "MDDoctorServiceViewController.h"
 
 @interface MDHomeViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -208,9 +209,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section==0) {
-        MDHospitalViewController * hospitalVC = [[MDHospitalViewController alloc] init];
-        hospitalVC.hidesBottomBarWhenPushed=YES;
-        [self.navigationController pushViewController:hospitalVC animated:YES];
+        MDDoctorServiceViewController * doctorServiceVC = [[MDDoctorServiceViewController alloc] init];
+        doctorServiceVC.hidesBottomBarWhenPushed=YES;
+        [self.navigationController pushViewController:doctorServiceVC animated:YES];
     }else if(indexPath.section==1){
         MDConsultDrupViewController * consultDrupVC = [[MDConsultDrupViewController alloc] init];
         consultDrupVC.hidesBottomBarWhenPushed=YES;
