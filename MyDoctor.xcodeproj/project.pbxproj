@@ -589,6 +589,8 @@
 		6AB9BD0F1C2BED22004BF6A7 /* chat_sender_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AB9BD031C2BED22004BF6A7 /* chat_sender_bg@2x.png */; };
 		6AB9BD1C1C2BEEDD004BF6A7 /* imageDownloadFail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AB9BD1A1C2BEEDD004BF6A7 /* imageDownloadFail@2x.png */; };
 		6AB9BD1D1C2BEEDD004BF6A7 /* messageSendFail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AB9BD1B1C2BEEDD004BF6A7 /* messageSendFail@2x.png */; };
+		6AB9BD1F1C2BEF7E004BF6A7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB9BD1E1C2BEF7E004BF6A7 /* MapKit.framework */; };
+		6AB9BD211C2BEF8B004BF6A7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB9BD201C2BEF8B004BF6A7 /* CoreLocation.framework */; };
 		6AF2021F1C083F4000933EAF /* activityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2021D1C083F4000933EAF /* activityCell.m */; };
 		6AF202201C083F4000933EAF /* activityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF2021E1C083F4000933EAF /* activityCell.xib */; };
 		6AF202271C08498100933EAF /* MDExpertConsultationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF202261C08498100933EAF /* MDExpertConsultationViewController.m */; };
@@ -1562,6 +1564,8 @@
 		6AB9BD031C2BED22004BF6A7 /* chat_sender_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_sender_bg@2x.png"; sourceTree = "<group>"; };
 		6AB9BD1A1C2BEEDD004BF6A7 /* imageDownloadFail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imageDownloadFail@2x.png"; sourceTree = "<group>"; };
 		6AB9BD1B1C2BEEDD004BF6A7 /* messageSendFail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "messageSendFail@2x.png"; sourceTree = "<group>"; };
+		6AB9BD1E1C2BEF7E004BF6A7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		6AB9BD201C2BEF8B004BF6A7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6AF2021C1C083F4000933EAF /* activityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = activityCell.h; path = Home/View/activityCell.h; sourceTree = "<group>"; };
 		6AF2021D1C083F4000933EAF /* activityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = activityCell.m; path = Home/View/activityCell.m; sourceTree = "<group>"; };
 		6AF2021E1C083F4000933EAF /* activityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = activityCell.xib; path = Home/View/activityCell.xib; sourceTree = "<group>"; };
@@ -1599,6 +1603,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AB9BD211C2BEF8B004BF6A7 /* CoreLocation.framework in Frameworks */,
+				6AB9BD1F1C2BEF7E004BF6A7 /* MapKit.framework in Frameworks */,
 				6AB9BB271C2BE776004BF6A7 /* libMobClickLibrary.a in Frameworks */,
 				6AB9BB341C2BE7AE004BF6A7 /* libopencore-amrnb.a in Frameworks */,
 				6AB9B8741C2BDB7F004BF6A7 /* AddressBook.framework in Frameworks */,
@@ -1922,6 +1928,8 @@
 		155CEC431C0E8383006B5CFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6AB9BD201C2BEF8B004BF6A7 /* CoreLocation.framework */,
+				6AB9BD1E1C2BEF7E004BF6A7 /* MapKit.framework */,
 				6AB9B8731C2BDB7F004BF6A7 /* AddressBook.framework */,
 				6AB9B8711C2BDB3F004BF6A7 /* ImageIO.framework */,
 				6AB9B86F1C2BDB36004BF6A7 /* CoreText.framework */,
@@ -3739,6 +3747,11 @@
 					15AE53681C02F0680013FF1B = {
 						CreatedOnToolsVersion = 6.3;
 						DevelopmentTeam = NS84658YLW;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					15AE53811C02F0680013FF1B = {
 						CreatedOnToolsVersion = 6.3;
