@@ -613,6 +613,7 @@
 		6AF2026B1C0D71AB00933EAF /* MDFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2026A1C0D71AB00933EAF /* MDFeedBackViewController.m */; };
 		6AF202791C0D979400933EAF /* 下拉框@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF202781C0D979400933EAF /* 下拉框@2x.png */; };
 		6AF2027B1C0D979A00933EAF /* 下拉框@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF2027A1C0D979A00933EAF /* 下拉框@3x.png */; };
+		6AF404731C2CD45800D46F2A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6AF404751C2CD45800D46F2A /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1596,6 +1597,10 @@
 		6AF2026A1C0D71AB00933EAF /* MDFeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDFeedBackViewController.m; sourceTree = "<group>"; };
 		6AF202781C0D979400933EAF /* 下拉框@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "下拉框@2x.png"; sourceTree = "<group>"; };
 		6AF2027A1C0D979A00933EAF /* 下拉框@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "下拉框@3x.png"; sourceTree = "<group>"; };
+		6AF404741C2CD45800D46F2A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6AF404761C2CD51800D46F2A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		6AF404771C2CD51800D46F2A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		6AF404781C2CD51800D46F2A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2523,6 +2528,7 @@
 		6A8F12B11C040845001ABE2F /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				6AF404751C2CD45800D46F2A /* Localizable.strings */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -3766,6 +3772,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 15AE53601C02F0680013FF1B;
 			productRefGroup = 15AE536A1C02F0680013FF1B /* Products */;
@@ -3868,6 +3875,7 @@
 				6AB9BD071C2BED22004BF6A7 /* chat_sender_audio_playing_001@2x.png in Resources */,
 				6AB9BC331C2BEA61004BF6A7 /* group_joinpublicgroup@2x.png in Resources */,
 				6AB9BBDE1C2BEA0E004BF6A7 /* VoiceSearchFeedback005.png in Resources */,
+				6AF404731C2CD45800D46F2A /* Localizable.strings in Resources */,
 				6AF202551C0C1F2100933EAF /* MDMyDoctorCell.xib in Resources */,
 				6AB9BC191C2BEA40004BF6A7 /* password@2x.png in Resources */,
 				6A2582C71C102ECF005E3404 /* 赞@2x.png in Resources */,
@@ -4400,6 +4408,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				15AE53771C02F0680013FF1B /* Base */,
+				6AF404761C2CD51800D46F2A /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -4408,8 +4417,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				15AE537C1C02F0680013FF1B /* Base */,
+				6AF404771C2CD51800D46F2A /* zh-Hans */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		6AF404751C2CD45800D46F2A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AF404741C2CD45800D46F2A /* en */,
+				6AF404781C2CD51800D46F2A /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
