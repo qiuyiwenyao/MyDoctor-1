@@ -11,15 +11,7 @@
   */
 
 #import <UIKit/UIKit.h>
-#import "BaseViewController.h"
-#import "EaseMob.h"
-@interface ChatListViewController : BaseViewController
-@property (nonatomic,strong) UITableView * tableView;
 
-
-- (void)refreshDataSource;
-
-- (void)isConnect:(BOOL)isConnect;
-- (void)networkChanged:(EMConnectionState)connectionState;
+@interface AddFriendViewController : UITableViewController
 
 @end

@@ -11,15 +11,21 @@
   */
 
 #import <UIKit/UIKit.h>
-#import "BaseViewController.h"
 #import "EaseMob.h"
-@interface ChatListViewController : BaseViewController
-@property (nonatomic,strong) UITableView * tableView;
+#import "UIViewController+HUD.h"
+#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+#define KNOTIFICATION_LOGINCHANGE @"loginStateChange"
+@interface MainViewController : UITabBarController
+{
+    EMConnectionState _connectionState;
+}
 
+- (void)jumpToChatList;
 
-- (void)refreshDataSource;
+- (void)setupUntreatedApplyCount;
 
-- (void)isConnect:(BOOL)isConnect;
 - (void)networkChanged:(EMConnectionState)connectionState;
+
+- (void)didReceiveLocalNotification:(UILocalNotification *)notification;
 
 @end

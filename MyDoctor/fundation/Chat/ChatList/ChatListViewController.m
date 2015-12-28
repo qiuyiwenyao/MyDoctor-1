@@ -49,7 +49,6 @@
 
 @property (strong, nonatomic) NSMutableArray        *dataSource;
 
-@property (strong, nonatomic) UITableView           *tableView;
 @property (nonatomic, strong) EMSearchBar           *searchBar;
 @property (nonatomic, strong) SRRefreshView         *slimeView;
 @property (nonatomic, strong) UIView                *networkStateView;
@@ -72,6 +71,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"]];
+    
+    imgView.frame = self.view.bounds;
+    
+    imgView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    
+    [self.view insertSubview:imgView atIndex:0];
     [[EaseMob sharedInstance].chatManager loadAllConversationsFromDatabaseWithAppend2Chat:NO];
     [self removeEmptyConversationsFromDB];
 
@@ -180,7 +186,7 @@
 {
     if (_tableView == nil) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.searchBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.searchBar.frame.size.height) style:UITableViewStylePlain];
-        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView.backgroundColor = [UIColor clearColor];
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -211,6 +217,7 @@
             
             EMConversation *conversation = [weakSelf.searchController.resultsSource objectAtIndex:indexPath.row];
             cell.name = conversation.chatter;
+            cell.backgroundColor = [UIColor clearColor];
             if (conversation.conversationType == eConversationTypeChat) {
                 cell.name = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
                 cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
@@ -411,11 +418,13 @@
     cell.detailMsg = [self subTitleMessageByConversation:conversation];
     cell.time = [self lastMessageTimeByConversation:conversation];
     cell.unreadCount = [self unreadMessageCountByConversation:conversation];
-    if (indexPath.row % 2 == 1) {
-        cell.contentView.backgroundColor = RGBACOLOR(246, 246, 246, 1);
-    }else{
-        cell.contentView.backgroundColor = [UIColor whiteColor];
-    }
+//    if (indexPath.row % 2 == 1) {
+//        cell.contentView.backgroundColor = RGBACOLOR(246, 246, 246, 1);
+//    }else{
+//        cell.contentView.backgroundColor = [UIColor whiteColor];
+//    }
+    cell.backgroundColor = [UIColor clearColor];
+    
     return cell;
 }
 

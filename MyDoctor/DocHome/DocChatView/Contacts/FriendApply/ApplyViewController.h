@@ -11,15 +11,26 @@
   */
 
 #import <UIKit/UIKit.h>
-#import "BaseViewController.h"
-#import "EaseMob.h"
-@interface ChatListViewController : BaseViewController
-@property (nonatomic,strong) UITableView * tableView;
 
+typedef enum{
+    ApplyStyleFriend            = 0,
+    ApplyStyleGroupInvitation,
+    ApplyStyleJoinGroup,
+}ApplyStyle;
 
-- (void)refreshDataSource;
+@interface ApplyViewController : UITableViewController
+{
+    NSMutableArray *_dataSource;
+}
 
-- (void)isConnect:(BOOL)isConnect;
-- (void)networkChanged:(EMConnectionState)connectionState;
+@property (strong, nonatomic, readonly) NSMutableArray *dataSource;
+
++ (instancetype)shareController;
+
+- (void)addNewApply:(NSDictionary *)dictionary;
+
+- (void)loadDataSourceFromLocalDB;
+
+- (void)clear;
 
 @end

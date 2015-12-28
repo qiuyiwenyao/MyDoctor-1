@@ -14,5 +14,7 @@
 @synthesize serviceStatus;
 @synthesize Time;
 @synthesize headImg;
+@synthesize name;
+@synthesize details;
 
 @end

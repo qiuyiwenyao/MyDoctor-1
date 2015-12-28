@@ -23,6 +23,7 @@
 #import "MDRequestModel.h"
 #import "EaseMob.h"
 #import "NIDropDown.h"
+#import "UserProfileManager.h"
 
 
 #define autoSizeScaleX  (appWidth>320?appWidth/320:1)
@@ -314,10 +315,16 @@
             if (!error) {
                 MDLog(@"环信注册成功");
                 
+                
                 //环信登陆
                 [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:self.login_name password:password2.text completion:^(NSDictionary *loginInfo, EMError *error) {
                     if (!error && loginInfo) {
                         MDLog(@"环信登陆成功！！%@",loginInfo);
+//                        [[EaseMob sharedInstance].chatManager setApnsNickname:number.text];
+//                        [[UserProfileManager sharedInstance] updateUserProfileInBackground:@{kPARSE_HXUSER_NICKNAME:number.text} completion:^(BOOL success, NSError *error) {
+//                            
+//                            
+//                        }];
                         //设置是否自动登录
                         [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
                     }
