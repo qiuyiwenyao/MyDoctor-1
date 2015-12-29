@@ -57,7 +57,7 @@ static NSString *kGroupName = @"GroupName";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+   
     //if 使tabBarController中管理的viewControllers都符合 UIRectEdgeNone
     if ([UIDevice currentDevice].systemVersion.floatValue >= 7) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -84,6 +84,11 @@ static NSString *kGroupName = @"GroupName";
     [self setupUntreatedApplyCount];
 }
 
+-(void)justPatient
+{
+    _chatListVC.patient=@"1";
+
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -152,6 +157,8 @@ static NSString *kGroupName = @"GroupName";
     self.tabBar.selectionIndicatorImage = [[UIImage imageNamed:@"tabbarSelectBg"] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
     
     _chatListVC = [[ChatListViewController alloc] init];
+    
+   
     [_chatListVC networkChanged:_connectionState];
     _chatListVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"title.conversation", @"Conversations")
                                                            image:nil

@@ -47,6 +47,8 @@
 		153ED85F1C0C17DC00171DFA /* 搜索药品@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 153ED85E1C0C17DC00171DFA /* 搜索药品@2x.png */; };
 		153ED8611C0C17E700171DFA /* 搜索药品@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 153ED8601C0C17E700171DFA /* 搜索药品@3x.png */; };
 		153ED8671C0C266C00171DFA /* MDDrugTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 153ED8661C0C266C00171DFA /* MDDrugTableViewCell.m */; };
+		154168881C3272EB00A69A7D /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154168861C3272EB00A69A7D /* Bolts.framework */; };
+		154168891C3272EB00A69A7D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154168871C3272EB00A69A7D /* Parse.framework */; };
 		15528BAD1C20FAB500B1F409 /* MDUserVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 15528BAC1C20FAB500B1F409 /* MDUserVO.m */; };
 		15528BC91C28DFCF00B1F409 /* MDConsultDrugModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15528BC81C28DFCF00B1F409 /* MDConsultDrugModel.m */; };
 		155CEBE91C0C2E8E006B5CFA /* 药@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 155CEBE81C0C2E8E006B5CFA /* 药@2x.png */; };
@@ -110,8 +112,6 @@
 		15AE537A1C02F0680013FF1B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15AE53791C02F0680013FF1B /* Images.xcassets */; };
 		15AE537D1C02F0680013FF1B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE537B1C02F0680013FF1B /* LaunchScreen.xib */; };
 		15AE53891C02F0680013FF1B /* MyDoctorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AE53881C02F0680013FF1B /* MyDoctorTests.m */; };
-		15F6F3A71C32146A00176F35 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15F6F3A51C32146A00176F35 /* Bolts.framework */; };
-		15F6F3A81C32146A00176F35 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15F6F3A61C32146A00176F35 /* Parse.framework */; };
 		15FBDD3A1C1528F3009E7E39 /* DocHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD391C1528F3009E7E39 /* DocHomeViewController.m */; };
 		15FBDD3D1C152A18009E7E39 /* DocAllWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD3C1C152A18009E7E39 /* DocAllWorkViewController.m */; };
 		15FBDD441C152AC0009E7E39 /* DocLookAfterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD3F1C152AC0009E7E39 /* DocLookAfterViewController.m */; };
@@ -725,6 +725,8 @@
 		153ED8601C0C17E700171DFA /* 搜索药品@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索药品@3x.png"; sourceTree = "<group>"; };
 		153ED8651C0C266C00171DFA /* MDDrugTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDDrugTableViewCell.h; path = Home/View/MDDrugTableViewCell.h; sourceTree = "<group>"; };
 		153ED8661C0C266C00171DFA /* MDDrugTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDDrugTableViewCell.m; path = Home/View/MDDrugTableViewCell.m; sourceTree = "<group>"; };
+		154168861C3272EB00A69A7D /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		154168871C3272EB00A69A7D /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		15528BAB1C20FAB500B1F409 /* MDUserVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDUserVO.h; sourceTree = "<group>"; };
 		15528BAC1C20FAB500B1F409 /* MDUserVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDUserVO.m; sourceTree = "<group>"; };
 		15528BC71C28DFCF00B1F409 /* MDConsultDrugModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDConsultDrugModel.h; path = Home/Model/MDConsultDrugModel.h; sourceTree = "<group>"; };
@@ -825,8 +827,6 @@
 		15AE53821C02F0680013FF1B /* MyDoctorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyDoctorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15AE53871C02F0680013FF1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15AE53881C02F0680013FF1B /* MyDoctorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyDoctorTests.m; sourceTree = "<group>"; };
-		15F6F3A51C32146A00176F35 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		15F6F3A61C32146A00176F35 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		15FBDD381C1528F3009E7E39 /* DocHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocHomeViewController.h; path = DocHome/DocHomeViewController.h; sourceTree = "<group>"; };
 		15FBDD391C1528F3009E7E39 /* DocHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocHomeViewController.m; path = DocHome/DocHomeViewController.m; sourceTree = "<group>"; };
 		15FBDD3B1C152A18009E7E39 /* DocAllWorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocAllWorkViewController.h; path = DocHome/DocAllWorkViewController.h; sourceTree = "<group>"; };
@@ -1692,7 +1692,7 @@
 				6AB9BD211C2BEF8B004BF6A7 /* CoreLocation.framework in Frameworks */,
 				6AB9BD1F1C2BEF7E004BF6A7 /* MapKit.framework in Frameworks */,
 				6AB9BB271C2BE776004BF6A7 /* libMobClickLibrary.a in Frameworks */,
-				15F6F3A81C32146A00176F35 /* Parse.framework in Frameworks */,
+				154168891C3272EB00A69A7D /* Parse.framework in Frameworks */,
 				6AB9BB341C2BE7AE004BF6A7 /* libopencore-amrnb.a in Frameworks */,
 				6AB9B8741C2BDB7F004BF6A7 /* AddressBook.framework in Frameworks */,
 				6AB9B8721C2BDB3F004BF6A7 /* ImageIO.framework in Frameworks */,
@@ -1705,7 +1705,7 @@
 				6AB9B5FA1C28E45A004BF6A7 /* libiconv.tbd in Frameworks */,
 				6AB9B5F81C28E43A004BF6A7 /* libresolv.tbd in Frameworks */,
 				6AB9B5F61C28E42D004BF6A7 /* libxml2.tbd in Frameworks */,
-				15F6F3A71C32146A00176F35 /* Bolts.framework in Frameworks */,
+				154168881C3272EB00A69A7D /* Bolts.framework in Frameworks */,
 				6AB9B5F41C28E420004BF6A7 /* libsqlite3.tbd in Frameworks */,
 				6AB9B5F21C28E415004BF6A7 /* libstdc++.6.0.9.tbd in Frameworks */,
 				6AB9B5F01C28E3BE004BF6A7 /* CFNetwork.framework in Frameworks */,
@@ -3155,8 +3155,8 @@
 		6AB9B7641C2BD176004BF6A7 /* Parse */ = {
 			isa = PBXGroup;
 			children = (
-				15F6F3A51C32146A00176F35 /* Bolts.framework */,
-				15F6F3A61C32146A00176F35 /* Parse.framework */,
+				154168861C3272EB00A69A7D /* Bolts.framework */,
+				154168871C3272EB00A69A7D /* Parse.framework */,
 			);
 			path = Parse;
 			sourceTree = "<group>";
@@ -4657,7 +4657,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -4745,7 +4745,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -4792,7 +4792,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

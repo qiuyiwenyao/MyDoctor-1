@@ -22,6 +22,8 @@
 @end
 
 @interface ChatViewController : UIViewController
+@property (nonatomic,strong) NSString * patient;
+
 @property (strong, nonatomic, readonly) NSString *chatter;
 @property (strong, nonatomic) NSMutableArray *dataSource;//tableView数据源
 @property (nonatomic) BOOL isInvisible;

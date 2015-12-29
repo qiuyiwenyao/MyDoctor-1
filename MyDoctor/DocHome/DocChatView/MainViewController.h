@@ -19,6 +19,9 @@
 {
     EMConnectionState _connectionState;
 }
+//@property (nonatomic,strong) NSString * patient;
+
+- (void)justPatient;
 
 - (void)jumpToChatList;
 
