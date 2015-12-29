@@ -45,7 +45,12 @@
         
         MDMyViewItem * group2 = [MDMyViewItem itemsWithIcon:@"feedback" andTitle:@"意见反馈" andRightImage:@"arrow"];
         
+        MDMyViewItem * group3 = [MDMyViewItem itemsWithIcon:@"mydoctor" andTitle:@"我咨询的医生" andRightImage:@"arrow"];
+        
+
+        
         [_dataList addObject:group0];
+        [_dataList addObject:group3];
         [_dataList addObject:group2];
         
     }
@@ -109,11 +114,11 @@
     [nameView setBackgroundColor:[UIColor colorWithPatternImage:img]];
    
     UILabel * userName=[[UILabel alloc] initWithFrame:CGRectMake(5, 10, appWidth-29-10, 20)];
-    userName.text=@"小明";
+    userName.text=@"赵大爷";
     userName.font=[UIFont boldSystemFontOfSize:16];
     
     UILabel * signature=[[UILabel alloc] initWithFrame:CGRectMake(5, 30, appWidth-29-10, 20)];
-    signature.text=@"今天很开心";
+    signature.text=@"人老心不老";
     signature.textColor=[UIColor grayColor];
     signature.font=[UIFont systemFontOfSize:12];
     [nameView addSubview:userName];

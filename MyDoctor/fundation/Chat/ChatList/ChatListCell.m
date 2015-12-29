@@ -13,12 +13,15 @@
 
 #import "ChatListCell.h"
 #import "UIImageView+HeadImage.h"
+#import "MDConst.h"
+
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
 @interface ChatListCell (){
     UILabel *_timeLabel;
     UILabel *_unreadLabel;
     UILabel *_detailLabel;
     UIView *_lineView;
+    UIView * bgView;
 }
 
 @end
@@ -31,12 +34,24 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(240, 7, 80, 16)];
+        self.contentView.backgroundColor = [UIColor clearColor];
+        bgView = [[UIView alloc] initWithFrame:CGRectMake(5, 5, appWidth-10, 80)];
+        bgView.backgroundColor=[UIColor clearColor];
+        
+        //背景图层
+        UIView * background=[[UIView alloc] initWithFrame:CGRectMake(0, 0, appWidth-10, 80)];
+        background.backgroundColor=[UIColor whiteColor];
+        background.alpha=0.6;
+        [bgView addSubview:background];
+        [self.contentView addSubview:bgView];
+        
+        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(bgView.frame.size.width - 110, 10, 110, 16)];
         _timeLabel.font = [UIFont systemFontOfSize:13];
         _timeLabel.backgroundColor = [UIColor clearColor];
-        [self.contentView addSubview:_timeLabel];
+        [bgView addSubview:_timeLabel];
+
         
-        _unreadLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 0, 20, 20)];
+        _unreadLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 3, 20, 20)];
         _unreadLabel.backgroundColor = [UIColor redColor];
         _unreadLabel.textColor = [UIColor whiteColor];
         
@@ -44,19 +59,19 @@
         _unreadLabel.font = [UIFont systemFontOfSize:11];
         _unreadLabel.layer.cornerRadius = 10;
         _unreadLabel.clipsToBounds = YES;
-        [self.contentView addSubview:_unreadLabel];
+        [bgView addSubview:_unreadLabel];
         
-        _detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(65, 30, 175, 20)];
+        _detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 45, 175, 20)];
         _detailLabel.backgroundColor = [UIColor clearColor];
-        _detailLabel.font = [UIFont systemFontOfSize:15];
+        _detailLabel.font = [UIFont systemFontOfSize:16];
         _detailLabel.textColor = [UIColor lightGrayColor];
-        [self.contentView addSubview:_detailLabel];
+        [bgView addSubview:_detailLabel];
         
         self.textLabel.backgroundColor = [UIColor clearColor];
         
-        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, 1)];
-        _lineView.backgroundColor = RGBACOLOR(207, 210, 213, 0.7);
-        [self.contentView addSubview:_lineView];
+//        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, 1)];
+//        _lineView.backgroundColor = RGBACOLOR(207, 210, 213, 0.7);
+//        [self.contentView addSubview:_lineView];
     }
     return self;
 }
@@ -87,11 +102,13 @@
     
 //    [self.imageView sd_setImageWithURL:_imageURL placeholderImage:_placeholderImage];
     [self.imageView imageWithUsername:_name placeholderImage:_placeholderImage];
-    self.imageView.frame = CGRectMake(10, 7, 45, 45);
+    self.imageView.frame = CGRectMake(10, 10, 60, 60);
+    [bgView addSubview:self.imageView];
     
 //    self.textLabel.text = _name;
     [self.textLabel setTextWithUsername:_name];
-    self.textLabel.frame = CGRectMake(65, 7, 175, 20);
+    self.textLabel.frame = CGRectMake(80, 10, 175, 20);
+    [bgView addSubview:self.textLabel];
     
     _detailLabel.text = _detailMsg;
     _timeLabel.text = _time;
@@ -121,6 +138,6 @@
 
 +(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 90;
 }
 @end

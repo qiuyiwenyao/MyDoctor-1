@@ -222,13 +222,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyDoctor/&#x767b;&#x5f55;/logIn/BRSSignIn2ViewController.m"
-            timestampString = "473047494.770704"
+            timestampString = "473049315.47783"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "463"
-            endingLineNumber = "463"
-            landmarkName = "@implementation BRSSignIn2ViewController"
-            landmarkType = "3">
+            startingLineNumber = "459"
+            endingLineNumber = "459"
+            landmarkName = "-Actiondo2"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -328,11 +328,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyDoctor/&#x767b;&#x5f55;/logIn/BRSSignIn2ViewController.m"
-            timestampString = "473047494.770704"
+            timestampString = "473049315.47783"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "333"
-            endingLineNumber = "333"
+            startingLineNumber = "329"
+            endingLineNumber = "329"
             landmarkName = "-next:"
             landmarkType = "5">
          </BreakpointContent>

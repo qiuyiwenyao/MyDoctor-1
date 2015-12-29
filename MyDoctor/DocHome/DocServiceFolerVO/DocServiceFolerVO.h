@@ -14,5 +14,6 @@
 @property (nonatomic, strong) NSString * serviceStatus;
 @property (nonatomic, strong) NSString * Time;
 @property (nonatomic,strong) NSString * headImg;
-
+@property (nonatomic,strong) NSString * name;
+@property (nonatomic,strong) NSString * details;
 @end

@@ -15,6 +15,9 @@
 #import "DocRecordViewController.h"
 #import "MDChatViewController.h"
 #import "NIDropDown.h"
+#import "MainViewController.h"
+#import "DocOnLineViewController2.h"
+#import "ChatListViewController.h"
 
 @interface DocHomeViewController ()<NIDropDownDelegate>
 
@@ -23,7 +26,7 @@
 @implementation DocHomeViewController
 {
     DocAllWorkViewController * allWork;
-    DocOnlineViewController * online;
+    ChatListViewController * online;
     DocPhoneViewController * phone;
     DocLookAfterViewController * lookAfter;
     WbToolBarFour * bar;
@@ -131,7 +134,7 @@
         [self.view bringSubviewToFront:bar];
     }else if (index==1){
         if (!online) {
-            online=[[DocOnlineViewController alloc] init];
+            online=[[ChatListViewController alloc] init];
             [self.view addSubview:online.view];
         }
         allWork.view.hidden=YES;
@@ -172,9 +175,10 @@
     NSString * text= [[sender userInfo] objectForKey:@"text"];
     NSString * text2 = [[sender userInfo] objectForKey:@"text2"];
     if ([text2 isEqualToString:@"线上咨询"]) {
-        MDChatViewController * chatVC = [[MDChatViewController alloc] init];
-        chatVC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:chatVC animated:YES];
+        MainViewController * main=[[MainViewController alloc] init];
+        [main networkChanged:eEMConnectionConnected];
+        main.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:main animated:YES];
         return;
     }
     if ([text isEqualToString:@"已完成"]) {

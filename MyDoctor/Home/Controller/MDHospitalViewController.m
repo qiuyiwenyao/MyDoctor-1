@@ -11,6 +11,7 @@
 #import "MDChatViewController.h"
 #import "ChatViewController.h"
 #import "EaseMob.h"
+#import "MainViewController.h"
 
 @interface MDHospitalViewController ()<UIAlertViewDelegate>
 
@@ -133,10 +134,7 @@
 
 {
 
-//    MDChatViewController * chatVC = [[MDChatViewController alloc] init];
-//    chatVC.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:chatVC animated:YES];
-    
+
     
     EMConversation *conversation =  [[EaseMob sharedInstance].chatManager conversationForChatter:@"18234087856" conversationType:0] ;
     NSString *chatter = conversation.chatter;
@@ -145,7 +143,12 @@
     chatController.title = @"医生";
     chatController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chatController animated:YES];
+
     
+    MainViewController * main=[[MainViewController alloc] init];
+    [main networkChanged:eEMConnectionConnected];
+    main.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:main animated:YES];
 
 }
 -(void)callBtn:(UIButton *)button
