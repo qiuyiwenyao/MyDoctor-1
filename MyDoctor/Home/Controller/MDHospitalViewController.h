@@ -14,6 +14,7 @@
 @property (nonatomic,strong) NSString * hospital;
 @property (nonatomic,strong) NSString * brand;
 @property (nonatomic,strong) NSString * major;
+@property (nonatomic,strong) NSString * phone;
 
 
 @end

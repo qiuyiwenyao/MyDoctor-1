@@ -10,8 +10,10 @@
 #import "MDDoctorServiceCell.h"
 #import "MDHospitalViewController.h"
 #import "MDDocModel.h"
+#import "MDRequestModel.h"
+#import "GTMBase64.h"
 
-@interface MDMoreDocViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface MDMoreDocViewController ()<UITableViewDataSource,UITableViewDelegate,sendInfoToCtr>
 {
     UIView * _headerView;
     UITableView * _tableView;
@@ -29,46 +31,12 @@
     [self setNavigationBarWithrightBtn:nil leftBtn:@"navigationbar_back"];
     //返回按钮点击
     [self.leftBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self requestData];
 
     
     [self createView];
     // Do any additional setup after loading the view.
-}
-
--(NSMutableArray *)dataSource
-{
-    if (_dataSource == nil) {
-        _dataSource = [[NSMutableArray alloc] init];
-        MDDocModel * model1 = [[MDDocModel alloc] init];
-        model1.name = @"周凤阳";
-        model1.branch = @"小儿科";
-        model1.hospital = @"天津环湖医院";
-        model1.major = @"小儿各种上呼吸道疾患、哮喘、肺炎、腹泻 及外感发热、食积发热等";
-        
-        MDDocModel * model2 = [[MDDocModel alloc] init];
-        model2.name = @"王荣宝";
-        model2.branch = @"耳鼻喉科";
-        model2.hospital = @"天津医科大学口腔医院";
-        model2.major = @"支气管哮喘、慢性 支气管炎、慢性阻塞性肺病、肺心病";
-        
-        MDDocModel * model3 = [[MDDocModel alloc] init];
-        model3.name = @"王跃峰";
-        model3.branch = @"内科";
-        model3.hospital = @"天津医院";
-        model3.major = @"冠心病、脑梗塞、高血压病、支气管炎、肺 炎";
-        
-        MDDocModel * model4 = [[MDDocModel alloc] init];
-        model4.name = @"杨翠萍";
-        model4.branch = @"内科";
-        model4.hospital = @"天津安定医院";
-        model4.major = @"泌尿系感染疾病、各种性病、男女不孕不育症、性功能障碍";
-        
-        NSArray * group1 = @[model1,model3,model4,model2,model1,model3];
-        
-        [_dataSource addObject:group1];
-    }
-    return _dataSource;
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -81,6 +49,27 @@
     [self.navigationController popViewControllerAnimated:YES
      ];
     
+}
+
+-(void)requestData
+{
+    MDRequestModel * model = [[MDRequestModel alloc] init];
+    model.path = MDPath;
+    model.delegate = self;
+    model.methodNum = 10401;
+    
+    NSString* date;
+    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+    date = [formatter stringFromDate:[NSDate date]];
+    int userId = [[MDUserVO userVO].userID intValue];
+    
+    NSString * parameter=[NSString stringWithFormat:@"%d@`3@`3@`%@@`1@`3@`%d",model.methodNum,date,userId];
+    parameter=[self GTMEncodeTest:parameter];
+    //post键值对
+    model.parameters = @{@"b":parameter};
+    [model starRequest];
+
 }
 
 -(void)createView
@@ -135,10 +124,10 @@
     //        [item removeFromSuperview];
     //    }
     MDDocModel * model = _dataSource[indexPath.section][indexPath.row];
-    cell.nameLab.text = model.name;
-    cell.hospitalLab.text = model.hospital;
-    cell.majorLab.text = model.major;
-    cell.branchLab.text  =model.branch;
+    cell.nameLab.text = model.RealName;
+    cell.hospitalLab.text = model.HospitalName;
+    cell.majorLab.text = model.Detail;
+    cell.branchLab.text  =model.Department;
     cell.headView.layer.cornerRadius = cell.headView.height/2;
     return cell;
 }
@@ -178,6 +167,25 @@
 
     [self.navigationController pushViewController:hospitalVC animated:YES];
 }
+
+//转吗
+-(NSString *)GTMEncodeTest:(NSString *)text
+
+{
+    
+    NSString* originStr = text;
+    
+    NSString* encodeResult = nil;
+    
+    NSData* originData = [originStr dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSData* encodeData = [GTMBase64 encodeData:originData];
+    
+    encodeResult = [[NSString alloc] initWithData:encodeData encoding:NSUTF8StringEncoding];
+    
+    return encodeResult;
+}
+
 
 /*
 #pragma mark - Navigation

@@ -187,7 +187,7 @@
     NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
     NSString * str=[stdDefault objectForKey:@"user_name"];
     if ([str length]>0) {
-        NSString * phoneNum = [NSString stringWithFormat:@"tel:1008611"];
+        NSString * phoneNum = [NSString stringWithFormat:@"tel:%@",self.phone];
         
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNum]];
         
