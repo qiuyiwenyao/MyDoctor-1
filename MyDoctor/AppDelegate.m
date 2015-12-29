@@ -82,7 +82,7 @@
     _tabBarController.delegate = self;
     _tabBarController.tabBar.backgroundImage = nil;
     _tabBarController.tabBar.backgroundColor = [UIColor clearColor];
-    _tabBarController.tabBar.selectedImageTintColor = [UIColor colorWithRed:20/255.0 green:204/255.0 blue:164/255.0 alpha:1];
+    _tabBarController.tabBar.selectedImageTintColor = [UIColor colorWithRed:14/255.0 green:194/255.0 blue:14/255.0 alpha:1];
 
     home=[[MDHomeViewController alloc] init];
     homeNav=[[UINavigationController alloc] initWithRootViewController:home];
@@ -115,7 +115,7 @@
     _tabBarController.delegate = self;
     _tabBarController.tabBar.backgroundImage = nil;
     _tabBarController.tabBar.backgroundColor = [UIColor clearColor];
-    _tabBarController.tabBar.selectedImageTintColor = [UIColor colorWithRed:20/255.0 green:204/255.0 blue:164/255.0 alpha:1];
+    _tabBarController.tabBar.selectedImageTintColor = [UIColor colorWithRed:14/255.0 green:194/255.0 blue:14/255.0 alpha:1];
     
     docHome=[[DocHomeViewController alloc] init];
     homeNav=[[UINavigationController alloc] initWithRootViewController:docHome];

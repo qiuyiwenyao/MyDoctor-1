@@ -4,15 +4,17 @@
 //
 //  Created by 巫筠 on 15/12/24.
 //  Copyright © 2015年 com.mingxing. All rights reserved.
-//
+//h
 
 #import "MDDoctorServiceViewController.h"
 #import "MDDoctorServiceCell.h"
 #import "MDMoreDocViewController.h"
 #import "MDHospitalViewController.h"
 #import "MDDocModel.h"
+#import "MDRequestModel.h"
+#import "GTMBase64.h"
 
-@interface MDDoctorServiceViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface MDDoctorServiceViewController ()<UITableViewDataSource,UITableViewDelegate,sendInfoToCtr>
 {
     UITableView * _tableView;
     UIView * _headerView;
@@ -36,6 +38,8 @@
     [self setNavigationBarWithrightBtn:nil leftBtn:@"navigationbar_back"];
     //返回按钮点击
     [self.leftBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self requestData];
     
     [self createView];
 
@@ -106,6 +110,26 @@
     
 }
 
+-(void)requestData
+{
+    MDRequestModel * model = [[MDRequestModel alloc] init];
+    model.path = MDPath;
+    model.delegate = self;
+    model.methodNum = 10401;
+    
+    NSString* date;
+    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+    date = [formatter stringFromDate:[NSDate date]];
+    int userId = [[MDUserVO userVO].userID intValue];
+    
+    NSString * parameter=[NSString stringWithFormat:@"%d@`3@`3@`%@@`1@`3@`%d",model.methodNum,date,userId];
+    parameter=[self GTMEncodeTest:parameter];
+    //post键值对
+    model.parameters = @{@"b":parameter};
+    [model starRequest];
+}
+
 -(void)createView
 {
     _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, appWidth, appWidth*67.0/750.0)];
@@ -173,6 +197,12 @@
 
     }
 
+}
+
+#pragma mark - sendInfoToCtr 请求数据回调
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
+{
+    MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
 }
 
 #pragma mark - UITableViewDelegate
@@ -248,8 +278,31 @@
     
     MDHospitalViewController * hospitalVC = [[MDHospitalViewController alloc] init];
     hospitalVC.title = [NSString stringWithFormat:@"%@医生",cell.nameLab.text];
+    hospitalVC.name = cell.nameLab.text;
+    hospitalVC.hospital = cell.hospitalLab.text;
+    hospitalVC.major = cell.majorLab.text;
+    hospitalVC.brand = cell.branchLab.text;
     [self.navigationController pushViewController:hospitalVC animated:YES];
 }
+
+//转吗
+-(NSString *)GTMEncodeTest:(NSString *)text
+
+{
+    
+    NSString* originStr = text;
+    
+    NSString* encodeResult = nil;
+    
+    NSData* originData = [originStr dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSData* encodeData = [GTMBase64 encodeData:originData];
+    
+    encodeResult = [[NSString alloc] initWithData:encodeData encoding:NSUTF8StringEncoding];
+    
+    return encodeResult;
+}
+
 
 /*
 #pragma mark - Navigation

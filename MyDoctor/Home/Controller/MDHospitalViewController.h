@@ -10,4 +10,10 @@
 
 @interface MDHospitalViewController : MDBaseViewController
 
+@property (nonatomic,strong) NSString * name;
+@property (nonatomic,strong) NSString * hospital;
+@property (nonatomic,strong) NSString * brand;
+@property (nonatomic,strong) NSString * major;
+
+
 @end

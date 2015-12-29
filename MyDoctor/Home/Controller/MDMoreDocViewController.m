@@ -171,6 +171,11 @@
     
     MDHospitalViewController * hospitalVC = [[MDHospitalViewController alloc] init];
     hospitalVC.title = [NSString stringWithFormat:@"%@医生",cell.nameLab.text];
+    hospitalVC.name = cell.nameLab.text;
+    hospitalVC.hospital = cell.hospitalLab.text;
+    hospitalVC.major = cell.majorLab.text;
+    hospitalVC.brand = cell.branchLab.text;
+
     [self.navigationController pushViewController:hospitalVC animated:YES];
 }
 

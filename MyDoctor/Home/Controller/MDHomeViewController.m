@@ -71,10 +71,10 @@
 
 -(void)createView
 {
-    NSArray * group0 = @[@"greenlogo",@"寻医",@"您有一条新消息"];
-    NSArray * group1 = @[@"purplelogo",@"问药",@""];
-    NSArray * group2 = @[@"bluelogo",@"照护",@""];
-    NSArray * group3 = @[@"greenlogo",@"活动",@""];
+    NSArray * group0 = @[@"询医",@"寻医",@"您有一条新消息"];
+    NSArray * group1 = @[@"问药",@"问药",@""];
+    NSArray * group2 = @[@"照护",@"照护",@""];
+    NSArray * group3 = @[@"活动",@"活动",@""];
     
     if (_listArray == nil) {
         _listArray = [NSMutableArray arrayWithObjects:group0,group1,group2,group3, nil];
@@ -164,6 +164,8 @@
         if (cell == nil) {
             cell = [[MDActivityBtnCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
         }
+        cell.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.7];
+
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 
         return cell;
@@ -195,7 +197,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 15;
+    return 5;
 }
 
 //填充每个cell间距的view，使之透明

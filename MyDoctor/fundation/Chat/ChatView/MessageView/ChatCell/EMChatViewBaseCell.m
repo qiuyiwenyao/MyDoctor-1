@@ -77,11 +77,23 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
 
 - (void)setMessageModel:(MessageModel *)messageModel
 {
-    _messageModel = messageModel;
-    
     _nameLabel.hidden = (messageModel.messageType == eMessageTypeChat);
     
-    UIImage *placeholderImage = [UIImage imageNamed:@"chatListCellHead"];
+    UIImage *placeholderImage;
+    
+    
+    
+    
+    _messageModel = messageModel;
+    _nameLabel.hidden = (messageModel.messageType == eMessageTypeChat);
+    if (_messageModel.isSender)
+    {
+        placeholderImage = [UIImage imageNamed:@"c"];
+    }
+    else
+    {
+        placeholderImage = [UIImage imageNamed:@"demo-avatar-jobs"];
+    }
     [self.headImageView sd_setImageWithURL:_messageModel.headImageURL placeholderImage:placeholderImage];
 }
 
