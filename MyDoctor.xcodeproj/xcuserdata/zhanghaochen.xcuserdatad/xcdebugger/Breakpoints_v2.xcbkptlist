@@ -221,29 +221,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyDoctor/MyView/Controller/MDMyViewController.m"
-            timestampString = "472544520.26103"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "410"
-            endingLineNumber = "410"
-            landmarkName = "-sendInfoFromRequest:andPath:number:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "MyDoctor/&#x767b;&#x5f55;/logIn/BRSSignIn2ViewController.m"
-            timestampString = "471935864.073765"
+            timestampString = "473049315.47783"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "460"
-            endingLineNumber = "460"
-            landmarkName = "-sendInfoFromRequest:andPath:number:"
+            startingLineNumber = "459"
+            endingLineNumber = "459"
+            landmarkName = "-Actiondo2"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -270,7 +254,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyDoctor/Home/Controller/MDConsultDrupViewController.m"
-            timestampString = "472444658.859216"
+            timestampString = "473048597.972951"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "176"
@@ -334,6 +318,38 @@
             startingLineNumber = "229"
             endingLineNumber = "229"
             landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyDoctor/&#x767b;&#x5f55;/logIn/BRSSignIn2ViewController.m"
+            timestampString = "473049315.47783"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "329"
+            endingLineNumber = "329"
+            landmarkName = "-next:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyDoctor/fundation/Core Data/UserProfileManager.m"
+            timestampString = "473044984.385831"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+            landmarkName = "-updateUserProfileInBackground:completion:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

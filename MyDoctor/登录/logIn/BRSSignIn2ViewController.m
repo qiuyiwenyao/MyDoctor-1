@@ -25,7 +25,6 @@
 #import "NIDropDown.h"
 #import "UserProfileManager.h"
 
-
 #define autoSizeScaleX  (appWidth>320?appWidth/320:1)
 #define autoSizeScaleY  (appHeight>568?appHeight/568:1)
 #define T4FontSize (15*autoSizeScaleX)
@@ -336,7 +335,10 @@
                 MDLog(@"环信错误：%@",error);
             }
         } onQueue:nil];
+        
+        [[EaseMob sharedInstance].chatManager setApnsNickname:@"陈"];
 
+        
         
 //        MXNetModel *netModel = [MXNetModel shareNetModel];
 //        NSString *tmpUrl = @"/connectors/regist_user";
