@@ -138,7 +138,7 @@
 //    [self.navigationController pushViewController:chatVC animated:YES];
     
     
-    EMConversation *conversation =  [[EaseMob sharedInstance].chatManager conversationForChatter:@"13662142222" conversationType:0] ;
+    EMConversation *conversation =  [[EaseMob sharedInstance].chatManager conversationForChatter:@"18234087856" conversationType:0] ;
     NSString *chatter = conversation.chatter;
     ChatViewController * chatController = [[ChatViewController alloc] initWithChatter:chatter
                                                 conversationType:conversation.conversationType];
