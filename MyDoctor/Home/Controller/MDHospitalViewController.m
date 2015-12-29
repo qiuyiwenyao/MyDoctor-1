@@ -167,18 +167,19 @@
 
 {
 
-    EMConversation *conversation =  [[EaseMob sharedInstance].chatManager conversationForChatter:@"18234087856" conversationType:0] ;
-    NSString *chatter = conversation.chatter;
-    ChatViewController * chatController = [[ChatViewController alloc] initWithChatter:chatter
-                                                conversationType:conversation.conversationType];
-    chatController.title = @"医生";
-    chatController.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:chatController animated:YES];
+//    EMConversation *conversation =  [[EaseMob sharedInstance].chatManager conversationForChatter:@"18234087856" conversationType:0] ;
+//    NSString *chatter = conversation.chatter;
+//    ChatViewController * chatController = [[ChatViewController alloc] initWithChatter:chatter
+//                                                conversationType:conversation.conversationType];
+//    chatController.title = @"医生";
+//    chatController.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:chatController animated:YES];
     
-//    MainViewController * main=[[MainViewController alloc] init];
-//    [main networkChanged:eEMConnectionConnected];
-//    main.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:main animated:YES];
+    MainViewController * main=[[MainViewController alloc] init];
+    [main justPatient];
+    [main networkChanged:eEMConnectionConnected];
+    main.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:main animated:NO];
 
 
 }

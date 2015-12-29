@@ -11,6 +11,8 @@
   */
 
 #import "DXChatBarMoreView.h"
+#import "EaseMob.h"
+#import "CallViewController.h"
 
 #define CHAT_BUTTON_SIZE 50
 #define INSETS 8
@@ -111,6 +113,9 @@
     if (_delegate && [_delegate respondsToSelector:@selector(moreViewVideoCallAction:)]) {
         [_delegate moreViewVideoCallAction:self];
     }
+    
+    
+
 }
 
 @end

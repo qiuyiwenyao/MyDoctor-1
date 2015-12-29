@@ -15,7 +15,7 @@
 #import "EaseMob.h"
 @interface ChatListViewController : BaseViewController
 @property (nonatomic,strong) UITableView * tableView;
-
+@property (nonatomic,strong) NSString * patient;
 
 - (void)refreshDataSource;
 
