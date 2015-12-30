@@ -58,8 +58,17 @@
     
 //    [self logIn];
     //医生端
-//    [self showDocView];
-   [self showMainView];
+    [self showDocView];
+    [[UINavigationBar appearance] setBackgroundColor:RGBACOLOR(239, 239, 239, 1)];
+//    [[UINavigationBar appearance] setBackgroundColor:[UIColor whiteColor]];
+//    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    UIView *statusBarView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, appWidth, 20)];
+    
+    statusBarView.backgroundColor=RGBACOLOR(247, 247, 247, 1);
+    
+    [self.window addSubview:statusBarView];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
     return YES;
 }
 

@@ -392,11 +392,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyDoctor/fundation/Chat/ChatList/ChatListViewController.m"
-            timestampString = "473073863.749192"
+            timestampString = "473134201.692177"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -408,11 +408,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyDoctor/DocHome/DocChatView/MainViewController.m"
-            timestampString = "473074750.869478"
+            timestampString = "473135248.106427"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
             landmarkName = "-setupSubviews"
             landmarkType = "5">
          </BreakpointContent>
@@ -448,12 +448,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyDoctor/DocHome/DocChatView/MainViewController.m"
-            timestampString = "473074487.538455"
+            timestampString = "473135248.106427"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "-justPatient"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -463,13 +463,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyDoctor/DocHome/DocChatView/MainViewController.m"
-            timestampString = "473074775.265875"
+            filePath = "MyDoctor/fundation/Chat/ChatList/ChatListViewController.m"
+            timestampString = "473134201.692177"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "-justPatient"
+            startingLineNumber = "638"
+            endingLineNumber = "638"
+            landmarkName = "-avatarWithChatter:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
