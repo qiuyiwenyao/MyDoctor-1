@@ -39,9 +39,11 @@
     //返回按钮点击
     [self.leftBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
+    [self createView];
+
+    
     [self requestData];
     
-    [self createView];
 
     
     // Do any additional setup after loading the view.
@@ -60,43 +62,43 @@
  和平
  天津总医院 (三甲, 特色:综合) 天津市口腔医院 (三甲, 特色:口腔) 天津血液病医院 (三甲, 特色:血液病) 天津眼科医院 (三甲, 特色:眼科) 天津医科大学口腔医院 (三甲, 特色:口腔)
  */
--(NSMutableArray *)dataSource
-{
-    if (_dataSource == nil) {
-        _dataSource = [[NSMutableArray alloc] init];
-        MDDocModel * model1 = [[MDDocModel alloc] init];
-        model1.name = @"周凤阳";
-        model1.branch = @"小儿科";
-        model1.hospital = @"天津环湖医院";
-        model1.major = @"小儿各种上呼吸道疾患、哮喘、肺炎、腹泻 及外感发热、食积发热等";
-        
-        MDDocModel * model2 = [[MDDocModel alloc] init];
-        model2.name = @"王荣宝";
-        model2.branch = @"耳鼻喉科";
-        model2.hospital = @"天津医科大学口腔医院";
-        model2.major = @"支气管哮喘、慢性 支气管炎、慢性阻塞性肺病、肺心病";
-        
-        MDDocModel * model3 = [[MDDocModel alloc] init];
-        model3.name = @"王跃峰";
-        model3.branch = @"内科";
-        model3.hospital = @"天津医院";
-        model3.major = @"冠心病、脑梗塞、高血压病、支气管炎、肺 炎";
-        
-        MDDocModel * model4 = [[MDDocModel alloc] init];
-        model4.name = @"杨翠萍";
-        model4.branch = @"内科";
-        model4.hospital = @"天津安定医院";
-        model4.major = @"泌尿系感染疾病、各种性病、男女不孕不育症、性功能障碍";
-        
-        NSArray * group1 = @[model1,model3,model4];
-        NSArray * gropu2 = @[model2,model4,model1];
-        
-        [_dataSource addObject:group1];
-        [_dataSource addObject:gropu2];
-    }
-    return _dataSource;
-
-}
+//-(NSMutableArray *)dataSource
+//{
+//    if (_dataSource == nil) {
+//        _dataSource = [[NSMutableArray alloc] init];
+//        MDDocModel * model1 = [[MDDocModel alloc] init];
+//        model1.name = @"周凤阳";
+//        model1.branch = @"小儿科";
+//        model1.hospital = @"天津环湖医院";
+//        model1.major = @"小儿各种上呼吸道疾患、哮喘、肺炎、腹泻 及外感发热、食积发热等";
+//        
+//        MDDocModel * model2 = [[MDDocModel alloc] init];
+//        model2.name = @"王荣宝";
+//        model2.branch = @"耳鼻喉科";
+//        model2.hospital = @"天津医科大学口腔医院";
+//        model2.major = @"支气管哮喘、慢性 支气管炎、慢性阻塞性肺病、肺心病";
+//        
+//        MDDocModel * model3 = [[MDDocModel alloc] init];
+//        model3.name = @"王跃峰";
+//        model3.branch = @"内科";
+//        model3.hospital = @"天津医院";
+//        model3.major = @"冠心病、脑梗塞、高血压病、支气管炎、肺 炎";
+//        
+//        MDDocModel * model4 = [[MDDocModel alloc] init];
+//        model4.name = @"杨翠萍";
+//        model4.branch = @"内科";
+//        model4.hospital = @"天津安定医院";
+//        model4.major = @"泌尿系感染疾病、各种性病、男女不孕不育症、性功能障碍";
+//        
+//        NSArray * group1 = @[model1,model3,model4];
+//        NSArray * gropu2 = @[model2,model4,model1];
+//        
+//        [_dataSource addObject:group1];
+//        [_dataSource addObject:gropu2];
+//    }
+//    return _dataSource;
+//
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -202,19 +204,46 @@
 #pragma mark - sendInfoToCtr 请求数据回调
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
+    _dataSource = [[NSMutableArray alloc] init];
+    
     MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+    NSDictionary * dic1 = [dic objectForKey:@"obj"];
+
+    NSMutableArray * arr1 = [[NSMutableArray alloc] init];
+    NSMutableArray * arr2 = [[NSMutableArray alloc] init];
+
+    for (NSDictionary * dic in [dic1 objectForKey:@"list1"]) {
+        MDDocModel * model = [[MDDocModel alloc] init];
+        [model setValuesForKeysWithDictionary:dic];
+        [arr1 addObject:model];
+    }
+    
+    for (NSDictionary * dic in [dic1 objectForKey:@"list2"]) {
+        MDDocModel * model = [[MDDocModel alloc] init];
+        [model setValuesForKeysWithDictionary:dic];
+        [arr2 addObject:model];
+    }
+    
+    [_dataSource addObject:arr1];
+    [_dataSource addObject:arr2];
+        
+    [_tableView reloadData];
+    
+    
+    
 }
 
 #pragma mark - UITableViewDelegate
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.dataSource.count;
+    return _dataSource.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.dataSource[section] count];
+    return [_dataSource[section] count];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -237,10 +266,10 @@
 //        [item removeFromSuperview];
 //    }
     MDDocModel * model = _dataSource[indexPath.section][indexPath.row];
-    cell.nameLab.text = model.name;
-    cell.hospitalLab.text = model.hospital;
-    cell.majorLab.text = model.major;
-    cell.branchLab.text  =model.branch;
+    cell.nameLab.text = model.RealName;
+    cell.hospitalLab.text = model.HospitalName;
+    cell.majorLab.text = model.Detail;
+    cell.branchLab.text  =model.Department;
 
     
     return cell;
@@ -282,6 +311,10 @@
     hospitalVC.hospital = cell.hospitalLab.text;
     hospitalVC.major = cell.majorLab.text;
     hospitalVC.brand = cell.branchLab.text;
+    
+    MDDocModel * model = _dataSource[indexPath.section][indexPath.row];
+    hospitalVC.phone = model.Phone;
+    
     [self.navigationController pushViewController:hospitalVC animated:YES];
 }
 
