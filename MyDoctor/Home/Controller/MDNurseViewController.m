@@ -12,7 +12,6 @@
 #import "MDExaminationViewController.h"
 #import "MDRecoveryViewController.h"
 #import "MDRequestModel.h"
-#import "GTMBase64.h"
 
 @interface MDNurseViewController ()<UITableViewDataSource,UITableViewDelegate,sendInfoToCtr>
 {
@@ -53,17 +52,11 @@
 
 - (void)postRequest
 {
-    NSString* date;
-    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
-    date = [formatter stringFromDate:[NSDate date]];
-    
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = MDPath;
-    NSString * nameAndPassword=[NSString stringWithFormat:@"10302@`3@`3@`%@@`1@`3@`%d@`%d@`%d",date,3,10,1];
-    nameAndPassword=[self GTMEncodeTest:nameAndPassword];
-    //    //post键值对
-    model.parameters = @{@"b":nameAndPassword};
+    model.methodNum = 10302;
+    NSString * parameter=[NSString stringWithFormat:@"%d@`%d@`%d",3,10,1];
+    model.parameter = parameter;
     model.delegate = self;
     [model starRequest];
 }
@@ -172,23 +165,6 @@
 
 }
 
-//转吗
--(NSString *)GTMEncodeTest:(NSString *)text
-
-{
-    
-    NSString* originStr = text;
-    
-    NSString* encodeResult = nil;
-    
-    NSData* originData = [originStr dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSData* encodeData = [GTMBase64 encodeData:originData];
-    
-    encodeResult = [[NSString alloc] initWithData:encodeData encoding:NSUTF8StringEncoding];
-    
-    return encodeResult;
-}
 
 
 

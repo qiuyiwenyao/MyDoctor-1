@@ -12,7 +12,6 @@
 #import "MDHospitalViewController.h"
 #import "MDDocModel.h"
 #import "MDRequestModel.h"
-#import "GTMBase64.h"
 
 @interface MDDoctorServiceViewController ()<UITableViewDataSource,UITableViewDelegate,sendInfoToCtr>
 {
@@ -118,17 +117,10 @@
     model.path = MDPath;
     model.delegate = self;
     model.methodNum = 10401;
-    
-    NSString* date;
-    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
-    date = [formatter stringFromDate:[NSDate date]];
     int userId = [[MDUserVO userVO].userID intValue];
     
-    NSString * parameter=[NSString stringWithFormat:@"%d@`3@`3@`%@@`1@`3@`%d",model.methodNum,date,userId];
-    parameter=[self GTMEncodeTest:parameter];
-    //post键值对
-    model.parameters = @{@"b":parameter};
+    NSString * parameter=[NSString stringWithFormat:@"%d",userId];
+    model.parameter = parameter;
     [model starRequest];
 }
 
@@ -318,23 +310,6 @@
     [self.navigationController pushViewController:hospitalVC animated:YES];
 }
 
-//转吗
--(NSString *)GTMEncodeTest:(NSString *)text
-
-{
-    
-    NSString* originStr = text;
-    
-    NSString* encodeResult = nil;
-    
-    NSData* originData = [originStr dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSData* encodeData = [GTMBase64 encodeData:originData];
-    
-    encodeResult = [[NSString alloc] initWithData:encodeData encoding:NSUTF8StringEncoding];
-    
-    return encodeResult;
-}
 
 
 /*

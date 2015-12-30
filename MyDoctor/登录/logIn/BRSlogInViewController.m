@@ -14,7 +14,6 @@
 #import "MDConst.h"
 #import "AFNetworking.h"
 #import "UIKit+AFNetworking.h"
-#import "GTMBase64.h"
 #import "MDRequestModel.h"
 #import "MDUserVO.h"
 #import "EaseMob.h"
@@ -65,18 +64,11 @@
 #pragma mark - POST请求
 - (void)postRequest
 {
-    NSString* date;
-    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
-    date = [formatter stringFromDate:[NSDate date]];
-    NSString * url =MDPath;// @"http://111.160.245.75:8082/CommunityWs//servlet/ShequServlet?";
-    
     MDRequestModel * model = [[MDRequestModel alloc] init];
-    model.path = url;
-    NSString * nameAndPassword=[NSString stringWithFormat:@"10102@`3@`3@`%@@`1@`3@`%@@`%@",date,logInField.text,password.text];
-    nameAndPassword=[self GTMEncodeTest:nameAndPassword];
-//    //post键值对
-    model.parameters = @{@"b":nameAndPassword};
+    model.path = MDPath;
+    model.methodNum = 10102;
+    NSString * parameter=[NSString stringWithFormat:@"%@@`%@",logInField.text,password.text];
+    model.parameter = parameter;
     model.delegate = self;
     [model starRequest];
     
@@ -364,23 +356,6 @@
     [password resignFirstResponder];
 }
 
-//转吗
--(NSString *)GTMEncodeTest:(NSString *)text
-
-{
-    
-    NSString* originStr = text;
-    
-    NSString* encodeResult = nil;
-    
-    NSData* originData = [originStr dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSData* encodeData = [GTMBase64 encodeData:originData];
-    
-    encodeResult = [[NSString alloc] initWithData:encodeData encoding:NSUTF8StringEncoding];
-    
-    return encodeResult;
-}
 
 
 

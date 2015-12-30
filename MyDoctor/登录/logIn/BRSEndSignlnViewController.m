@@ -18,7 +18,6 @@
 #import "FileUtils.h"
 #define IMAGECACHE  @"IMAGE/"
 #import "MDRequestModel.h"
-#import "GTMBase64.h"
 
 @interface BRSEndSignlnViewController ()<sendInfoToCtr>
 
@@ -134,21 +133,12 @@
     NSString * user_Id=[stdDefault objectForKey:@"user_Id"];
     NSString *uniquePath=[path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",str]];
     BOOL result=[UIImagePNGRepresentation(image222)writeToFile: uniquePath atomically:YES];
-
-    NSString* date;
-    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
-    date = [formatter stringFromDate:[NSDate date]];
-    NSString * url =MDPath;// @"http://111.160.245.75:8082/CommunityWs//servlet/ShequServlet?";
-    
-
     
     MDRequestModel * model = [[MDRequestModel alloc] init];
-    model.path = url;
-    NSString * nameAndPassword=[NSString stringWithFormat:@"10103@`3@`3@`%@@`1@`3@`%@@`%@",date,user_Id,uniquePath];
-    nameAndPassword=[self GTMEncodeTest:nameAndPassword];
-    //    //post键值对
-    model.parameters = @{@"b":nameAndPassword};
+    model.path = MDPath;
+    model.methodNum = 10103;
+    NSString * parameter=[NSString stringWithFormat:@"%@@`%@",user_Id,uniquePath];
+    model.parameter = parameter;
     model.delegate = self;
     [model starRequest];
     
@@ -296,22 +286,6 @@
     [self dismissViewControllerAnimated:YES completion:^{}];
     
 }
-//转吗
--(NSString *)GTMEncodeTest:(NSString *)text
 
-{
-    
-    NSString* originStr = text;
-    
-    NSString* encodeResult = nil;
-    
-    NSData* originData = [originStr dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSData* encodeData = [GTMBase64 encodeData:originData];
-    
-    encodeResult = [[NSString alloc] initWithData:encodeData encoding:NSUTF8StringEncoding];
-    
-    return encodeResult;
-}
 
 @end

@@ -9,7 +9,6 @@
 #import "MDDataViewController.h"
 #import "BRSTextField.h"
 #import "MDRequestModel.h"
-#import "GTMBase64.h"
 
 @interface MDDataViewController ()
 
@@ -231,24 +230,19 @@
 #pragma mark - POST请求
 - (void)postRequest
 {
-    NSString* date;
-    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
-    date = [formatter stringFromDate:[NSDate date]];
-    NSString * url =MDPath;// @"http://111.160.245.75:8082/CommunityWs//servlet/ShequServlet?";
+  
     NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
     NSString * str=[stdDefault objectForKey:@"user_name"];
     NSString * userId=[stdDefault objectForKey:@"user_Id"];
     MDRequestModel * model = [[MDRequestModel alloc] init];
-    model.path = url;
-    NSString * birthday1=[NSString stringWithFormat:@"%@-%@-%@ 00:00:00",year.titleLabel.text,month.titleLabel.text,day.titleLabel.text];
-    NSString * nameAndPassword=[NSString stringWithFormat:@"10104@`3@`3@`%@@`1@`3@`%@@`%@@`%d@`%@@`%@@`%@",date,userId,name.text,sex,str,IdNumber.text,birthday1];
-    nameAndPassword=[self GTMEncodeTest:nameAndPassword];
-    //    //post键值对
-    NSLog(@"%@",nameAndPassword);
-    model.parameters = @{@"b":nameAndPassword};
+    model.path = MDPath;
     model.delegate = self;
-    [model starRequest];
+    model.methodNum = 10104;
+    
+    NSString * birthday1=[NSString stringWithFormat:@"%@-%@-%@ 00:00:00",year.titleLabel.text,month.titleLabel.text,day.titleLabel.text];
+    NSString * parameter=[NSString stringWithFormat:@"%@@`%@@`%d@`%@@`%@@`%@",userId,name.text,sex,str,IdNumber.text,birthday1];
+    model.parameter = parameter;
+       [model starRequest];
     
     
 }
@@ -385,22 +379,5 @@
     monthDown=nil;
     dayDown=nil;
 }
-//转吗
--(NSString *)GTMEncodeTest:(NSString *)text
-{
-    
-    NSString* originStr = text;
-    
-    NSString* encodeResult = nil;
-    
-    NSData* originData = [originStr dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSData* encodeData = [GTMBase64 encodeData:originData];
-    
-    encodeResult = [[NSString alloc] initWithData:encodeData encoding:NSUTF8StringEncoding];
-    
-    return encodeResult;
-}
-
 
 @end

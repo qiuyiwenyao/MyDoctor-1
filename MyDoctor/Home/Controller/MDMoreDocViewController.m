@@ -11,7 +11,6 @@
 #import "MDHospitalViewController.h"
 #import "MDDocModel.h"
 #import "MDRequestModel.h"
-#import "GTMBase64.h"
 
 @interface MDMoreDocViewController ()<UITableViewDataSource,UITableViewDelegate,sendInfoToCtr>
 {
@@ -32,10 +31,9 @@
     //返回按钮点击
     [self.leftBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
+    [self createView];
     [self requestData];
 
-    
-    [self createView];
     // Do any additional setup after loading the view.
 }
 
@@ -56,18 +54,26 @@
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = MDPath;
     model.delegate = self;
-    model.methodNum = 10401;
+    if ([self.title isEqualToString:@"所有医生"]) {
+        model.methodNum = 10402;
+    }
+    else if ([self.title isEqualToString:@"所有专家"])
+    {
+        model.methodNum = 10403;
+    }
     
     NSString* date;
     NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
     date = [formatter stringFromDate:[NSDate date]];
     int userId = [[MDUserVO userVO].userID intValue];
+    int pageSize = 10;
+    int pageIndex = 1;
+    int lastID = 0;//最后一次获取的值，现在传0
     
-    NSString * parameter=[NSString stringWithFormat:@"%d@`3@`3@`%@@`1@`3@`%d",model.methodNum,date,userId];
-    parameter=[self GTMEncodeTest:parameter];
+    NSString * parameter=[NSString stringWithFormat:@"%d@`%d@`%d@`%d",userId,pageSize,pageIndex,lastID];
     //post键值对
-    model.parameters = @{@"b":parameter};
+    model.parameter = parameter;
     [model starRequest];
 
 }
@@ -92,6 +98,20 @@
     
 }
 
+#pragma mark - sendInfoToCtr请求数据回调
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
+{
+    MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+    _dataSource = [[NSMutableArray alloc] init];
+    for (NSDictionary * dic in [dictionary objectForKey:@"obj"]) {
+        MDDocModel * model = [[MDDocModel alloc] init];
+        [model setValuesForKeysWithDictionary:dic];
+        [_dataSource addObject:model];
+    }
+    [_tableView reloadData];
+}
+
 #pragma mark - UITableViewDelegate
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -101,7 +121,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.dataSource[section] count];
+    return _dataSource.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -123,7 +143,7 @@
     //    for (UIView *item in cell.contentView.subviews) {
     //        [item removeFromSuperview];
     //    }
-    MDDocModel * model = _dataSource[indexPath.section][indexPath.row];
+    MDDocModel * model = _dataSource[indexPath.row];
     cell.nameLab.text = model.RealName;
     cell.hospitalLab.text = model.HospitalName;
     cell.majorLab.text = model.Detail;
@@ -168,23 +188,6 @@
     [self.navigationController pushViewController:hospitalVC animated:YES];
 }
 
-//转吗
--(NSString *)GTMEncodeTest:(NSString *)text
-
-{
-    
-    NSString* originStr = text;
-    
-    NSString* encodeResult = nil;
-    
-    NSData* originData = [originStr dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSData* encodeData = [GTMBase64 encodeData:originData];
-    
-    encodeResult = [[NSString alloc] initWithData:encodeData encoding:NSUTF8StringEncoding];
-    
-    return encodeResult;
-}
 
 
 /*

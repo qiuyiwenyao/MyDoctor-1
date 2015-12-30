@@ -13,7 +13,6 @@
 #import "View+MASAdditions.h"
 #import "MDConst.h"
 #import "MDRequestModel.h"
-#import "GTMBase64.h"
 #define autoSizeScaleX  (appWidth>320?appWidth/320:1)
 #define autoSizeScaleY  (appHeight>568?appHeight/568:1)
 #define T4FontSize (15*autoSizeScaleX)
@@ -167,18 +166,11 @@
     NSString *identifierForVendor = [[UIDevice currentDevice].identifierForVendor UUIDString];//设备标示
 //    NSString * phoneNum = @"18234085032";
     
-    NSString* date;
-    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
-    date = [formatter stringFromDate:[NSDate date]];
-    
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = MDPath;
     model.methodNum = 99999;
-    NSString * idenAndNum=[NSString stringWithFormat:@"%d@`3@`3@`%@@`1@`3@`%@@`%@",model.methodNum,date,number.text,identifierForVendor];
-    idenAndNum=[self GTMEncodeTest:idenAndNum];
-    //    //post键值对
-    model.parameters = @{@"b":idenAndNum};
+    NSString * parameter=[NSString stringWithFormat:@"%@@`%@",number.text,identifierForVendor];
+    model.parameter = parameter;
     model.delegate = self;
     [model starRequest];
 
@@ -382,24 +374,6 @@
     {
         return NO;
     }
-}
-
-//转吗
--(NSString *)GTMEncodeTest:(NSString *)text
-
-{
-    
-    NSString* originStr = text;
-    
-    NSString* encodeResult = nil;
-    
-    NSData* originData = [originStr dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSData* encodeData = [GTMBase64 encodeData:originData];
-    
-    encodeResult = [[NSString alloc] initWithData:encodeData encoding:NSUTF8StringEncoding];
-    
-    return encodeResult;
 }
 
 

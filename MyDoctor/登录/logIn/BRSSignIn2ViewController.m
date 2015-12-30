@@ -19,7 +19,6 @@
 #import "BRSEndSignlnViewController.h"
 #import "AFNetworking.h"
 #import "UIKit+AFNetworking.h"
-#import "GTMBase64.h"
 #import "MDRequestModel.h"
 #import "EaseMob.h"
 #import "NIDropDown.h"
@@ -535,26 +534,20 @@
 - (void)postRequest
 {
     
-    NSString* date;
-    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
-    date = [formatter stringFromDate:[NSDate date]];
-    NSString * url = @"http://111.160.245.75:8082/CommunityWs//servlet/ShequServlet?";
-    NSDictionary * villageDic =  @{@"建昌里":@3,@"建明里":@4,@"长青北里":@6,@"育红东里":@7,@"育红东里平方":@8,@"育红路7号院":@9,@"中山北里":@10,@"诗景颂苑":@12,@"红波西里":@13};
+NSDictionary * villageDic =  @{@"建昌里":@3,@"建明里":@4,@"长青北里":@6,@"育红东里":@7,@"育红东里平方":@8,@"育红路7号院":@9,@"中山北里":@10,@"诗景颂苑":@12,@"红波西里":@13};
     villageID = (int)[villageDic objectForKey:_selectButton.titleLabel.text];
     NSLog(@"villageDic%@",villageDic);
     
     MDRequestModel * model = [[MDRequestModel alloc] init];
-    model.path = url;
+    model.path = MDPath;
+    model.methodNum = 10101;
     NSArray *array = [housenumber.text componentsSeparatedByString:@"-"];
     if ([array count]==1) {
         array=[housenumber.text componentsSeparatedByString:@"－"];
     }
-    NSString * nameAndPassword=[NSString stringWithFormat:@"10101@`3@`3@`%@@`1@`3@`%@@`%@@`%@@`%d@`%@@`%@",date,number.text,self.login_name,password.text,villageID,array[0],array[1]];
-    nameAndPassword=[self GTMEncodeTest:nameAndPassword];
-
+    NSString * parameter=[NSString stringWithFormat:@"%@@`%@@`%@@`%d@`%@@`%@",number.text,self.login_name,password.text,villageID,array[0],array[1]];
     //    //post键值对
-    model.parameters = @{@"b":nameAndPassword};
+    model.parameter = parameter;
     model.delegate = self;
     [model starRequest];
 
@@ -602,23 +595,6 @@
     }
 }
 
-//转吗
--(NSString *)GTMEncodeTest:(NSString *)text
-
-{
-    
-    NSString* originStr = text;
-    
-    NSString* encodeResult = nil;
-    
-    NSData* originData = [originStr dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSData* encodeData = [GTMBase64 encodeData:originData];
-    
-    encodeResult = [[NSString alloc] initWithData:encodeData encoding:NSUTF8StringEncoding];
-    
-    return encodeResult;
-}
 
 
 /**
@@ -627,21 +603,5 @@
  
  */
 
--(NSString *)GMTDecodeTest:(NSString *)text
-
-{
-    
-    NSString* encodeStr = text;
-    
-    NSString* decodeResult = nil;
-    
-    NSData* encodeData = [encodeStr dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSData* decodeData = [GTMBase64 decodeData:encodeData];
-    
-    decodeResult = [[NSString alloc] initWithData:decodeData encoding:NSUTF8StringEncoding];
-    
-    return decodeResult;
-}
 
 @end

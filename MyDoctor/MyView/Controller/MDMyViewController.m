@@ -240,7 +240,7 @@
         myDoctorVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:myDoctorVC animated:YES];
     }
-    else if (indexPath.section == 1)
+    else if (indexPath.section == 2)
     {
         MDFeedBackViewController * feedBackVC = [[MDFeedBackViewController alloc] init];
         feedBackVC.hidesBottomBarWhenPushed = YES;

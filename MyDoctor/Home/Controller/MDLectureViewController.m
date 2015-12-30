@@ -8,7 +8,6 @@
 
 #import "MDLectureViewController.h"
 #import "MDRequestModel.h"
-#import "GTMBase64.h"
 #import "MDLectureModel.h"
 
 
@@ -56,18 +55,11 @@
 //开始请求数据
 - (void)postRequest
 {
-    NSString* date;
-    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
-    date = [formatter stringFromDate:[NSDate date]];
-    
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = MDPath;
     model.methodNum = 10201;
-    NSString * nameAndPassword=[NSString stringWithFormat:@"10201@`3@`3@`%@@`1@`3",date];
-    nameAndPassword=[self GTMEncodeTest:nameAndPassword];
-    //    //post键值对
-    model.parameters = @{@"b":nameAndPassword};
+    NSString * parameter=@"";
+    model.parameter = parameter;
     model.delegate = self;
     [model starRequest];
 }
@@ -139,21 +131,14 @@
 
 -(void)orderBtnClick
 {
-    NSString* date;
-    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
-    date = [formatter stringFromDate:[NSDate date]];
-    
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = MDPath;
     model.methodNum = 10202;
 //    model.methodNum = 10201;
     NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
     int userId = [[stdDefault objectForKey:@"user_Id"] intValue];
-    NSString * nameAndPassword=[NSString stringWithFormat:@"%d@`3@`3@`%@@`1@`3@`%d@`%d",model.methodNum,date,userId,lectureID];
-    nameAndPassword=[self GTMEncodeTest:nameAndPassword];
-    //    //post键值对
-    model.parameters = @{@"b":nameAndPassword};
+    NSString * parameter = [NSString stringWithFormat:@"%d@`%d",userId,lectureID];
+    model.parameter = parameter;
     model.delegate = self;
     [model starRequest];
 
@@ -231,23 +216,7 @@
 
 }
 
-//转吗
--(NSString *)GTMEncodeTest:(NSString *)text
 
-{
-    
-    NSString* originStr = text;
-    
-    NSString* encodeResult = nil;
-    
-    NSData* originData = [originStr dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSData* encodeData = [GTMBase64 encodeData:originData];
-    
-    encodeResult = [[NSString alloc] initWithData:encodeData encoding:NSUTF8StringEncoding];
-    
-    return encodeResult;
-}
 
 /*
 #pragma mark - Navigation

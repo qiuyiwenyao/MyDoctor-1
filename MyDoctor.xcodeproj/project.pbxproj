@@ -47,8 +47,6 @@
 		153ED85F1C0C17DC00171DFA /* 搜索药品@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 153ED85E1C0C17DC00171DFA /* 搜索药品@2x.png */; };
 		153ED8611C0C17E700171DFA /* 搜索药品@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 153ED8601C0C17E700171DFA /* 搜索药品@3x.png */; };
 		153ED8671C0C266C00171DFA /* MDDrugTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 153ED8661C0C266C00171DFA /* MDDrugTableViewCell.m */; };
-		154168881C3272EB00A69A7D /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154168861C3272EB00A69A7D /* Bolts.framework */; };
-		154168891C3272EB00A69A7D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154168871C3272EB00A69A7D /* Parse.framework */; };
 		15528BAD1C20FAB500B1F409 /* MDUserVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 15528BAC1C20FAB500B1F409 /* MDUserVO.m */; };
 		15528BC91C28DFCF00B1F409 /* MDConsultDrugModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15528BC81C28DFCF00B1F409 /* MDConsultDrugModel.m */; };
 		155CEBE91C0C2E8E006B5CFA /* 药@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 155CEBE81C0C2E8E006B5CFA /* 药@2x.png */; };
@@ -585,6 +583,8 @@
 		6AB9BD1D1C2BEEDD004BF6A7 /* messageSendFail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AB9BD1B1C2BEEDD004BF6A7 /* messageSendFail@2x.png */; };
 		6AB9BD1F1C2BEF7E004BF6A7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB9BD1E1C2BEF7E004BF6A7 /* MapKit.framework */; };
 		6AB9BD211C2BEF8B004BF6A7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB9BD201C2BEF8B004BF6A7 /* CoreLocation.framework */; };
+		6ABBACE21C33802C008F064C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ABBACE01C33802C008F064C /* Bolts.framework */; };
+		6ABBACE31C33802C008F064C /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ABBACE11C33802C008F064C /* Parse.framework */; };
 		6ABD0BE11C311DFA00FEE47F /* DocOnLineViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD0BE01C311DFA00FEE47F /* DocOnLineViewController2.m */; };
 		6ABD0BE81C321C8400FEE47F /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABD0BE21C321C8400FEE47F /* home@2x.png */; };
 		6ABD0BE91C321C8400FEE47F /* homeback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABD0BE31C321C8400FEE47F /* homeback@2x.png */; };
@@ -725,8 +725,6 @@
 		153ED8601C0C17E700171DFA /* 搜索药品@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索药品@3x.png"; sourceTree = "<group>"; };
 		153ED8651C0C266C00171DFA /* MDDrugTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDDrugTableViewCell.h; path = Home/View/MDDrugTableViewCell.h; sourceTree = "<group>"; };
 		153ED8661C0C266C00171DFA /* MDDrugTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDDrugTableViewCell.m; path = Home/View/MDDrugTableViewCell.m; sourceTree = "<group>"; };
-		154168861C3272EB00A69A7D /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		154168871C3272EB00A69A7D /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		15528BAB1C20FAB500B1F409 /* MDUserVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDUserVO.h; sourceTree = "<group>"; };
 		15528BAC1C20FAB500B1F409 /* MDUserVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDUserVO.m; sourceTree = "<group>"; };
 		15528BC71C28DFCF00B1F409 /* MDConsultDrugModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDConsultDrugModel.h; path = Home/Model/MDConsultDrugModel.h; sourceTree = "<group>"; };
@@ -1593,6 +1591,8 @@
 		6AB9BD1B1C2BEEDD004BF6A7 /* messageSendFail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "messageSendFail@2x.png"; sourceTree = "<group>"; };
 		6AB9BD1E1C2BEF7E004BF6A7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6AB9BD201C2BEF8B004BF6A7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		6ABBACE01C33802C008F064C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		6ABBACE11C33802C008F064C /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		6ABD0BDF1C311DFA00FEE47F /* DocOnLineViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocOnLineViewController2.h; path = DocHome/DocOnLineViewController2.h; sourceTree = "<group>"; };
 		6ABD0BE01C311DFA00FEE47F /* DocOnLineViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocOnLineViewController2.m; path = DocHome/DocOnLineViewController2.m; sourceTree = "<group>"; };
 		6ABD0BE21C321C8400FEE47F /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
@@ -1692,7 +1692,7 @@
 				6AB9BD211C2BEF8B004BF6A7 /* CoreLocation.framework in Frameworks */,
 				6AB9BD1F1C2BEF7E004BF6A7 /* MapKit.framework in Frameworks */,
 				6AB9BB271C2BE776004BF6A7 /* libMobClickLibrary.a in Frameworks */,
-				154168891C3272EB00A69A7D /* Parse.framework in Frameworks */,
+				6ABBACE31C33802C008F064C /* Parse.framework in Frameworks */,
 				6AB9BB341C2BE7AE004BF6A7 /* libopencore-amrnb.a in Frameworks */,
 				6AB9B8741C2BDB7F004BF6A7 /* AddressBook.framework in Frameworks */,
 				6AB9B8721C2BDB3F004BF6A7 /* ImageIO.framework in Frameworks */,
@@ -1705,7 +1705,7 @@
 				6AB9B5FA1C28E45A004BF6A7 /* libiconv.tbd in Frameworks */,
 				6AB9B5F81C28E43A004BF6A7 /* libresolv.tbd in Frameworks */,
 				6AB9B5F61C28E42D004BF6A7 /* libxml2.tbd in Frameworks */,
-				154168881C3272EB00A69A7D /* Bolts.framework in Frameworks */,
+				6ABBACE21C33802C008F064C /* Bolts.framework in Frameworks */,
 				6AB9B5F41C28E420004BF6A7 /* libsqlite3.tbd in Frameworks */,
 				6AB9B5F21C28E415004BF6A7 /* libstdc++.6.0.9.tbd in Frameworks */,
 				6AB9B5F01C28E3BE004BF6A7 /* CFNetwork.framework in Frameworks */,
@@ -3155,8 +3155,8 @@
 		6AB9B7641C2BD176004BF6A7 /* Parse */ = {
 			isa = PBXGroup;
 			children = (
-				154168861C3272EB00A69A7D /* Bolts.framework */,
-				154168871C3272EB00A69A7D /* Parse.framework */,
+				6ABBACE01C33802C008F064C /* Bolts.framework */,
+				6ABBACE11C33802C008F064C /* Parse.framework */,
 			);
 			path = Parse;
 			sourceTree = "<group>";

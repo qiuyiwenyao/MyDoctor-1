@@ -19,15 +19,21 @@
 
 -(void)starRequest
 {
+    NSString* date;
+    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+    date = [formatter stringFromDate:[NSDate date]];
     
-    
+    NSString * parameters = [NSString stringWithFormat:@"%d@`3@`3@`%@@`1@`3@`%@",self.methodNum,date,self.parameter];
+    //参数加密
+    parameters = [self GTMEncodeTest:parameters];
     
     AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    [manager POST:self.path parameters:self.parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:self.path parameters:@{@"b":parameters} success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self.delegate sendInfoFromRequest:responseObject andPath:self.path number:self.methodNum];
-
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         MDLog(@"%@",error.description);
     }];

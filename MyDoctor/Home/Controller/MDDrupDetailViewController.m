@@ -8,7 +8,6 @@
 
 #import "MDDrupDetailViewController.h"
 #import "MDRequestModel.h"
-#import "GTMBase64.h"
 #import "MDDrupDetailModel.h"
 #import "UIImageView+WebCache.h"
 
@@ -256,17 +255,11 @@
 //    model.delegate = self;
 //    [model starRequest];
 
-    NSString* date;
-    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
-    date = [formatter stringFromDate:[NSDate date]];
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = MDPath;
     model.methodNum = 10305;
-    NSString * value = [NSString stringWithFormat:@"%d@`3@`3@`%@@`1@`3@`%d",model.methodNum,date,self.drugID];
-    value=[self GTMEncodeTest:value];
-    //post键值对
-    model.parameters = @{@"b":value};
+    NSString * parameter = [NSString stringWithFormat:@"%d",self.drugID];
+    model.parameter = parameter;
     model.delegate = self;
     [model starRequest];
 }
@@ -299,23 +292,6 @@
     [self createView];
 }
 
-//转吗
--(NSString *)GTMEncodeTest:(NSString *)text
-
-{
-    
-    NSString* originStr = text;
-    
-    NSString* encodeResult = nil;
-    
-    NSData* originData = [originStr dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSData* encodeData = [GTMBase64 encodeData:originData];
-    
-    encodeResult = [[NSString alloc] initWithData:encodeData encoding:NSUTF8StringEncoding];
-    
-    return encodeResult;
-}
 
 
 

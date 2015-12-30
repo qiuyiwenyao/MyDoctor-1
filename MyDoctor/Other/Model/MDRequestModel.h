@@ -23,7 +23,7 @@
 
 @property (nonatomic,copy) NSString * ContentType;
 
-@property (nonatomic,strong) NSDictionary * parameters;
+@property (nonatomic,strong) NSString * parameter;
 
 @property (nonatomic,assign) int methodNum;
 
