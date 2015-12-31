@@ -97,13 +97,13 @@
 {
     [super viewWillAppear:animated];
     
-    if ([_patient isEqualToString:@"1"]) {
-        EMConversation *conversation =  [[EaseMob sharedInstance].chatManager conversationForChatter:@"18234087856" conversationType:0] ;
+    if (_chatID) {
+        EMConversation *conversation =  [[EaseMob sharedInstance].chatManager conversationForChatter:_chatID conversationType:0] ;
         NSString *chatter = conversation.chatter;
         ChatViewController * chatController = [[ChatViewController alloc] initWithChatter:chatter
                                                     conversationType:conversation.conversationType];
-        chatController.title = @"医生";
-        chatController.patient=@"1";
+        chatController.title = _name;
+        chatController.chatID=_chatID;
         chatController.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:chatController animated:NO];
     }

@@ -88,11 +88,6 @@
 
 -(void)requestData
 {
-    NSString* date;
-    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
-    date = [formatter stringFromDate:[NSDate date]];
-    
     int pageSize = 10;
     int pageIndex = 1;
     int maxId = 0;

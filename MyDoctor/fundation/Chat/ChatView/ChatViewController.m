@@ -315,7 +315,7 @@
     if (message == nil) {
         [[EaseMob sharedInstance].chatManager removeConversationByChatter:_conversation.chatter deleteMessages:NO append2Chat:YES];
     }
-    if ([_patient isEqualToString:@"1"]) {
+    if (_chatID) {
         [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
     }else{
         [self.navigationController popViewControllerAnimated:YES];

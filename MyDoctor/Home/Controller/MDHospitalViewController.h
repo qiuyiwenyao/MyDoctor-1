@@ -7,14 +7,17 @@
 //
 
 #import "MDBaseViewController.h"
+#import "MDDocModel.h"
 
 @interface MDHospitalViewController : MDBaseViewController
 
-@property (nonatomic,strong) NSString * name;
-@property (nonatomic,strong) NSString * hospital;
-@property (nonatomic,strong) NSString * brand;
-@property (nonatomic,strong) NSString * major;
-@property (nonatomic,strong) NSString * phone;
+//@property (nonatomic,strong) NSString * name;
+//@property (nonatomic,strong) NSString * hospital;
+//@property (nonatomic,strong) NSString * brand;
+//@property (nonatomic,strong) NSString * major;
+//@property (nonatomic,strong) NSString * phone;
+//@property (nonatomic,strong) NSDictionary * docInfo;
+@property (nonatomic,assign) MDDocModel * docInfo;
 
 
 @end

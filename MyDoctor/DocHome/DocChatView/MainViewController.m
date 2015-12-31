@@ -84,9 +84,10 @@ static NSString *kGroupName = @"GroupName";
     [self setupUntreatedApplyCount];
 }
 
--(void)justPatient
+-(void)setChatIDandName
 {
-    _chatListVC.patient=@"1";
+    _chatListVC.chatID=self.chatID;
+    _chatListVC.name = self.name;
 
 }
 - (void)didReceiveMemoryWarning

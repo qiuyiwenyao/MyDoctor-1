@@ -58,7 +58,8 @@
     
 //    [self logIn];
     //医生端
-    [self showDocView];
+//    [self showDocView];
+    [self showMainView];
     [[UINavigationBar appearance] setBackgroundColor:RGBACOLOR(239, 239, 239, 1)];
 //    [[UINavigationBar appearance] setBackgroundColor:[UIColor whiteColor]];
 //    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;

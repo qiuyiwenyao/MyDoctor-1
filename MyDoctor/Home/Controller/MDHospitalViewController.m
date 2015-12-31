@@ -12,8 +12,9 @@
 #import "ChatViewController.h"
 #import "EaseMob.h"
 #import "MainViewController.h"
+#import "MDRequestModel.h"
 
-@interface MDHospitalViewController ()<UIAlertViewDelegate>
+@interface MDHospitalViewController ()<UIAlertViewDelegate,sendInfoToCtr>
 
 @end
 
@@ -64,24 +65,34 @@
     [topView addSubview:headView];
     
     UILabel * nameLab = [[UILabel alloc] initWithFrame:CGRectMake(headView.x+headView.width+20, 30, 60, 20)];
-    nameLab.text = _name;
+    nameLab.text = _docInfo.RealName;
     nameLab.font = [UIFont systemFontOfSize:16];
     [topView addSubview:nameLab];
     
     UILabel * branchLab = [[UILabel alloc] initWithFrame:CGRectMake(nameLab.x+nameLab.width+3, nameLab.y, 60, 20)];
-    branchLab.text = _brand;
+    branchLab.text = _docInfo.Department;
     branchLab.textColor = ColorWithRGB(97, 103, 111, 1);
     branchLab.font = [UIFont systemFontOfSize:14];
     [topView addSubview:branchLab];
     
+    UIButton * focusButton = [[UIButton alloc] initWithFrame:CGRectMake(appWidth - 65, 12, 50, 20)];
+    [focusButton setTitle:@"+ 关注" forState:UIControlStateNormal];
+    focusButton.layer.borderWidth = 0.5;
+    focusButton.tag = 11;
+    focusButton.layer.borderColor = [UIColor grayColor].CGColor;
+    [focusButton addTarget:self action:@selector(focusOrCancel:) forControlEvents:UIControlEventTouchUpInside];
+    [focusButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+    focusButton.titleLabel.font = [UIFont systemFontOfSize:16];
+    [topView addSubview:focusButton];
+    
     UILabel * hospitalLab = [[UILabel alloc] initWithFrame:CGRectMake(nameLab.x, nameLab.y+nameLab.height+5, 150, 20)];
-    hospitalLab.text = _hospital;
+    hospitalLab.text = _docInfo.HospitalName;
     hospitalLab.textColor = ColorWithRGB(97, 103, 111, 1);
     hospitalLab.font = [UIFont systemFontOfSize:14];
     [topView addSubview:hospitalLab];
     
     UILabel * majorLab = [[UILabel alloc] initWithFrame:CGRectMake(nameLab.x, hospitalLab.y+hospitalLab.height+5, 200, 60)];
-    majorLab.text=  [NSString stringWithFormat:@"主治:%@",_major];
+    majorLab.text=  [NSString stringWithFormat:@"主治:%@",_docInfo.Detail];
     majorLab.font = [UIFont systemFontOfSize:14];
     majorLab.textColor = ColorWithRGB(97, 103, 111, 1);
     majorLab.numberOfLines = 0;
@@ -163,6 +174,32 @@
     }];
 }
 
+//关注按钮点击
+-(void)focusOrCancel:(UIButton *)btn
+{
+    MDRequestModel * model = [[MDRequestModel alloc] init];
+    model.delegate = self;
+    model.path = MDPath;
+    if ([btn.titleLabel.text isEqualToString:@"+ 关注"]) {
+        model.methodNum = 10404;
+    }
+    else if ([btn.titleLabel.text isEqualToString:@"已关注"])
+    {
+        model.methodNum = 10405;
+    }
+    
+    int userId = [[MDUserVO userVO].userID intValue];
+    int doctorId = _docInfo.id;
+    int docType = 1; //医生类型目前写的固定值
+    
+    MDLog(@"%d",doctorId);
+    
+    model.parameter = [NSString stringWithFormat:@"%d@`%d@`%d",userId,doctorId,docType];
+    
+//    NSLog(@"%@",model.parameter);
+    [model starRequest];
+}
+
 -(void)consult:(UIButton *)button
 
 {
@@ -176,7 +213,9 @@
 //    [self.navigationController pushViewController:chatController animated:YES];
     
     MainViewController * main=[[MainViewController alloc] init];
-    [main justPatient];
+    main.chatID = _docInfo.Phone;
+    main.name = self.title;
+    [main setChatIDandName];
     [main networkChanged:eEMConnectionConnected];
     main.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:main animated:NO];
@@ -188,7 +227,7 @@
     NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
     NSString * str=[stdDefault objectForKey:@"user_name"];
     if ([str length]>0) {
-        NSString * phoneNum = [NSString stringWithFormat:@"tel:%@",self.phone];
+        NSString * phoneNum = [NSString stringWithFormat:@"tel:%@",_docInfo.Phone];
         
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNum]];
         
@@ -207,5 +246,34 @@
         [self presentViewController:nvc animated:YES completion:nil];
     
 }
+
+#pragma mark - sendInfoToCtr请求数据回调
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
+{
+    MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+
+    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+    UIButton * focusButton = (UIButton *)[self.view viewWithTag:11];
+    if (num == 10404) {
+        if ([[dic objectForKey:@"msg"] isEqualToString:@"关注成功!"]) {
+            MDLog(@"关注成功!");
+            [focusButton setTitle:@"已关注" forState:UIControlStateNormal];
+        }
+    }
+    else if (num == 10405)
+    {
+        MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+        
+        if ([dic objectForKey:@"success"]) {
+            MDLog(@"取消关注");
+            [focusButton setTitle:@"+ 关注" forState:UIControlStateNormal];
+        }
+    }
+}
+
+
+
+
+
 
 @end

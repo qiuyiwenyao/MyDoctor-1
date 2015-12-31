@@ -295,17 +295,11 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MDDoctorServiceCell * cell = [tableView cellForRowAtIndexPath:indexPath];
     
     MDHospitalViewController * hospitalVC = [[MDHospitalViewController alloc] init];
-    hospitalVC.title = [NSString stringWithFormat:@"%@医生",cell.nameLab.text];
-    hospitalVC.name = cell.nameLab.text;
-    hospitalVC.hospital = cell.hospitalLab.text;
-    hospitalVC.major = cell.majorLab.text;
-    hospitalVC.brand = cell.branchLab.text;
-    
-    MDDocModel * model = _dataSource[indexPath.section][indexPath.row];
-    hospitalVC.phone = model.Phone;
+    MDDocModel * docInfo = _dataSource[indexPath.section][indexPath.row];
+    hospitalVC.title = docInfo.RealName;
+    hospitalVC.docInfo = docInfo;
     
     [self.navigationController pushViewController:hospitalVC animated:YES];
 }

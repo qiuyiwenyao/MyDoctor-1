@@ -61,11 +61,6 @@
     {
         model.methodNum = 10403;
     }
-    
-    NSString* date;
-    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
-    date = [formatter stringFromDate:[NSDate date]];
     int userId = [[MDUserVO userVO].userID intValue];
     int pageSize = 10;
     int pageIndex = 1;
@@ -149,6 +144,7 @@
     cell.majorLab.text = model.Detail;
     cell.branchLab.text  =model.Department;
     cell.headView.layer.cornerRadius = cell.headView.height/2;
+
     return cell;
 }
 
@@ -176,14 +172,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MDDoctorServiceCell * cell = [tableView cellForRowAtIndexPath:indexPath];
     
     MDHospitalViewController * hospitalVC = [[MDHospitalViewController alloc] init];
-    hospitalVC.title = [NSString stringWithFormat:@"%@医生",cell.nameLab.text];
-    hospitalVC.name = cell.nameLab.text;
-    hospitalVC.hospital = cell.hospitalLab.text;
-    hospitalVC.major = cell.majorLab.text;
-    hospitalVC.brand = cell.branchLab.text;
+    
+    MDDocModel * docInfo = _dataSource[indexPath.row];
+    hospitalVC.docInfo = docInfo;
+    hospitalVC.title = docInfo.RealName;
 
     [self.navigationController pushViewController:hospitalVC animated:YES];
 }

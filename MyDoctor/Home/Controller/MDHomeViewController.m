@@ -192,12 +192,12 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return appWidth*0.22;
+    return appWidth*0.25;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 5;
+    return 1;
 }
 
 //填充每个cell间距的view，使之透明
