@@ -306,6 +306,11 @@
     [picker dismissViewControllerAnimated:YES completion:^{}];
     image222 = [info objectForKey:UIImagePickerControllerEditedImage];
     
+//    NSData* imageData = UIImageJPEGRepresentation(image222, 0.5);
+//    [self uploadImage2Server:imageData callback:^(BOOL erroy, NSDictionary *dict) {
+//        NSLog(@"%@---%@",erroy,dict);
+//    }];
+    
     [headButton setBackgroundImage:image222 forState:UIControlStateNormal];
 }
 
@@ -344,20 +349,43 @@
 {
 //    NSURL *url = [NSURL URLWithString:@"http://rmabcdef001:8080/CommunityWs/servlet/UploadPhoto"];
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+//    
+//    [manager POST:@"http://111.160.245.75:8082/CommunityWs/servlet/UploadPhoto" parameters:/*@{@"b":@"test222",@"username":@"13662142222"}*/nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//        //        [formData appendPartWithFileData:data name:@"f1" fileName:@"1234567.jpeg" mimeType:@"image/jpeg"];
+//        [formData appendPartWithFormData:data name:@"f1"];
+//    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"====");
+//        callback(YES,responseObject);
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"====");
+//        callback(YES,nil);
+//    }];
     
-    [manager POST:@"http://rmabcdef001:8080/CommunityWs/servlet/UploadPhoto" parameters:@{@"b":@"test222",@"username":@"1",@"fl":@"data",@"flag":@"1"} constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        NSLog(@"%@",data);
-        [formData appendPartWithFileData:data name:@"img" fileName:@"1234567.jpeg" mimeType:@"image/jpeg"];
-        NSLog(@"-----------------=====");
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"=================");
+    
+    
+    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+
+    session.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+//    session.requestSerializer  = [AFJSONRequestSerializer serializer];
+//    session.responseSerializer = [AFJSONResponseSerializer serializer];
+//    [session.requestSerializer setValue:@"text/html; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+//    [session.requestSerializer setValue:@"multipart/form-data" forHTTPHeaderField:@"encoding"];
+    
+    
+    [session POST:@"http://111.160.245.75:8082/CommunityWs/servlet/UploadPhoto" parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [responseObject appendPartWithFormData:data name:@"f1.jpeg"];
+        NSLog(@"成功");
         callback(YES,responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"=================");
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+         NSLog(@"失败");
         callback(YES,nil);
     }];
+    
+  
     
 }
 

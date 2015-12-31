@@ -28,15 +28,28 @@
     //参数加密
     parameters = [self GTMEncodeTest:parameters];
     
-    AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    [manager POST:self.path parameters:@{@"b":parameters} success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self.delegate sendInfoFromRequest:responseObject andPath:self.path number:self.methodNum];
+
+    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+    session.responseSerializer=[AFHTTPResponseSerializer serializer];
+//    [session POST:self.path parameters:@{@"b":parameters} success:^(NSURLSessionDataTask *task, id responseObject) {
+//        [self.delegate sendInfoFromRequest:responseObject andPath:self.path number:self.methodNum];
+//        NSLog(@"成功");
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        NSLog(@"失败");        
+//    }];
+    
+    
+    [session POST:self.path parameters:@{@"b":parameters} progress:^(NSProgress * _Nonnull uploadProgress) {
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        MDLog(@"%@",error.description);
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [self.delegate sendInfoFromRequest:responseObject andPath:self.path number:self.methodNum];
+        NSLog(@"成功");
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"失败");
     }];
+    
+
 }
 //转吗
 -(NSString *)GTMEncodeTest:(NSString *)text
