@@ -318,8 +318,8 @@
                 [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:self.login_name password:password2.text completion:^(NSDictionary *loginInfo, EMError *error) {
                     if (!error && loginInfo) {
                         MDLog(@"环信登陆成功！！%@",loginInfo);
-//                        [[EaseMob sharedInstance].chatManager setApnsNickname:number.text];
-//                        [[UserProfileManager sharedInstance] updateUserProfileInBackground:@{kPARSE_HXUSER_NICKNAME:number.text} completion:^(BOOL success, NSError *error) {
+                        [[EaseMob sharedInstance].chatManager setApnsNickname:number.text];
+//                        [[UserProfileManager sharedInstance] updateUserProfileInBackground:@{kPARSE_HXUSER_NICKNAME:@"120"} completion:^(BOOL success, NSError *error) {
 //                            
 //                            
 //                        }];
@@ -335,7 +335,7 @@
             }
         } onQueue:nil];
         
-        [[EaseMob sharedInstance].chatManager setApnsNickname:@"陈"];
+//        [[EaseMob sharedInstance].chatManager setApnsNickname:@"陈4歌tt"];
 
         
         

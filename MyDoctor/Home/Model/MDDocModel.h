@@ -25,6 +25,8 @@
 @property (nonatomic,copy) NSString * Telephone;
 @property (nonatomic,copy) NSString * Phone;
 @property (nonatomic,assign) int id;
+@property (nonatomic,assign) int gzFlag;
+@property (nonatomic,assign) int Type;
 
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key;
 

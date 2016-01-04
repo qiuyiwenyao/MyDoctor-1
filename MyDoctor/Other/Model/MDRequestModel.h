@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MBProgressHUD.h"
 
 @protocol sendInfoToCtr <NSObject>
 
@@ -14,7 +15,7 @@
 
 @end
 
-@interface MDRequestModel : NSObject
+@interface MDRequestModel : NSObject<MBProgressHUDDelegate>
 {
     id  response;
 }
@@ -24,6 +25,8 @@
 @property (nonatomic,copy) NSString * ContentType;
 
 @property (nonatomic,strong) NSString * parameter;
+
+@property (nonatomic,strong) NSString * hudTitle;
 
 @property (nonatomic,assign) int methodNum;
 

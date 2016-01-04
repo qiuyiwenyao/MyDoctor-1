@@ -587,6 +587,9 @@
 		6AB9BD211C2BEF8B004BF6A7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB9BD201C2BEF8B004BF6A7 /* CoreLocation.framework */; };
 		6ABBACE21C33802C008F064C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ABBACE01C33802C008F064C /* Bolts.framework */; };
 		6ABBACE31C33802C008F064C /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ABBACE11C33802C008F064C /* Parse.framework */; };
+		6ABBACE61C34BCF2008F064C /* MDMyFocusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABBACE51C34BCF2008F064C /* MDMyFocusViewController.m */; };
+		6ABBACEA1C34D578008F064C /* UIPopoverListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABBACE91C34D578008F064C /* UIPopoverListView.m */; };
+		6ABBACEC1C34D68C008F064C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ABBACEB1C34D68C008F064C /* QuartzCore.framework */; };
 		6ABD0BE11C311DFA00FEE47F /* DocOnLineViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD0BE01C311DFA00FEE47F /* DocOnLineViewController2.m */; };
 		6ABD0BE81C321C8400FEE47F /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABD0BE21C321C8400FEE47F /* home@2x.png */; };
 		6ABD0BE91C321C8400FEE47F /* homeback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABD0BE31C321C8400FEE47F /* homeback@2x.png */; };
@@ -1597,6 +1600,11 @@
 		6AB9BD201C2BEF8B004BF6A7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6ABBACE01C33802C008F064C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		6ABBACE11C33802C008F064C /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		6ABBACE41C34BCF2008F064C /* MDMyFocusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMyFocusViewController.h; sourceTree = "<group>"; };
+		6ABBACE51C34BCF2008F064C /* MDMyFocusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMyFocusViewController.m; sourceTree = "<group>"; };
+		6ABBACE81C34D578008F064C /* UIPopoverListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPopoverListView.h; sourceTree = "<group>"; };
+		6ABBACE91C34D578008F064C /* UIPopoverListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPopoverListView.m; sourceTree = "<group>"; };
+		6ABBACEB1C34D68C008F064C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6ABD0BDF1C311DFA00FEE47F /* DocOnLineViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocOnLineViewController2.h; path = DocHome/DocOnLineViewController2.h; sourceTree = "<group>"; };
 		6ABD0BE01C311DFA00FEE47F /* DocOnLineViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocOnLineViewController2.m; path = DocHome/DocOnLineViewController2.m; sourceTree = "<group>"; };
 		6ABD0BE21C321C8400FEE47F /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
@@ -1693,6 +1701,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6ABBACEC1C34D68C008F064C /* QuartzCore.framework in Frameworks */,
 				6AB9BD211C2BEF8B004BF6A7 /* CoreLocation.framework in Frameworks */,
 				6AB9BD1F1C2BEF7E004BF6A7 /* MapKit.framework in Frameworks */,
 				6AB9BB271C2BE776004BF6A7 /* libMobClickLibrary.a in Frameworks */,
@@ -1784,6 +1793,7 @@
 		153C1E661C03FB8C00F87014 /* fundation */ = {
 			isa = PBXGroup;
 			children = (
+				6ABBACE71C34D558008F064C /* UIPopoverListView */,
 				6AB9B8601C2BD717004BF6A7 /* Core Data */,
 				6AB9B8501C2BD601004BF6A7 /* Robot */,
 				6AB9B8321C2BD486004BF6A7 /* Custom */,
@@ -2034,6 +2044,7 @@
 		155CEC431C0E8383006B5CFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6ABBACEB1C34D68C008F064C /* QuartzCore.framework */,
 				6AB9BD201C2BEF8B004BF6A7 /* CoreLocation.framework */,
 				6AB9BD1E1C2BEF7E004BF6A7 /* MapKit.framework */,
 				6AB9B8731C2BDB7F004BF6A7 /* AddressBook.framework */,
@@ -2333,6 +2344,8 @@
 				6AF2024C1C0C1A5600933EAF /* MDMyDoctorViewController.m */,
 				6AF202691C0D71AB00933EAF /* MDFeedBackViewController.h */,
 				6AF2026A1C0D71AB00933EAF /* MDFeedBackViewController.m */,
+				6ABBACE41C34BCF2008F064C /* MDMyFocusViewController.h */,
+				6ABBACE51C34BCF2008F064C /* MDMyFocusViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3782,6 +3795,15 @@
 			path = tabbar;
 			sourceTree = "<group>";
 		};
+		6ABBACE71C34D558008F064C /* UIPopoverListView */ = {
+			isa = PBXGroup;
+			children = (
+				6ABBACE81C34D578008F064C /* UIPopoverListView.h */,
+				6ABBACE91C34D578008F064C /* UIPopoverListView.m */,
+			);
+			name = UIPopoverListView;
+			sourceTree = "<group>";
+		};
 		6AF202211C08489100933EAF /* Activity(活动) */ = {
 			isa = PBXGroup;
 			children = (
@@ -4345,6 +4367,7 @@
 				6AB9BA7B1C2BE2EC004BF6A7 /* MWGridViewController.m in Sources */,
 				15FBDD441C152AC0009E7E39 /* DocLookAfterViewController.m in Sources */,
 				6AB9BAA61C2BE32C004BF6A7 /* EMSDWebImageCompat.m in Sources */,
+				6ABBACEA1C34D578008F064C /* UIPopoverListView.m in Sources */,
 				6AB9BB691C2BE845004BF6A7 /* EMChatAudioBubbleView.m in Sources */,
 				15FBDD4D1C153490009E7E39 /* DocServiceFolerVO.m in Sources */,
 				6A3EF8411C05BAFE00923D03 /* MDAllServiceViewController.m in Sources */,
@@ -4547,6 +4570,7 @@
 				155CEC291C0E81B8006B5CFA /* AFHTTPRequestOperationManager.m in Sources */,
 				6AB9BA531C2BE25D004BF6A7 /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				6AB9BAA81C2BE32C004BF6A7 /* EMSDWebImageDownloader.m in Sources */,
+				6ABBACE61C34BCF2008F064C /* MDMyFocusViewController.m in Sources */,
 				6AB9BAD21C2BE348004BF6A7 /* PSTCollectionView.m in Sources */,
 				6AB9BB2D1C2BE78E004BF6A7 /* wav.mm in Sources */,
 				155CEC351C0E81B8006B5CFA /* UIImageView+AFNetworking.m in Sources */,
@@ -4690,8 +4714,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: YU HE (FSJYCJFDN3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: YU HE (FSJYCJFDN3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

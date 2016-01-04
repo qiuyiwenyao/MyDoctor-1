@@ -27,6 +27,12 @@
 
 @implementation MDDoctorServiceViewController
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [self requestData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -129,7 +135,7 @@
     _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, appWidth, appWidth*67.0/750.0)];
     _headerView.backgroundColor = ColorWithRGB(18, 139, 120, 1);
     UILabel * categoryLab = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 45,_headerView.height)];
-    categoryLab.text = @"专家";
+    categoryLab.text = @"医生";
     categoryLab.textColor = [UIColor whiteColor];
     categoryLab.font = [UIFont boldSystemFontOfSize:18];
     [_headerView addSubview:categoryLab];
@@ -146,7 +152,7 @@
     _headerView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, appWidth, appWidth*67.0/750.0)];
     _headerView1.backgroundColor = ColorWithRGB(18, 139, 120, 1);
     UILabel * categoryLab1 = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 45,_headerView.height)];
-    categoryLab1.text = @"医生";
+    categoryLab1.text = @"专家";
     categoryLab1.textColor = [UIColor whiteColor];
     categoryLab1.font = [UIFont boldSystemFontOfSize:18];
     [_headerView1 addSubview:categoryLab1];
@@ -176,16 +182,16 @@
 {
     if (btn.tag == 11) {
         MDMoreDocViewController * moreDocVC = [[MDMoreDocViewController alloc] init];
-        moreDocVC.title = @"所有专家";
-        moreDocVC.categoryLab = @"专家";
+        moreDocVC.title = @"所有医生";
+        moreDocVC.categoryLab = @"医生";
         [self.navigationController pushViewController:moreDocVC animated:YES];
 
     }
     else if (btn.tag == 12)
     {
         MDMoreDocViewController * moreDocVC = [[MDMoreDocViewController alloc] init];
-        moreDocVC.title = @"所有医生";
-        moreDocVC.categoryLab = @"医生";
+        moreDocVC.title = @"所有专家";
+        moreDocVC.categoryLab = @"专家";
         [self.navigationController pushViewController:moreDocVC animated:YES];
         
 

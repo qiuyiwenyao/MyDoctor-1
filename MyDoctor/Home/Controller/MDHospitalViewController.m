@@ -76,7 +76,12 @@
     [topView addSubview:branchLab];
     
     UIButton * focusButton = [[UIButton alloc] initWithFrame:CGRectMake(appWidth - 65, 12, 50, 20)];
-    [focusButton setTitle:@"+ 关注" forState:UIControlStateNormal];
+    if (_docInfo.gzFlag == 1) {
+        [focusButton setTitle:@"已关注" forState:UIControlStateNormal];
+    }
+    else{
+        [focusButton setTitle:@"+ 关注" forState:UIControlStateNormal];
+    }
     focusButton.layer.borderWidth = 0.5;
     focusButton.tag = 11;
     focusButton.layer.borderColor = [UIColor grayColor].CGColor;
@@ -182,15 +187,17 @@
     model.path = MDPath;
     if ([btn.titleLabel.text isEqualToString:@"+ 关注"]) {
         model.methodNum = 10404;
+        model.hudTitle = @"已关注";
     }
     else if ([btn.titleLabel.text isEqualToString:@"已关注"])
     {
         model.methodNum = 10405;
+        model.hudTitle = @"已取消关注";
     }
     
     int userId = [[MDUserVO userVO].userID intValue];
     int doctorId = _docInfo.id;
-    int docType = 1; //医生类型目前写的固定值
+    int docType = _docInfo.Type; 
     
     MDLog(@"%d",doctorId);
     

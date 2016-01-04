@@ -13,12 +13,42 @@
 //#import "AFHTTPRequestOperationManager.h"
 #import "MDConst.h"
 #import "GTMBase64.h"
+#import "MBProgressHUD.h"
 
 
 @implementation MDRequestModel
 
 -(void)starRequest
 {
+//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:((UIViewController *)self.delegate).view animated:YES];
+//    
+//    // Configure for text only and offset down
+//    hud.mode = MBProgressHUDModeText;
+//    hud.labelText = @"Some message...";
+//    hud.margin = 10.f;
+//    hud.removeFromSuperViewOnHide = YES;
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:((UIViewController *)self.delegate).view animated:YES];
+    [((UIViewController *)self.delegate).view addSubview:hud];
+    
+    // Regiser for HUD callbacks so we can remove it from the window at the right time
+    hud.delegate = self;
+    
+    if (_hudTitle == nil) {
+        hud.labelText = @"正在加载";
+    }
+    else
+    {
+        hud.labelText = _hudTitle;
+
+    }
+    
+    // Show the HUD while the provided method executes in a new thread
+//    [hud showWhileExecuting:@selector(myTask) onTarget:self withObject:nil animated:YES];
+
+
+
+    
     NSString* date;
     NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
@@ -33,6 +63,7 @@
     
     [manager POST:self.path parameters:@{@"b":parameters} success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self.delegate sendInfoFromRequest:responseObject andPath:self.path number:self.methodNum];
+        [hud hide:YES afterDelay:0.5];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         MDLog(@"%@",error.description);
