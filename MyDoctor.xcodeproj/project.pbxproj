@@ -47,8 +47,6 @@
 		153ED85F1C0C17DC00171DFA /* 搜索药品@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 153ED85E1C0C17DC00171DFA /* 搜索药品@2x.png */; };
 		153ED8611C0C17E700171DFA /* 搜索药品@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 153ED8601C0C17E700171DFA /* 搜索药品@3x.png */; };
 		153ED8671C0C266C00171DFA /* MDDrugTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 153ED8661C0C266C00171DFA /* MDDrugTableViewCell.m */; };
-		154168BE1C34B70A00A69A7D /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154168BC1C34B70A00A69A7D /* Bolts.framework */; };
-		154168BF1C34B70A00A69A7D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154168BD1C34B70A00A69A7D /* Parse.framework */; };
 		154168E31C34BB0500A69A7D /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 154168C21C34BB0500A69A7D /* AFHTTPSessionManager.m */; };
 		154168E41C34BB0500A69A7D /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 154168C51C34BB0500A69A7D /* AFNetworkReachabilityManager.m */; };
 		154168E51C34BB0500A69A7D /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 154168C71C34BB0500A69A7D /* AFSecurityPolicy.m */; };
@@ -110,6 +108,16 @@
 		15AE537A1C02F0680013FF1B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15AE53791C02F0680013FF1B /* Images.xcassets */; };
 		15AE537D1C02F0680013FF1B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE537B1C02F0680013FF1B /* LaunchScreen.xib */; };
 		15AE53891C02F0680013FF1B /* MyDoctorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AE53881C02F0680013FF1B /* MyDoctorTests.m */; };
+		15CFEFD41C3A0D8600DB6FAC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CFEFD21C3A0D8600DB6FAC /* Bolts.framework */; };
+		15CFEFD51C3A0D8600DB6FAC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CFEFD31C3A0D8600DB6FAC /* Parse.framework */; };
+		15CFEFE01C3A17BB00DB6FAC /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CFEFDF1C3A17BB00DB6FAC /* Icon-72.png */; };
+		15CFEFE21C3A17C400DB6FAC /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CFEFE11C3A17C400DB6FAC /* Icon-72@2x.png */; };
+		15CFEFE41C3A17D000DB6FAC /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CFEFE31C3A17D000DB6FAC /* Icon.png */; };
+		15CFEFFC1C3A1F1700DB6FAC /* Default-375w-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CFEFFB1C3A1F1700DB6FAC /* Default-375w-667h@2x.png */; };
+		15CFEFFE1C3A1F6E00DB6FAC /* Default-414w-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CFEFFD1C3A1F6E00DB6FAC /* Default-414w-736h@3x.png */; };
+		15CFF0021C3A1F7900DB6FAC /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CFF0011C3A1F7900DB6FAC /* Default.png */; };
+		15CFF0041C3A1F7E00DB6FAC /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CFF0031C3A1F7E00DB6FAC /* Default@2x.png */; };
+		15CFF0061C3A397900DB6FAC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CFF0051C3A397900DB6FAC /* Default-568h@2x.png */; };
 		15FBDD3A1C1528F3009E7E39 /* DocHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD391C1528F3009E7E39 /* DocHomeViewController.m */; };
 		15FBDD3D1C152A18009E7E39 /* DocAllWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD3C1C152A18009E7E39 /* DocAllWorkViewController.m */; };
 		15FBDD441C152AC0009E7E39 /* DocLookAfterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD3F1C152AC0009E7E39 /* DocLookAfterViewController.m */; };
@@ -738,8 +746,6 @@
 		153ED8601C0C17E700171DFA /* 搜索药品@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索药品@3x.png"; sourceTree = "<group>"; };
 		153ED8651C0C266C00171DFA /* MDDrugTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDDrugTableViewCell.h; path = Home/View/MDDrugTableViewCell.h; sourceTree = "<group>"; };
 		153ED8661C0C266C00171DFA /* MDDrugTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDDrugTableViewCell.m; path = Home/View/MDDrugTableViewCell.m; sourceTree = "<group>"; };
-		154168BC1C34B70A00A69A7D /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		154168BD1C34B70A00A69A7D /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		154168C11C34BB0500A69A7D /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		154168C21C34BB0500A69A7D /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
 		154168C31C34BB0500A69A7D /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
@@ -837,6 +843,16 @@
 		15AE53821C02F0680013FF1B /* MyDoctorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyDoctorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15AE53871C02F0680013FF1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15AE53881C02F0680013FF1B /* MyDoctorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyDoctorTests.m; sourceTree = "<group>"; };
+		15CFEFD21C3A0D8600DB6FAC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		15CFEFD31C3A0D8600DB6FAC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		15CFEFDF1C3A17BB00DB6FAC /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		15CFEFE11C3A17C400DB6FAC /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		15CFEFE31C3A17D000DB6FAC /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		15CFEFFB1C3A1F1700DB6FAC /* Default-375w-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-375w-667h@2x.png"; sourceTree = "<group>"; };
+		15CFEFFD1C3A1F6E00DB6FAC /* Default-414w-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-414w-736h@3x.png"; sourceTree = "<group>"; };
+		15CFF0011C3A1F7900DB6FAC /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		15CFF0031C3A1F7E00DB6FAC /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		15CFF0051C3A397900DB6FAC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		15FBDD381C1528F3009E7E39 /* DocHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocHomeViewController.h; path = DocHome/DocHomeViewController.h; sourceTree = "<group>"; };
 		15FBDD391C1528F3009E7E39 /* DocHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocHomeViewController.m; path = DocHome/DocHomeViewController.m; sourceTree = "<group>"; };
 		15FBDD3B1C152A18009E7E39 /* DocAllWorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocAllWorkViewController.h; path = DocHome/DocAllWorkViewController.h; sourceTree = "<group>"; };
@@ -1720,7 +1736,7 @@
 				6AB9BD211C2BEF8B004BF6A7 /* CoreLocation.framework in Frameworks */,
 				6AB9BD1F1C2BEF7E004BF6A7 /* MapKit.framework in Frameworks */,
 				6AB9BB271C2BE776004BF6A7 /* libMobClickLibrary.a in Frameworks */,
-				154168BF1C34B70A00A69A7D /* Parse.framework in Frameworks */,
+				15CFEFD51C3A0D8600DB6FAC /* Parse.framework in Frameworks */,
 				6AB9BB341C2BE7AE004BF6A7 /* libopencore-amrnb.a in Frameworks */,
 				6AB9B8741C2BDB7F004BF6A7 /* AddressBook.framework in Frameworks */,
 				6AB9B8721C2BDB3F004BF6A7 /* ImageIO.framework in Frameworks */,
@@ -1733,7 +1749,7 @@
 				6AB9B5FA1C28E45A004BF6A7 /* libiconv.tbd in Frameworks */,
 				6AB9B5F81C28E43A004BF6A7 /* libresolv.tbd in Frameworks */,
 				6AB9B5F61C28E42D004BF6A7 /* libxml2.tbd in Frameworks */,
-				154168BE1C34B70A00A69A7D /* Bolts.framework in Frameworks */,
+				15CFEFD41C3A0D8600DB6FAC /* Bolts.framework in Frameworks */,
 				6AB9B5F41C28E420004BF6A7 /* libsqlite3.tbd in Frameworks */,
 				6AB9B5F21C28E415004BF6A7 /* libstdc++.6.0.9.tbd in Frameworks */,
 				6AB9B5F01C28E3BE004BF6A7 /* CFNetwork.framework in Frameworks */,
@@ -1764,6 +1780,14 @@
 		153C1E5F1C03F4ED00F87014 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				15CFEFE31C3A17D000DB6FAC /* Icon.png */,
+				15CFEFFB1C3A1F1700DB6FAC /* Default-375w-667h@2x.png */,
+				15CFEFFD1C3A1F6E00DB6FAC /* Default-414w-736h@3x.png */,
+				15CFF0051C3A397900DB6FAC /* Default-568h@2x.png */,
+				15CFF0031C3A1F7E00DB6FAC /* Default@2x.png */,
+				15CFF0011C3A1F7900DB6FAC /* Default.png */,
+				15CFEFE11C3A17C400DB6FAC /* Icon-72@2x.png */,
+				15CFEFDF1C3A17BB00DB6FAC /* Icon-72.png */,
 				6AB9B87B1C2BE132004BF6A7 /* Resources */,
 				155CEBFF1C0D8F29006B5CFA /* Icon@2x.png */,
 				153ED8111C08022E00171DFA /* 2x */,
@@ -3196,8 +3220,8 @@
 		6AB9B7641C2BD176004BF6A7 /* Parse */ = {
 			isa = PBXGroup;
 			children = (
-				154168BC1C34B70A00A69A7D /* Bolts.framework */,
-				154168BD1C34B70A00A69A7D /* Parse.framework */,
+				15CFEFD21C3A0D8600DB6FAC /* Bolts.framework */,
+				15CFEFD31C3A0D8600DB6FAC /* Parse.framework */,
 			);
 			path = Parse;
 			sourceTree = "<group>";
@@ -3973,7 +3997,7 @@
 				TargetAttributes = {
 					15AE53681C02F0680013FF1B = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = NS84658YLW;
+						DevelopmentTeam = 8TUZW57LD3;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -3982,6 +4006,7 @@
 					};
 					15AE53811C02F0680013FF1B = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = 8TUZW57LD3;
 						TestTargetID = 15AE53681C02F0680013FF1B;
 					};
 				};
@@ -4044,6 +4069,7 @@
 				153ED8271C08022E00171DFA /* 登录状态@2x.png in Resources */,
 				153ED8231C08022E00171DFA /* 动图@2x.png in Resources */,
 				6AB9BC531C2BEA7B004BF6A7 /* tabbar_setting@2x.png in Resources */,
+				15CFF0021C3A1F7900DB6FAC /* Default.png in Resources */,
 				6AF202201C083F4000933EAF /* activityCell.xib in Resources */,
 				6AB9BCAB1C2BECC6004BF6A7 /* chatBar_recordSelected@2x.png in Resources */,
 				6AB9BBFC1C2BEA0E004BF6A7 /* VoiceSearchFeedback020.png in Resources */,
@@ -4137,6 +4163,7 @@
 				6A3EF7B61C054E2C00923D03 /* greenlogo@2x.png in Resources */,
 				6A6523961C20080000227C63 /* bubble-flat-outgoing.png in Resources */,
 				6AB9BC321C2BEA61004BF6A7 /* group_invitee_delete@2x.png in Resources */,
+				15CFEFFC1C3A1F1700DB6FAC /* Default-375w-667h@2x.png in Resources */,
 				6AB9BC0C1C2BEA23004BF6A7 /* call_silence_h.png in Resources */,
 				6AF2023D1C0B471700933EAF /* topImg1@2x.png in Resources */,
 				6AB9BC561C2BEA7B004BF6A7 /* tabbarBackground.png in Resources */,
@@ -4184,11 +4211,13 @@
 				153ED82B1C08022E00171DFA /* 动图@3x.png in Resources */,
 				6AB9BC4F1C2BEA7B004BF6A7 /* tabbar_contacts@2x.png in Resources */,
 				6AB9BC171C2BEA40004BF6A7 /* account@2x.png in Resources */,
+				15CFEFE21C3A17C400DB6FAC /* Icon-72@2x.png in Resources */,
 				6AB9BCA91C2BECC6004BF6A7 /* chatBar_recordBg@2x.png in Resources */,
 				6AF202471C0BEC2100933EAF /* 个人头像默认@3x.png in Resources */,
 				6AB9BC641C2BEC46004BF6A7 /* chatBar_more_card.png in Resources */,
 				6AB9BBD91C2BEA0E004BF6A7 /* VoiceSearchFeedback002@2x.png in Resources */,
 				6ABD0C061C321EF900FEE47F /* 活动@3x.png in Resources */,
+				15CFEFFE1C3A1F6E00DB6FAC /* Default-414w-736h@3x.png in Resources */,
 				6A65239A1C20080000227C63 /* bubble-square-incoming.png in Resources */,
 				6A6523A01C20080000227C63 /* bubble-typing.png in Resources */,
 				6AB9BC521C2BEA7B004BF6A7 /* tabbar_setting.png in Resources */,
@@ -4230,6 +4259,7 @@
 				6AB9BD041C2BED22004BF6A7 /* chat_sender_audio_playing_000.png in Resources */,
 				6A65238A1C20080000227C63 /* bubble-default-outgoing-selected.png in Resources */,
 				6A6523911C20080000227C63 /* bubble-flat-incoming@2x.png in Resources */,
+				15CFF0041C3A1F7E00DB6FAC /* Default@2x.png in Resources */,
 				6AB9BC4D1C2BEA7B004BF6A7 /* tabbar_chatsHL@2x.png in Resources */,
 				6AB9BC371C2BEA61004BF6A7 /* groupPublicHeader@2x.png in Resources */,
 				6A65238B1C20080000227C63 /* bubble-default-outgoing-selected@2x.png in Resources */,
@@ -4346,6 +4376,7 @@
 				6A3EF7AE1C054DA700923D03 /* purplelogo@2x.png in Resources */,
 				6A6523941C20080000227C63 /* bubble-flat-outgoing-selected.png in Resources */,
 				6A65239F1C20080000227C63 /* bubble-square-outgoing@2x.png in Resources */,
+				15CFEFE41C3A17D000DB6FAC /* Icon.png in Resources */,
 				6AB9BBD61C2BEA0E004BF6A7 /* VoiceSearchFeedback001.png in Resources */,
 				6AB9BBF11C2BEA0E004BF6A7 /* VoiceSearchFeedback014@2x.png in Resources */,
 				6AB9BC181C2BEA40004BF6A7 /* password.png in Resources */,
@@ -4358,9 +4389,11 @@
 				6AF2023B1C0B45F400933EAF /* 专家头像@3x.png in Resources */,
 				6ABD0BF61C321C9D00FEE47F /* my@3x.png in Resources */,
 				6ABD0BFC1C321EDE00FEE47F /* 询医@2x.png in Resources */,
+				15CFEFE01C3A17BB00DB6FAC /* Icon-72.png in Resources */,
 				6AB9BCA71C2BECC6004BF6A7 /* chatBar_record@2x.png in Resources */,
 				6A65238E1C20080000227C63 /* bubble-flat-incoming-selected.png in Resources */,
 				6AB9BC661C2BEC46004BF6A7 /* chatBar_more_cardSelected.png in Resources */,
+				15CFF0061C3A397900DB6FAC /* Default-568h@2x.png in Resources */,
 				6AB9BC681C2BEC46004BF6A7 /* chatBar_more_face.png in Resources */,
 				6A45AAB61C152AB400555CF9 /* 赞@3x.png in Resources */,
 				155CEBFC1C0D880C006B5CFA /* 箭头@2x.png in Resources */,
@@ -4733,7 +4766,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
+				PROVISIONING_PROFILE = "6b3538dd-83c6-4300-af0b-ede6762e838b";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -4763,8 +4798,9 @@
 					"$(PROJECT_DIR)/MyDoctor/fundation/3rdparty/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/MyDoctor/fundation/3rdparty/VoiceConvert/opencore-amrwb",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = MX.MyDoctor;
+				PRODUCT_BUNDLE_IDENTIFIER = SaBaiNuo.MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -4775,6 +4811,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -4783,6 +4821,7 @@
 				INFOPLIST_FILE = MyDoctorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyDoctor.app/MyDoctor";
 			};
 			name = "ad hoc distribution";
@@ -4804,7 +4843,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tianjin Saibainuo Technology Co., Ltd. (8TUZW57LD3)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -4827,8 +4866,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
+				PROVISIONING_PROFILE = "6b3538dd-83c6-4300-af0b-ede6762e838b";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -4851,7 +4891,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tianjin Saibainuo Technology Co., Ltd. (8TUZW57LD3)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -4868,7 +4908,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
+				PROVISIONING_PROFILE = "6b3538dd-83c6-4300-af0b-ede6762e838b";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -4898,8 +4940,9 @@
 					"$(PROJECT_DIR)/MyDoctor/fundation/3rdparty/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/MyDoctor/fundation/3rdparty/VoiceConvert/opencore-amrwb",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = MX.MyDoctor;
+				PRODUCT_BUNDLE_IDENTIFIER = SaBaiNuo.MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -4929,8 +4972,9 @@
 					"$(PROJECT_DIR)/MyDoctor/fundation/3rdparty/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/MyDoctor/fundation/3rdparty/VoiceConvert/opencore-amrwb",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = MX.MyDoctor;
+				PRODUCT_BUNDLE_IDENTIFIER = SaBaiNuo.MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -4941,6 +4985,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -4953,6 +4999,7 @@
 				INFOPLIST_FILE = MyDoctorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyDoctor.app/MyDoctor";
 			};
 			name = Debug;
@@ -4961,6 +5008,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -4969,6 +5018,7 @@
 				INFOPLIST_FILE = MyDoctorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyDoctor.app/MyDoctor";
 			};
 			name = Release;
