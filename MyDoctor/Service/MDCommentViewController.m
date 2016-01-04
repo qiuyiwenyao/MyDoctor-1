@@ -50,23 +50,50 @@
     _commentView.delegate = self;
     [self.view addSubview:_commentView];
     
-    UIButton * zanButton = [[UIButton alloc] init];
-    zanButton.center = CGPointMake(appWidth/2, _commentView.y+_commentView.height+290.0/1920.0*appHeight);
-    zanButton.bounds = CGRectMake(0, 0, 80, 80);
-    zanButton.layer.cornerRadius = zanButton.width/2;
-//    zanButton.layer.masksToBounds  =YES;
-    [zanButton setImage:[UIImage imageNamed:@"未赞"] forState:UIControlStateNormal];
-    zanButton.backgroundColor = RedColor;
-    [self.view addSubview:zanButton];
+//    UIButton * zanButton = [[UIButton alloc] init];
+//    zanButton.center = CGPointMake(appWidth/2, _commentView.y+_commentView.height+290.0/1920.0*appHeight);
+//    zanButton.bounds = CGRectMake(0, 0, 80, 80);
+//    zanButton.layer.cornerRadius = zanButton.width/2;
+////    zanButton.layer.masksToBounds  =YES;
+//    [zanButton setImage:[UIImage imageNamed:@"未赞"] forState:UIControlStateNormal];
+//    zanButton.backgroundColor = RedColor;
+//    [self.view addSubview:zanButton];
     
+    UIImageView * scoreView = [[UIImageView alloc] init];
+    scoreView.center = CGPointMake(appWidth/2, _commentView.y+_commentView.height+300.0/1920.0*appHeight);
+    scoreView.bounds = CGRectMake(0, 0, 130, 24);
+    scoreView.tag = 99;
+    scoreView.userInteractionEnabled = YES;
+    scoreView.image = [UIImage imageNamed:@"评分0"];
+    [self.view addSubview:scoreView];
+    
+    CGFloat scoreButtonWidth = scoreView.width/5;
+    CGFloat scoreButtonHeight = scoreView.height;
+    for(int i = 0;i < 5;i ++)
+    {
+        UIButton * scoreButton = [[UIButton alloc] init];
+        scoreButton.frame = CGRectMake(i * scoreButtonWidth, 0, scoreButtonWidth, scoreButtonHeight);
+        scoreButton.tag = 100 + i;
+        [scoreButton addTarget:self action:@selector(gradeClick:) forControlEvents:UIControlEventTouchUpInside];
+        [scoreView addSubview:scoreButton];
+    }
+        
     UIButton * submitButton = [[UIButton alloc] init];
-    submitButton.frame = CGRectMake(25, zanButton.y+zanButton.height+128.0/1920.0*appHeight, appWidth - 50, (appWidth - 50)*0.13);
+    submitButton.frame = CGRectMake(25, scoreView.y+scoreView.height+128.0/1920.0*appHeight, appWidth - 50, (appWidth - 50)*0.13);
     submitButton.backgroundColor = RedColor;
     submitButton.layer.cornerRadius = 4;
     [submitButton setTitle:@"提交" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(submitClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:submitButton];
     
+}
+
+//打分
+-(void)gradeClick:(UIButton *)btn
+{
+    UIImageView * scoreView = (UIImageView *)[self.view viewWithTag:99];
+    MDLog(@"%d",btn.tag);
+    [scoreView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"评分%d",btn.tag - 99]]];
 }
 
 //点击空白收回键盘

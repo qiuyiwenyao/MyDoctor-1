@@ -17,6 +17,8 @@
 #import "MDRequestModel.h"
 #import "MDUserVO.h"
 #import "EaseMob.h"
+#define IMAGECACHE  @"IMAGE/"
+#import "FileUtils.h"
 
 @interface BRSlogInViewController ()<sendInfoToCtr>
 
@@ -82,10 +84,42 @@
     
     NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
     NSLog(@"%@",dic);
+//    NSString * photo = [[dic objectForKey:@"obj"] objectForKey:@"photo"];
+//    NSString * photourl = [[dic objectForKey:@"obj"] objectForKey:@"shoujiPara"][1][1];
+    
     MDUserVO *user = [MDUserVO convertFromAccountHomeUser:dic];
+    [MDUserVO  initWithCoder:user];
 
     
-    [MDUserVO  initWithCoder:user];
+    //下载头像
+//    UIImage * headImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:<#(nonnull NSURL *)#>]];
+//    [UIImage alloc] initwith;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSData * data = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",user.photourl,user.photo]]];
+        UIImage *headImg = [[UIImage alloc]initWithData:data];
+        if (data != nil) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //在这里做UI操作(UI操作都要放在主线程中执行)
+                FileUtils * fileUtil = [FileUtils sharedFileUtils];
+                //创建文件下载目录
+                NSString * path2 = [fileUtil createCachePath:IMAGECACHE];
+                
+                NSString *uniquePath=[path2 stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",[MDUserVO userVO].userID]];
+                BOOL result=[UIImagePNGRepresentation(headImg)writeToFile: uniquePath atomically:YES];
+                MDLog(@"===========uniquePath:%@",uniquePath);
+
+                
+            });
+        }
+    });
+    
+//    FileUtils * fileUtil = [FileUtils sharedFileUtils];
+//    //创建文件下载目录
+//    NSString * path2 = [fileUtil createCachePath:IMAGECACHE];
+//    
+//    NSString *uniquePath=[path2 stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",[MDUserVO userVO].userID]];
+//    BOOL result=[UIImagePNGRepresentation(image222)writeToFile: uniquePath atomically:YES];
+    
     
     NSLog(@"%@",dic);
     

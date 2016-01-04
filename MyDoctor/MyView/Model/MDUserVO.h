@@ -12,6 +12,10 @@
 @property (nonatomic,copy) NSString *userName;
 @property (nonatomic,copy) NSString *userID;
 @property (nonatomic,copy) NSString *account;
+@property (nonatomic,copy) NSString * photo;
+@property (nonatomic,copy) NSString * baseurl;
+@property (nonatomic,copy) NSString * photourl;
+@property (nonatomic,copy) NSString * photoPath;
 
 +(MDUserVO*)userVO;
 +(MDUserVO*) convertFromAccountHomeUser:(NSDictionary *)dic;

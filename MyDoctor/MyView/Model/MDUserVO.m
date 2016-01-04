@@ -36,6 +36,11 @@ static MDUserVO *user = nil;
     userVO.userName=[[dic objectForKey:@"obj"] objectForKey:@"userName"];
     userVO.userID=[NSString stringWithFormat:@"%@",[[dic objectForKey:@"obj"] objectForKey:@"id"]];
     userVO.account=[[dic objectForKey:@"obj"] objectForKey:@"account"];
+    userVO.photo = [[dic objectForKey:@"obj"] objectForKey:@"photo"];
+    userVO.baseurl = [[dic objectForKey:@"obj"] objectForKey:@"shoujiPara"][0][1];
+    userVO.photourl = [[dic objectForKey:@"obj"] objectForKey:@"shoujiPara"][1][1];
+    userVO.photoPath = [NSString stringWithFormat:@"Library/Caches/IMAGE/%@.png",[[dic objectForKey:@"obj"] objectForKey:@"id"]];
+    
     return userVO;
 }
 
@@ -63,6 +68,8 @@ static MDUserVO *user = nil;
     [aCoder encodeObject:_userID forKey:@"id"];
     [aCoder encodeObject:_userName forKey:@"userName"];
     [aCoder encodeObject:_account forKey:@"userName"];
+    [aCoder encodeObject:_photoPath forKey:@"photoPath"];
+    [aCoder encodeObject:_photourl forKey:@"photourl"];
    
     
 }
@@ -71,6 +78,8 @@ static MDUserVO *user = nil;
     user.userID = [aDecoder decodeObjectForKey:@"id"];
     user.userName = [aDecoder decodeObjectForKey:@"userName"];
     user.account = [aDecoder decodeObjectForKey:@"userName"];
+    user.photoPath = [aDecoder decodeObjectForKey:@"photoPath"];
+    user.baseurl = [aDecoder decodeObjectForKey:@"baseurl"];
     
     return user;
 }
