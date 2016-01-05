@@ -579,8 +579,7 @@ NSDictionary * villageDic =  @{@"建昌里":@3,@"建明里":@4,@"长青北里":@
     MDLog(@"登陆信息：%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
     
     [dic setValue:number.text forKey:@"user_Name"];
-    MDUserVO *user = [MDUserVO registeredFromDignInUser:dic];
-    
+    MDUserVO *user = [MDUserVO convertFromAccountHomeUser:dic];
     [MDUserVO  initWithCoder:user];
     //回馈数据
 //    NSLog(@"%d",[[dic objectForKey:@"success"] intValue]);

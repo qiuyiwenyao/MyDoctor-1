@@ -18,6 +18,8 @@
 #import "FileUtils.h"
 #define IMAGECACHE  @"IMAGE/"
 #import "MDRequestModel.h"
+#import "MDRequestModel.h"
+#import "AFHTTPSessionManager.h"
 
 @interface BRSEndSignlnViewController ()<sendInfoToCtr>
 
@@ -29,6 +31,7 @@
     UIButton * finish;
     UIImage *image222;
     int i;
+    NSString * headImg;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -125,22 +128,22 @@
 //        return;
 //    }
     
-    FileUtils * fileUtil = [FileUtils sharedFileUtils];
-    //创建文件下载目录
-    NSString *path = [fileUtil createCachePath:IMAGECACHE];
-    NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
-    NSString * str=[stdDefault objectForKey:@"user_name"];
-    NSString * user_Id=[stdDefault objectForKey:@"user_Id"];
-    NSString *uniquePath=[path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",str]];
-    BOOL result=[UIImagePNGRepresentation(image222)writeToFile: uniquePath atomically:YES];
-    
-    MDRequestModel * model = [[MDRequestModel alloc] init];
-    model.path = MDPath;
-    model.methodNum = 10103;
-    NSString * parameter=[NSString stringWithFormat:@"%@@`%@",user_Id,uniquePath];
-    model.parameter = parameter;
-    model.delegate = self;
-    [model starRequest];
+//    FileUtils * fileUtil = [FileUtils sharedFileUtils];
+//    //创建文件下载目录
+//    NSString *path = [fileUtil createCachePath:IMAGECACHE];
+//    NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
+//    NSString * str=[stdDefault objectForKey:@"user_name"];
+//    NSString * user_Id=[stdDefault objectForKey:@"user_Id"];
+//    NSString *uniquePath=[path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",str]];
+//    BOOL result=[UIImagePNGRepresentation(image222)writeToFile: uniquePath atomically:YES];
+//    
+//    MDRequestModel * model = [[MDRequestModel alloc] init];
+//    model.path = MDPath;
+//    model.methodNum = 10103;
+//    NSString * parameter=[NSString stringWithFormat:@"%@@`%@",user_Id,uniquePath];
+//    model.parameter = parameter;
+//    model.delegate = self;
+//    [model starRequest];
     
     //    NSString * url=[NSString stringWithFormat:@"%@/api/v1/photos.json?auto_save=true",BASE_URL];
 //    NSMutableDictionary * attach=[[NSMutableDictionary alloc] init];
@@ -165,33 +168,13 @@
 //        
 //    }];
 //
-   
-    
-}
-//请求数据回调
--(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
-{
-    NSString * str = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-    //回馈数据
-    NSLog(@"%@", str);
     [self dismissViewControllerAnimated:YES completion:^{
         NSLog(@"back");
     }];
-//    NSArray *array = [str componentsSeparatedByString:@","];
-//    NSArray *success=[array[0] componentsSeparatedByString:@":"];
-//    NSArray * uisrId=[array[2] componentsSeparatedByString:@":"];
-//    if ([success[1] isEqualToString:@"true"]) {
-//        [[NSNotificationCenter defaultCenter]
-//         postNotificationName:@"showBRSMainView" object:self];
-//        NSUserDefaults *stdDefault = [NSUserDefaults standardUserDefaults];
-//        [stdDefault setObject:logInField.text forKey:@"user_name"];
-//        [stdDefault setObject:uisrId[2] forKey:@"user_Id"];
-//        NSLog(@"%@",uisrId[2]);
-//        [self dismissViewControllerAnimated:YES completion:^{
-//            NSLog(@"back");
-//        }];
-//    }
+
+    
 }
+
 -(void)back
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -278,6 +261,32 @@
 
     [headButton setBackgroundImage:image222 forState:UIControlStateNormal];
     i=1;
+    
+    //将头像存入本地
+    FileUtils * fileUtil = [FileUtils sharedFileUtils];
+    //创建文件下载目录
+    NSString * path2 = [fileUtil createCachePath:IMAGECACHE];
+    
+    NSString *uniquePath=[path2 stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",[MDUserVO userVO].userID]];
+    NSLog(@"%@",uniquePath);
+    BOOL result=[UIImagePNGRepresentation(image222)writeToFile: uniquePath atomically:YES];
+    
+    //上传头像
+    [self uploadImage2Server:UIImageJPEGRepresentation(image222, 0.5) callback:^(BOOL su, NSDictionary *dic) {
+        NSLog(@"dic   %@",dic);
+        
+        headImg = [dic objectForKey:@"msg"];
+        
+//        设置头像
+        MDRequestModel * model = [[MDRequestModel alloc] init];
+        model.path = MDPath;
+        model.methodNum = 10103;
+        model.delegate = self;
+        int userId = [[MDUserVO userVO].userID intValue];
+        model.parameter = [NSString stringWithFormat:@"%d@`%@",userId,headImg];
+        [model starRequest];
+        
+    }];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -286,6 +295,77 @@
     [self dismissViewControllerAnimated:YES completion:^{}];
     
 }
+
+-(void)uploadImage2Server:(NSData *)data callback:(void (^)(BOOL, NSDictionary *))callback
+{
+    //    NSURL *url = [NSURL URLWithString:@"http://rmabcdef001:8080/CommunityWs/servlet/UploadPhoto"];
+    
+    //    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    //
+    //    [manager POST:@"http://111.160.245.75:8082/CommunityWs/servlet/UploadPhoto" parameters:/*@{@"b":@"test222",@"username":@"13662142222"}*/nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    //        //        [formData appendPartWithFileData:data name:@"f1" fileName:@"1234567.jpeg" mimeType:@"image/jpeg"];
+    //        [formData appendPartWithFormData:data name:@"f1"];
+    //    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    //        NSLog(@"====");
+    //        callback(YES,responseObject);
+    //    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    //        NSLog(@"====");
+    //        callback(YES,nil);
+    //    }];
+    
+    
+    
+    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+    
+    session.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    //    session.requestSerializer  = [AFJSONRequestSerializer serializer];
+    //    session.responseSerializer = [AFJSONResponseSerializer serializer];
+    //    [session.requestSerializer setValue:@"text/html; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    //    [session.requestSerializer setValue:@"multipart/form-data" forHTTPHeaderField:@"encoding"];
+    
+    [session POST:@"http://111.160.245.75:8082/CommunityWs/servlet/UploadPhoto" parameters:@{@"b":@"test222",@"username":@"13718065686"} constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        [formData appendPartWithFileData:data name:@"img" fileName:@"1234567.jpeg" mimeType:@"image/jpeg"];
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        //        [responseObject appendPartWithFormData:data name:@"f1.jpeg"];
+        MDLog(@"头像上传成功");
+        callback(YES,responseObject);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        MDLog(@"头像失败");
+        callback(YES,nil);
+    }];
+    
+    
+    //    [session POST:@"http://111.160.245.75:8082/CommunityWs/servlet/UploadPhoto" parameters:@{@"b":@"test222",@"username":@"f1"} progress:^(NSProgress * _Nonnull uploadProgress) {
+    //        [uploadProgress appendPartWithFileData:data name:@"img" fileName:@"1234567.jpeg" mimeType:@"image/jpeg"];
+    //
+    //    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    //        [responseObject appendPartWithFormData:data name:@"f1.jpeg"];
+    //        NSLog(@"成功");
+    //        callback(YES,responseObject);
+    //    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    //         NSLog(@"失败");
+    //        callback(YES,nil);
+    //    }];
+    
+    
+    
+}
+
+#pragma mark - 请求数据回调
+
+//请求数据回调
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
+{
+    NSString * str = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+    //回馈数据
+    NSLog(@"%@", str);
+    
+}
+
 
 
 @end

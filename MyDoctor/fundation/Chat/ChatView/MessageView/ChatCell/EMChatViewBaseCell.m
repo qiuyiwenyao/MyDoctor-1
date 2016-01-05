@@ -12,6 +12,7 @@
 
 #import "EMChatViewBaseCell.h"
 #import "UIImageView+EMWebCache.h"
+#import "MDUserVO.h"
 
 NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadImageTapEventName";
 
@@ -88,11 +89,21 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
     _nameLabel.hidden = (messageModel.messageType == eMessageTypeChat);
     if (_messageModel.isSender)
     {
-        placeholderImage = [UIImage imageNamed:@"c"];
+        if ([UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",NSHomeDirectory(),[MDUserVO userVO].photoPath]]) {
+//            [headButton setBackgroundImage:[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",NSHomeDirectory(),[MDUserVO userVO].photoPath]] forState:UIControlStateNormal];
+            placeholderImage = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",NSHomeDirectory(),[MDUserVO userVO].photoPath]];
+            
+        }
+        else
+        {
+            placeholderImage = [UIImage imageNamed:@"demo-avatar-jobs"];        }
+
+        
+        
     }
     else
     {
-        placeholderImage = [UIImage imageNamed:@"demo-avatar-jobs"];
+        placeholderImage = [UIImage imageNamed:@"c"];
     }
     [self.headImageView sd_setImageWithURL:_messageModel.headImageURL placeholderImage:placeholderImage];
 }

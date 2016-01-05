@@ -93,11 +93,23 @@
 {
     
     headButton =[[UIButton alloc] init];
-    [headButton setBackgroundImage:[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",NSHomeDirectory(),[MDUserVO userVO].photoPath]] forState:UIControlStateNormal];
+//    if (![MDUserVO userVO].photoPath) {
+//        [headButton setBackgroundImage:[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",NSHomeDirectory(),[MDUserVO userVO].photoPath]] forState:UIControlStateNormal];
+//    }
+//    else
+//    {
+//        [headButton setBackgroundImage:[UIImage imageNamed:@"个人头像默认"]forState:UIControlStateNormal];
+//    }
+    NSLog(@"%@",[NSString stringWithFormat:@"%@/%@",NSHomeDirectory(),[MDUserVO userVO].photoPath]);
+    if ([UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",NSHomeDirectory(),[MDUserVO userVO].photoPath]]) {
+        [headButton setBackgroundImage:[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",NSHomeDirectory(),[MDUserVO userVO].photoPath]] forState:UIControlStateNormal];
+
+    }
+    else
+    {
+        [headButton setBackgroundImage:[UIImage imageNamed:@"个人头像默认"]forState:UIControlStateNormal];
+    }
     
-    MDLog(@"=====%@",[NSString stringWithFormat:@"%@%@",NSHomeDirectory(),[MDUserVO userVO].photoPath]);
-    
-//    MDLog(@"=======%@%@%@",[MDUserVO userVO].photoPath,[MDUserVO userVO].userID,[MDUserVO userVO].photo);
     [headButton addTarget:self action:@selector(head:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:headButton];
     
@@ -121,7 +133,7 @@
     [nameView setBackgroundColor:[UIColor colorWithPatternImage:img]];
    
     UILabel * userName=[[UILabel alloc] initWithFrame:CGRectMake(5, 10, appWidth-29-10, 20)];
-    userName.text=@"赵大爷";
+    userName.text=[MDUserVO userVO].userName;
     userName.font=[UIFont boldSystemFontOfSize:16];
     
     UILabel * signature=[[UILabel alloc] initWithFrame:CGRectMake(5, 30, appWidth-29-10, 20)];
@@ -345,6 +357,14 @@
     }];
     
     [headButton setBackgroundImage:image222 forState:UIControlStateNormal];
+    
+    //将头像存入本地
+    FileUtils * fileUtil = [FileUtils sharedFileUtils];
+    //创建文件下载目录
+    NSString * path2 = [fileUtil createCachePath:IMAGECACHE];
+    
+    NSString *uniquePath=[path2 stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",[MDUserVO userVO].userID]];
+    BOOL result=[UIImagePNGRepresentation(image222)writeToFile: uniquePath atomically:YES];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
