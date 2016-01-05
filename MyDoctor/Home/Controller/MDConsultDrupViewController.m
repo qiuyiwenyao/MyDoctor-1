@@ -149,7 +149,8 @@
 //下方滚动广告位
 -(void)createADView
 {
-    UIButton * bottonBtn = (UIButton *)[self.view viewWithTag:6];
+    NSLog(@"%lu",(unsigned long)amedicineArray.count);
+    UIButton * bottonBtn = (UIButton *)[self.view viewWithTag:amedicineArray.count - 2];
     MDSmallADView * adView = [[MDSmallADView alloc] initWithFrame:CGRectMake(0, 0, appWidth, 50)];
     adView.adTitleArray = @[@"12月大促药店选择鸿康健药店，100%正品",@"e＋康服务到家,健康生活在你家",@"国家药监局认证，一站式网上购药"];
     [adView setText];
