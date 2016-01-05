@@ -151,7 +151,7 @@
 {
     UIButton * bottonBtn = (UIButton *)[self.view viewWithTag:6];
     MDSmallADView * adView = [[MDSmallADView alloc] initWithFrame:CGRectMake(0, 0, appWidth, 50)];
-    adView.adTitleArray = @[@"12月大促药店选择康爱多药店，100%正品",@"康一家服务到家,健康生活在你家",@"国家药监局认证，一站式网上购药"];
+    adView.adTitleArray = @[@"12月大促药店选择鸿康健药店，100%正品",@"e＋康服务到家,健康生活在你家",@"国家药监局认证，一站式网上购药"];
     [adView setText];
     
     [self.view addSubview:adView];

@@ -60,7 +60,7 @@
     [backView addSubview:write];
     
     UILabel * service=[[UILabel alloc] init];
-    service.text=@"此订单详情";
+    service.text=@"订单详情";
     service.textColor=[UIColor colorWithRed:228/255.0 green:71/255.0 blue:78/255.0 alpha:1];
     service.font=[UIFont systemFontOfSize:17];
     service.textAlignment = UITextAlignmentCenter;
@@ -94,7 +94,7 @@
     }];
     //钱
     UILabel * Money=[[UILabel alloc] init];
-    Money.text=@"服务价格：";
+    Money.text=@"服务种类：";
     Money.textColor=[UIColor grayColor];
     Money.font=[UIFont systemFontOfSize:15];
     [backView addSubview:Money];
@@ -104,7 +104,7 @@
         make.size.mas_equalTo(CGSizeMake(80, 20));
     }];
     UILabel * Money1=[[UILabel alloc] init];
-    Money1.text=@"2.3元";
+    Money1.text=@"出诊";
     Money1.textColor=[UIColor grayColor];
     Money1.font=[UIFont systemFontOfSize:15];
     [backView addSubview:Money1];
@@ -151,7 +151,7 @@
     
     
     peopleAddress=[[UILabel alloc] init];
-    peopleAddress.text=@"小明   1399928102940 天津市北辰区XXXXXXXXXXX";
+    peopleAddress.text=@"巫筠   1399928102940 天津市河东区建昌道建明里2-102";
     peopleAddress.textColor=[UIColor grayColor];
     peopleAddress.layer.borderColor = [[UIColor grayColor] CGColor];
     peopleAddress.layer.borderWidth = 1;
@@ -212,7 +212,7 @@
     NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
     NSString * str=[stdDefault objectForKey:@"user_name"];
     if ([str length]>0) {
-        UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"订单已确认"
+        UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"预定成功"
                              
                                                       message:nil
                              

@@ -35,32 +35,32 @@
     
     MDServiceFolerVO * sfv=[[MDServiceFolerVO alloc] init];
     sfv.serviceType=@"照护";
-    sfv.serviceName=@"服务名";
-    sfv.money=@"15元";
+    sfv.serviceName=@"上门体检";
+    sfv.money=@"";
     sfv.nowCondition=@"等待派单";
     sfv.deleteOrCancel=@"删除订单";
     sfv.paymentOrRemind=@"提醒发货";
     
     MDServiceFolerVO * sfv1=[[MDServiceFolerVO alloc] init];
     sfv1.serviceType=@"家庭医生";
-    sfv1.serviceName=@"服务名";
-    sfv1.money=@"15元";
+    sfv1.serviceName=@"术后康复";
+    sfv1.money=@"";
     sfv1.nowCondition=@"交易成功";
     sfv1.deleteOrCancel=@"取消订单";
     sfv1.paymentOrRemind=@"追加评价";
     
     MDServiceFolerVO * sfv2=[[MDServiceFolerVO alloc] init];
     sfv2.serviceType=@"照护";
-    sfv2.serviceName=@"服务名";
-    sfv2.money=@"15元";
+    sfv2.serviceName=@"专业照护";
+    sfv2.money=@"";
     sfv2.nowCondition=@"等待买家付款";
     sfv2.deleteOrCancel=@"取消订单";
     sfv2.paymentOrRemind=@"付款";
     
     MDServiceFolerVO * sfv3=[[MDServiceFolerVO alloc] init];
     sfv3.serviceType=@"照护";
-    sfv3.serviceName=@"服务名";
-    sfv3.money=@"15元";
+    sfv3.serviceName=@"上门体检";
+    sfv3.money=@"";
     sfv3.nowCondition=@"等待买家付款";
     sfv3.deleteOrCancel=@"取消订单";
     sfv3.paymentOrRemind=@"付款";

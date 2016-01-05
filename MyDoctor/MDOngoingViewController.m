@@ -38,8 +38,8 @@
     
     MDServiceFolerVO * sfv=[[MDServiceFolerVO alloc] init];
     sfv.serviceType=@"照护";
-    sfv.serviceName=@"服务名";
-    sfv.money=@"15元";
+    sfv.serviceName=@"上门输液";
+    sfv.money=@"";
     sfv.nowCondition=@"等待派单";
     sfv.deleteOrCancel=@"删除订单";
     sfv.paymentOrRemind=@"提醒发货";

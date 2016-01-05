@@ -606,6 +606,8 @@
 		6ABBAD021C3A372D008F064C /* 评分3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABBACFC1C3A372D008F064C /* 评分3@3x.png */; };
 		6ABBAD031C3A372D008F064C /* 评分4@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABBACFD1C3A372D008F064C /* 评分4@3x.png */; };
 		6ABBAD041C3A372D008F064C /* 评分5@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABBACFE1C3A372D008F064C /* 评分5@3x.png */; };
+		6ABBAD061C3B735D008F064C /* 进入@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABBAD051C3B735D008F064C /* 进入@2x.png */; };
+		6ABBAD081C3B7366008F064C /* 进入@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABBAD071C3B7366008F064C /* 进入@3x.png */; };
 		6ABD0BE11C311DFA00FEE47F /* DocOnLineViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD0BE01C311DFA00FEE47F /* DocOnLineViewController2.m */; };
 		6ABD0BE81C321C8400FEE47F /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABD0BE21C321C8400FEE47F /* home@2x.png */; };
 		6ABD0BE91C321C8400FEE47F /* homeback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABD0BE31C321C8400FEE47F /* homeback@2x.png */; };
@@ -1636,6 +1638,8 @@
 		6ABBACFC1C3A372D008F064C /* 评分3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "评分3@3x.png"; sourceTree = "<group>"; };
 		6ABBACFD1C3A372D008F064C /* 评分4@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "评分4@3x.png"; sourceTree = "<group>"; };
 		6ABBACFE1C3A372D008F064C /* 评分5@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "评分5@3x.png"; sourceTree = "<group>"; };
+		6ABBAD051C3B735D008F064C /* 进入@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "进入@2x.png"; sourceTree = "<group>"; };
+		6ABBAD071C3B7366008F064C /* 进入@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "进入@3x.png"; sourceTree = "<group>"; };
 		6ABD0BDF1C311DFA00FEE47F /* DocOnLineViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocOnLineViewController2.h; path = DocHome/DocOnLineViewController2.h; sourceTree = "<group>"; };
 		6ABD0BE01C311DFA00FEE47F /* DocOnLineViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocOnLineViewController2.m; path = DocHome/DocOnLineViewController2.m; sourceTree = "<group>"; };
 		6ABD0BE21C321C8400FEE47F /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
@@ -1923,6 +1927,7 @@
 		153ED8111C08022E00171DFA /* 2x */ = {
 			isa = PBXGroup;
 			children = (
+				6ABBAD051C3B735D008F064C /* 进入@2x.png */,
 				6ABBACED1C3A371C008F064C /* 评分0@2x.png */,
 				6ABBACEE1C3A371C008F064C /* 评分1@2x.png */,
 				6ABBACEF1C3A371C008F064C /* 评分2@2x.png */,
@@ -1970,6 +1975,7 @@
 		153ED81A1C08022E00171DFA /* 3x */ = {
 			isa = PBXGroup;
 			children = (
+				6ABBAD071C3B7366008F064C /* 进入@3x.png */,
 				6ABBACF91C3A372D008F064C /* 评分0@3x.png */,
 				6ABBACFA1C3A372D008F064C /* 评分1@3x.png */,
 				6ABBACFB1C3A372D008F064C /* 评分2@3x.png */,
@@ -3997,7 +4003,7 @@
 				TargetAttributes = {
 					15AE53681C02F0680013FF1B = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = 5XDQ36V7UQ;
+						DevelopmentTeam = 8TUZW57LD3;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -4296,6 +4302,7 @@
 				6A6523A51C20080000227C63 /* input-bar@2x.png in Resources */,
 				6AB9BC7C1C2BEC62004BF6A7 /* chat_location_preview.png in Resources */,
 				6AB9BC091C2BEA23004BF6A7 /* call_out_h@2x.png in Resources */,
+				6ABBAD061C3B735D008F064C /* 进入@2x.png in Resources */,
 				6AB9BC101C2BEA23004BF6A7 /* callBg@2x.png in Resources */,
 				6AB9B1381C2013D0004BF6A7 /* 大婶.jpg in Resources */,
 				6AB9BC591C2BEA7B004BF6A7 /* tabbarSelectBg@2x.png in Resources */,
@@ -4355,6 +4362,7 @@
 				155CEBE91C0C2E8E006B5CFA /* 药@2x.png in Resources */,
 				6AB9BCD41C2BED00004BF6A7 /* chatBar_more_camera.png in Resources */,
 				6ABD0BE81C321C8400FEE47F /* home@2x.png in Resources */,
+				6ABBAD081C3B7366008F064C /* 进入@3x.png in Resources */,
 				6AB9BC0D1C2BEA23004BF6A7 /* call_silence_h@2x.png in Resources */,
 				6AB9BBE11C2BEA0E004BF6A7 /* VoiceSearchFeedback006@2x.png in Resources */,
 				6AB9BBF41C2BEA0E004BF6A7 /* VoiceSearchFeedback016.png in Resources */,

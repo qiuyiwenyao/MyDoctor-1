@@ -31,7 +31,7 @@
     [self.leftBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     [self.leftDownBtn setTitle:@"电话咨询" forState:UIControlStateNormal];
-    [self.rightDownBtn setTitle:@"立即预约" forState:UIControlStateNormal];
+    [self.rightDownBtn setTitle:@"免费预约" forState:UIControlStateNormal];
     
     //  取消继承的点击事件
     [self.rightDownBtn removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];

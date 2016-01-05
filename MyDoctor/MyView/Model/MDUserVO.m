@@ -33,7 +33,7 @@ static MDUserVO *user = nil;
 
 +(MDUserVO*) convertFromAccountHomeUser:(NSDictionary *)dic{
     MDUserVO * userVO=[[MDUserVO alloc] init];
-    userVO.userName=[[dic objectForKey:@"obj"] objectForKey:@"userName"];
+    userVO.userName=[[dic objectForKey:@"obj"] objectForKey:@"account"];
     userVO.userID=[NSString stringWithFormat:@"%@",[[dic objectForKey:@"obj"] objectForKey:@"id"]];
     userVO.account=[[dic objectForKey:@"obj"] objectForKey:@"account"];
     userVO.photo = [[dic objectForKey:@"obj"] objectForKey:@"photo"];
@@ -44,10 +44,13 @@ static MDUserVO *user = nil;
     return userVO;
 }
 
+// @{@"userId":[dic objectForKey:@"msg"],@"userName":number.text,@"userAccount":self.login_name};
 +(MDUserVO*) registeredFromDignInUser:(NSDictionary *)dic{
     MDUserVO * userVO=[[MDUserVO alloc] init];
-    userVO.userName=[dic objectForKey:@"user_Name"];
-    userVO.userID=[dic objectForKey:@"msg"];
+    userVO.userName=[dic objectForKey:@"userName"];
+    userVO.userID=[dic objectForKey:@"userId"];
+    userVO.account = [dic objectForKey:@"userAccount"];
+    userVO.photoPath = [NSString stringWithFormat:@"Library/Caches/IMAGE/%@.png",[dic objectForKey:@"userId"] ];
     return userVO;
 }
 
