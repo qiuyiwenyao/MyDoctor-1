@@ -213,6 +213,38 @@
             endingLineNumber = "139"
             landmarkName = "-finish:"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[BRSEndSignlnViewController finish:]"
+                  moduleName = "MyDoctor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhanghaochen/Desktop/MyDoctor-1/MyDoctor/%E7%99%BB%E5%BD%95/logIn/BRSEndSignlnViewController.m"
+                  timestampString = "473679034.874642"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "171"
+                  endingLineNumber = "171"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__37-[BRSEndSignlnViewController finish:]_block_invoke"
+                  moduleName = "MyDoctor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhanghaochen/Desktop/MyDoctor-1/MyDoctor/%E7%99%BB%E5%BD%95/logIn/BRSEndSignlnViewController.m"
+                  timestampString = "473679034.875087"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "172"
+                  endingLineNumber = "172"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -335,6 +367,53 @@
             endingLineNumber = "329"
             landmarkName = "-next:"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__33-[BRSSignIn2ViewController next:]_block_invoke_2"
+                  moduleName = "MyDoctor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhanghaochen/Desktop/MyDoctor-1/MyDoctor/%E7%99%BB%E5%BD%95/logIn/BRSSignIn2ViewController.m"
+                  timestampString = "473679034.88564"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "329"
+                  endingLineNumber = "329"
+                  offsetFromSymbolStart = "269">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_175"
+                  moduleName = "MyDoctor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhanghaochen/Desktop/MyDoctor-1/MyDoctor/%E7%99%BB%E5%BD%95/logIn/BRSSignIn2ViewController.m"
+                  timestampString = "473679034.885835"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_176"
+                  moduleName = "MyDoctor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhanghaochen/Desktop/MyDoctor-1/MyDoctor/%E7%99%BB%E5%BD%95/logIn/BRSSignIn2ViewController.m"
+                  timestampString = "473679034.886109"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -429,7 +508,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "178"
             endingLineNumber = "178"
-            landmarkName = "-consult:"
+            landmarkName = "-createView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -496,12 +575,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyDoctor/MyView/Controller/MDMyViewController.m"
-            timestampString = "473222110.187743"
+            timestampString = "473679033.762958"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "380"
-            endingLineNumber = "380"
-            landmarkName = "-uploadImage2Server:callback:"
+            startingLineNumber = "388"
+            endingLineNumber = "388"
+            landmarkName = "-Actiondo"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -512,12 +591,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyDoctor/MyView/Controller/MDMyViewController.m"
-            timestampString = "473222110.187743"
+            timestampString = "473679033.762958"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "384"
-            endingLineNumber = "384"
-            landmarkName = "-uploadImage2Server:callback:"
+            startingLineNumber = "392"
+            endingLineNumber = "392"
+            landmarkName = "-GTMEncodeTest:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyDoctor/MyView/Controller/MDMyViewController.m"
+            timestampString = "473679033.762958"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "-noticeClick"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
