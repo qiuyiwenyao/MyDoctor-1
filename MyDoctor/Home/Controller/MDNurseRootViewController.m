@@ -69,7 +69,7 @@
     [self.rightDownBtn setBackgroundColor:RedColor];
     self.rightDownBtn.layer.cornerRadius = 5.0;
     self.rightDownBtn.layer.masksToBounds = YES;
-    [self.rightDownBtn setTitle:@"立即订购" forState:UIControlStateNormal];
+    [self.rightDownBtn setTitle:@"立即预定" forState:UIControlStateNormal];
     [self.rightDownBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.rightDownBtn addTarget:self action:@selector(orderClcik) forControlEvents:UIControlEventTouchUpInside];
 
@@ -105,7 +105,7 @@
 //文字设置
     UILabel * titleLab = [[UILabel alloc] init];
     if (self.titleLab == nil) {
-        titleLab.text = @"产品介绍";
+        titleLab.text = @"服务介绍";
     }
     else
     {

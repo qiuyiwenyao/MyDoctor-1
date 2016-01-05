@@ -44,7 +44,7 @@
     [self.scrollView addSubview:introduceLab];
     
     UILabel * priceLab = [[UILabel alloc] initWithFrame:CGRectMake(0, introduceLab.frame.origin.y+introduceLab.frame.size.height+50, appWidth - 48*2, 0)];
-    priceLab.text = @"每次价格:8.8元";
+//    priceLab.text = @"每次价格:";
     [priceLab sizeToFit];
     priceLab.textColor = ColorWithRGB(97, 103, 111, 1);
     priceLab.textAlignment = NSTextAlignmentLeft;

@@ -576,10 +576,14 @@ NSDictionary * villageDic =  @{@"建昌里":@3,@"建明里":@4,@"长青北里":@
 {
     NSMutableDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
 //    NSLog(@"%@",dic);
-    MDLog(@"登陆信息：%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    NSLog(@"登陆信息：%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    NSLog(@"======dic%@",dic);
+    
+    NSDictionary * userInfo = @{@"userId":[dic objectForKey:@"msg"],@"userName":number.text,@"userAccount":self.login_name};
     
     [dic setValue:number.text forKey:@"user_Name"];
-    MDUserVO *user = [MDUserVO convertFromAccountHomeUser:dic];
+    
+    MDUserVO *user = [MDUserVO registeredFromDignInUser:userInfo];
     [MDUserVO  initWithCoder:user];
     //回馈数据
 //    NSLog(@"%d",[[dic objectForKey:@"success"] intValue]);

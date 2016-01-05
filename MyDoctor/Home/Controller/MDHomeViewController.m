@@ -41,7 +41,7 @@
 //    NSString *identifierForVendor = [[UIDevice currentDevice].identifierForVendor UUIDString];
 //    MDLog(@"%@",identifierForVendor);
 
-    self.navigationItem.title=@"e+健康";
+    self.navigationItem.title=@"e+康";
     
     [self setNavigationBarWithrightBtn:@"通知" leftBtn:nil];
     self.automaticallyAdjustsScrollViewInsets = YES;
@@ -71,10 +71,10 @@
 
 -(void)createView
 {
-    NSArray * group0 = @[@"询医",@"寻医",@"您有一条新消息"];
-    NSArray * group1 = @[@"问药",@"问药",@""];
-    NSArray * group2 = @[@"照护",@"照护",@""];
-    NSArray * group3 = @[@"活动",@"活动",@""];
+    NSArray * group0 = @[@"寻医问诊",@"询医",@"进入"];
+    NSArray * group1 = @[@"用药买药",@"问药",@"进入"];
+    NSArray * group2 = @[@"照护服务",@"照护",@"进入"];
+    NSArray * group3 = @[@"社区活动",@"活动",@"进入"];
     
     if (_listArray == nil) {
         _listArray = [NSMutableArray arrayWithObjects:group0,group1,group2,group3, nil];
@@ -125,7 +125,7 @@
     };
     
     _smallADView = [[MDSmallADView alloc] initWithFrame:CGRectMake(0, 0, appWidth, 30)];
-    _smallADView.adTitleArray = @[@"12月大促药店选择康爱多药店，100%正品",@"康一家服务到家,健康生活在你家",@"国家药监局认证，一站式网上购药"];
+    _smallADView.adTitleArray = @[@"12月大促药店选择鸿康健药店，100%正品",@"e＋康服务到家,健康生活在你家",@"国家药监局认证，一站式网上购药"];
     [_smallADView setText];
 
     _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, appWidth, _adView.height+_smallADView.height)];
@@ -158,6 +158,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /*
     if (indexPath.section == 3) {
         static NSString * iden = @"iden1";
         MDActivityBtnCell * cell = [tableView dequeueReusableCellWithIdentifier:iden];
@@ -177,17 +178,31 @@
     if (cell == nil) {
         cell = [[MDHomeCell1 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
     }
-    
-    
-    
-    cell.headView.image = [UIImage imageNamed:_listArray[indexPath.section][0]];
-        cell.messageLab.text = _listArray[indexPath.section][2];
-    cell.titleLab.text = _listArray[indexPath.section][1];
+     */
+    static NSString * iden = @"iden";
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:iden];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
+    }
     cell.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.7];
+    
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
+    cell.imageView.image = [UIImage imageNamed:_listArray[indexPath.section][1]];
+    cell.textLabel.text = _listArray[indexPath.section][0];
+    cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:_listArray[indexPath.section][2]]];
+
+    
+    
+    
+//    cell.headView.image = [UIImage imageNamed:_listArray[indexPath.section][0]];
+//        cell.messageLab.text = _listArray[indexPath.section][2];
+//    cell.titleLab.text = _listArray[indexPath.section][1];
+//    cell.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.7];
+//    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
     return cell;
-    }
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
