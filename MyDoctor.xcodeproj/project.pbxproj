@@ -118,6 +118,8 @@
 		15CFF0021C3A1F7900DB6FAC /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CFF0011C3A1F7900DB6FAC /* Default.png */; };
 		15CFF0041C3A1F7E00DB6FAC /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CFF0031C3A1F7E00DB6FAC /* Default@2x.png */; };
 		15CFF0061C3A397900DB6FAC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CFF0051C3A397900DB6FAC /* Default-568h@2x.png */; };
+		15CFF0101C3B991400DB6FAC /* MDSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CFF00F1C3B991400DB6FAC /* MDSetViewController.m */; };
+		15CFF0121C3BCA6600DB6FAC /* 按钮页-红@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CFF0111C3BCA6600DB6FAC /* 按钮页-红@2x.png */; };
 		15FBDD3A1C1528F3009E7E39 /* DocHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD391C1528F3009E7E39 /* DocHomeViewController.m */; };
 		15FBDD3D1C152A18009E7E39 /* DocAllWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD3C1C152A18009E7E39 /* DocAllWorkViewController.m */; };
 		15FBDD441C152AC0009E7E39 /* DocLookAfterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD3F1C152AC0009E7E39 /* DocLookAfterViewController.m */; };
@@ -853,6 +855,9 @@
 		15CFF0011C3A1F7900DB6FAC /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		15CFF0031C3A1F7E00DB6FAC /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		15CFF0051C3A397900DB6FAC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		15CFF00E1C3B991400DB6FAC /* MDSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDSetViewController.h; sourceTree = "<group>"; };
+		15CFF00F1C3B991400DB6FAC /* MDSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDSetViewController.m; sourceTree = "<group>"; };
+		15CFF0111C3BCA6600DB6FAC /* 按钮页-红@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按钮页-红@2x.png"; sourceTree = "<group>"; };
 		15FBDD381C1528F3009E7E39 /* DocHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocHomeViewController.h; path = DocHome/DocHomeViewController.h; sourceTree = "<group>"; };
 		15FBDD391C1528F3009E7E39 /* DocHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocHomeViewController.m; path = DocHome/DocHomeViewController.m; sourceTree = "<group>"; };
 		15FBDD3B1C152A18009E7E39 /* DocAllWorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocAllWorkViewController.h; path = DocHome/DocAllWorkViewController.h; sourceTree = "<group>"; };
@@ -1780,6 +1785,7 @@
 		153C1E5F1C03F4ED00F87014 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				15CFF0111C3BCA6600DB6FAC /* 按钮页-红@2x.png */,
 				15CFEFE31C3A17D000DB6FAC /* Icon.png */,
 				15CFEFFB1C3A1F1700DB6FAC /* Default-375w-667h@2x.png */,
 				15CFEFFD1C3A1F6E00DB6FAC /* Default-414w-736h@3x.png */,
@@ -2392,6 +2398,8 @@
 				6AF2026A1C0D71AB00933EAF /* MDFeedBackViewController.m */,
 				6ABBACE41C34BCF2008F064C /* MDMyFocusViewController.h */,
 				6ABBACE51C34BCF2008F064C /* MDMyFocusViewController.m */,
+				15CFF00E1C3B991400DB6FAC /* MDSetViewController.h */,
+				15CFF00F1C3B991400DB6FAC /* MDSetViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3997,7 +4005,7 @@
 				TargetAttributes = {
 					15AE53681C02F0680013FF1B = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = 5XDQ36V7UQ;
+						DevelopmentTeam = 8TUZW57LD3;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -4372,6 +4380,7 @@
 				6AB9BBDB1C2BEA0E004BF6A7 /* VoiceSearchFeedback003@2x.png in Resources */,
 				6A3EF7BA1C054E3D00923D03 /* navigationbar_rightbtn@2x.png in Resources */,
 				6AB9BC6A1C2BEC46004BF6A7 /* chatBar_more_faceSelected.png in Resources */,
+				15CFF0121C3BCA6600DB6FAC /* 按钮页-红@2x.png in Resources */,
 				6ABBAD021C3A372D008F064C /* 评分3@3x.png in Resources */,
 				6A3EF7AE1C054DA700923D03 /* purplelogo@2x.png in Resources */,
 				6A6523941C20080000227C63 /* bubble-flat-outgoing-selected.png in Resources */,
@@ -4674,6 +4683,7 @@
 				6A65234C1C1E930E00227C63 /* UIImageView+HighlightedWebCache.m in Sources */,
 				159049741C069FA600EE51FB /* BRSNewPasswordViewController.m in Sources */,
 				6AB9BA131C2BE1E8004BF6A7 /* BaseTableViewCell.m in Sources */,
+				15CFF0101C3B991400DB6FAC /* MDSetViewController.m in Sources */,
 				6AB9BB7E1C2BE876004BF6A7 /* MessageModel.m in Sources */,
 				6AB9BA3A1C2BE23B004BF6A7 /* UIResponder+Router.m in Sources */,
 				6AB9BA801C2BE2EC004BF6A7 /* MWZoomingScrollView.m in Sources */,

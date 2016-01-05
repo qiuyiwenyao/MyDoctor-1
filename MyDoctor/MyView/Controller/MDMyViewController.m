@@ -23,6 +23,7 @@
 #import "UIKit+AFNetworking.h"
 #import "MDMyFocusViewController.h"
 #import "GTMBase64.h"
+#import "MDSetViewController.h"
 
 @interface MDMyViewController ()<UITableViewDataSource,UITableViewDelegate,sendInfoToCtr>
 {
@@ -79,7 +80,8 @@
     self.navigationItem.title = @"个人信息";
     
     [self setNavigationBarWithrightBtn:@"设置" leftBtn:nil];
-    
+//    [self.rightBtn addTarget:self action:@selector(setButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.rightBtn addTarget:self action:@selector(noticeClick) forControlEvents:UIControlEventTouchUpInside];
     [self createView];
     // Do any additional setup after loading the view.
 }
@@ -87,6 +89,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(void)noticeClick
+{
+    MDSetViewController *avc=[[MDSetViewController alloc] init];
+    [self.navigationController pushViewController:avc animated:YES];
+    
 }
 
 -(void)createView
