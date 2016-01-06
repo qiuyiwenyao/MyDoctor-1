@@ -82,6 +82,8 @@
 {
             //回馈数据
     
+    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    
     NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
     NSLog(@"%@",dic);
 //    NSString * photo = [[dic objectForKey:@"obj"] objectForKey:@"photo"];

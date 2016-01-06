@@ -48,9 +48,12 @@ static MDUserVO *user = nil;
 +(MDUserVO*) registeredFromDignInUser:(NSDictionary *)dic{
     MDUserVO * userVO=[[MDUserVO alloc] init];
     userVO.userName=[dic objectForKey:@"userName"];
-    userVO.userID=[dic objectForKey:@"userId"];
-    userVO.account = [dic objectForKey:@"userAccount"];
-    userVO.photoPath = [NSString stringWithFormat:@"Library/Caches/IMAGE/%@.png",[dic objectForKey:@"userId"] ];
+    if ([dic objectForKey:@"userId"]) {
+        userVO.userID=[dic objectForKey:@"userId"];
+        userVO.account = [dic objectForKey:@"userAccount"];
+        userVO.photoPath = [NSString stringWithFormat:@"Library/Caches/IMAGE/%@.png",[dic objectForKey:@"userId"] ];
+    }
+    
     return userVO;
 }
 
