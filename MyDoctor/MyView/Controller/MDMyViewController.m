@@ -65,7 +65,7 @@
     NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
     NSString * str=[stdDefault objectForKey:@"user_name"];
     if ([str length]>0) {
-        
+        NSLog(@"%@",str);
     }else{
         BRSlogInViewController * logIn=[[BRSlogInViewController alloc] init];
         UINavigationController * nvc=[[UINavigationController alloc] initWithRootViewController:logIn];
@@ -93,6 +93,7 @@
 -(void)noticeClick
 {
     MDSetViewController *avc=[[MDSetViewController alloc] init];
+    avc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:avc animated:YES];
     
 }

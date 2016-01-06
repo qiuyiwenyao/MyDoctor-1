@@ -7,6 +7,7 @@
 //
 
 #import "MDSetViewController.h"
+#import "EaseMob.h"
 
 @interface MDSetViewController ()
 
@@ -56,7 +57,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];;
     }
 
-    if (indexPath.row == 2) {
+    if (indexPath.row == 1) {
         NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
         NSString *ver = [NSString stringWithFormat:@"%@(%@)",@"版本信息", [infoDictionary objectForKey:@"CFBundleShortVersionString"]];
         CGSize sz = [ver sizeWithFont:[UIFont systemFontOfSize:(15*autoSizeScaleX)] constrainedToSize:CGSizeMake(MAXFLOAT, 40)];
@@ -194,13 +195,35 @@
             
             
             
+            
+            
         }
         return;
     }
     
     if (buttonIndex==1) {
+        NSLog(@"%@",[NSString stringWithFormat:@"%@/Library/", NSHomeDirectory()]);
+//
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"backselected1" object:self];
+        NSFileManager *file = [NSFileManager defaultManager];
+        BOOL ret = [file removeItemAtPath:[NSString stringWithFormat:@"%@/Library/", NSHomeDirectory()] error:nil];
         
+        NSUserDefaults *userDefatlut = [NSUserDefaults standardUserDefaults];
+        NSDictionary *dictionary = [userDefatlut dictionaryRepresentation];
+        for(NSString* key in [dictionary allKeys]){
+            [userDefatlut removeObjectForKey:key];
+            [userDefatlut synchronize];
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+        [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES/NO completion:^(NSDictionary *info, EMError *error) {
+            if (!error && info) {
+                NSLog(@"退出成功");
+            }
+        } onQueue:nil];
         
+//        FileUtils *fileUtil = [FileUtils sharedFileUtils];
+//        //创建文件下载目录
+//        NSString *path = [fileUtil createCachePath:IMAGECACHE];
     }
 }
 
