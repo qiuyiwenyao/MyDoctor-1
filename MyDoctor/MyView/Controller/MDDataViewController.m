@@ -61,7 +61,7 @@
     [name setBorderStyle:UITextBorderStyleNone]; //外框类型
     name.backgroundColor=[UIColor clearColor];
     name.placeholder = @"请输入真实姓名"; //默认显示的字
-    [name setValue:[UIFont boldSystemFontOfSize:(15*(appWidth>320?appWidth/320:1))] forKeyPath:@"_placeholderLabel.font"];
+//    [name setValue:[UIFont boldSystemFontOfSize:(15*(appWidth>320?appWidth/320:1))] forKeyPath:@"_placeholderLabel.font"];
     name.returnKeyType = UIReturnKeyNext;  //键盘返回类型
     name.delegate = self;
     name.keyboardType = UIKeyboardTypeDefault;//键盘显示类型
@@ -337,6 +337,8 @@
         CGFloat f = month.height*arr.count;
         monthDown = [[NIDropDown alloc] init];
         monthDown.isOffset = @"2";
+        monthDown.textshowStyle = TextShowStyleCenter;
+        monthDown.font = 13;
         [monthDown showDropDown:sender :&f :arr];
         monthDown.delegate = self;
     }

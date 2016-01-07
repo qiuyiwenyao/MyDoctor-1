@@ -6,10 +6,10 @@
 //  Copyright (c) 2015年 com.mingxing. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "MDBaseViewController.h"
 #import "MDConst.h"
 
-@interface MDAllServiceViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface MDAllServiceViewController : MDBaseViewController<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong)     UITableView * tableView;
 
 

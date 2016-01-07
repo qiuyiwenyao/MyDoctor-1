@@ -8,7 +8,6 @@
 
 #import "MDHospitalViewController.h"
 #import "BRSlogInViewController.h"
-#import "MDChatViewController.h"
 #import "ChatViewController.h"
 #import "EaseMob.h"
 #import "MainViewController.h"

@@ -42,9 +42,6 @@
 #define T4FontSize (15*autoSizeScaleX)
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-//    CGRect rx = [ UIScreen mainScreen ].bounds;
-    
     UIImage * draw = [UIImage imageNamed:@"首页图标"];
     UIImageView *drawView = [[UIImageView alloc]initWithImage:draw];
     [self.view addSubview:drawView];
@@ -54,9 +51,7 @@
         make.top.equalTo(self.view.mas_top).with.offset(90);
         make.size.mas_equalTo(CGSizeMake(80, 80));
     }];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
 
-//    self.view.backgroundColor=[UIColor colorWithRed:226/255.0 green:226/255.0 blue:226/255.0 alpha:1];
     UITapGestureRecognizer*tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(Actiondo)];
     [self.view addGestureRecognizer:tapGesture];
     [self logInView];
@@ -84,16 +79,9 @@
     
     NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
     NSLog(@"%@",dic);
-//    NSString * photo = [[dic objectForKey:@"obj"] objectForKey:@"photo"];
-//    NSString * photourl = [[dic objectForKey:@"obj"] objectForKey:@"shoujiPara"][1][1];
-    
     MDUserVO *user = [MDUserVO convertFromAccountHomeUser:dic];
     [MDUserVO  initWithCoder:user];
 
-    
-    //下载头像
-//    UIImage * headImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:<#(nonnull NSURL *)#>]];
-//    [UIImage alloc] initwith;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSData * data = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",user.photourl,user.photo]]];
         UIImage *headImg = [[UIImage alloc]initWithData:data];
@@ -113,14 +101,6 @@
         }
     });
     
-//    FileUtils * fileUtil = [FileUtils sharedFileUtils];
-//    //创建文件下载目录
-//    NSString * path2 = [fileUtil createCachePath:IMAGECACHE];
-//    
-//    NSString *uniquePath=[path2 stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",[MDUserVO userVO].userID]];
-//    BOOL result=[UIImagePNGRepresentation(image222)writeToFile: uniquePath atomically:YES];
-    
-    
     NSLog(@"%@",dic);
     
     if ([[dic objectForKey:@"msg"] isEqualToString:@"登录成功"]) {
@@ -133,6 +113,9 @@
         [self dismissViewControllerAnimated:YES completion:^{
             NSLog(@"back");
         }];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:[dic objectForKey:@"msg"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alert show];
     }
 }
 
@@ -141,11 +124,8 @@
     view1=[[UIView alloc] init];
     view1.backgroundColor=[UIColor clearColor];
     logInField = [[BRSTextField alloc] init];
-//    logInField=[[BRSTextField alloc] initWithFrame:CGRectMake(0, 0, 240, 30) Icon:image];
     [logInField setBorderStyle:UITextBorderStyleRoundedRect]; //外框类型
     logInField.backgroundColor=[UIColor whiteColor];
-//    logInField.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter; //设置居中输入
-//    logInField.textAlignment = NSTextAlignmentLeft;
     logInField.placeholder = @"请输入手机号"; //默认显示的字
     [logInField setValue:[UIFont boldSystemFontOfSize:(15*(appWidth>320?appWidth/320:1))] forKeyPath:@"_placeholderLabel.font"];
 
@@ -180,7 +160,6 @@
     [button11 addTarget:self action:@selector(forget:) forControlEvents:UIControlEventTouchUpInside];
     
     button=[[UIButton alloc] init];
-//    [button setBackgroundImage:[UIImage imageNamed:@"按钮"] forState:UIControlStateNormal];
     button.backgroundColor = [UIColor clearColor];
     button.layer.borderColor = [[UIColor whiteColor] CGColor];
     button.layer.borderWidth = 2;
@@ -236,10 +215,6 @@
         make.height.mas_equalTo(42*autoSizeScaleY);
     }];
     UIButton * button1=[[UIButton alloc] init];
-//    button1.layer.cornerRadius = 4;
-//    button1.layer.masksToBounds = YES;
-//    button1.layer.borderWidth = 1;
-//    button1.layer.borderColor = [[UIColor colorWithRed:222/255.0 green:222/255.0 blue:222/255.0 alpha:1]CGColor];
     [button1 setTitleColor:[UIColor colorWithRed:50/255.0 green:119/255.0 blue:154/255.0 alpha:1] forState:UIControlStateNormal];
     button1.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"注册按钮"]];
     [button1 addTarget:self action:@selector(tunch1:) forControlEvents:UIControlEventTouchUpInside];
@@ -281,41 +256,23 @@
     button.enabled = NO;
     
     //5.post请求
-    [self postRequest];
+    if ([logInField.text length]>0&&[password.text length]>0) {
     
-    //环信登陆
-    [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:logInField.text password:password.text completion:^(NSDictionary *loginInfo, EMError *error) {
-        if (loginInfo) {
-            MDLog(@"环信登陆成功！！%@",loginInfo);
-            //设置是否自动登录
-            [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
-        }
-    } onQueue:nil];
-
-    
-//    MXKit *MXObj = [MXKit shareMXKit];
-//    [MXObj init:MX_URL withPort:MX_PORT withMqttUrl:MX_IM_URL withMqttPort:MX_IM_PORT];
-//    [MXObj login:logInField.text withPassword:password.text withCallback:^(id result, MXError *error){
-//        //login success
-//        NSLog(@"result==%@",result);
-//        NSLog(@"error==%@",error);
-//        if(result && !error) {
-//        [[NSNotificationCenter defaultCenter]
-//     postNotificationName:@"showBRSMainView" object:self];
-//            NSUserDefaults *stdDefault = [NSUserDefaults standardUserDefaults];
-//            [stdDefault setObject:logInField.text forKey:@"user_name"];
-//        }else{
-//            NSString * str=[NSString stringWithFormat:@"%@",error];
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:str delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-//                alert.delegate =self;
-//                [alert setTag:999];
-//                [alert show];
-//            button.enabled = NO;
-//        }
-//    }];
-//
-    
-
+        [self postRequest];
+        
+        //环信登陆
+        [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:logInField.text password:password.text completion:^(NSDictionary *loginInfo, EMError *error) {
+            if (loginInfo) {
+                MDLog(@"环信登陆成功！！%@",loginInfo);
+                //设置是否自动登录
+                [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+            }
+        } onQueue:nil];
+    }else if ([password.text length]==0)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"帐号或密码不能为空！" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alert show];
+    }
     
 }
 -(void)tunch1:(UIButton *)tunch
@@ -382,16 +339,10 @@
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 -(void)Actiondo
 {
     [logInField resignFirstResponder];
     [password resignFirstResponder];
 }
-
-
-
-
-
 @end

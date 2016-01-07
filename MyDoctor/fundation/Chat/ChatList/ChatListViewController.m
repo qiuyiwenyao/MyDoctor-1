@@ -396,6 +396,7 @@
     }
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
     cell.name = conversation.chatter;
+    NSLog(@"%@",conversation.chatter);
     if (conversation.conversationType == eConversationTypeChat) {
         cell.name = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
         cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
