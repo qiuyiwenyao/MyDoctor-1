@@ -130,7 +130,7 @@
     birthday.font=[UIFont boldSystemFontOfSize:15];
     [self.view addSubview:birthday];
     
-    year = [[UIButton alloc] initWithFrame:CGRectMake(80, 220, 70, 14)];
+    year = [[UIButton alloc] initWithFrame:CGRectMake(80, 220, 80, 14)];
     [year setTitle:@"1994" forState:UIControlStateNormal];
     year.tag=11;
     [year setBackgroundImage:[UIImage imageNamed:@"下拉框"] forState:UIControlStateNormal];
@@ -139,7 +139,7 @@
     [year addTarget:self action:@selector(requirBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:year];
     
-    month = [[UIButton alloc] initWithFrame:CGRectMake(160, 220, 50, 14)];
+    month = [[UIButton alloc] initWithFrame:CGRectMake(170, 220, 60, 14)];
     [month setTitle:@"02" forState:UIControlStateNormal];
     month.tag=12;
     [month setBackgroundImage:[UIImage imageNamed:@"下拉框"] forState:UIControlStateNormal];
@@ -148,7 +148,7 @@
     [month addTarget:self action:@selector(month:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:month];
     
-    day = [[UIButton alloc] initWithFrame:CGRectMake(220, 220, 50, 14)];
+    day = [[UIButton alloc] initWithFrame:CGRectMake(240, 220, 60, 14)];
     [day setTitle:@"01" forState:UIControlStateNormal];
     day.tag=13;
     [day setBackgroundImage:[UIImage imageNamed:@"下拉框"] forState:UIControlStateNormal];
@@ -221,8 +221,12 @@
     
     if ([name.text length]>0&&[IdNumber.text length]>0) {
         [self postRequest];
-        
-
+    }else if ([name.text length]==0){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"姓名不能为空！" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alert show];
+    }else if ([IdNumber.text length]==0){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"身份证号不能为空！" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alert show];
     }
 
 }
@@ -306,7 +310,6 @@
 
 -(void)requirBtnClick:(id)sender
 {
-    //    dropDown.isOffset = @"1";
     NSMutableArray * arr = [[NSMutableArray alloc] init];
     for (int i=1970; i<2015; i++) {
         NSString * str=[NSString stringWithFormat:@"%d",i];
@@ -315,7 +318,7 @@
     if(dropDown == nil) {
         CGFloat f = year.height*arr.count;
         dropDown = [[NIDropDown alloc] init];
-        dropDown.Offset = 23;
+        dropDown.Offset = 1;
         dropDown.textshowStyle = TextShowStyleCenter;
         dropDown.font = 13;
         [dropDown showDropDown:sender :&f :arr];
@@ -328,7 +331,6 @@
 }
 -(void)month:(id)sender
 {
-    //    dropDown.isOffset = @"1";
     NSMutableArray * arr = [[NSMutableArray alloc] init];
     for (int i=1; i<13; i++) {
          NSString * str=[NSString stringWithFormat:@"%d",i];
@@ -341,7 +343,8 @@
     if(monthDown == nil) {
         CGFloat f = month.height*arr.count;
         monthDown = [[NIDropDown alloc] init];
-        monthDown.isOffset = @"2";
+//        monthDown.isOffset = @"2";
+        monthDown.Offset = 1;
         monthDown.textshowStyle = TextShowStyleCenter;
         monthDown.font = 13;
         [monthDown showDropDown:sender :&f :arr];
@@ -354,7 +357,6 @@
 }
 -(void)day:(id)sender
 {
-    //    dropDown.isOffset = @"1";
     NSMutableArray * arr = [[NSMutableArray alloc] init];
     for (int i=1; i<32; i++) {
         NSString * str=[NSString stringWithFormat:@"%d",i];
@@ -366,7 +368,7 @@
     if(dayDown == nil) {
         CGFloat f = day.height*arr.count;
         dayDown = [[NIDropDown alloc] init];
-        dayDown.isOffset = @"2";
+        dayDown.Offset = 1;
         [dayDown showDropDown:sender :&f :arr];
         dayDown.delegate = self;
     }
