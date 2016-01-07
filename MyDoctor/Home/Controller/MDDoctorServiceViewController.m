@@ -12,6 +12,8 @@
 #import "MDHospitalViewController.h"
 #import "MDDocModel.h"
 #import "MDRequestModel.h"
+#import "SDImageCache.h"
+
 
 @interface MDDoctorServiceViewController ()<UITableViewDataSource,UITableViewDelegate,sendInfoToCtr>
 {
@@ -269,6 +271,7 @@
     cell.hospitalLab.text = model.HospitalName;
     cell.majorLab.text = model.Detail;
     cell.branchLab.text  =model.Department;
+//    cell.headView 
 
     
     return cell;

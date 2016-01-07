@@ -58,7 +58,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+    villageID = 9999;
     self.view.backgroundColor=[UIColor whiteColor];
     UITapGestureRecognizer*tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(Actiondo2)];
     [self.view addGestureRecognizer:tapGesture];
@@ -303,6 +303,23 @@
         [alert show];
         return;
     }
+    NSLog(@"%d",villageID);
+    if(villageID==9999)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请选择小区" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+//        alert.delegate =self;
+//        [alert setTag:999];
+        [alert show];
+        return;
+    }
+    
+    if ([housenumber.text length] == 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请输入门牌号" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+//        alert.delegate =self;
+//        [alert setTag:999];
+        [alert show];
+        return;
+    }
     
     if ([password.text isEqualToString:password2.text]&&[password.text length]>=6) {
         [self postRequest];
@@ -319,10 +336,8 @@
                     if (!error && loginInfo) {
                         MDLog(@"环信登陆成功！！%@",loginInfo);
                         [[EaseMob sharedInstance].chatManager setApnsNickname:number.text];
-//                        [[UserProfileManager sharedInstance] updateUserProfileInBackground:@{kPARSE_HXUSER_NICKNAME:@"120"} completion:^(BOOL success, NSError *error) {
+//
 //                            
-//                            
-//                        }];
                         //设置是否自动登录
                         [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
                     }
@@ -335,52 +350,6 @@
             }
         } onQueue:nil];
         
-//        [[EaseMob sharedInstance].chatManager setApnsNickname:@"陈4歌tt"];
-
-        
-        
-//        MXNetModel *netModel = [MXNetModel shareNetModel];
-//        NSString *tmpUrl = @"/connectors/regist_user";
-//        NSString * url=[NSString stringWithFormat:@"%@:%@%@",MX_URL,MX_PORT,tmpUrl];
-//        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-//        [dic setObject:self.login_name forKey:@"login_name"];
-//        [dic setObject:self.auth_code forKey:@"auth_code"];
-//        [dic setObject:password.text forKey:@"password"];
-//        [dic setObject:number.text forKey:@"name"];
-//        [dic setObject:client_id forKey:@"app_id"];
-//        [dic setObject:client_secret forKey:@"app_secret"];
-//        [dic setObject:@"password" forKey:@"grant_type"];
-//        [dic setObject:[NSNumber numberWithInt:sex] forKey:@"sex"];
-//        
-//        [netModel startRequset:@"POST" withURL:url withParams:dic withAttachment:nil withIndicator:YES withCallback:^(id object, MXError *error) {
-//            if(object && !error) {
-//                BRSTokenVO *loginVO = [MTLJSONAdapter modelOfClass:[BRSTokenVO class] fromJSONDictionary:object error:nil];
-//                [self cacheToken:loginVO];
-//                NSUserDefaults *stdDefault = [NSUserDefaults standardUserDefaults];
-//                [stdDefault setObject:self.login_name forKey:@"user_name"];
-//                [stdDefault setObject:number.text forKey:@"Name"];
-////                NSLog(@"loginVO == %@", loginVO);
-////                if (loginVO) {
-//                    BRSEndSignlnViewController * esv=[[BRSEndSignlnViewController alloc] init];
-//
-//                    [self.navigationController pushViewController:esv animated:YES];
-        
-//                    MXKit *MXObj = [MXKit shareMXKit];
-//                    [MXObj init:MX_URL withPort:MX_PORT withMqttUrl:MX_IM_URL withMqttPort:MX_IM_PORT];
-//                    [MXObj login:_login_name withPassword:password.text withCallback:^(id result, MXError *error){
-//                    }];
-//                }
-//            } else {
-//                NSString * str1=[NSString stringWithFormat:@"%@",error];
-//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:str1 delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-//                alert.delegate =self;
-//                [alert setTag:999];
-//                [alert show];
-//            }
-//            NSLog(@"reply == %@", object);
-//            NSLog(@"error==%@",error);
-//        }];
-//
     }else if (![password.text isEqualToString:password2.text]){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"密码不一致" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
         alert.delegate =self;
@@ -475,6 +444,10 @@
     NSArray * arr = [[NSArray alloc] init];
     arr = [NSArray arrayWithObjects:@"建昌里", @"建明里", @"长青北里", @"育红东里",@"育红东里平方",@"育红路7号院",@"中山北里",@"诗景颂苑",@"红波西里",nil];
     
+    NSDictionary * villageDic =  @{@"建昌里":@3,@"建明里":@4,@"长青北里":@6,@"育红东里":@7,@"育红东里平方":@8,@"育红路7号院":@9,@"中山北里":@10,@"诗景颂苑":@12,@"红波西里":@13};
+    villageID = (int)[villageDic objectForKey:_selectButton.titleLabel.text];
+    NSLog(@"villageDic%@",villageDic);
+    
 //    NSDictionary * villageDic = @[@"建昌里":3;@"建明里":4;@"长青北里":6;@"育红东里":7;@"育红东里平方":8;@"育红路7号院":9;@"中山北里":10;@"诗景颂苑":12;@"红波西里";13];
 //    NSDictionary * villageDic =  [NSDictionary dictionaryWithObjectsAndKeys:@"建昌里",3,@"建明里",4,@"长青北里",6,@"育红东里",7,@"育红东里平方",8,@"育红路7号院",9,@"中山北里",10,@"诗景颂苑",12,@"红波西里",13, nil];
     
@@ -533,10 +506,6 @@
 #pragma mark - POST请求
 - (void)postRequest
 {
-    
-NSDictionary * villageDic =  @{@"建昌里":@3,@"建明里":@4,@"长青北里":@6,@"育红东里":@7,@"育红东里平方":@8,@"育红路7号院":@9,@"中山北里":@10,@"诗景颂苑":@12,@"红波西里":@13};
-    villageID = (int)[villageDic objectForKey:_selectButton.titleLabel.text];
-    NSLog(@"villageDic%@",villageDic);
     
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = MDPath;

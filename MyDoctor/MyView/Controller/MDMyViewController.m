@@ -62,6 +62,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:YES];
     NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
     NSString * str=[stdDefault objectForKey:@"user_name"];
     if ([str length]>0) {
@@ -149,6 +150,9 @@
    
     UILabel * userName=[[UILabel alloc] initWithFrame:CGRectMake(5, 10, appWidth-29-10, 20)];
     userName.text=[MDUserVO userVO].userName;
+    
+    NSLog(@"~~~~~~userName%@",[MDUserVO userVO].userName);
+    
     userName.font=[UIFont boldSystemFontOfSize:16];
     userName.tag = 11;
     

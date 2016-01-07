@@ -234,6 +234,9 @@
     NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
     NSString * str=[stdDefault objectForKey:@"user_name"];
     NSString * userId=[stdDefault objectForKey:@"user_Id"];
+    
+    NSLog(@"user_name%@user_Id%@",str,userId);
+    
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = MDPath;
     model.delegate = self;
@@ -259,20 +262,16 @@
     
     if ([success[1] isEqualToString:@"true"]) {
         
-        [self.navigationController popViewControllerAnimated:YES];
-
-//        [[NSNotificationCenter defaultCenter]
-//         postNotificationName:@"showBRSMainView" object:self];
-//        NSUserDefaults *stdDefault = [NSUserDefaults standardUserDefaults];
-//        [stdDefault setObject:logInField.text forKey:@"user_name"];
-//        [self dismissViewControllerAnimated:YES completion:^{
-//            NSLog(@"back");
-//        }];
-        
-        MDUserVO *user = [MDUserVO registeredFromDignInUser:@{@"userName":name.text}];
+        MDUserVO *user = [MDUserVO setPersonInfoFromUserInfer:@{@"userName":name.text,@"userId":[MDUserVO userVO].userID}];
         [MDUserVO initWithCoder:user];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"changeUserName" object:@{@"userName":name.text}];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+
+
+        
+      
     }
 }
 -(void)backBtnClick
