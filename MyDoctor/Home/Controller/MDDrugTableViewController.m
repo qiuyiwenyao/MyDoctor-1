@@ -46,15 +46,20 @@
     //返回按钮点击
     [self.leftBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
     self.automaticallyAdjustsScrollViewInsets=NO;
-    [self searchDrug];
+    
 //    UITapGestureRecognizer*tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(Actiondo)];
 //    [self.view addGestureRecognizer:tapGesture];
     //排序
     [self sorting];
     //数据
     dataArray=[[NSMutableArray alloc] init];
-
-    [self postRequest];
+    [self searchDrug];
+    if ([_SearchDrup length]) {
+        _searchDrug.text=_SearchDrup;
+        [self search];
+    }else{
+        [self postRequest];
+    }
     
     [self TableView];
 

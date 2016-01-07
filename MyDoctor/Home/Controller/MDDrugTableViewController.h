@@ -13,4 +13,6 @@
 @property (nonatomic, copy) NSString * DrugTypeId;
 @property (nonatomic, copy) NSString * TypeName;
 
+@property (nonatomic, copy) NSString * SearchDrup;
+
 @end

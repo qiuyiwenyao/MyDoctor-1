@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 com.mingxing. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "MDBaseViewController.h"
 #import "MDConst.h"
-@interface MDPaymentViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface MDPaymentViewController : MDBaseViewController<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong)     UITableView * tableView;
 
 @end

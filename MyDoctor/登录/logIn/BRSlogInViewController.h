@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 minxing. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "MDBaseViewController.h"
 
-@interface BRSlogInViewController : UIViewController<UITextFieldDelegate>
+@interface BRSlogInViewController : MDBaseViewController<UITextFieldDelegate>
 
 @end

@@ -13,7 +13,6 @@
 #import "DocLookAfterViewController.h"
 #import "WbToolBarFour.h"
 #import "DocRecordViewController.h"
-#import "MDChatViewController.h"
 #import "NIDropDown.h"
 #import "MainViewController.h"
 #import "DocOnLineViewController2.h"

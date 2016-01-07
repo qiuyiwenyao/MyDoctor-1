@@ -111,7 +111,7 @@
     [backView addSubview:mySearchBar];
     [self.view addSubview:backView];
 //    [self.view addSubview:_tableView];
-     dataArray = [@[@"百度",@"六六",@"谷歌",@"苹果",@"and",@"table",@"view",@"and",@"and",@"苹果IOS",@"谷歌android",@"微软",@"微软WP",@"table",@"table",@"table",@"六六",@"六六",@"六六",@"table",@"table",@"table"]mutableCopy];
+     dataArray = [@[@"普萘洛尔-心得安",@"阿替洛尔-胺酰心安",@"硝酸异山梨酯-消心痛",@"硝苯地平-心痛定",@"曲克芦丁-维脑路通",@"氢氧化铝-胃舒平",@"感冒",@"醋酸甲羟孕酮-安宫黄酮",@"甲氧氯普胺-胃复安(灭吐灵)",@"甲硝唑-灭滴灵",@"去甲肾上腺素-正肾素",@"肾上腺素-副肾素",@"15AA-肝安",@"9AA-肾安"]mutableCopy];
 //    [self medicineButton];
 }
 -(void)medicineButton
@@ -207,6 +207,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    
+    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    MDDrugTableViewController * drugTable=[[MDDrugTableViewController alloc] init];
+    drugTable.title=mySearchBar.text;
+    drugTable.SearchDrup=cell.textLabel.text;
+    [self.navigationController pushViewController:drugTable animated:YES];
+    
 }
 
 #pragma UISearchDisplayDelegate
@@ -263,8 +271,16 @@
     [searchResults removeAllObjects];
     [searchResults addObjectsFromArray:tempResults];
 }
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    //搜索
+    MDDrugTableViewController * drugTable=[[MDDrugTableViewController alloc] init];
+    drugTable.SearchDrup=mySearchBar.text;
+    drugTable.title=mySearchBar.text;
+    [searchDisplayController setActive:NO animated:YES ];
 
-
+    [self.navigationController pushViewController:drugTable animated:YES];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

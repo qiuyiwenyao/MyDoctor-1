@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MDBaseViewController.h"
 
-@interface MDOngoingViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface MDOngoingViewController : MDBaseViewController<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong)     UITableView * tableView;
 
 @end

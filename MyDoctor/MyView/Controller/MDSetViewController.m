@@ -63,17 +63,16 @@
         CGSize sz = [ver sizeWithFont:[UIFont systemFontOfSize:(15*autoSizeScaleX)] constrainedToSize:CGSizeMake(MAXFLOAT, 40)];
         cell.textLabel.text = ver;
         
-    }else{
-        cell.textLabel.text = @"版本信息";
     }
     
     UIImageView *lineView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mx_tabLine"]];
     lineView.frame = CGRectMake(15, 39*autoSizeScaleY, appWidth-15, 1);
     [cell.contentView addSubview:lineView];
     
-    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
-    if (indexPath.row!=2) {
+    if (indexPath.row!=1) {
         [[cell textLabel]  setText:[_dataArray objectAtIndex:indexPath.row]];
+        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+
     }
     cell.textLabel.font=[UIFont boldSystemFontOfSize:(15*autoSizeScaleX)];
     return cell;
