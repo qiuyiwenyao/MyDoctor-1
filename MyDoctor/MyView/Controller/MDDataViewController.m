@@ -252,7 +252,7 @@
 {
     NSString * str = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
     //回馈数据
-    NSLog(@"%@", str);
+    NSLog(@"＝＝＝＝＝＝＝%@", str);
     
     NSArray *array = [str componentsSeparatedByString:@","];
     NSArray *success=[array[0] componentsSeparatedByString:@":"];
@@ -268,6 +268,11 @@
 //        [self dismissViewControllerAnimated:YES completion:^{
 //            NSLog(@"back");
 //        }];
+        
+        MDUserVO *user = [MDUserVO registeredFromDignInUser:@{@"userName":name.text}];
+        [MDUserVO initWithCoder:user];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"changeUserName" object:@{@"userName":name.text}];
     }
 }
 -(void)backBtnClick

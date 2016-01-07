@@ -83,7 +83,13 @@
 //    [self.rightBtn addTarget:self action:@selector(setButton) forControlEvents:UIControlEventTouchUpInside];
     [self.rightBtn addTarget:self action:@selector(noticeClick) forControlEvents:UIControlEventTouchUpInside];
     [self createView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeUserName:) name:@"changeUserName" object:nil] ;
     // Do any additional setup after loading the view.
+}
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"changeUserName" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -144,6 +150,7 @@
     UILabel * userName=[[UILabel alloc] initWithFrame:CGRectMake(5, 10, appWidth-29-10, 20)];
     userName.text=[MDUserVO userVO].userName;
     userName.font=[UIFont boldSystemFontOfSize:16];
+    userName.tag = 11;
     
     UILabel * signature=[[UILabel alloc] initWithFrame:CGRectMake(5, 30, appWidth-29-10, 20)];
     signature.text=@"人老心不老";
@@ -389,6 +396,14 @@
     myDoctorVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:myDoctorVC animated:YES];
 }
+
+//接收通知更新username
+-(void)changeUserName:(NSNotification *)not
+{
+    UILabel * nameLab = (UILabel *)[self.view viewWithTag:11];
+    nameLab.text = [MDUserVO userVO].userName;
+}
+
 //转吗
 -(NSString *)GTMEncodeTest:(NSString *)text
 
