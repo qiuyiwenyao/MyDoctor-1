@@ -13,7 +13,13 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 #import "EaseMob.h"
-@interface ChatListViewController : BaseViewController
+#import "MDRequestModel.h"
+@interface ChatListViewController : BaseViewController<sendInfoToCtr>
+{
+    NSString * nickName;
+    UIImage * headImg;
+    NSString * headImgUrl;
+}
 @property (nonatomic,strong) UITableView * tableView;
 //@property (nonatomic,strong) NSString * patient;
 @property (nonatomic,strong) NSString * chatID;

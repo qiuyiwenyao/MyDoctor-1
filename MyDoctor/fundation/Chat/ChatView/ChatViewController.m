@@ -911,8 +911,6 @@
                         MessageModel *cellModel = [MessageModelManager modelWithMessage:message];
                         if ([self->_delelgate respondsToSelector:@selector(nickNameWithChatter:)]) {
                             NSString *showName = [self->_delelgate nickNameWithChatter:model.username];
-                            NSLog(@"~~~~~~~~~~~~~~~%@",model.username);
-                            
                             cellModel.nickName = showName?showName:cellModel.username;
                         }else {
                             cellModel.nickName = cellModel.username;
