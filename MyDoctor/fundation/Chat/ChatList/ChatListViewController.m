@@ -23,9 +23,14 @@
 #import "UserProfileManager.h"
 #import "RobotChatViewController.h"
 #import "EaseMob.h"
+#import "MDConst.h"
+#import "MDUserVO.h"
+#import "UIImageView+WebCache.h"
+
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
 #import "UIViewController+HUD.h"
 @implementation EMConversation (search)
+
 
 //根据用户昵称,环信机器人名称,群名称进行搜索
 - (NSString*)showName
@@ -87,10 +92,49 @@
     [self networkStateView];
 
     [self searchController];
+    
 }
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+//根据手机号获得头像和昵称
+-(void)getNickNameAndPhotoWithChatID:(NSString *)chatId
+{
+//    MDRequestModel * model = [[MDRequestModel alloc] init];
+//    model.path = MDPath;
+//    model.methodNum = 10102;
+//    NSString * parameter=[NSString stringWithFormat:@"%@@`%@",logInField.text,password.text];
+//    model.parameter = parameter;
+//    model.delegate = self;
+//    [model starRequest];
+    MDRequestModel * model = [[MDRequestModel alloc] init];
+    model.path = MDPath;
+    model.methodNum = 10109;
+//    NSLog(@"===%@",_chatID);
+    NSString * parameter = chatId;
+    model.delegate = self;
+    model.parameter = parameter;
+    [model starRequest];
+    
+}
+
+
+#pragma mark - sen
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
+{
+    NSLog(@"~~~~~~~~%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+    NSArray * arr = [dic objectForKey:@"obj"];
+    nickName = [arr[0] objectForKey:@"RealName"];
+    headImgUrl = [NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,[arr[0] objectForKey:@"Photo"]];
+    UIImageView * head = [[UIImageView alloc] init];
+    [head sd_setImageWithURL:[NSURL URLWithString:headImgUrl]];
+    headImg = head.image;
+    [_tableView reloadData];
+    
+    NSLog(@"+++++%@%@",nickName,headImg);
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -398,8 +442,8 @@
     cell.name = conversation.chatter;
     NSLog(@"%@",conversation.chatter);
     if (conversation.conversationType == eConversationTypeChat) {
-        cell.name = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
-        cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
+        cell.name = nickName;
+        cell.placeholderImage = headImg;
     }
     else{
         NSString *imageName = @"groupPublicHeader";
@@ -470,7 +514,7 @@
             }
         }
     } else if (conversation.conversationType == eConversationTypeChat) {
-        title = [[UserProfileManager sharedInstance] getNickNameWithUsername:conversation.chatter];
+        title = nickName;
     }
     
     NSString *chatter = conversation.chatter;
@@ -594,6 +638,9 @@
 -(void)refreshDataSource
 {
     self.dataSource = [self loadDataSource];
+    EMConversation *conversation = [self.dataSource objectAtIndex:0];
+    [self getNickNameAndPhotoWithChatID:conversation.chatter];
+//    NSLog(@"~~~~~~~~%@",conversation.chatter);
     [_tableView reloadData];
     [self hideHud];
 }
@@ -636,7 +683,7 @@
 // 根据环信id得到要显示头像路径，如果返回nil，则显示默认头像
 - (NSString *)avatarWithChatter:(NSString *)chatter{
 //    return @"http://img0.bdstatic.com/img/image/shouye/jianbihua0525.jpg";
-    return nil;
+    return headImgUrl;
 }
 
 // 根据环信id得到要显示用户名，如果返回nil，则默认显示环信id
