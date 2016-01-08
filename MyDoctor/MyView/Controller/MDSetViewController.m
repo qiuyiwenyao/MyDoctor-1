@@ -32,7 +32,7 @@
 }
 -(void)DataArray
 {
-    _dataArray=[[NSMutableArray alloc] initWithObjects:@"修改密码",@"版本信息",@"关于e+健康", nil];
+    _dataArray=[[NSMutableArray alloc] initWithObjects:@"修改密码",@"版本信息",@"关于e+康", nil];
 }
 -(void)TableView
 {
@@ -64,17 +64,17 @@
         cell.textLabel.text = ver;
         
     }
-    
-    UIImageView *lineView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mx_tabLine"]];
-    lineView.frame = CGRectMake(15, 39*autoSizeScaleY, appWidth-15, 1);
-    [cell.contentView addSubview:lineView];
-    
     if (indexPath.row!=1) {
         [[cell textLabel]  setText:[_dataArray objectAtIndex:indexPath.row]];
         cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
 
     }
     cell.textLabel.font=[UIFont boldSystemFontOfSize:(15*autoSizeScaleX)];
+    
+    UIView * view=[[UIView alloc] initWithFrame:CGRectMake(0,39*autoSizeScaleY, appWidth, 1)];
+    view.backgroundColor=[UIColor grayColor];
+    [cell.contentView addSubview:view];
+    
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -90,8 +90,7 @@
         }
         case 1:
         {
-//            BRSChangePasswordViewController * avc=[[BRSChangePasswordViewController alloc] init];
-//            [self.navigationController pushViewController:avc animated:YES];
+
             break;
         }
         case 2:
@@ -190,11 +189,6 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag==100||alertView.tag==101) {
         if (buttonIndex==0) {
-//            [[NSNotificationCenter defaultCenter] postNotificationName:@"updateEdition" object:nil];
-            
-            
-            
-            
             
         }
         return;
@@ -220,9 +214,6 @@
             }
         } onQueue:nil];
         
-//        FileUtils *fileUtil = [FileUtils sharedFileUtils];
-//        //创建文件下载目录
-//        NSString *path = [fileUtil createCachePath:IMAGECACHE];
     }
 }
 
