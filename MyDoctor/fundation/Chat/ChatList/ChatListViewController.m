@@ -26,6 +26,9 @@
 #import "MDConst.h"
 #import "MDUserVO.h"
 #import "UIImageView+WebCache.h"
+#import "FileUtils.h"
+#define IMAGECACHE  @"PatientsIMAGE/"
+
 
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
 #import "UIViewController+HUD.h"
@@ -76,6 +79,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _RealName = [[NSMutableArray alloc] init];
+    _headImg = [[NSMutableArray alloc] init];
+    _headImgUrl = [[NSMutableArray alloc] init];
+    
     UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"]];
     
     imgView.frame = self.view.bounds;
@@ -124,17 +132,48 @@
 #pragma mark - sen
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
+    
     NSLog(@"~~~~~~~~%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
     NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
     NSArray * arr = [dic objectForKey:@"obj"];
-    nickName = [arr[0] objectForKey:@"RealName"];
-    headImgUrl = [NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,[arr[0] objectForKey:@"Photo"]];
-    UIImageView * head = [[UIImageView alloc] init];
-    [head sd_setImageWithURL:[NSURL URLWithString:headImgUrl]];
-    headImg = head.image;
-    [_tableView reloadData];
     
-    NSLog(@"+++++%@%@",nickName,headImg);
+    for (NSDictionary * dic in arr) {
+        if ([dic objectForKey:@"RealName"]) {
+            [_RealName addObject:[dic objectForKey:@"RealName"]];
+        }
+        if ([dic objectForKey:@"Photo"]) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                NSData * data = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,[dic objectForKey:@"Photo"]]]];
+                UIImage *headImg = [[UIImage alloc]initWithData:data];
+                if (data != nil) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        //在这里做UI操作(UI操作都要放在主线程中执行)
+                        FileUtils * fileUtil = [FileUtils sharedFileUtils];
+                        //创建文件下载目录
+                        NSString * path2 = [fileUtil createCachePath:IMAGECACHE];
+                        
+                        NSString *uniquePath=[path2 stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",[dic objectForKey:@"Phone"]]];
+                        BOOL result=[UIImagePNGRepresentation(headImg)writeToFile: uniquePath atomically:YES];
+                        NSLog(@"===========uniquePath:%@",uniquePath);
+                        
+                        
+                    });
+                }
+            });
+
+        }
+    }
+    
+    
+    
+//    nickName = [arr[0] objectForKey:@"RealName"];
+//    headImgUrl = [NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,[arr[0] objectForKey:@"Photo"]];
+//    UIImageView * head = [[UIImageView alloc] init];
+//    [head sd_setImageWithURL:[NSURL URLWithString:headImgUrl]];
+//    headImg = head.image;
+    [_tableView reloadData];
+//
+//    NSLog(@"+++++%@%@",nickName,headImg);
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -440,10 +479,41 @@
     }
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
     cell.name = conversation.chatter;
-    NSLog(@"%@",conversation.chatter);
+//    NSLog(@"%@",conversation.chatter);
     if (conversation.conversationType == eConversationTypeChat) {
-        cell.name = nickName;
-        cell.placeholderImage = headImg;
+//        cell.name = [_RealName objectAtIndex:indexPath.row];
+//        if (_RealName[indexPath.row]) {
+//            cell.name = _RealName[indexPath.row];
+//        }
+        NSLog(@"====%@",_RealName);
+        if (_RealName.count == 0) {
+            NSLog(@"nil");
+        }
+        else
+        {
+            NSLog(@"%@",_RealName[indexPath.row]);
+            
+            cell.name = [_RealName objectAtIndex:indexPath.row];
+
+        }
+        
+        UIImage * headImg = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/Library/Caches/PatientsIMAGE/%@.png",NSHomeDirectory(),conversation.chatter]];
+        
+        NSLog(@"%@",[NSString stringWithFormat:@"%@/PatientsIMAGE/%@.png",NSHomeDirectory(),conversation.chatter]);
+        
+        if (headImg) {
+            cell.placeholderImage = headImg;
+            
+        }
+        else
+        {
+            cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
+        }
+
+        
+       
+//
+//        }
     }
     else{
         NSString *imageName = @"groupPublicHeader";
@@ -514,7 +584,7 @@
             }
         }
     } else if (conversation.conversationType == eConversationTypeChat) {
-        title = nickName;
+        title = _RealName[indexPath.row];
     }
     
     NSString *chatter = conversation.chatter;
@@ -637,10 +707,23 @@
 
 -(void)refreshDataSource
 {
+//    EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
+
     self.dataSource = [self loadDataSource];
-    EMConversation *conversation = [self.dataSource objectAtIndex:0];
-    [self getNickNameAndPhotoWithChatID:conversation.chatter];
-//    NSLog(@"~~~~~~~~%@",conversation.chatter);
+    _chatIDs = [[NSString alloc] init];
+    int i=0;
+    for (EMConversation *conversation in self.dataSource) {
+//        [self getNickNameAndPhotoWithChatID:conversation.chatter];
+        if (i==0) {
+            _chatIDs=conversation.chatter;
+        }else{
+            _chatIDs= [NSString stringWithFormat:@"%@,%@",_chatIDs,conversation.chatter];
+        }
+        i++;
+
+    }
+    [self getNickNameAndPhotoWithChatID:_chatIDs];
+    NSLog(@"~~~~~~~~%@",_chatIDs);
     [_tableView reloadData];
     [self hideHud];
 }
@@ -683,7 +766,7 @@
 // 根据环信id得到要显示头像路径，如果返回nil，则显示默认头像
 - (NSString *)avatarWithChatter:(NSString *)chatter{
 //    return @"http://img0.bdstatic.com/img/image/shouye/jianbihua0525.jpg";
-    return headImgUrl;
+    return nil;
 }
 
 // 根据环信id得到要显示用户名，如果返回nil，则默认显示环信id

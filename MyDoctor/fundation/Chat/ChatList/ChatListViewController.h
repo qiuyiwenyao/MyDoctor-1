@@ -15,15 +15,20 @@
 #import "EaseMob.h"
 #import "MDRequestModel.h"
 @interface ChatListViewController : BaseViewController<sendInfoToCtr>
-{
-    NSString * nickName;
-    UIImage * headImg;
-    NSString * headImgUrl;
-}
+//{
+//    NSMutableArray * RealName;
+//    NSMutableArray * headImg;
+//    NSMutableArray * headImgUrl;
+////    NSMutableString * chatIDs;
+//}
 @property (nonatomic,strong) UITableView * tableView;
 //@property (nonatomic,strong) NSString * patient;
 @property (nonatomic,strong) NSString * chatID;
 @property (nonatomic,strong) NSString * name;
+@property (nonatomic,strong) NSString * chatIDs;
+@property (nonatomic,strong) NSMutableArray * RealName;
+@property (nonatomic,strong) NSMutableArray * headImg;
+@property (nonatomic,strong) NSMutableArray * headImgUrl;
 
 - (void)refreshDataSource;
 

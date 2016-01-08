@@ -78,6 +78,7 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
 
 - (void)setMessageModel:(MessageModel *)messageModel
 {
+    
     _nameLabel.hidden = (messageModel.messageType == eMessageTypeChat);
     
     UIImage *placeholderImage;
@@ -104,6 +105,18 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
     else
     {
         placeholderImage = [UIImage imageNamed:@"c"];
+        
+        UIImage * headImg = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/Library/Caches/PatientsIMAGE/%@.png",NSHomeDirectory(),messageModel.username]];
+        
+        if (headImg) {
+            placeholderImage = headImg;
+            
+        }
+        else
+        {
+            placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
+        }
+
     }
     [self.headImageView sd_setImageWithURL:_messageModel.headImageURL placeholderImage:placeholderImage];
 }
