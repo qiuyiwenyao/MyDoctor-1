@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1532A6FA1C3F83A200D0582B /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1532A6EF1C3F83A200D0582B /* FMDatabase.m */; };
+		1532A6FB1C3F83A200D0582B /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1532A6F11C3F83A200D0582B /* FMDatabaseAdditions.m */; };
+		1532A6FC1C3F83A200D0582B /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1532A6F31C3F83A200D0582B /* FMDatabasePool.m */; };
+		1532A6FD1C3F83A200D0582B /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1532A6F51C3F83A200D0582B /* FMDatabaseQueue.m */; };
+		1532A6FE1C3F83A200D0582B /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1532A6F81C3F83A200D0582B /* FMResultSet.m */; };
+		1532A7061C3F8D1300D0582B /* DocPatientModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1532A7051C3F8D1300D0582B /* DocPatientModel.m */; };
+		1532A7091C3F8DE500D0582B /* DocPatientSQL.m in Sources */ = {isa = PBXBuildFile; fileRef = 1532A7081C3F8DE500D0582B /* DocPatientSQL.m */; };
 		153C1E7F1C03FB8C00F87014 /* MX_MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 153C1E6A1C03FB8C00F87014 /* MX_MASCompositeConstraint.m */; };
 		153C1E801C03FB8C00F87014 /* MX_MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 153C1E6D1C03FB8C00F87014 /* MX_MASConstraint.m */; };
 		153C1E811C03FB8C00F87014 /* MX_MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 153C1E6F1C03FB8C00F87014 /* MX_MASConstraintMaker.m */; };
@@ -625,6 +632,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1532A6EE1C3F83A200D0582B /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		1532A6EF1C3F83A200D0582B /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		1532A6F01C3F83A200D0582B /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		1532A6F11C3F83A200D0582B /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		1532A6F21C3F83A200D0582B /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		1532A6F31C3F83A200D0582B /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		1532A6F41C3F83A200D0582B /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		1532A6F51C3F83A200D0582B /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		1532A6F61C3F83A200D0582B /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		1532A6F71C3F83A200D0582B /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		1532A6F81C3F83A200D0582B /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		1532A7041C3F8D1300D0582B /* DocPatientModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocPatientModel.h; path = DocPatient/Model/DocPatientModel.h; sourceTree = "<group>"; };
+		1532A7051C3F8D1300D0582B /* DocPatientModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocPatientModel.m; path = DocPatient/Model/DocPatientModel.m; sourceTree = "<group>"; };
+		1532A7071C3F8DE500D0582B /* DocPatientSQL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocPatientSQL.h; path = DocPatient/Model/DocPatientSQL.h; sourceTree = "<group>"; };
+		1532A7081C3F8DE500D0582B /* DocPatientSQL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocPatientSQL.m; path = DocPatient/Model/DocPatientSQL.m; sourceTree = "<group>"; };
 		153C1E681C03FB8C00F87014 /* MASUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASUtilities.h; sourceTree = "<group>"; };
 		153C1E691C03FB8C00F87014 /* MX_MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MX_MASCompositeConstraint.h; sourceTree = "<group>"; };
 		153C1E6A1C03FB8C00F87014 /* MX_MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MX_MASCompositeConstraint.m; sourceTree = "<group>"; };
@@ -1653,6 +1675,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1532A6DB1C3F838C00D0582B /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				1532A6EE1C3F83A200D0582B /* FMDatabase.h */,
+				1532A6EF1C3F83A200D0582B /* FMDatabase.m */,
+				1532A6F01C3F83A200D0582B /* FMDatabaseAdditions.h */,
+				1532A6F11C3F83A200D0582B /* FMDatabaseAdditions.m */,
+				1532A6F21C3F83A200D0582B /* FMDatabasePool.h */,
+				1532A6F31C3F83A200D0582B /* FMDatabasePool.m */,
+				1532A6F41C3F83A200D0582B /* FMDatabaseQueue.h */,
+				1532A6F51C3F83A200D0582B /* FMDatabaseQueue.m */,
+				1532A6F61C3F83A200D0582B /* FMDB.h */,
+				1532A6F71C3F83A200D0582B /* FMResultSet.h */,
+				1532A6F81C3F83A200D0582B /* FMResultSet.m */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
+		1532A7001C3F875100D0582B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1532A7041C3F8D1300D0582B /* DocPatientModel.h */,
+				1532A7051C3F8D1300D0582B /* DocPatientModel.m */,
+				1532A7071C3F8DE500D0582B /* DocPatientSQL.h */,
+				1532A7081C3F8DE500D0582B /* DocPatientSQL.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		153C1E5F1C03F4ED00F87014 /* image */ = {
 			isa = PBXGroup;
 			children = (
@@ -1707,6 +1758,7 @@
 		153C1E661C03FB8C00F87014 /* fundation */ = {
 			isa = PBXGroup;
 			children = (
+				1532A6DB1C3F838C00D0582B /* fmdb */,
 				15CFF02A1C3E44C400DB6FAC /* EaseMobSDKFull */,
 				6ABBACE71C34D558008F064C /* UIPopoverListView */,
 				6AB9B8601C2BD717004BF6A7 /* Core Data */,
@@ -2451,6 +2503,7 @@
 		15FBDD511C15574B009E7E39 /* DoctorPatient */ = {
 			isa = PBXGroup;
 			children = (
+				1532A7001C3F875100D0582B /* Model */,
 				15FBDD611C155AC9009E7E39 /* DocPatientFolerVO */,
 				15FBDD521C1557CB009E7E39 /* DocPatientViewController.h */,
 				15FBDD531C1557CB009E7E39 /* DocPatientViewController.m */,
@@ -4188,6 +4241,7 @@
 				6AB9BB551C2BE80B004BF6A7 /* DXFaceView.m in Sources */,
 				154169A11C34CFAE00A69A7D /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				6A3EF8421C05BAFE00923D03 /* MDOngoingViewController.m in Sources */,
+				1532A7091C3F8DE500D0582B /* DocPatientSQL.m in Sources */,
 				6AB9BB4B1C2BE7E7004BF6A7 /* ChatViewController+Category.m in Sources */,
 				6AB9B87A1C2BE095004BF6A7 /* UserProfileManager.m in Sources */,
 				153C1EA61C054D5100F87014 /* MDServiceFolerVO.m in Sources */,
@@ -4261,10 +4315,12 @@
 				1541699F1C34CFAE00A69A7D /* AFImageDownloader.m in Sources */,
 				6AF202501C0C1B4F00933EAF /* MDMyDoctorModel.m in Sources */,
 				6AB9B6901C2BA47C004BF6A7 /* MDMoreDocViewController.m in Sources */,
+				1532A6FA1C3F83A200D0582B /* FMDatabase.m in Sources */,
 				6AB9BAD11C2BE348004BF6A7 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				15FBDD5D1C155898009E7E39 /* DocFinishPatientViewController.m in Sources */,
 				6AB9BAAD1C2BE32C004BF6A7 /* NSData+EMImageContentType.m in Sources */,
 				6AB9BAAB1C2BE32C004BF6A7 /* EMSDWebImagePrefetcher.m in Sources */,
+				1532A6FE1C3F83A200D0582B /* FMResultSet.m in Sources */,
 				6AB9BAB21C2BE32C004BF6A7 /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				6AF404CF1C2D075C00D46F2A /* ContactsViewController.m in Sources */,
 				6AB9BB1E1C2BE6C1004BF6A7 /* SRSlimeView.m in Sources */,
@@ -4316,6 +4372,7 @@
 				6AF404C41C2D072C00D46F2A /* BlackListViewController.m in Sources */,
 				6AB9BAD71C2BE348004BF6A7 /* PSTCollectionViewItemKey.m in Sources */,
 				6AB9BA0B1C2BE1C0004BF6A7 /* RobotListViewController.m in Sources */,
+				1532A7061C3F8D1300D0582B /* DocPatientModel.m in Sources */,
 				6AB9BA361C2BE23B004BF6A7 /* NSDate+Category.m in Sources */,
 				6AB9BA791C2BE2EC004BF6A7 /* MWCaptionView.m in Sources */,
 				6AB9BA091C2BE1C0004BF6A7 /* EMRotbotChatViewCell.m in Sources */,
@@ -4382,8 +4439,10 @@
 				153ED8521C0BE4D700171DFA /* MDAddressTableViewCell.m in Sources */,
 				154168E41C34BB0500A69A7D /* AFNetworkReachabilityManager.m in Sources */,
 				6AB9BA641C2BE2D4004BF6A7 /* MBProgressHUD.m in Sources */,
+				1532A6FC1C3F83A200D0582B /* FMDatabasePool.m in Sources */,
 				6A65234C1C1E930E00227C63 /* UIImageView+HighlightedWebCache.m in Sources */,
 				159049741C069FA600EE51FB /* BRSNewPasswordViewController.m in Sources */,
+				1532A6FB1C3F83A200D0582B /* FMDatabaseAdditions.m in Sources */,
 				6AB9BA131C2BE1E8004BF6A7 /* BaseTableViewCell.m in Sources */,
 				15CFF0101C3B991400DB6FAC /* MDSetViewController.m in Sources */,
 				6AB9BB7E1C2BE876004BF6A7 /* MessageModel.m in Sources */,
@@ -4392,6 +4451,7 @@
 				6AB9BB3D1C2BE7D6004BF6A7 /* ChatListCell.m in Sources */,
 				6AF404C61C2D072C00D46F2A /* EditNicknameViewController.m in Sources */,
 				6AB9BA4F1C2BE25D004BF6A7 /* EMAudioPlayerUtil.m in Sources */,
+				1532A6FD1C3F83A200D0582B /* FMDatabaseQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4494,11 +4554,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MyDoctor/fundation/3rdparty/Parse",
 				);
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = MyDoctor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -4638,11 +4700,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MyDoctor/fundation/3rdparty/Parse",
 				);
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = MyDoctor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -4670,11 +4734,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MyDoctor/fundation/3rdparty/Parse",
 				);
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = MyDoctor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
