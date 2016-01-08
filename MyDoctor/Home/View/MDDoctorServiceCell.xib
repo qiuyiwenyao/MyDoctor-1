@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="84.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="默认头像.png" translatesAutoresizingMaskIntoConstraints="NO" id="Jd3-p3-f3a">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jd3-p3-f3a">
                         <rect key="frame" x="20" y="18" width="50" height="50"/>
                         <animations/>
                         <constraints>
@@ -104,7 +104,4 @@
             </connections>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="默认头像.png" width="99" height="77"/>
-    </resources>
 </document>

@@ -33,9 +33,9 @@ static MDUserVO *user = nil;
 
 +(MDUserVO*) convertFromAccountHomeUser:(NSDictionary *)dic{
     MDUserVO * userVO=[[MDUserVO alloc] init];
-    userVO.userName=[[dic objectForKey:@"obj"] objectForKey:@"account"];
+    userVO.userName=[[dic objectForKey:@"obj"] objectForKey:@"realName"];
     userVO.userID=[NSString stringWithFormat:@"%@",[[dic objectForKey:@"obj"] objectForKey:@"id"]];
-    userVO.account=[[dic objectForKey:@"obj"] objectForKey:@"account"];
+//    userVO.account=[[dic objectForKey:@"obj"] objectForKey:@"account"];
     userVO.photo = [[dic objectForKey:@"obj"] objectForKey:@"photo"];
     userVO.baseurl = [[dic objectForKey:@"obj"] objectForKey:@"shoujiPara"][0][1];
     userVO.photourl = [[dic objectForKey:@"obj"] objectForKey:@"shoujiPara"][1][1];
@@ -48,18 +48,25 @@ static MDUserVO *user = nil;
 +(MDUserVO*) registeredFromDignInUser:(NSDictionary *)dic{
     MDUserVO * userVO=[[MDUserVO alloc] init];
     userVO.userName=[dic objectForKey:@"userName"];
-    if ([dic objectForKey:@"userId"]) {
-        userVO.userID=[dic objectForKey:@"userId"];
-        userVO.account = [dic objectForKey:@"userAccount"];
-        userVO.photoPath = [NSString stringWithFormat:@"Library/Caches/IMAGE/%@.png",[dic objectForKey:@"userId"] ];
-    }
+    userVO.userID=[dic objectForKey:@"userId"];
+    userVO.account = [dic objectForKey:@"userAccount"];
+    userVO.photoPath = [NSString stringWithFormat:@"Library/Caches/IMAGE/%@.png",[dic objectForKey:@"userId"] ];
+    userVO.photourl = @"http://111.160.245.75:8082/CommunityWs/Upload/photos/";
     
+    return userVO;
+}
+
++(MDUserVO*) setPersonInfoFromUserInfer:(NSDictionary *)dic
+{
+    MDUserVO * userVO=[[MDUserVO alloc] init];
+    userVO.userName = [dic objectForKey:@"userName"];
+    userVO.account = [dic objectForKey:@"userAccount"];
+    userVO.photoPath = [NSString stringWithFormat:@"Library/Caches/IMAGE/%@.png",[dic objectForKey:@"userId"] ];
     return userVO;
 }
 
 +(void)initWithCoder:(MDUserVO *)userVO
 {
-    
     user=userVO;
 
     FileUtils *util = [FileUtils sharedFileUtils];
@@ -73,7 +80,7 @@ static MDUserVO *user = nil;
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:_userID forKey:@"id"];
     [aCoder encodeObject:_userName forKey:@"userName"];
-    [aCoder encodeObject:_account forKey:@"userName"];
+//    [aCoder encodeObject:_account forKey:@"userName"];
     [aCoder encodeObject:_photoPath forKey:@"photoPath"];
     [aCoder encodeObject:_photourl forKey:@"photourl"];
    
@@ -83,9 +90,9 @@ static MDUserVO *user = nil;
     MDUserVO *user = [[MDUserVO alloc] init];
     user.userID = [aDecoder decodeObjectForKey:@"id"];
     user.userName = [aDecoder decodeObjectForKey:@"userName"];
-    user.account = [aDecoder decodeObjectForKey:@"userName"];
+//    user.account = [aDecoder decodeObjectForKey:@"userName"];
     user.photoPath = [aDecoder decodeObjectForKey:@"photoPath"];
-    user.baseurl = [aDecoder decodeObjectForKey:@"baseurl"];
+    user.photourl = [aDecoder decodeObjectForKey:@"photourl"];
     
     return user;
 }

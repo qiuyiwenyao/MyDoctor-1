@@ -18,6 +18,7 @@
 @property (nonatomic,copy) NSString * photoPath;
 
 +(MDUserVO*)userVO;
++(MDUserVO*) setPersonInfoFromUserInfer:(NSDictionary *)dic;
 +(MDUserVO*) convertFromAccountHomeUser:(NSDictionary *)dic;
 +(MDUserVO*) registeredFromDignInUser:(NSDictionary *)dic;
 

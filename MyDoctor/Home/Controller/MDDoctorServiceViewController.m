@@ -12,6 +12,8 @@
 #import "MDHospitalViewController.h"
 #import "MDDocModel.h"
 #import "MDRequestModel.h"
+#import "UIImageView+WebCache.h"
+
 
 @interface MDDoctorServiceViewController ()<UITableViewDataSource,UITableViewDelegate,sendInfoToCtr>
 {
@@ -269,6 +271,9 @@
     cell.hospitalLab.text = model.HospitalName;
     cell.majorLab.text = model.Detail;
     cell.branchLab.text  =model.Department;
+    [cell.headView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,model.Photo]] placeholderImage:[UIImage imageNamed:@"专家头像"]];
+    
+    NSLog(@"%@%@",[MDUserVO userVO].photourl,model.Photo);
 
     
     return cell;
