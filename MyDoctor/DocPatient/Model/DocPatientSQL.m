@@ -16,7 +16,7 @@
 
 @implementation DocPatientSQL
 
--(void)createAttachmentsDBTableWithEmailAccountName:(NSString *)emailAccount
+-(void)createAttachmentsDBTableWithPatient
 {
     NSString *doc=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *fileName=[doc stringByAppendingPathComponent:@"Patient.sqlite"];
@@ -24,7 +24,7 @@
     FMDatabase *db=[FMDatabase databaseWithPath:fileName];
     //3.打开数据库
     if ([db open]) {
-        BOOL result=[db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_Patient (id integer PRIMARY KEY AUTOINCREMENT, Phone text NOT NULL, name text,imagePath text);"];
+        BOOL result=[db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_Patient (id text, Phone text NOT NULL, name text,imagePath text);"];
         if (result) {
             NSLog(@"创t_Patient表成功");
         }else{
@@ -58,7 +58,7 @@
     }
 }
 
--(NSArray *)getAttachments:(NSString *)emailAccount withMailPhone:(int)Phone {
+-(NSArray *)getAttachmentswithMailPhone:(NSString *)Phone {
     NSMutableArray *attachmentArray = [NSMutableArray array];
   
         FMResultSet *result = [self.db executeQuery:@"select * from t_Patient where Phone = ?", Phone];

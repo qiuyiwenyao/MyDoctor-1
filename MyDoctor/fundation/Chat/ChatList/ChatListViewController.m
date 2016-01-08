@@ -27,6 +27,8 @@
 #import "MDUserVO.h"
 #import "UIImageView+WebCache.h"
 #import "FileUtils.h"
+#import "DocPatientSQL.h"
+#import "DocPatientModel.h"
 #define IMAGECACHE  @"PatientsIMAGE/"
 
 
@@ -80,7 +82,7 @@
 {
     [super viewDidLoad];
     
-    _RealName = [[NSMutableArray alloc] init];
+//    _RealName = [[NSMutableArray alloc] init];
     _headImg = [[NSMutableArray alloc] init];
     _headImgUrl = [[NSMutableArray alloc] init];
     
@@ -137,41 +139,54 @@
     NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
     NSArray * arr = [dic objectForKey:@"obj"];
     
-    for (NSDictionary * dic in arr) {
-        if ([dic objectForKey:@"RealName"]) {
-            [_RealName addObject:[dic objectForKey:@"RealName"]];
-        }
-        if ([dic objectForKey:@"Photo"]) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                NSData * data = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,[dic objectForKey:@"Photo"]]]];
-                UIImage *headImg = [[UIImage alloc]initWithData:data];
-                if (data != nil) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        //在这里做UI操作(UI操作都要放在主线程中执行)
-                        FileUtils * fileUtil = [FileUtils sharedFileUtils];
-                        //创建文件下载目录
-                        NSString * path2 = [fileUtil createCachePath:IMAGECACHE];
-                        
-                        NSString *uniquePath=[path2 stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",[dic objectForKey:@"Phone"]]];
-                        BOOL result=[UIImagePNGRepresentation(headImg)writeToFile: uniquePath atomically:YES];
-                        NSLog(@"===========uniquePath:%@",uniquePath);
-                        
-                        
-                    });
-                }
-            });
+    NSMutableArray * attachmentArr = [[NSMutableArray alloc] init];
+    DocPatientSQL * docPation = [[DocPatientSQL alloc] init];
+    [docPation createAttachmentsDBTableWithPatient];
 
-        }
+for (NSDictionary * dic in arr) {
+    
+    //创建数据库
+    
+    DocPatientModel * patientModel = [[DocPatientModel alloc] init];
+    patientModel.Name = [dic objectForKey:@"RealName"];
+    patientModel.phone = [dic objectForKey:@"Phone"];
+    if ([dic objectForKey:@"Photo"]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSData * data = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,[dic objectForKey:@"Photo"]]]];
+            UIImage *headImg = [[UIImage alloc]initWithData:data];
+            if (data != nil) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    //在这里做UI操作(UI操作都要放在主线程中执行)
+                    FileUtils * fileUtil = [FileUtils sharedFileUtils];
+                    //创建文件下载目录
+                    NSString * path2 = [fileUtil createCachePath:IMAGECACHE];
+                    
+                    NSString *uniquePath=[path2 stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",[dic objectForKey:@"Phone"]]];
+                    BOOL result=[UIImagePNGRepresentation(headImg)writeToFile: uniquePath atomically:YES];
+                    
+                    if(result)
+                    {
+                        patientModel.ImagePath = [NSString stringWithFormat:@"%@/Library/Caches/PatientsIMAGE/%@.png",NSHomeDirectory(),[dic objectForKey:@"Phone"]];
+                    }
+                    
+                    
+                });
+            }
+        });
+        
+
     }
-    
-    
-    
-//    nickName = [arr[0] objectForKey:@"RealName"];
-//    headImgUrl = [NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,[arr[0] objectForKey:@"Photo"]];
-//    UIImageView * head = [[UIImageView alloc] init];
-//    [head sd_setImageWithURL:[NSURL URLWithString:headImgUrl]];
-//    headImg = head.image;
-    [_tableView reloadData];
+    [attachmentArr addObject:patientModel];
+
+
+}
+
+
+
+[docPation updatePopAttachmentsDBTable:attachmentArr];
+
+
+[_tableView reloadData];
 //
 //    NSLog(@"+++++%@%@",nickName,headImg);
 }
@@ -471,6 +486,10 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView
         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    DocPatientSQL * patient = [[DocPatientSQL alloc] init];
+    [patient createAttachmentsDBTableWithPatient];
+    
+    
     static NSString *identify = @"chatListCell";
     ChatListCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
     
@@ -479,27 +498,26 @@
     }
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
     cell.name = conversation.chatter;
-//    NSLog(@"%@",conversation.chatter);
-    if (conversation.conversationType == eConversationTypeChat) {
-//        cell.name = [_RealName objectAtIndex:indexPath.row];
-//        if (_RealName[indexPath.row]) {
-//            cell.name = _RealName[indexPath.row];
-//        }
-        NSLog(@"====%@",_RealName);
-        if (_RealName.count == 0) {
-            NSLog(@"nil");
-        }
-        else
-        {
-            NSLog(@"%@",_RealName[indexPath.row]);
-            
-            cell.name = [_RealName objectAtIndex:indexPath.row];
+    
+    
+    //取出conversation.chatter对应的数据库
+    
+    NSLog(@"++%@",conversation.chatter);
+    
+    NSArray * array=[patient getAttachmentswithMailPhone:conversation.chatter];
+    NSLog(@"%@",array);
+    
+    DocPatientModel * patienModel = [[patient getAttachmentswithMailPhone:conversation.chatter] objectAtIndex :0];
 
-        }
+    
+    if (conversation.conversationType == eConversationTypeChat) {
         
-        UIImage * headImg = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/Library/Caches/PatientsIMAGE/%@.png",NSHomeDirectory(),conversation.chatter]];
+        cell.name = patienModel.Name;
         
-        NSLog(@"%@",[NSString stringWithFormat:@"%@/PatientsIMAGE/%@.png",NSHomeDirectory(),conversation.chatter]);
+        UIImage * headImg = [UIImage imageWithContentsOfFile:patienModel.ImagePath];
+        
+        NSLog(@"!!!%@",patienModel.ImagePath);
+        
         
         if (headImg) {
             cell.placeholderImage = headImg;
@@ -584,7 +602,7 @@
             }
         }
     } else if (conversation.conversationType == eConversationTypeChat) {
-        title = _RealName[indexPath.row];
+//        title = _RealName[indexPath.row];
     }
     
     NSString *chatter = conversation.chatter;

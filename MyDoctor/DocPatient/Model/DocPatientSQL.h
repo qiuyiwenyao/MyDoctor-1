@@ -10,7 +10,9 @@
 
 @interface DocPatientSQL : NSObject
 
--(void)createAttachmentsDBTableWithEmailAccountName:(NSString *)emailAccount;
+-(void)createAttachmentsDBTableWithPatient;
+-(void)updatePopAttachmentsDBTable:(NSArray *)attachmentArr;
+-(NSArray *)getAttachmentswithMailPhone:(NSString *)Phone ;
 
 
 @end

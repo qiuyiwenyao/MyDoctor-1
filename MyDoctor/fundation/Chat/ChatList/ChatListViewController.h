@@ -26,7 +26,7 @@
 @property (nonatomic,strong) NSString * chatID;
 @property (nonatomic,strong) NSString * name;
 @property (nonatomic,strong) NSString * chatIDs;
-@property (nonatomic,strong) NSMutableArray * RealName;
+//@property (nonatomic,strong) NSMutableArray * RealName;
 @property (nonatomic,strong) NSMutableArray * headImg;
 @property (nonatomic,strong) NSMutableArray * headImgUrl;
 
