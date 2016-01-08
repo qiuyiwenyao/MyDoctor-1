@@ -51,6 +51,7 @@ static MDUserVO *user = nil;
     userVO.userID=[dic objectForKey:@"userId"];
     userVO.account = [dic objectForKey:@"userAccount"];
     userVO.photoPath = [NSString stringWithFormat:@"Library/Caches/IMAGE/%@.png",[dic objectForKey:@"userId"] ];
+    userVO.photourl = @"http://111.160.245.75:8082/CommunityWs/Upload/photos/";
     
     return userVO;
 }
@@ -79,7 +80,7 @@ static MDUserVO *user = nil;
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:_userID forKey:@"id"];
     [aCoder encodeObject:_userName forKey:@"userName"];
-    [aCoder encodeObject:_account forKey:@"userName"];
+//    [aCoder encodeObject:_account forKey:@"userName"];
     [aCoder encodeObject:_photoPath forKey:@"photoPath"];
     [aCoder encodeObject:_photourl forKey:@"photourl"];
    
@@ -89,9 +90,9 @@ static MDUserVO *user = nil;
     MDUserVO *user = [[MDUserVO alloc] init];
     user.userID = [aDecoder decodeObjectForKey:@"id"];
     user.userName = [aDecoder decodeObjectForKey:@"userName"];
-    user.account = [aDecoder decodeObjectForKey:@"userName"];
+//    user.account = [aDecoder decodeObjectForKey:@"userName"];
     user.photoPath = [aDecoder decodeObjectForKey:@"photoPath"];
-    user.baseurl = [aDecoder decodeObjectForKey:@"baseurl"];
+    user.photourl = [aDecoder decodeObjectForKey:@"photourl"];
     
     return user;
 }

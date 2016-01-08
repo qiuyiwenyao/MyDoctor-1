@@ -31,6 +31,8 @@
     UIButton *headButton;
     UIImage *image222;
     NSString * headImg;
+    NSString * name;
+    UILabel * userName;
 }
 
 @property (nonatomic,strong) NSMutableArray * dataList;
@@ -67,6 +69,8 @@
     NSString * str=[stdDefault objectForKey:@"user_name"];
     if ([str length]>0) {
         NSLog(@"%@",str);
+        [self reloadData];
+        
     }else{
         BRSlogInViewController * logIn=[[BRSlogInViewController alloc] init];
         UINavigationController * nvc=[[UINavigationController alloc] initWithRootViewController:logIn];
@@ -109,13 +113,6 @@
 {
     
     headButton =[[UIButton alloc] init];
-//    if (![MDUserVO userVO].photoPath) {
-//        [headButton setBackgroundImage:[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",NSHomeDirectory(),[MDUserVO userVO].photoPath]] forState:UIControlStateNormal];
-//    }
-//    else
-//    {
-//        [headButton setBackgroundImage:[UIImage imageNamed:@"个人头像默认"]forState:UIControlStateNormal];
-//    }
     NSLog(@"%@",[NSString stringWithFormat:@"%@/%@",NSHomeDirectory(),[MDUserVO userVO].photoPath]);
     if ([UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",NSHomeDirectory(),[MDUserVO userVO].photoPath]]) {
         [headButton setBackgroundImage:[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",NSHomeDirectory(),[MDUserVO userVO].photoPath]] forState:UIControlStateNormal];
@@ -148,7 +145,7 @@
     UIImage*img =[UIImage imageNamed:@"按钮框"];
     [nameView setBackgroundColor:[UIColor colorWithPatternImage:img]];
    
-    UILabel * userName=[[UILabel alloc] initWithFrame:CGRectMake(5, 10, appWidth-29-10, 20)];
+    userName=[[UILabel alloc] initWithFrame:CGRectMake(5, 10, appWidth-29-10, 20)];
     userName.text=[MDUserVO userVO].userName;
     
     NSLog(@"~~~~~~userName%@",[MDUserVO userVO].userName);
@@ -182,6 +179,22 @@
         make.size.mas_equalTo(CGSizeMake(SCREENWIDTH - 42, 400));
 
     }];
+}
+
+-(void)reloadData
+{
+    if ([UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",NSHomeDirectory(),[MDUserVO userVO].photoPath]]) {
+        [headButton setBackgroundImage:[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",NSHomeDirectory(),[MDUserVO userVO].photoPath]] forState:UIControlStateNormal];
+        
+    }
+    else
+    {
+        [headButton setBackgroundImage:[UIImage imageNamed:@"个人头像默认"]forState:UIControlStateNormal];
+    }
+    
+    userName.text=[MDUserVO userVO].userName;
+
+
 }
 -(void)head:(UIButton *)head
 {

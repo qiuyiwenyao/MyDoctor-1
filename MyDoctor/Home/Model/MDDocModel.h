@@ -24,6 +24,7 @@
 @property (nonatomic,copy) NSString * Detail;
 @property (nonatomic,copy) NSString * Telephone;
 @property (nonatomic,copy) NSString * Phone;
+@property (nonatomic,copy) NSString * Photo;
 @property (nonatomic,assign) int id;
 @property (nonatomic,assign) int gzFlag;
 @property (nonatomic,assign) int Type;
