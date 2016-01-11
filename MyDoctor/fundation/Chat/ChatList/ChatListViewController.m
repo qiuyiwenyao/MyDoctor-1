@@ -1,14 +1,14 @@
 /************************************************************
-  *  * EaseMob CONFIDENTIAL 
-  * __________________ 
-  * Copyright (C) 2013-2014 EaseMob Technologies. All rights reserved. 
-  *  
-  * NOTICE: All information contained herein is, and remains 
-  * the property of EaseMob Technologies.
-  * Dissemination of this information or reproduction of this material 
-  * is strictly forbidden unless prior written permission is obtained
-  * from EaseMob Technologies.
-  */
+ *  * EaseMob CONFIDENTIAL
+ * __________________
+ * Copyright (C) 2013-2014 EaseMob Technologies. All rights reserved.
+ *
+ * NOTICE: All information contained herein is, and remains
+ * the property of EaseMob Technologies.
+ * Dissemination of this information or reproduction of this material
+ * is strictly forbidden unless prior written permission is obtained
+ * from EaseMob Technologies.
+ */
 
 #import "ChatListViewController.h"
 #import "SRRefreshView.h"
@@ -27,8 +27,8 @@
 #import "MDUserVO.h"
 #import "UIImageView+WebCache.h"
 #import "FileUtils.h"
-//#import "DocPatientSQL.h"
-//#import "DocPatientModel.h"
+#import "DocPatientSQL.h"
+#import "DocPatientModel.h"
 #define IMAGECACHE  @"PatientsIMAGE/"
 
 
@@ -47,7 +47,7 @@
         return [[UserProfileManager sharedInstance] getNickNameWithUsername:self.chatter];
     } else if (self.conversationType == eConversationTypeGroupChat) {
         if ([self.ext objectForKey:@"groupSubject"] || [self.ext objectForKey:@"isPublic"]) {
-           return [self.ext objectForKey:@"groupSubject"];
+            return [self.ext objectForKey:@"groupSubject"];
         }
     }
     return self.chatter;
@@ -82,7 +82,7 @@
 {
     [super viewDidLoad];
     
-//    _RealName = [[NSMutableArray alloc] init];
+    //    _RealName = [[NSMutableArray alloc] init];
     _headImg = [[NSMutableArray alloc] init];
     _headImgUrl = [[NSMutableArray alloc] init];
     
@@ -95,12 +95,12 @@
     [self.view insertSubview:imgView atIndex:0];
     [[EaseMob sharedInstance].chatManager loadAllConversationsFromDatabaseWithAppend2Chat:NO];
     [self removeEmptyConversationsFromDB];
-
+    
     [self.view addSubview:self.searchBar];
     [self.view addSubview:self.tableView];
     [self.tableView addSubview:self.slimeView];
     [self networkStateView];
-
+    
     [self searchController];
     
 }
@@ -112,17 +112,17 @@
 //根据手机号获得头像和昵称
 -(void)getNickNameAndPhotoWithChatID:(NSString *)chatId
 {
-//    MDRequestModel * model = [[MDRequestModel alloc] init];
-//    model.path = MDPath;
-//    model.methodNum = 10102;
-//    NSString * parameter=[NSString stringWithFormat:@"%@@`%@",logInField.text,password.text];
-//    model.parameter = parameter;
-//    model.delegate = self;
-//    [model starRequest];
+    //    MDRequestModel * model = [[MDRequestModel alloc] init];
+    //    model.path = MDPath;
+    //    model.methodNum = 10102;
+    //    NSString * parameter=[NSString stringWithFormat:@"%@@`%@",logInField.text,password.text];
+    //    model.parameter = parameter;
+    //    model.delegate = self;
+    //    [model starRequest];
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = MDPath;
     model.methodNum = 10109;
-//    NSLog(@"===%@",_chatID);
+    //    NSLog(@"===%@",_chatID);
     NSString * parameter = chatId;
     model.delegate = self;
     model.parameter = parameter;
@@ -140,55 +140,65 @@
     NSArray * arr = [dic objectForKey:@"obj"];
     
     NSMutableArray * attachmentArr = [[NSMutableArray alloc] init];
-//    DocPatientSQL * docPation = [[DocPatientSQL alloc] init];
-//    [docPation createAttachmentsDBTableWithPatient];
-
-for (NSDictionary * dic in arr) {
+    DocPatientSQL * docPation = [[DocPatientSQL alloc] init];
+    [docPation createAttachmentsDBTableWithPatient];
     
-    //创建数据库
-    
-//    DocPatientModel * patientModel = [[DocPatientModel alloc] init];
-//    patientModel.Name = [dic objectForKey:@"RealName"];
-//    patientModel.phone = [dic objectForKey:@"Phone"];
-    if ([dic objectForKey:@"Photo"]) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSData * data = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,[dic objectForKey:@"Photo"]]]];
-            UIImage *headImg = [[UIImage alloc]initWithData:data];
-            if (data != nil) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    //在这里做UI操作(UI操作都要放在主线程中执行)
-                    FileUtils * fileUtil = [FileUtils sharedFileUtils];
-                    //创建文件下载目录
-                    NSString * path2 = [fileUtil createCachePath:IMAGECACHE];
-                    
-                    NSString *uniquePath=[path2 stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",[dic objectForKey:@"Phone"]]];
-                    BOOL result=[UIImagePNGRepresentation(headImg)writeToFile: uniquePath atomically:YES];
-                    
-                    if(result)
-                    {
-//                        patientModel.ImagePath = [NSString stringWithFormat:@"%@/Library/Caches/PatientsIMAGE/%@.png",NSHomeDirectory(),[dic objectForKey:@"Phone"]];
-                    }
-                    
-                    
-                });
-            }
-        });
+    for (NSDictionary * dic in arr) {
         
-
+        //创建数据库
+        
+        DocPatientModel * patientModel = [[DocPatientModel alloc] init];
+        patientModel.Name = [dic objectForKey:@"RealName"];
+        _name=[dic objectForKey:@"RealName"];
+        if (![dic objectForKey:@"RealName"]) {
+            patientModel.Name = [dic objectForKey:@"Phone"];
+            _name=[dic objectForKey:@"Phone"];
+        }
+        patientModel.phone = [dic objectForKey:@"Phone"];
+        if ([dic objectForKey:@"Photo"]) {
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                NSData * data = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,[dic objectForKey:@"Photo"]]]];
+                UIImage *headImg = [[UIImage alloc]initWithData:data];
+                if (data != nil) {
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+                        //在这里做UI操作(UI操作都要放在主线程中执行)
+                        FileUtils * fileUtil = [FileUtils sharedFileUtils];
+                        //创建文件下载目录
+                        NSString * path2 = [fileUtil createCachePath:IMAGECACHE];
+                        
+                        NSString *uniquePath=[path2 stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",[dic objectForKey:@"Phone"]]];
+                        BOOL result=[UIImagePNGRepresentation(headImg)writeToFile: uniquePath atomically:YES];
+                        
+                        if(result)
+                        {
+                            patientModel.ImagePath = [NSString stringWithFormat:@"/Library/Caches/PatientsIMAGE/%@.png",[dic objectForKey:@"Phone"]];
+                            NSLog(@"%@",patientModel.ImagePath);
+                            
+                            [attachmentArr addObject:patientModel];
+                            [docPation updatePopAttachmentsDBTable:attachmentArr];
+                            [_tableView reloadData];
+                        }
+                        
+                        
+//                    });
+                }
+//            });
+            
+            
+        }
+        
+        
+        
     }
-//    [attachmentArr addObject:patientModel];
-
-
-}
-
-
-
-//[docPation updatePopAttachmentsDBTable:attachmentArr];
-
-
-[_tableView reloadData];
-//
-//    NSLog(@"+++++%@%@",nickName,headImg);
+    
+    
+    
+    
+    
+    
+    
+    //
+    //    NSLog(@"+++++%@%@",nickName,headImg);
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -199,7 +209,7 @@ for (NSDictionary * dic in arr) {
         EMConversation *conversation =  [[EaseMob sharedInstance].chatManager conversationForChatter:_chatID conversationType:0] ;
         NSString *chatter = conversation.chatter;
         ChatViewController * chatController = [[ChatViewController alloc] initWithChatter:chatter
-                                                    conversationType:conversation.conversationType];
+                                                                         conversationType:conversation.conversationType];
         chatController.title = _name;
         chatController.chatID=_chatID;
         chatController.hidesBottomBarWhenPushed = YES;
@@ -366,11 +376,12 @@ for (NSDictionary * dic in arr) {
             if ([[RobotManager sharedInstance] isRobotWithUsername:conversation.chatter]) {
                 chatController = [[RobotChatViewController alloc] initWithChatter:conversation.chatter
                                                                  conversationType:conversation.conversationType];
-                chatController.title = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
+                
+                chatController.title = _name;
             }else {
                 chatController = [[ChatViewController alloc] initWithChatter:conversation.chatter
                                                             conversationType:conversation.conversationType];
-                chatController.title = [conversation showName];
+                chatController.title = _name;
             }
             [weakSelf.navigationController pushViewController:chatController animated:YES];
         }];
@@ -406,17 +417,17 @@ for (NSDictionary * dic in arr) {
 {
     NSMutableArray *ret = nil;
     NSArray *conversations = [[EaseMob sharedInstance].chatManager conversations];
-
+    
     NSArray* sorte = [conversations sortedArrayUsingComparator:
-           ^(EMConversation *obj1, EMConversation* obj2){
-               EMMessage *message1 = [obj1 latestMessage];
-               EMMessage *message2 = [obj2 latestMessage];
-               if(message1.timestamp > message2.timestamp) {
-                   return(NSComparisonResult)NSOrderedAscending;
-               }else {
-                   return(NSComparisonResult)NSOrderedDescending;
-               }
-           }];
+                      ^(EMConversation *obj1, EMConversation* obj2){
+                          EMMessage *message1 = [obj1 latestMessage];
+                          EMMessage *message2 = [obj2 latestMessage];
+                          if(message1.timestamp > message2.timestamp) {
+                              return(NSComparisonResult)NSOrderedAscending;
+                          }else {
+                              return(NSComparisonResult)NSOrderedDescending;
+                          }
+                      }];
     
     ret = [[NSMutableArray alloc] initWithArray:sorte];
     return ret;
@@ -486,8 +497,8 @@ for (NSDictionary * dic in arr) {
 -(UITableViewCell *)tableView:(UITableView *)tableView
         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-//    DocPatientSQL * patient = [[DocPatientSQL alloc] init];
-//    [patient createAttachmentsDBTableWithPatient];
+    DocPatientSQL * patient = [[DocPatientSQL alloc] init];
+    [patient createAttachmentsDBTableWithPatient];
     
     
     static NSString *identify = @"chatListCell";
@@ -504,34 +515,37 @@ for (NSDictionary * dic in arr) {
     
     NSLog(@"++%@",conversation.chatter);
     
-//    NSArray * array=[patient getAttachmentswithMailPhone:conversation.chatter];
-//    NSLog(@"%@",array);
+    NSArray * array=[patient getAttachmentswithMailPhone:conversation.chatter];
+    NSLog(@"%@",array);
     
-//    DocPatientModel * patienModel = [[patient getAttachmentswithMailPhone:conversation.chatter] objectAtIndex :0];
-
-    
+    DocPatientModel * patienModel;
+    if ([array count]>0) {
+        patienModel= array[0];
+    }else{
+        patienModel = nil;
+    }
     if (conversation.conversationType == eConversationTypeChat) {
         
-//        cell.name = patienModel.Name;
+        cell.name = patienModel.Name;
         
-//        UIImage * headImg = [UIImage imageWithContentsOfFile:patienModel.ImagePath];
+        UIImage * headImg = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@%@",NSHomeDirectory(),patienModel.ImagePath]];
         
-//        NSLog(@"!!!%@",patienModel.ImagePath);
+        NSLog(@"!!!%@%@",NSHomeDirectory(),patienModel.ImagePath);
         
         
-//        if (headImg) {
-//            cell.placeholderImage = headImg;
-//            
-//        }
-//        else
-//        {
+        if (headImg) {
+            cell.placeholderImage = headImg;
+            
+        }
+        else
+        {
             cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
-//        }
-
+        }
         
-       
-//
-//        }
+        
+        
+        //
+        //        }
     }
     else{
         NSString *imageName = @"groupPublicHeader";
@@ -542,7 +556,7 @@ for (NSDictionary * dic in arr) {
                 if ([group.groupId isEqualToString:conversation.chatter]) {
                     cell.name = group.groupSubject;
                     imageName = group.isPublic ? @"groupPublicHeader" : @"groupPrivateHeader";
-
+                    
                     NSMutableDictionary *ext = [NSMutableDictionary dictionaryWithDictionary:conversation.ext];
                     [ext setObject:group.groupSubject forKey:@"groupSubject"];
                     [ext setObject:[NSNumber numberWithBool:group.isPublic] forKey:@"isPublic"];
@@ -561,11 +575,11 @@ for (NSDictionary * dic in arr) {
     cell.detailMsg = [self subTitleMessageByConversation:conversation];
     cell.time = [self lastMessageTimeByConversation:conversation];
     cell.unreadCount = [self unreadMessageCountByConversation:conversation];
-//    if (indexPath.row % 2 == 1) {
-//        cell.contentView.backgroundColor = RGBACOLOR(246, 246, 246, 1);
-//    }else{
-//        cell.contentView.backgroundColor = [UIColor whiteColor];
-//    }
+    //    if (indexPath.row % 2 == 1) {
+    //        cell.contentView.backgroundColor = RGBACOLOR(246, 246, 246, 1);
+    //    }else{
+    //        cell.contentView.backgroundColor = [UIColor whiteColor];
+    //    }
     cell.backgroundColor = [UIColor clearColor];
     
     return cell;
@@ -602,18 +616,19 @@ for (NSDictionary * dic in arr) {
             }
         }
     } else if (conversation.conversationType == eConversationTypeChat) {
-//        title = _RealName[indexPath.row];
+        //        title = _RealName[indexPath.row];
     }
     
     NSString *chatter = conversation.chatter;
     if ([[RobotManager sharedInstance] isRobotWithUsername:chatter]) {
         chatController = [[RobotChatViewController alloc] initWithChatter:chatter
-                                                    conversationType:conversation.conversationType];
-        chatController.title = [[RobotManager sharedInstance] getRobotNickWithUsername:chatter];
+                                                         conversationType:conversation.conversationType];
+        chatController.title = _name;
     }else {
         chatController = [[ChatViewController alloc] initWithChatter:chatter
                                                     conversationType:conversation.conversationType];
-        chatController.title = title;
+        ChatListCell * cell=[tableView cellForRowAtIndexPath:indexPath];
+        chatController.title = cell.name;
     }
     
     chatController.delelgate = self;
@@ -646,16 +661,16 @@ for (NSDictionary * dic in arr) {
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-//    __weak typeof(self) weakSelf = self;
-//    [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.dataSource searchText:(NSString *)searchText collationStringSelector:@selector(showName) resultBlock:^(NSArray *results) {
-//        if (results) {
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [weakSelf.searchController.resultsSource removeAllObjects];
-//                [weakSelf.searchController.resultsSource addObjectsFromArray:results];
-//                [weakSelf.searchController.searchResultsTableView reloadData];
-//            });
-//        }
-//    }];
+    //    __weak typeof(self) weakSelf = self;
+    //    [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.dataSource searchText:(NSString *)searchText collationStringSelector:@selector(showName) resultBlock:^(NSArray *results) {
+    //        if (results) {
+    //            dispatch_async(dispatch_get_main_queue(), ^{
+    //                [weakSelf.searchController.resultsSource removeAllObjects];
+    //                [weakSelf.searchController.resultsSource addObjectsFromArray:results];
+    //                [weakSelf.searchController.searchResultsTableView reloadData];
+    //            });
+    //        }
+    //    }];
 }
 
 - (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
@@ -671,7 +686,7 @@ for (NSDictionary * dic in arr) {
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     searchBar.text = @"";
-//    [[RealtimeSearchUtil currentUtil] realtimeSearchStop];
+    //    [[RealtimeSearchUtil currentUtil] realtimeSearchStop];
     [searchBar resignFirstResponder];
     [searchBar setShowsCancelButton:NO animated:YES];
 }
@@ -725,24 +740,24 @@ for (NSDictionary * dic in arr) {
 
 -(void)refreshDataSource
 {
-//    EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
-
+    //    EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
+    
     self.dataSource = [self loadDataSource];
     _chatIDs = [[NSString alloc] init];
     int i=0;
     for (EMConversation *conversation in self.dataSource) {
-//        [self getNickNameAndPhotoWithChatID:conversation.chatter];
+        //        [self getNickNameAndPhotoWithChatID:conversation.chatter];
         if (i==0) {
             _chatIDs=conversation.chatter;
         }else{
             _chatIDs= [NSString stringWithFormat:@"%@,%@",_chatIDs,conversation.chatter];
         }
         i++;
-
+        
     }
     [self getNickNameAndPhotoWithChatID:_chatIDs];
     NSLog(@"~~~~~~~~%@",_chatIDs);
-    [_tableView reloadData];
+//    [_tableView reloadData];
     [self hideHud];
 }
 
@@ -753,7 +768,7 @@ for (NSDictionary * dic in arr) {
     else{
         _tableView.tableHeaderView = nil;
     }
-
+    
 }
 
 - (void)networkChanged:(EMConnectionState)connectionState
@@ -783,7 +798,7 @@ for (NSDictionary * dic in arr) {
 
 // 根据环信id得到要显示头像路径，如果返回nil，则显示默认头像
 - (NSString *)avatarWithChatter:(NSString *)chatter{
-//    return @"http://img0.bdstatic.com/img/image/shouye/jianbihua0525.jpg";
+    //    return @"http://img0.bdstatic.com/img/image/shouye/jianbihua0525.jpg";
     return nil;
 }
 
