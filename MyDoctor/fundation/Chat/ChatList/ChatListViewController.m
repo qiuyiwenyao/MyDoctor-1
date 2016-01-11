@@ -27,8 +27,8 @@
 #import "MDUserVO.h"
 #import "UIImageView+WebCache.h"
 #import "FileUtils.h"
-#import "DocPatientSQL.h"
-#import "DocPatientModel.h"
+//#import "DocPatientSQL.h"
+//#import "DocPatientModel.h"
 #define IMAGECACHE  @"PatientsIMAGE/"
 
 
@@ -140,16 +140,16 @@
     NSArray * arr = [dic objectForKey:@"obj"];
     
     NSMutableArray * attachmentArr = [[NSMutableArray alloc] init];
-    DocPatientSQL * docPation = [[DocPatientSQL alloc] init];
-    [docPation createAttachmentsDBTableWithPatient];
+//    DocPatientSQL * docPation = [[DocPatientSQL alloc] init];
+//    [docPation createAttachmentsDBTableWithPatient];
 
 for (NSDictionary * dic in arr) {
     
     //创建数据库
     
-    DocPatientModel * patientModel = [[DocPatientModel alloc] init];
-    patientModel.Name = [dic objectForKey:@"RealName"];
-    patientModel.phone = [dic objectForKey:@"Phone"];
+//    DocPatientModel * patientModel = [[DocPatientModel alloc] init];
+//    patientModel.Name = [dic objectForKey:@"RealName"];
+//    patientModel.phone = [dic objectForKey:@"Phone"];
     if ([dic objectForKey:@"Photo"]) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             NSData * data = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,[dic objectForKey:@"Photo"]]]];
@@ -166,7 +166,7 @@ for (NSDictionary * dic in arr) {
                     
                     if(result)
                     {
-                        patientModel.ImagePath = [NSString stringWithFormat:@"%@/Library/Caches/PatientsIMAGE/%@.png",NSHomeDirectory(),[dic objectForKey:@"Phone"]];
+//                        patientModel.ImagePath = [NSString stringWithFormat:@"%@/Library/Caches/PatientsIMAGE/%@.png",NSHomeDirectory(),[dic objectForKey:@"Phone"]];
                     }
                     
                     
@@ -176,14 +176,14 @@ for (NSDictionary * dic in arr) {
         
 
     }
-    [attachmentArr addObject:patientModel];
+//    [attachmentArr addObject:patientModel];
 
 
 }
 
 
 
-[docPation updatePopAttachmentsDBTable:attachmentArr];
+//[docPation updatePopAttachmentsDBTable:attachmentArr];
 
 
 [_tableView reloadData];
@@ -486,8 +486,8 @@ for (NSDictionary * dic in arr) {
 -(UITableViewCell *)tableView:(UITableView *)tableView
         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    DocPatientSQL * patient = [[DocPatientSQL alloc] init];
-    [patient createAttachmentsDBTableWithPatient];
+//    DocPatientSQL * patient = [[DocPatientSQL alloc] init];
+//    [patient createAttachmentsDBTableWithPatient];
     
     
     static NSString *identify = @"chatListCell";
@@ -504,29 +504,29 @@ for (NSDictionary * dic in arr) {
     
     NSLog(@"++%@",conversation.chatter);
     
-    NSArray * array=[patient getAttachmentswithMailPhone:conversation.chatter];
-    NSLog(@"%@",array);
+//    NSArray * array=[patient getAttachmentswithMailPhone:conversation.chatter];
+//    NSLog(@"%@",array);
     
-    DocPatientModel * patienModel = [[patient getAttachmentswithMailPhone:conversation.chatter] objectAtIndex :0];
+//    DocPatientModel * patienModel = [[patient getAttachmentswithMailPhone:conversation.chatter] objectAtIndex :0];
 
     
     if (conversation.conversationType == eConversationTypeChat) {
         
-        cell.name = patienModel.Name;
+//        cell.name = patienModel.Name;
         
-        UIImage * headImg = [UIImage imageWithContentsOfFile:patienModel.ImagePath];
+//        UIImage * headImg = [UIImage imageWithContentsOfFile:patienModel.ImagePath];
         
-        NSLog(@"!!!%@",patienModel.ImagePath);
+//        NSLog(@"!!!%@",patienModel.ImagePath);
         
         
-        if (headImg) {
-            cell.placeholderImage = headImg;
-            
-        }
-        else
-        {
+//        if (headImg) {
+//            cell.placeholderImage = headImg;
+//            
+//        }
+//        else
+//        {
             cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
-        }
+//        }
 
         
        

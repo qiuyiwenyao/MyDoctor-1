@@ -115,8 +115,6 @@
 		15AE537A1C02F0680013FF1B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15AE53791C02F0680013FF1B /* Images.xcassets */; };
 		15AE537D1C02F0680013FF1B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE537B1C02F0680013FF1B /* LaunchScreen.xib */; };
 		15AE53891C02F0680013FF1B /* MyDoctorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AE53881C02F0680013FF1B /* MyDoctorTests.m */; };
-		15CFEFD41C3A0D8600DB6FAC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CFEFD21C3A0D8600DB6FAC /* Bolts.framework */; };
-		15CFEFD51C3A0D8600DB6FAC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CFEFD31C3A0D8600DB6FAC /* Parse.framework */; };
 		15CFEFE01C3A17BB00DB6FAC /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CFEFDF1C3A17BB00DB6FAC /* Icon-72.png */; };
 		15CFEFE21C3A17C400DB6FAC /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CFEFE11C3A17C400DB6FAC /* Icon-72@2x.png */; };
 		15CFEFE41C3A17D000DB6FAC /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CFEFE31C3A17D000DB6FAC /* Icon.png */; };
@@ -558,6 +556,8 @@
 		6ABBAD041C3A372D008F064C /* 评分5@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABBACFE1C3A372D008F064C /* 评分5@3x.png */; };
 		6ABBAD061C3B735D008F064C /* 进入@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABBAD051C3B735D008F064C /* 进入@2x.png */; };
 		6ABBAD081C3B7366008F064C /* 进入@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABBAD071C3B7366008F064C /* 进入@3x.png */; };
+		6ABBAD0B1C4335E0008F064C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ABBAD091C4335E0008F064C /* Bolts.framework */; };
+		6ABBAD0C1C4335E0008F064C /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ABBAD0A1C4335E0008F064C /* Parse.framework */; };
 		6ABD0BE11C311DFA00FEE47F /* DocOnLineViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD0BE01C311DFA00FEE47F /* DocOnLineViewController2.m */; };
 		6ABD0BE81C321C8400FEE47F /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABD0BE21C321C8400FEE47F /* home@2x.png */; };
 		6ABD0BE91C321C8400FEE47F /* homeback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABD0BE31C321C8400FEE47F /* homeback@2x.png */; };
@@ -810,8 +810,6 @@
 		15AE53821C02F0680013FF1B /* MyDoctorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyDoctorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15AE53871C02F0680013FF1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15AE53881C02F0680013FF1B /* MyDoctorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyDoctorTests.m; sourceTree = "<group>"; };
-		15CFEFD21C3A0D8600DB6FAC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		15CFEFD31C3A0D8600DB6FAC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		15CFEFDF1C3A17BB00DB6FAC /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		15CFEFE11C3A17C400DB6FAC /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		15CFEFE31C3A17D000DB6FAC /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -1534,6 +1532,8 @@
 		6ABBACFE1C3A372D008F064C /* 评分5@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "评分5@3x.png"; sourceTree = "<group>"; };
 		6ABBAD051C3B735D008F064C /* 进入@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "进入@2x.png"; sourceTree = "<group>"; };
 		6ABBAD071C3B7366008F064C /* 进入@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "进入@3x.png"; sourceTree = "<group>"; };
+		6ABBAD091C4335E0008F064C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		6ABBAD0A1C4335E0008F064C /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		6ABD0BDF1C311DFA00FEE47F /* DocOnLineViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocOnLineViewController2.h; path = DocHome/DocOnLineViewController2.h; sourceTree = "<group>"; };
 		6ABD0BE01C311DFA00FEE47F /* DocOnLineViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocOnLineViewController2.m; path = DocHome/DocOnLineViewController2.m; sourceTree = "<group>"; };
 		6ABD0BE21C321C8400FEE47F /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
@@ -1633,9 +1633,10 @@
 				6ABBACEC1C34D68C008F064C /* QuartzCore.framework in Frameworks */,
 				6AB9BD211C2BEF8B004BF6A7 /* CoreLocation.framework in Frameworks */,
 				6AB9BD1F1C2BEF7E004BF6A7 /* MapKit.framework in Frameworks */,
+				6ABBAD0B1C4335E0008F064C /* Bolts.framework in Frameworks */,
 				6AB9BB271C2BE776004BF6A7 /* libMobClickLibrary.a in Frameworks */,
-				15CFEFD51C3A0D8600DB6FAC /* Parse.framework in Frameworks */,
 				6AB9BB341C2BE7AE004BF6A7 /* libopencore-amrnb.a in Frameworks */,
+				6ABBAD0C1C4335E0008F064C /* Parse.framework in Frameworks */,
 				6AB9B8741C2BDB7F004BF6A7 /* AddressBook.framework in Frameworks */,
 				6AB9B8721C2BDB3F004BF6A7 /* ImageIO.framework in Frameworks */,
 				15CFF0F81C3E46EC00DB6FAC /* libEaseMobClientSDK_armv7s.a in Frameworks */,
@@ -1649,7 +1650,6 @@
 				6AB9B5FA1C28E45A004BF6A7 /* libiconv.tbd in Frameworks */,
 				6AB9B5F81C28E43A004BF6A7 /* libresolv.tbd in Frameworks */,
 				6AB9B5F61C28E42D004BF6A7 /* libxml2.tbd in Frameworks */,
-				15CFEFD41C3A0D8600DB6FAC /* Bolts.framework in Frameworks */,
 				6AB9B5F41C28E420004BF6A7 /* libsqlite3.tbd in Frameworks */,
 				15CFF0F61C3E46EC00DB6FAC /* libEaseMobClientSDK_arm64.a in Frameworks */,
 				6AB9B5F21C28E415004BF6A7 /* libstdc++.6.0.9.tbd in Frameworks */,
@@ -3040,8 +3040,8 @@
 		6AB9B7641C2BD176004BF6A7 /* Parse */ = {
 			isa = PBXGroup;
 			children = (
-				15CFEFD21C3A0D8600DB6FAC /* Bolts.framework */,
-				15CFEFD31C3A0D8600DB6FAC /* Parse.framework */,
+				6ABBAD091C4335E0008F064C /* Bolts.framework */,
+				6ABBAD0A1C4335E0008F064C /* Parse.framework */,
 			);
 			path = Parse;
 			sourceTree = "<group>";

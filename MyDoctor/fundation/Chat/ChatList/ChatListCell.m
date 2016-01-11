@@ -72,6 +72,8 @@
 //        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, 1)];
 //        _lineView.backgroundColor = RGBACOLOR(207, 210, 213, 0.7);
 //        [self.contentView addSubview:_lineView];
+        [bgView bringSubviewToFront:_unreadLabel];
+
     }
     return self;
 }
@@ -104,7 +106,7 @@
     [self.imageView imageWithUsername:_name placeholderImage:_placeholderImage];
     self.imageView.frame = CGRectMake(10, 10, 60, 60);
     [bgView addSubview:self.imageView];
-    
+    [bgView bringSubviewToFront:_unreadLabel];
 //    self.textLabel.text = _name;
     [self.textLabel setTextWithUsername:_name];
     self.textLabel.frame = CGRectMake(80, 10, 175, 20);
@@ -130,6 +132,8 @@
     frame = _lineView.frame;
     frame.origin.y = self.contentView.frame.size.height - 1;
     _lineView.frame = frame;
+    
+//    [self.contentView bringSubviewToFront:_unreadLabel];
 }
 
 -(void)setName:(NSString *)name{
