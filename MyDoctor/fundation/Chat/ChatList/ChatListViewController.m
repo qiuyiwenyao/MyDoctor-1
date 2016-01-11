@@ -166,7 +166,11 @@ for (NSDictionary * dic in arr) {
                     
                     if(result)
                     {
-                        patientModel.ImagePath = [NSString stringWithFormat:@"%@/Library/Caches/PatientsIMAGE/%@.png",NSHomeDirectory(),[dic objectForKey:@"Phone"]];
+                        patientModel.ImagePath = [NSString stringWithFormat:@"/Library/Caches/PatientsIMAGE/%@.png",[dic objectForKey:@"Phone"]];
+                        NSLog(@"%@",patientModel.ImagePath);
+                        
+                        [attachmentArr addObject:patientModel];
+                        [docPation updatePopAttachmentsDBTable:attachmentArr];
                     }
                     
                     
@@ -176,14 +180,14 @@ for (NSDictionary * dic in arr) {
         
 
     }
-    [attachmentArr addObject:patientModel];
+    
 
 
 }
 
 
 
-[docPation updatePopAttachmentsDBTable:attachmentArr];
+
 
 
 [_tableView reloadData];
@@ -514,9 +518,9 @@ for (NSDictionary * dic in arr) {
         
         cell.name = patienModel.Name;
         
-        UIImage * headImg = [UIImage imageWithContentsOfFile:patienModel.ImagePath];
+        UIImage * headImg = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@%@",NSHomeDirectory(),patienModel.ImagePath]];
         
-        NSLog(@"!!!%@",patienModel.ImagePath);
+        NSLog(@"!!!%@%@",NSHomeDirectory(),patienModel.ImagePath);
         
         
         if (headImg) {
