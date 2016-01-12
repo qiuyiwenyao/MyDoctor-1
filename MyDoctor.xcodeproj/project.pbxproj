@@ -146,6 +146,9 @@
 		15FBDD601C155A11009E7E39 /* DocPatientTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD5F1C155A11009E7E39 /* DocPatientTableViewCell.m */; };
 		15FBDD641C155B11009E7E39 /* DocPatientFolerVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD631C155B11009E7E39 /* DocPatientFolerVO.m */; };
 		15FBDD6A1C1908B2009E7E39 /* MDDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDD691C1908B2009E7E39 /* MDDataViewController.m */; };
+		6A0D68C81C44949E00F207C3 /* libGeTuiSdk-1.3.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A0D68C71C44949E00F207C3 /* libGeTuiSdk-1.3.2.a */; };
+		6A0D68CA1C44962B00F207C3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A0D68C91C44962B00F207C3 /* AVFoundation.framework */; };
+		6A0D68CC1C44964700F207C3 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A0D68CB1C44964700F207C3 /* CoreBluetooth.framework */; };
 		6A2582B81C0FE21D005E3404 /* topImg2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6A2582B71C0FE21D005E3404 /* topImg2.jpg */; };
 		6A2582C71C102ECF005E3404 /* 赞@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A2582C51C102ECF005E3404 /* 赞@2x.png */; };
 		6A2582C81C102ECF005E3404 /* 未赞@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A2582C61C102ECF005E3404 /* 未赞@2x.png */; };
@@ -939,6 +942,10 @@
 		15FBDD631C155B11009E7E39 /* DocPatientFolerVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocPatientFolerVO.m; path = DocPatient/DocPatientFolerVO/DocPatientFolerVO.m; sourceTree = "<group>"; };
 		15FBDD681C1908B2009E7E39 /* MDDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDataViewController.h; sourceTree = "<group>"; };
 		15FBDD691C1908B2009E7E39 /* MDDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDataViewController.m; sourceTree = "<group>"; };
+		6A0D68C61C44949E00F207C3 /* GeTuiSdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeTuiSdk.h; sourceTree = "<group>"; };
+		6A0D68C71C44949E00F207C3 /* libGeTuiSdk-1.3.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libGeTuiSdk-1.3.2.a"; sourceTree = "<group>"; };
+		6A0D68C91C44962B00F207C3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		6A0D68CB1C44964700F207C3 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		6A2582B71C0FE21D005E3404 /* topImg2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = topImg2.jpg; sourceTree = "<group>"; };
 		6A2582C51C102ECF005E3404 /* 赞@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "赞@2x.png"; sourceTree = "<group>"; };
 		6A2582C61C102ECF005E3404 /* 未赞@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未赞@2x.png"; sourceTree = "<group>"; };
@@ -1630,6 +1637,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A0D68CC1C44964700F207C3 /* CoreBluetooth.framework in Frameworks */,
+				6A0D68CA1C44962B00F207C3 /* AVFoundation.framework in Frameworks */,
 				6ABBACEC1C34D68C008F064C /* QuartzCore.framework in Frameworks */,
 				6AB9BD211C2BEF8B004BF6A7 /* CoreLocation.framework in Frameworks */,
 				6AB9BD1F1C2BEF7E004BF6A7 /* MapKit.framework in Frameworks */,
@@ -1640,6 +1649,7 @@
 				6AB9B8741C2BDB7F004BF6A7 /* AddressBook.framework in Frameworks */,
 				6AB9B8721C2BDB3F004BF6A7 /* ImageIO.framework in Frameworks */,
 				15CFF0F81C3E46EC00DB6FAC /* libEaseMobClientSDK_armv7s.a in Frameworks */,
+				6A0D68C81C44949E00F207C3 /* libGeTuiSdk-1.3.2.a in Frameworks */,
 				6AB9B8701C2BDB36004BF6A7 /* CoreText.framework in Frameworks */,
 				6AB9B86E1C2BDAE5004BF6A7 /* libc++.tbd in Frameworks */,
 				6AB9B86C1C2BDADA004BF6A7 /* CoreData.framework in Frameworks */,
@@ -1758,6 +1768,7 @@
 		153C1E661C03FB8C00F87014 /* fundation */ = {
 			isa = PBXGroup;
 			children = (
+				6A0D68C21C44948700F207C3 /* GtSdkLib */,
 				1532A6DB1C3F838C00D0582B /* fmdb */,
 				15CFF02A1C3E44C400DB6FAC /* EaseMobSDKFull */,
 				6ABBACE71C34D558008F064C /* UIPopoverListView */,
@@ -2020,6 +2031,8 @@
 		155CEC431C0E8383006B5CFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6A0D68CB1C44964700F207C3 /* CoreBluetooth.framework */,
+				6A0D68C91C44962B00F207C3 /* AVFoundation.framework */,
 				6ABBACEB1C34D68C008F064C /* QuartzCore.framework */,
 				6AB9BD201C2BEF8B004BF6A7 /* CoreLocation.framework */,
 				6AB9BD1E1C2BEF7E004BF6A7 /* MapKit.framework */,
@@ -2526,6 +2539,15 @@
 				15FBDD631C155B11009E7E39 /* DocPatientFolerVO.m */,
 			);
 			name = DocPatientFolerVO;
+			sourceTree = "<group>";
+		};
+		6A0D68C21C44948700F207C3 /* GtSdkLib */ = {
+			isa = PBXGroup;
+			children = (
+				6A0D68C61C44949E00F207C3 /* GeTuiSdk.h */,
+				6A0D68C71C44949E00F207C3 /* libGeTuiSdk-1.3.2.a */,
+			);
+			path = GtSdkLib;
 			sourceTree = "<group>";
 		};
 		6A3EF7C41C058B4D00923D03 /* Model */ = {
@@ -3822,6 +3844,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 						};
 					};
 					15AE53811C02F0680013FF1B = {
@@ -4572,12 +4597,13 @@
 					"$(PROJECT_DIR)/MyDoctor/fundation/3rdparty/UMeng",
 					"$(PROJECT_DIR)/MyDoctor/fundation/3rdparty/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/MyDoctor/fundation/3rdparty/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/MyDoctor/fundation/GtSdkLib",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = SaBaiNuo.MX.MyDoctor1;
+				PRODUCT_BUNDLE_IDENTIFIER = SaBaiNuo.MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "3330d3fc-0f9b-4c63-a795-d6558e8666ce";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "ad hoc distribution";
@@ -4718,12 +4744,13 @@
 					"$(PROJECT_DIR)/MyDoctor/fundation/3rdparty/UMeng",
 					"$(PROJECT_DIR)/MyDoctor/fundation/3rdparty/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/MyDoctor/fundation/3rdparty/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/MyDoctor/fundation/GtSdkLib",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = SaBaiNuo.MX.MyDoctor1;
+				PRODUCT_BUNDLE_IDENTIFIER = SaBaiNuo.MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "3330d3fc-0f9b-4c63-a795-d6558e8666ce";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4752,12 +4779,13 @@
 					"$(PROJECT_DIR)/MyDoctor/fundation/3rdparty/UMeng",
 					"$(PROJECT_DIR)/MyDoctor/fundation/3rdparty/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/MyDoctor/fundation/3rdparty/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/MyDoctor/fundation/GtSdkLib",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = SaBaiNuo.MX.MyDoctor1;
+				PRODUCT_BUNDLE_IDENTIFIER = SaBaiNuo.MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "3330d3fc-0f9b-4c63-a795-d6558e8666ce";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

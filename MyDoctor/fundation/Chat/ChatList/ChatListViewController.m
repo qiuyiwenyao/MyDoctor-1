@@ -149,10 +149,8 @@
         
         DocPatientModel * patientModel = [[DocPatientModel alloc] init];
         patientModel.Name = [dic objectForKey:@"RealName"];
-        _name=[dic objectForKey:@"RealName"];
         if (![dic objectForKey:@"RealName"]) {
             patientModel.Name = [dic objectForKey:@"Phone"];
-            _name=[dic objectForKey:@"Phone"];
         }
         patientModel.phone = [dic objectForKey:@"Phone"];
         if ([dic objectForKey:@"Photo"]) {

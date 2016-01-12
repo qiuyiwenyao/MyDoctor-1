@@ -164,6 +164,8 @@
 //        if(object){
     
     NSString *identifierForVendor = [[UIDevice currentDevice].identifierForVendor UUIDString];//设备标示
+    
+    NSLog(@"identifierForVendor%@",identifierForVendor);
 //    NSString * phoneNum = @"18234085032";
     
     MDRequestModel * model = [[MDRequestModel alloc] init];
