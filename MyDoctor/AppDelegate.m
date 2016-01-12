@@ -56,7 +56,7 @@
 //    [self.window addSubview:drawView];
     
     
-//    [self logIn];
+//    [self logIn];jhj
     //医生端
     [self showDocView];
 //    [self showMainView];
