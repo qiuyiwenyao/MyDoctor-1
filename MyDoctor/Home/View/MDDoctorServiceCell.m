@@ -11,8 +11,13 @@
 @implementation MDDoctorServiceCell
 
 - (void)awakeFromNib {
-    self.headView.layer.cornerRadius = self.headView.frame.size.height/2;
+    self.headView.layer.cornerRadius = 5;
     self.headView.layer.masksToBounds = YES;
+    _unReadView = [[UIView alloc] initWithFrame:CGRectMake(_headView.frame.size.width+_headView.frame.origin.x-7, _headView.frame.origin.y-4, 10, 10)];
+    _unReadView.backgroundColor = [UIColor redColor];
+    _unReadView.layer.cornerRadius = 5;
+    [self.contentView addSubview:_unReadView];
+    
     // Initialization code
 }
 

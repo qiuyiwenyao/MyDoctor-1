@@ -10,4 +10,7 @@
 
 @interface MDDoctorServiceViewController : MDBaseViewController
 
+@property (nonatomic,strong) NSArray * messageList;
+@property (nonatomic,strong) NSMutableArray * messageArr;
+
 @end

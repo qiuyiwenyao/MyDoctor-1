@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *branchLab;
 @property (weak, nonatomic) IBOutlet UILabel *hospitalLab;
 @property (weak, nonatomic) IBOutlet UILabel *majorLab;
+@property (strong,nonatomic) UIView * unReadView;
 
 @end

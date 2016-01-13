@@ -13,6 +13,7 @@
 #import "MDDocModel.h"
 #import "MDRequestModel.h"
 #import "UIImageView+WebCache.h"
+#import "MDHomeViewController.h"
 
 
 @interface MDDoctorServiceViewController ()<UITableViewDataSource,UITableViewDelegate,sendInfoToCtr>
@@ -38,6 +39,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _messageArr = [[NSMutableArray alloc] initWithArray:_messageList];
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.navigationItem.title = @"寻医";
@@ -51,10 +54,40 @@
     
     [self requestData];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newMessage:) name:@"newMessage" object:nil];
+    
 
     
     // Do any additional setup after loading the view.
 }
+
+-(void)newMessage:(NSNotification *)notif
+{
+    //    UITableViewCell * cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathWithIndex:0]];
+//    isNewMessage = NO;
+    [_tableView reloadData];
+    //    NSLog(@"%@",[notif.userInfo objectForKey:@"message"]);
+    //    EMMessage * message=[notif.userInfo objectForKey:@"message"];
+    NSString * sender = [notif.userInfo objectForKey:@"message"];
+    
+    if (_messageArr.count == 0) {
+        [_messageArr addObject:sender];
+    }
+    
+    for (int i=0; i<[_messageArr count]; i++) {
+        
+        if ([_messageArr[i] isEqualToString:sender]) {
+            break;
+        }
+        if (i==[_messageArr count]-1) {
+            [_messageArr addObject:sender];
+        }
+    }
+    
+    NSLog(@"%@",_messageArr);
+    
+}
+
 
 //临时懒加载数据源
 /*
@@ -114,6 +147,8 @@
 
 -(void)backBtnClick
 {
+    MDHomeViewController * homeVC = [[MDHomeViewController alloc] init];
+    homeVC.messageArr = [[NSMutableArray alloc] init];
     [self.navigationController popViewControllerAnimated:YES
      ];
     
@@ -272,6 +307,13 @@
     cell.majorLab.text = model.Detail;
     cell.branchLab.text  =model.Department;
     [cell.headView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,model.Photo]] placeholderImage:[UIImage imageNamed:@"专家头像"]];
+    cell.unReadView.hidden = YES;
+    
+    for (NSString * newMessage in _messageArr) {
+        if ([newMessage isEqualToString:model.Phone]) {
+            cell.unReadView.hidden = NO;
+        }
+    }
     
     NSLog(@"%@%@",[MDUserVO userVO].photourl,model.Photo);
 
@@ -312,6 +354,12 @@
     MDDocModel * docInfo = _dataSource[indexPath.section][indexPath.row];
     hospitalVC.title = docInfo.RealName;
     hospitalVC.docInfo = docInfo;
+    
+    for (NSString * newMessage in _messageArr) {
+        if ([docInfo.Phone isEqualToString:newMessage]) {
+            [_messageArr removeObject:newMessage];
+        }
+    }
     
     [self.navigationController pushViewController:hospitalVC animated:YES];
 }

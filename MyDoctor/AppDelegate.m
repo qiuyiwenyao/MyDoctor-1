@@ -16,6 +16,8 @@
 #import "DocMyViewController.h"
 #import "EaseMob.h"
 #import "UserProfileManager.h"
+#import "EMCDDeviceManager.h"
+
 
 @interface AppDelegate ()
 
@@ -83,8 +85,6 @@
 //    [self.window addSubview:drawView];
     
     
-//    [self logIn];
-    //用户端
     [self showMainView];
     [[UINavigationBar appearance] setBackgroundColor:RGBACOLOR(239, 239, 239, 1)];
 //    [[UINavigationBar appearance] setBackgroundColor:[UIColor whiteColor]];
@@ -315,10 +315,11 @@
         UIApplicationState state = [[UIApplication sharedApplication] applicationState];
     switch (state) {
         case UIApplicationStateActive:
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"newMessage" object:message];
+             [self playSoundAndVibration];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"newMessage" object:nil userInfo:@{@"message":message.from,@"hide":@NO}];
             break;
         case UIApplicationStateInactive:
+             [self playSoundAndVibration];
             break;
         case UIApplicationStateBackground:
 
@@ -331,6 +332,26 @@
 
 
 }
+- (void)playSoundAndVibration{
+    NSTimeInterval timeInterval = [[NSDate date]
+                                   timeIntervalSinceDate:self.lastPlaySoundDate];
+    if (timeInterval < 3.0) {
+        //如果距离上次响铃和震动时间太短, 则跳过响铃
+        NSLog(@"skip ringing & vibration %@, %@", [NSDate date], self.lastPlaySoundDate);
+        return;
+    }
+    
+    //保存最后一次响铃时间
+    self.lastPlaySoundDate = [NSDate date];
+    
+    // 收到消息时，播放音频
+    [[EMCDDeviceManager sharedInstance] playNewMessageSound];
+    // 收到消息时，震动
+    [[EMCDDeviceManager sharedInstance] playVibration];
+}
+
+
+
 - (void)showNotificationWithMessage:(EMMessage *)message
 {
     EMPushNotificationOptions *options = [[EaseMob sharedInstance].chatManager pushNotificationOptions];
