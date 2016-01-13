@@ -27,6 +27,7 @@
     AdView * _adView;
     UIView * _headerView;
     MDSmallADView * _smallADView;
+    BOOL isNewMessage;
 
 }
 
@@ -54,6 +55,7 @@
     [self.rightBtn addTarget:self action:@selector(noticeClick) forControlEvents:UIControlEventTouchUpInside];
     
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -182,7 +184,7 @@
     static NSString * iden = @"iden";
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:iden];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:iden];
     }
     cell.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.7];
     
@@ -191,6 +193,11 @@
     cell.imageView.image = [UIImage imageNamed:_listArray[indexPath.section][1]];
     cell.textLabel.text = _listArray[indexPath.section][0];
     cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:_listArray[indexPath.section][2]]];
+    cell.detailTextLabel.hidden = isNewMessage;
+    if (indexPath.section == 0) {
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
+        cell.detailTextLabel.text = @"您有一条新消息";
+    }
 
     
     

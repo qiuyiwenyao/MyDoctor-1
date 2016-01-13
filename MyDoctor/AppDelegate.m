@@ -11,11 +11,11 @@
 #import "MDServiceViewController.h"
 #import "MDHomeViewController.h"
 #import "BRSlogInViewController.h"
-
 #import "DocHomeViewController.h"
 #import "DocPatientViewController.h"
 #import "DocMyViewController.h"
 #import "EaseMob.h"
+#import "UserProfileManager.h"
 
 @interface AppDelegate ()
 
@@ -38,9 +38,27 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     
-    [[EaseMob sharedInstance] registerSDKWithAppKey:@"crossgk#ehealth" apnsCertName:nil];//环信
+    [[EaseMob sharedInstance] registerSDKWithAppKey:@"crossgk#ehealth" apnsCertName:@"MyDoctor_Client_Dev"];//环信
     [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     
+    //iOS8 注册APNS  环信
+    if ([application respondsToSelector:@selector(registerForRemoteNotifications)]) {
+        [application registerForRemoteNotifications];
+        UIUserNotificationType notificationTypes = UIUserNotificationTypeBadge |
+        UIUserNotificationTypeSound |
+        UIUserNotificationTypeAlert;
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:notificationTypes categories:nil];
+        [application registerUserNotificationSettings:settings];
+    }
+    else{
+        UIRemoteNotificationType notificationTypes = UIRemoteNotificationTypeBadge |
+        UIRemoteNotificationTypeSound |
+        UIRemoteNotificationTypeAlert;
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:notificationTypes];
+    }
+    
+    [[EaseMob sharedInstance].chatManager addDelegate:self delegateQueue:nil];
+//    EMConversation *conversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"13800000022" conversationType:eConversationTypeChat];
     // 通过个推平台分配的appId、 appKey 、appSecret 启动SDK，注：该方法需要在主线程中调用
     [GeTuiSdk startSdkWithAppId:kGtAppId appKey:kGtAppKey appSecret:kGtAppSecret delegate:self];
     
@@ -66,9 +84,8 @@
     
     
 //    [self logIn];
-    //医生端
-    [self showDocView];
-//    [self showMainView];
+    //用户端
+    [self showMainView];
     [[UINavigationBar appearance] setBackgroundColor:RGBACOLOR(239, 239, 239, 1)];
 //    [[UINavigationBar appearance] setBackgroundColor:[UIColor whiteColor]];
 //    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
@@ -219,6 +236,8 @@
     NSString *myToken = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     myToken = [myToken stringByReplacingOccurrencesOfString:@" " withString:@""];
     [GeTuiSdk registerDeviceToken:myToken];    /// 向个推服务器注册deviceToken
+    
+    [[EaseMob sharedInstance] application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];/// 向环信服务器注册deviceToken
     NSLog(@"\n>>>[DeviceToken Success]:%@\n\n",myToken);
 }
 
@@ -227,6 +246,7 @@
 /** 远程通知注册失败委托 */
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     [GeTuiSdk registerDeviceToken:@""];     /// 如果APNS注册失败，通知个推服务器
+    [[EaseMob sharedInstance] application:application didFailToRegisterForRemoteNotificationsWithError:error];/// 如果APNS注册失败，通知环信服务器
     NSLog(@"\n>>>[DeviceToken Error]:%@\n\n",error.description);
 }
 
@@ -250,35 +270,160 @@
 }
 
 /** SDK收到透传消息回调 */
-- (void)GeTuiSdkDidReceivePayload:(NSString *)payloadId andTaskId:(NSString *)taskId andMessageId:(NSString *)aMsgId andOffLine:(BOOL)offLine fromApplication:(NSString *)appId {
+//- (void)GeTuiSdkDidReceivePayload:(NSString *)payloadId andTaskId:(NSString *)taskId andMessageId:(NSString *)aMsgId andOffLine:(BOOL)offLine fromApplication:(NSString *)appId {
+//    
+//    // [4]: 收到个推消息
+//    NSData *payload = [GeTuiSdk retrivePayloadById:payloadId];
+//    NSString *payloadMsg = nil;
+//    if (payload) {
+//        payloadMsg = [[NSString alloc] initWithBytes:payload.bytes length:payload.length encoding:NSUTF8StringEncoding];
+//    }
+//    
+//    NSString *msg = [NSString stringWithFormat:@" payloadId=%@,taskId=%@,messageId:%@,payloadMsg:%@%@",payloadId,taskId,aMsgId,payloadMsg,offLine ? @"<离线消息>" : @""];
+//    NSLog(@"SDK收到透传消息回调\n>>>[GexinSdk ReceivePayload]:%@\n\n", msg);
+//    
+//    /**
+//     *汇报个推自定义事件
+//     *actionId：用户自定义的actionid，int类型，取值90001-90999。
+//     *taskId：下发任务的任务ID。
+//     *msgId： 下发任务的消息ID。
+//     *返回值：BOOL，YES表示该命令已经提交，NO表示该命令未提交成功。注：该结果不代表服务器收到该条命令
+//     **/
+//    [GeTuiSdk sendFeedbackMessage:90001 taskId:taskId msgId:aMsgId];
+//}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
     
-    // [4]: 收到个推消息
-    NSData *payload = [GeTuiSdk retrivePayloadById:payloadId];
-    NSString *payloadMsg = nil;
-    if (payload) {
-        payloadMsg = [[NSString alloc] initWithBytes:payload.bytes length:payload.length encoding:NSUTF8StringEncoding];
-    }
+    // 处理APNs代码，通过userInfo可以取到推送的信息（包括内容，角标，自定义参数等）。如果需要弹窗等其他操作，则需要自行编码。
+    NSLog(@"\n>>>[Receive RemoteNotification - Background Fetch]:%@\n\n",userInfo);
     
-    NSString *msg = [NSString stringWithFormat:@" payloadId=%@,taskId=%@,messageId:%@,payloadMsg:%@%@",payloadId,taskId,aMsgId,payloadMsg,offLine ? @"<离线消息>" : @""];
-    NSLog(@"\n>>>[GexinSdk ReceivePayload]:%@\n\n", msg);
-    
-    /**
-     *汇报个推自定义事件
-     *actionId：用户自定义的actionid，int类型，取值90001-90999。
-     *taskId：下发任务的任务ID。
-     *msgId： 下发任务的消息ID。
-     *返回值：BOOL，YES表示该命令已经提交，NO表示该命令未提交成功。注：该结果不代表服务器收到该条命令
-     **/
-    [GeTuiSdk sendFeedbackMessage:90001 taskId:taskId msgId:aMsgId];
+    completionHandler(UIBackgroundFetchResultNewData);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+    
+    [[EaseMob sharedInstance] applicationDidEnterBackground:application];//环信进入后台
 }
 
+// 收到消息回调
+-(void)didReceiveMessage:(EMMessage *)message
+{
+    
+        UIApplicationState state = [[UIApplication sharedApplication] applicationState];
+    switch (state) {
+        case UIApplicationStateActive:
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"newMessage" object:message];
+            break;
+        case UIApplicationStateInactive:
+            break;
+        case UIApplicationStateBackground:
+
+            [self showNotificationWithMessage:message];
+            break;
+        default:
+            break;
+    }
+
+
+
+}
+- (void)showNotificationWithMessage:(EMMessage *)message
+{
+    EMPushNotificationOptions *options = [[EaseMob sharedInstance].chatManager pushNotificationOptions];
+    //发送本地推送
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.fireDate = [NSDate date]; //触发通知的时间
+    
+    if (options.displayStyle == ePushNotificationDisplayStyle_messageSummary) {
+        id<IEMMessageBody> messageBody = [message.messageBodies firstObject];
+        NSString *messageStr = nil;
+        switch (messageBody.messageBodyType) {
+            case eMessageBodyType_Text:
+            {
+                messageStr = ((EMTextMessageBody *)messageBody).text;
+            }
+                break;
+            case eMessageBodyType_Image:
+            {
+                messageStr = NSLocalizedString(@"message.image", @"Image");
+            }
+                break;
+            case eMessageBodyType_Location:
+            {
+                messageStr = NSLocalizedString(@"message.location", @"Location");
+            }
+                break;
+            case eMessageBodyType_Voice:
+            {
+                messageStr = NSLocalizedString(@"message.voice", @"Voice");
+            }
+                break;
+            case eMessageBodyType_Video:{
+                messageStr = NSLocalizedString(@"message.video", @"Video");
+            }
+                break;
+            default:
+                break;
+        }
+        
+        NSString *title = [[UserProfileManager sharedInstance] getNickNameWithUsername:message.from];
+        if (message.messageType == eMessageTypeGroupChat) {
+            NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
+            for (EMGroup *group in groupArray) {
+                if ([group.groupId isEqualToString:message.conversationChatter]) {
+                    title = [NSString stringWithFormat:@"%@(%@)", message.groupSenderName, group.groupSubject];
+                    break;
+                }
+            }
+        }
+        else if (message.messageType == eMessageTypeChatRoom)
+        {
+            NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+            NSString *key = [NSString stringWithFormat:@"OnceJoinedChatrooms_%@", [[[EaseMob sharedInstance].chatManager loginInfo] objectForKey:@"username" ]];
+            NSMutableDictionary *chatrooms = [NSMutableDictionary dictionaryWithDictionary:[ud objectForKey:key]];
+            NSString *chatroomName = [chatrooms objectForKey:message.conversationChatter];
+            if (chatroomName)
+            {
+                title = [NSString stringWithFormat:@"%@(%@)", message.groupSenderName, chatroomName];
+            }
+        }
+        
+        notification.alertBody = [NSString stringWithFormat:@"%@:%@", title, messageStr];
+    }
+    else{
+        notification.alertBody = NSLocalizedString(@"receiveMessage", @"you have a new message");
+    }
+    
+#warning 去掉注释会显示[本地]开头, 方便在开发中区分是否为本地推送
+    //notification.alertBody = [[NSString alloc] initWithFormat:@"[本地]%@", notification.alertBody];
+    //保存最后一次响铃时间
+    self.lastPlaySoundDate = [NSDate date];
+    notification.alertAction = NSLocalizedString(@"open", @"Open");
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:self.lastPlaySoundDate];
+    if (timeInterval < 3.0) {
+        NSLog(@"skip ringing & vibration %@, %@", [NSDate date], self.lastPlaySoundDate);
+    } else {
+        notification.soundName = UILocalNotificationDefaultSoundName;
+        self.lastPlaySoundDate = [NSDate date];
+    }
+    
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+    [userInfo setObject:[NSNumber numberWithInt:message.messageType] forKey: @"MessageType"];
+    [userInfo setObject:message.conversationChatter forKey:@"ConversationChatter"];
+    notification.userInfo = userInfo;
+    
+    //发送通知
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    //    UIApplication *application = [UIApplication sharedApplication];
+    //    application.applicationIconBadgeNumber += 1;
+}
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    [[EaseMob sharedInstance] applicationWillEnterForeground:application];//环信要从后台返回
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -286,5 +431,17 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 }
-
+- (BOOL)needShowNotification:(NSString *)fromChatter
+{
+    BOOL ret = YES;
+    NSArray *igGroupIds = [[EaseMob sharedInstance].chatManager ignoredGroupIds];
+    for (NSString *str in igGroupIds) {
+        if ([str isEqualToString:fromChatter]) {
+            ret = NO;
+            break;
+        }
+    }
+    
+    return ret;
+}
 @end
