@@ -10,4 +10,6 @@
 
 @interface MDHomeViewController : MDBaseViewController
 
+@property (nonatomic,strong) NSMutableArray * messageArr;
+
 @end

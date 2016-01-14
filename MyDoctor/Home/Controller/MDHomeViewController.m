@@ -19,6 +19,8 @@
 #import "MDActivityBtnCell.h"
 #import "MDHomeCell1.h"
 #import "MDDoctorServiceViewController.h"
+#import "EaseMob.h"
+
 
 @interface MDHomeViewController ()<UITableViewDataSource,UITableViewDelegate,UIViewControllerPreviewingDelegate>
 {
@@ -27,6 +29,7 @@
     AdView * _adView;
     UIView * _headerView;
     MDSmallADView * _smallADView;
+    BOOL isNewMessage;
 
 }
 
@@ -34,12 +37,22 @@
 
 @implementation MDHomeViewController
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    _messageArr = [[NSMutableArray alloc] init];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
 //    NSString * str1 = [[UIDevice currentDevice] uniqueDeviceIdentifier];
 //    NSString *identifierForVendor = [[UIDevice currentDevice].identifierForVendor UUIDString];
 //    MDLog(@"%@",identifierForVendor);
+    
+    isNewMessage = YES;
+    
+    _messageArr = [[NSMutableArray alloc] init];
 
     self.navigationItem.title=@"e+康";
     
@@ -53,11 +66,41 @@
        //通知按钮点击
     [self.rightBtn addTarget:self action:@selector(noticeClick) forControlEvents:UIControlEventTouchUpInside];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newMessage:) name:@"newMessage" object:nil];
+    
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)newMessage:(NSNotification *)notif
+{
+//    UITableViewCell * cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathWithIndex:0]];
+    isNewMessage = NO;
+    [_tableView reloadData];
+//    NSLog(@"%@",[notif.userInfo objectForKey:@"message"]);
+//    EMMessage * message=[notif.userInfo objectForKey:@"message"];
+    NSString * sender = [notif.userInfo objectForKey:@"message"];
+    
+    if (_messageArr.count == 0) {
+        [_messageArr addObject:sender];
+    }
+    
+    for (int i=0; i<[_messageArr count]; i++) {
+        
+        if ([_messageArr[i] isEqualToString:sender]) {
+            break;
+        }
+        if (i==[_messageArr count]-1) {
+            [_messageArr addObject:sender];
+        }
+    }
+    
+    NSLog(@"%@",_messageArr);
+    
 }
 
 //通知按钮点击
@@ -182,7 +225,7 @@
     static NSString * iden = @"iden";
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:iden];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:iden];
     }
     cell.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.7];
     
@@ -191,6 +234,11 @@
     cell.imageView.image = [UIImage imageNamed:_listArray[indexPath.section][1]];
     cell.textLabel.text = _listArray[indexPath.section][0];
     cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:_listArray[indexPath.section][2]]];
+    cell.detailTextLabel.hidden = isNewMessage;
+    if (indexPath.section == 0) {
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
+        cell.detailTextLabel.text = @"您有一条新消息";
+    }
 
     
     
@@ -225,8 +273,11 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
     if (indexPath.section==0) {
         MDDoctorServiceViewController * doctorServiceVC = [[MDDoctorServiceViewController alloc] init];
+        doctorServiceVC.messageList = _messageArr;
+        cell.detailTextLabel.hidden = YES;
         doctorServiceVC.hidesBottomBarWhenPushed=YES;
         [self.navigationController pushViewController:doctorServiceVC animated:YES];
     }else if(indexPath.section==1){
