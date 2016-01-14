@@ -7,6 +7,7 @@
 //
 
 #import "MDSetViewController.h"
+#import "MDChangePasswordViewController.h"
 #import "EaseMob.h"
 
 @interface MDSetViewController ()
@@ -86,6 +87,9 @@
     switch (indexPath.row) {
         case 0:
         {
+            MDChangePasswordViewController * changePassword=[[MDChangePasswordViewController alloc] init];
+            changePassword.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:changePassword animated:YES];
             break;
         }
         case 1:
