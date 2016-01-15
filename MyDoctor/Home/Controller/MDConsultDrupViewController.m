@@ -159,6 +159,8 @@
     
     [adView mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.top.equalTo(bottonBtn.mas_bottom).with.offset(10);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
     }];
 }
 
