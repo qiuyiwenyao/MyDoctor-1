@@ -254,7 +254,7 @@
 //    cell.titleLab.text = _listArray[indexPath.section][1];
 //    cell.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.7];
 //    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    [self registerForPreviewingWithDelegate:self sourceView:cell];
+//    [self registerForPreviewingWithDelegate:self sourceView:cell];
     return cell;
     
 }

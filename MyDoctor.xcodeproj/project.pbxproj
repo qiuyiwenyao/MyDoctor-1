@@ -91,7 +91,6 @@
 		156263071C293C8E00B725EF /* MyDoctor.c in Sources */ = {isa = PBXBuildFile; fileRef = 156263051C293C8E00B725EF /* MyDoctor.c */; };
 		1578343C1C20051E00421167 /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1578343B1C20051E00421167 /* FileUtils.m */; };
 		15800E6F1C474E5300FCB87B /* MDChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15800E6E1C474E5300FCB87B /* MDChangePasswordViewController.m */; };
-		15800E751C4750B000FCB87B /* passwordImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15800E741C4750B000FCB87B /* passwordImage@2x.png */; };
 		159049721C069FA600EE51FB /* BRSlogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 159049671C069FA600EE51FB /* BRSlogInViewController.m */; };
 		159049731C069FA600EE51FB /* BRSNewPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 159049691C069FA600EE51FB /* BRSNewPageViewController.m */; };
 		159049741C069FA600EE51FB /* BRSNewPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1590496B1C069FA600EE51FB /* BRSNewPasswordViewController.m */; };
@@ -584,6 +583,7 @@
 		6ABD0C071C321EF900FEE47F /* 问药@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABD0C031C321EF900FEE47F /* 问药@3x.png */; };
 		6ABD0C081C321EF900FEE47F /* 询医@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABD0C041C321EF900FEE47F /* 询医@3x.png */; };
 		6ABD0C091C321EF900FEE47F /* 照护@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABD0C051C321EF900FEE47F /* 照护@3x.png */; };
+		6AD872511C48988700299413 /* passwordImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD872501C48988700299413 /* passwordImage@2x.png */; };
 		6AF2021F1C083F4000933EAF /* activityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2021D1C083F4000933EAF /* activityCell.m */; };
 		6AF202201C083F4000933EAF /* activityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF2021E1C083F4000933EAF /* activityCell.xib */; };
 		6AF202271C08498100933EAF /* MDExpertConsultationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF202261C08498100933EAF /* MDExpertConsultationViewController.m */; };
@@ -780,7 +780,6 @@
 		1578343B1C20051E00421167 /* FileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileUtils.m; path = FileUtils/FileUtils.m; sourceTree = "<group>"; };
 		15800E6D1C474E5300FCB87B /* MDChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDChangePasswordViewController.h; sourceTree = "<group>"; };
 		15800E6E1C474E5300FCB87B /* MDChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDChangePasswordViewController.m; sourceTree = "<group>"; };
-		15800E741C4750B000FCB87B /* passwordImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "passwordImage@2x.png"; sourceTree = "<group>"; };
 		159049661C069FA600EE51FB /* BRSlogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSlogInViewController.h; sourceTree = "<group>"; };
 		159049671C069FA600EE51FB /* BRSlogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRSlogInViewController.m; sourceTree = "<group>"; };
 		159049681C069FA600EE51FB /* BRSNewPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSNewPageViewController.h; sourceTree = "<group>"; };
@@ -1568,6 +1567,7 @@
 		6ABD0C031C321EF900FEE47F /* 问药@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "问药@3x.png"; sourceTree = "<group>"; };
 		6ABD0C041C321EF900FEE47F /* 询医@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "询医@3x.png"; sourceTree = "<group>"; };
 		6ABD0C051C321EF900FEE47F /* 照护@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "照护@3x.png"; sourceTree = "<group>"; };
+		6AD872501C48988700299413 /* passwordImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "passwordImage@2x.png"; sourceTree = "<group>"; };
 		6AF2021C1C083F4000933EAF /* activityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = activityCell.h; path = Home/View/activityCell.h; sourceTree = "<group>"; };
 		6AF2021D1C083F4000933EAF /* activityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = activityCell.m; path = Home/View/activityCell.m; sourceTree = "<group>"; };
 		6AF2021E1C083F4000933EAF /* activityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = activityCell.xib; path = Home/View/activityCell.xib; sourceTree = "<group>"; };
@@ -1722,7 +1722,6 @@
 		153C1E5F1C03F4ED00F87014 /* image */ = {
 			isa = PBXGroup;
 			children = (
-				15800E741C4750B000FCB87B /* passwordImage@2x.png */,
 				15CFF0111C3BCA6600DB6FAC /* 按钮页-红@2x.png */,
 				15CFEFE31C3A17D000DB6FAC /* Icon.png */,
 				15CFEFFB1C3A1F1700DB6FAC /* Default-375w-667h@2x.png */,
@@ -1868,6 +1867,7 @@
 		153ED8111C08022E00171DFA /* 2x */ = {
 			isa = PBXGroup;
 			children = (
+				6AD872501C48988700299413 /* passwordImage@2x.png */,
 				6ABBAD051C3B735D008F064C /* 进入@2x.png */,
 				6ABBACED1C3A371C008F064C /* 评分0@2x.png */,
 				6ABBACEE1C3A371C008F064C /* 评分1@2x.png */,
@@ -4066,7 +4066,7 @@
 				6A3EF84A1C05FDE000923D03 /* navigationbar_back@2x.png in Resources */,
 				6AB9BC9B1C2BECC6004BF6A7 /* chatBar_face@2x.png in Resources */,
 				6ABD0BF91C321C9D00FEE47F /* serviceback@3x.png in Resources */,
-				15800E751C4750B000FCB87B /* passwordImage@2x.png in Resources */,
+				6AD872511C48988700299413 /* passwordImage@2x.png in Resources */,
 				6AB9BC541C2BEA7B004BF6A7 /* tabbar_settingHL.png in Resources */,
 				6AB9BADF1C2BE419004BF6A7 /* MWPhotoBrowser.bundle in Resources */,
 				6AB9BBFD1C2BEA0E004BF6A7 /* VoiceSearchFeedback020@2x.png in Resources */,

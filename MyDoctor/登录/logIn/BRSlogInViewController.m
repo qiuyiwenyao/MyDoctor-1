@@ -75,14 +75,18 @@
 //请求数据回调
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-            //回馈数据
+    //回馈数据
     
-    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    NSLog(@"登录信息%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
     
     NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
     NSLog(@"%@",dic);
     MDUserVO *user = [MDUserVO convertFromAccountHomeUser:dic];
     [MDUserVO  initWithCoder:user];
+    
+    NSDictionary * obj = [dic objectForKey:@"obj"];
+    NSString * hxName = [obj objectForKey:@"hxName"];
+    NSString * hxPwd = [obj objectForKey:@"hxPwd"];
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSData * data = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",user.photourl,user.photo]]];
@@ -111,6 +115,18 @@
         NSUserDefaults *stdDefault = [NSUserDefaults standardUserDefaults];
         [stdDefault setObject:logInField.text forKey:@"user_name"];
         [stdDefault setObject:[MDUserVO userVO].userID forKey:@"user_Id"];
+        
+        //环信登录
+        [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:hxName password:hxPwd completion:^(NSDictionary *loginInfo, EMError *error) {
+            if (!error && loginInfo) {
+                MDLog(@"环信登陆成功！！%@",loginInfo);
+                //
+                //
+                //设置是否自动登录
+                [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+            }
+        } onQueue:nil];
+        
         NSLog(@"%@",[MDUserVO userVO].userID);
         [self dismissViewControllerAnimated:YES completion:^{
             NSLog(@"back");
@@ -262,14 +278,7 @@
     
         [self postRequest];
         
-        //环信登陆
-        [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:logInField.text password:password.text completion:^(NSDictionary *loginInfo, EMError *error) {
-            if (loginInfo) {
-                MDLog(@"环信登陆成功！！%@",loginInfo);
-                //设置是否自动登录
-                [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
-            }
-        } onQueue:nil];
+       
     }else if ([password.text length]==0)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"帐号或密码不能为空！" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];

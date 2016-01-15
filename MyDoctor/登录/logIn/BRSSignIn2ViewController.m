@@ -324,6 +324,7 @@
     if ([password.text isEqualToString:password2.text]&&[password.text length]>=6) {
         [self postRequest];
         
+        /*
         //环信注册
         [[EaseMob sharedInstance].chatManager asyncRegisterNewAccount:self.login_name password:password.text withCompletion:^(NSString *username, NSString *password, EMError *error) {
             MDLog(@"=============");
@@ -349,6 +350,7 @@
                 MDLog(@"环信错误：%@",error);
             }
         } onQueue:nil];
+         */
         
     }else if (![password.text isEqualToString:password2.text]){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"密码不一致" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
@@ -547,6 +549,9 @@
 //    NSLog(@"%@",dic);
     NSLog(@"登陆信息：%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
     NSLog(@"======dic%@",dic);
+    NSDictionary * obj = [dic objectForKey:@"obj"];
+    NSString * hxName = [obj objectForKey:@"hxName"];
+    NSString * hxPwd = [obj objectForKey:@"hxPwd"];
     
     NSDictionary * userInfo = @{@"userId":[dic objectForKey:@"msg"],@"userName":number.text,@"userAccount":self.login_name};
     
@@ -561,6 +566,23 @@
         NSUserDefaults *stdDefault = [NSUserDefaults standardUserDefaults];
         [stdDefault setObject:self.login_name forKey:@"user_name"];
         [stdDefault setObject:[MDUserVO userVO].userID forKey:@"user_Id"];
+ //环信登录
+    [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:hxName password:hxPwd completion:^(NSDictionary *loginInfo, EMError *error) {
+        NSLog(@"11%@=====%@",hxName,hxPwd);
+        if (!error && loginInfo) {
+            NSLog(@"22%@=====%@",hxName,hxPwd);
+
+            MDLog(@"环信登陆成功！！%@",loginInfo);
+            [[EaseMob sharedInstance].chatManager setApnsNickname:number.text];
+            //
+            //
+            //设置是否自动登录
+            [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+        }
+    } onQueue:nil];
+
+        
+        
         BRSEndSignlnViewController * esv=[[BRSEndSignlnViewController alloc] init];
         [self.navigationController pushViewController:esv animated:YES];
 
