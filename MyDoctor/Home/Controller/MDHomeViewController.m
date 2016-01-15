@@ -48,7 +48,7 @@
     
 //    NSString * str1 = [[UIDevice currentDevice] uniqueDeviceIdentifier];
 //    NSString *identifierForVendor = [[UIDevice currentDevice].identifierForVendor UUIDString];
-//    MDLog(@"%@",identifierForVendor);
+//    MDLog(@"%@",identifierForVendor);q
     
     isNewMessage = YES;
     
@@ -68,6 +68,12 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newMessage:) name:@"newMessage" object:nil];
     
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"newMessage" object:nil];
+
 }
 
 

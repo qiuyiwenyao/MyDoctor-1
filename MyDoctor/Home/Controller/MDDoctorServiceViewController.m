@@ -145,6 +145,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"newMessage" object:nil];
+
+}
+
 -(void)backBtnClick
 {
     MDHomeViewController * homeVC = [[MDHomeViewController alloc] init];
