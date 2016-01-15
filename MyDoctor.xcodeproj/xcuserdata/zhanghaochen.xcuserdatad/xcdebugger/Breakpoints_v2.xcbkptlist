@@ -222,12 +222,12 @@
                   moduleName = "MyDoctor"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhanghaochen/Desktop/MyDoctor-1/MyDoctor/%E7%99%BB%E5%BD%95/logIn/BRSEndSignlnViewController.m"
-                  timestampString = "474270141.837585"
+                  timestampString = "474370205.60037"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "171"
                   endingLineNumber = "171"
-                  offsetFromSymbolStart = "4">
+                  offsetFromSymbolStart = "0">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -237,12 +237,12 @@
                   moduleName = "MyDoctor"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhanghaochen/Desktop/MyDoctor-1/MyDoctor/%E7%99%BB%E5%BD%95/logIn/BRSEndSignlnViewController.m"
-                  timestampString = "474270141.83773"
+                  timestampString = "474370205.600554"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "172"
                   endingLineNumber = "172"
-                  offsetFromSymbolStart = "4">
+                  offsetFromSymbolStart = "8">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -367,6 +367,38 @@
             endingLineNumber = "329"
             landmarkName = "-next:"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__33-[BRSSignIn2ViewController next:]_block_invoke"
+                  moduleName = "MyDoctor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhanghaochen/Desktop/MyDoctor-1/MyDoctor/%E7%99%BB%E5%BD%95/logIn/BRSSignIn2ViewController.m"
+                  timestampString = "474370205.605565"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "335"
+                  endingLineNumber = "335"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__33-[BRSSignIn2ViewController next:]_block_invoke_2"
+                  moduleName = "MyDoctor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhanghaochen/Desktop/MyDoctor-1/MyDoctor/%E7%99%BB%E5%BD%95/logIn/BRSSignIn2ViewController.m"
+                  timestampString = "474370205.60576"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "338"
+                  endingLineNumber = "338"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -519,53 +551,6 @@
             endingLineNumber = "389"
             landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__74-[MDMyViewController imagePickerController:didFinishPickingMediaWithInfo:]_block_invoke_2"
-                  moduleName = "MyDoctor"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zhanghaochen/Desktop/MyDoctor-1/MyDoctor/MyView/Controller/MDMyViewController.m"
-                  timestampString = "474270142.049838"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "390"
-                  endingLineNumber = "390"
-                  offsetFromSymbolStart = "398">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__copy_helper_block_348"
-                  moduleName = "MyDoctor"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zhanghaochen/Desktop/MyDoctor-1/MyDoctor/MyView/Controller/MDMyViewController.m"
-                  timestampString = "474270142.050099"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "4">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_349"
-                  moduleName = "MyDoctor"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zhanghaochen/Desktop/MyDoctor-1/MyDoctor/MyView/Controller/MDMyViewController.m"
-                  timestampString = "474270142.050326"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "4">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -607,11 +592,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyDoctor/MyView/Controller/MDSetViewController.m"
-            timestampString = "473912836.613194"
+            timestampString = "474436579.138633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
             landmarkName = "-alertView:clickedButtonAtIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -759,6 +744,38 @@
             startingLineNumber = "171"
             endingLineNumber = "171"
             landmarkName = "-sendInfoFromRequest:andPath:number:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyDoctor/Home/Controller/MDHomeViewController.m"
+            timestampString = "474370037.135925"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
+            landmarkName = "-previewContext:commitViewController:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyDoctor/Home/Controller/MDHomeViewController.m"
+            timestampString = "474370037.135925"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "256"
+            endingLineNumber = "256"
+            landmarkName = "-previewingContext:viewControllerForLocation:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

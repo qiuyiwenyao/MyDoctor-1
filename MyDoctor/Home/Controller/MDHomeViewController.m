@@ -22,7 +22,7 @@
 #import "EaseMob.h"
 
 
-@interface MDHomeViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface MDHomeViewController ()<UITableViewDataSource,UITableViewDelegate,UIViewControllerPreviewingDelegate>
 {
     UITableView * _tableView;
     NSMutableArray * _listArray;
@@ -254,7 +254,7 @@
 //    cell.titleLab.text = _listArray[indexPath.section][1];
 //    cell.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.7];
 //    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    
+    [self registerForPreviewingWithDelegate:self sourceView:cell];
     return cell;
     
 }
@@ -301,16 +301,25 @@
         [self.navigationController pushViewController:activityVC animated:YES];
 
     }
+
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)context viewControllerForLocation:(CGPoint) point
+{
+    
+    UIView *cell= (UIView *)context;
+//    NSLog(@"%@", cell.textLabel.text);
+    
+  MDDoctorServiceViewController * childVC = [[MDDoctorServiceViewController alloc] init];
+    childVC.preferredContentSize = CGSizeMake(300,300);
+    
+//    CGRect rect = CGRectMake(10, point.y - 10, self.view.frame.size.width - 20,40);
+//    context.sourceRect = rect;
+    return childVC;
 }
-*/
+- (void)previewContext:(id<UIViewControllerPreviewing>)context commitViewController:(UIViewController*)vc
+{
+    [self showViewController:vc sender:self];
+}
 
 @end

@@ -90,7 +90,7 @@
     [_deleteOrCancelBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [view addSubview:_deleteOrCancelBtn];
     [_deleteOrCancelBtn mas_makeConstraints:^(MX_MASConstraintMaker *make) {
-        make.right.equalTo(view.mas_right).with.offset(-80);
+        make.right.equalTo(view.mas_right).with.offset(-10);
         make.bottom.equalTo(view.mas_bottom).with.offset(-5);
         make.size.mas_equalTo(CGSizeMake(60,20));
     }];
@@ -103,7 +103,7 @@
     [paymentOrRemind setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [view addSubview:paymentOrRemind];
     [paymentOrRemind mas_makeConstraints:^(MX_MASConstraintMaker *make) {
-        make.right.equalTo(view.mas_right).with.offset(-10);
+        make.right.equalTo(view.mas_right).with.offset(-80);
         make.bottom.equalTo(view.mas_bottom).with.offset(-5);
         make.size.mas_equalTo(CGSizeMake(60,20));
     }];
