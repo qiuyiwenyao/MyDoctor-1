@@ -182,7 +182,8 @@
     [_headerView addSubview:_smallADView];
     [_headerView addSubview:_adView];
     
-    
+    _tableView.tableHeaderView = _headerView;
+    [_tableView sendSubviewToBack:_headerView];
 }
 
 #pragma mark UITableViewDelegate协议方法
@@ -190,8 +191,8 @@
 //设置tableHeaderView
 -(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 {
-    _tableView.tableHeaderView = _headerView;
-        [_tableView sendSubviewToBack:_headerView];
+//    _tableView.tableHeaderView = _headerView;
+//        [_tableView sendSubviewToBack:_headerView];
     
 }
 //

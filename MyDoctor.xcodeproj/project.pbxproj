@@ -583,6 +583,7 @@
 		6ABD0C071C321EF900FEE47F /* 问药@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABD0C031C321EF900FEE47F /* 问药@3x.png */; };
 		6ABD0C081C321EF900FEE47F /* 询医@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABD0C041C321EF900FEE47F /* 询医@3x.png */; };
 		6ABD0C091C321EF900FEE47F /* 照护@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABD0C051C321EF900FEE47F /* 照护@3x.png */; };
+		6AD872511C48988700299413 /* passwordImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD872501C48988700299413 /* passwordImage@2x.png */; };
 		6AF2021F1C083F4000933EAF /* activityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2021D1C083F4000933EAF /* activityCell.m */; };
 		6AF202201C083F4000933EAF /* activityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF2021E1C083F4000933EAF /* activityCell.xib */; };
 		6AF202271C08498100933EAF /* MDExpertConsultationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF202261C08498100933EAF /* MDExpertConsultationViewController.m */; };
@@ -1566,6 +1567,7 @@
 		6ABD0C031C321EF900FEE47F /* 问药@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "问药@3x.png"; sourceTree = "<group>"; };
 		6ABD0C041C321EF900FEE47F /* 询医@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "询医@3x.png"; sourceTree = "<group>"; };
 		6ABD0C051C321EF900FEE47F /* 照护@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "照护@3x.png"; sourceTree = "<group>"; };
+		6AD872501C48988700299413 /* passwordImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "passwordImage@2x.png"; sourceTree = "<group>"; };
 		6AF2021C1C083F4000933EAF /* activityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = activityCell.h; path = Home/View/activityCell.h; sourceTree = "<group>"; };
 		6AF2021D1C083F4000933EAF /* activityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = activityCell.m; path = Home/View/activityCell.m; sourceTree = "<group>"; };
 		6AF2021E1C083F4000933EAF /* activityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = activityCell.xib; path = Home/View/activityCell.xib; sourceTree = "<group>"; };
@@ -1771,6 +1773,7 @@
 		153C1E661C03FB8C00F87014 /* fundation */ = {
 			isa = PBXGroup;
 			children = (
+				155CEC441C0E8992006B5CFA /* gtmbase64 */,
 				6A0D68C21C44948700F207C3 /* GtSdkLib */,
 				1532A6DB1C3F838C00D0582B /* fmdb */,
 				15CFF02A1C3E44C400DB6FAC /* EaseMobSDKFull */,
@@ -1785,7 +1788,6 @@
 				6A6522EC1C1E92EC00227C63 /* SDWebImage */,
 				6A6522121C1ACD8E00227C63 /* ADView */,
 				6AF202771C0D968C00933EAF /* NIDropDown */,
-				155CEC441C0E8992006B5CFA /* gtmbase64 */,
 				155CEC011C0E81B7006B5CFA /* AFNetworking */,
 				6AF202651C0C4CF700933EAF /* Category */,
 				153ED83D1C083DB500171DFA /* KTSelectDatePicker */,
@@ -1865,6 +1867,7 @@
 		153ED8111C08022E00171DFA /* 2x */ = {
 			isa = PBXGroup;
 			children = (
+				6AD872501C48988700299413 /* passwordImage@2x.png */,
 				6ABBAD051C3B735D008F064C /* 进入@2x.png */,
 				6ABBACED1C3A371C008F064C /* 评分0@2x.png */,
 				6ABBACEE1C3A371C008F064C /* 评分1@2x.png */,
@@ -4063,6 +4066,7 @@
 				6A3EF84A1C05FDE000923D03 /* navigationbar_back@2x.png in Resources */,
 				6AB9BC9B1C2BECC6004BF6A7 /* chatBar_face@2x.png in Resources */,
 				6ABD0BF91C321C9D00FEE47F /* serviceback@3x.png in Resources */,
+				6AD872511C48988700299413 /* passwordImage@2x.png in Resources */,
 				6AB9BC541C2BEA7B004BF6A7 /* tabbar_settingHL.png in Resources */,
 				6AB9BADF1C2BE419004BF6A7 /* MWPhotoBrowser.bundle in Resources */,
 				6AB9BBFD1C2BEA0E004BF6A7 /* VoiceSearchFeedback020@2x.png in Resources */,
@@ -4609,7 +4613,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = SaBaiNuo.MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "377b2db0-4ff1-4144-8638-f55a649d48b4";
+				PROVISIONING_PROFILE = "59a96df7-eab1-4ea2-8c2b-8c1ad1576998";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "ad hoc distribution";
@@ -4756,7 +4760,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = SaBaiNuo.MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "377b2db0-4ff1-4144-8638-f55a649d48b4";
+				PROVISIONING_PROFILE = "59a96df7-eab1-4ea2-8c2b-8c1ad1576998";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4791,7 +4795,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = SaBaiNuo.MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "377b2db0-4ff1-4144-8638-f55a649d48b4";
+				PROVISIONING_PROFILE = "59a96df7-eab1-4ea2-8c2b-8c1ad1576998";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

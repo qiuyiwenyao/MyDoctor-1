@@ -33,7 +33,7 @@
     
     [self createTableView];
     
-    [self postRequest];
+//    [self postRequest];
 
     // Do any additional setup after loading the view.
 }
