@@ -233,11 +233,15 @@
     NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
     NSString * str=[stdDefault objectForKey:@"user_name"];
     if ([str length]>0) {
+        MDRequestModel * model = [[MDRequestModel alloc] init];
+        model.path = MDPath;
+        model.methodNum = 10602;
+        NSString * parameter=[NSString stringWithFormat:@"%@@`%@@`%d@`%d@`%@@`%@",[MDUserVO userVO].userID,str,_docInfo.id,_docInfo.Type,_docInfo.Phone,@"2"];
+        model.parameter = parameter;
+        model.delegate = self;
+        [model starRequest];
         NSString * phoneNum = [NSString stringWithFormat:@"tel:%@",_docInfo.Phone];
-        
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNum]];
-        
-        
     }else{
        [self logInView];
     }
@@ -256,7 +260,7 @@
 #pragma mark - sendInfoToCtr请求数据回调
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
 
     NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
     UIButton * focusButton = (UIButton *)[self.view viewWithTag:11];
@@ -274,6 +278,8 @@
             MDLog(@"取消关注");
             [focusButton setTitle:@"+ 关注" forState:UIControlStateNormal];
         }
+    }else if (num==10602){
+        NSLog(@"%@",dic);
     }
 }
 
