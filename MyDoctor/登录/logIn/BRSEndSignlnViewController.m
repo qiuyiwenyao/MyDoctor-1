@@ -122,55 +122,33 @@
 }
 -(void)finish:(UIButton *)finish
 {
-//    if (!image222) {
-//        [[NSNotificationCenter defaultCenter]
-//         postNotificationName:@"showBRSMainView" object:self];
-//        return;
-//    }
+    //将头像存入本地
+    FileUtils * fileUtil = [FileUtils sharedFileUtils];
+    //创建文件下载目录
+    NSString * path2 = [fileUtil createCachePath:IMAGECACHE];
     
-//    FileUtils * fileUtil = [FileUtils sharedFileUtils];
-//    //创建文件下载目录
-//    NSString *path = [fileUtil createCachePath:IMAGECACHE];
-//    NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
-//    NSString * str=[stdDefault objectForKey:@"user_name"];
-//    NSString * user_Id=[stdDefault objectForKey:@"user_Id"];
-//    NSString *uniquePath=[path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",str]];
-//    BOOL result=[UIImagePNGRepresentation(image222)writeToFile: uniquePath atomically:YES];
-//    
-//    MDRequestModel * model = [[MDRequestModel alloc] init];
-//    model.path = MDPath;
-//    model.methodNum = 10103;
-//    NSString * parameter=[NSString stringWithFormat:@"%@@`%@",user_Id,uniquePath];
-//    model.parameter = parameter;
-//    model.delegate = self;
-//    [model starRequest];
+    NSString *uniquePath=[path2 stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",[MDUserVO userVO].userID]];
+    NSLog(@"%@",uniquePath);
+    BOOL result=[UIImagePNGRepresentation(image222)writeToFile: uniquePath atomically:YES];
     
-    //    NSString * url=[NSString stringWithFormat:@"%@/api/v1/photos.json?auto_save=true",BASE_URL];
-//    NSMutableDictionary * attach=[[NSMutableDictionary alloc] init];
-//    [attach setObject:uniquePath forKey:@"[uploading][]data"];
-//    MXNetModel *netModel = [MXNetModel shareNetModel];
-//    [netModel startRequset:@"POST" withURL:url withParams:nil withAttachment:attach withIndicator:YES withCallback:^(id object, MXError *error) {
-//        NSLog(@"reply == %@", object);
-//        
-//        if (result) {
-//            if(!error) {
-//                NSArray *picArr = (NSArray *)object;
-//                NSString *headerUrl = [picArr[0] objectForKey:@"normal_url"];
-//                [WBUserVO userVO].userExtVO.avatar_url = headerUrl;
-//            }
-////            [picker dismissViewControllerAnimated:YES completion:^{}];
-//            [[NSNotificationCenter defaultCenter]
-//     postNotificationName:@"showBRSMainView" object:self];
-//        }
-//        //        [self hadeView];
-//        
-//        NSLog(@"error == %@",error);
-//        
-//    }];
-//
-    [self dismissViewControllerAnimated:YES completion:^{
-        NSLog(@"back");
+    //上传头像
+    [self uploadImage2Server:UIImageJPEGRepresentation(image222, 0.5) callback:^(BOOL su, NSDictionary *dic) {
+        NSLog(@"dic   %@",dic);
+        
+        headImg = [dic objectForKey:@"msg"];
+        
+        //        设置头像
+        MDRequestModel * model = [[MDRequestModel alloc] init];
+        model.path = MDPath;
+        model.methodNum = 10103;
+        model.delegate = self;
+        int userId = [[MDUserVO userVO].userID intValue];
+        model.parameter = [NSString stringWithFormat:@"%d@`%@",userId,headImg];
+        [model starRequest];
+        
     }];
+//
+   
 
     
 }
@@ -262,31 +240,7 @@
     [headButton setBackgroundImage:image222 forState:UIControlStateNormal];
     i=1;
     
-    //将头像存入本地
-    FileUtils * fileUtil = [FileUtils sharedFileUtils];
-    //创建文件下载目录
-    NSString * path2 = [fileUtil createCachePath:IMAGECACHE];
-    
-    NSString *uniquePath=[path2 stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",[MDUserVO userVO].userID]];
-    NSLog(@"%@",uniquePath);
-    BOOL result=[UIImagePNGRepresentation(image222)writeToFile: uniquePath atomically:YES];
-    
-    //上传头像
-    [self uploadImage2Server:UIImageJPEGRepresentation(image222, 0.5) callback:^(BOOL su, NSDictionary *dic) {
-        NSLog(@"dic   %@",dic);
-        
-        headImg = [dic objectForKey:@"msg"];
-        
-//        设置头像
-        MDRequestModel * model = [[MDRequestModel alloc] init];
-        model.path = MDPath;
-        model.methodNum = 10103;
-        model.delegate = self;
-        int userId = [[MDUserVO userVO].userID intValue];
-        model.parameter = [NSString stringWithFormat:@"%d@`%@",userId,headImg];
-        [model starRequest];
-        
-    }];
+   
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -363,7 +317,13 @@
     NSString * str = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
     //回馈数据
     NSLog(@"%@", str);
-    
+    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+    if ([dic objectForKey:@"success"]) {
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"showBRSMainView" object:self];
+        
+    }
+
 }
 
 

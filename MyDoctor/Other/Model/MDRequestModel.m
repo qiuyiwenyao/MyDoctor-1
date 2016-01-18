@@ -55,6 +55,7 @@
     date = [formatter stringFromDate:[NSDate date]];
     
     NSString * parameters = [NSString stringWithFormat:@"%d@`3@`3@`%@@`1@`3@`%@@`",self.methodNum,date,self.parameter];
+    NSLog(@"%@",parameters);
     //参数加密
     parameters = [self GTMEncodeTest:parameters];
 
