@@ -236,7 +236,7 @@
         MDRequestModel * model = [[MDRequestModel alloc] init];
         model.path = MDPath;
         model.methodNum = 10602;
-        NSString * parameter=[NSString stringWithFormat:@"%@@`%@@`%d@`%d@`%@@`%@",[MDUserVO userVO].userID,str,_docInfo.id,_docInfo.Type,_docInfo.Phone,@"2"];
+        NSString * parameter=[NSString stringWithFormat:@"%@@`%@@`%d@`%d@`%@@`%@",[MDUserVO userVO].userID,str,_docInfo.id,_docInfo.Type,_docInfo.Phone,@"1"];
         model.parameter = parameter;
         model.delegate = self;
         [model starRequest];
