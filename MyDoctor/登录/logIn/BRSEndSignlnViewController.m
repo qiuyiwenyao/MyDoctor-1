@@ -319,8 +319,9 @@
     NSLog(@"%@", str);
     NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
     if ([dic objectForKey:@"success"]) {
-        [[NSNotificationCenter defaultCenter]
-         postNotificationName:@"showBRSMainView" object:self];
+        [self dismissViewControllerAnimated:YES completion:^{
+            NSLog(@"back");
+        }];
         
     }
 

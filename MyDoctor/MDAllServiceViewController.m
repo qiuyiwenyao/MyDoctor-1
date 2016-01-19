@@ -9,8 +9,13 @@
 #import "MDAllServiceViewController.h"
 #import "MDServiceFolerVO.h"
 #import "MDServiceTableViewCell.h"
+#import "MDServiceModel.h"
+#import "MDRequestModel.h"
 
-@interface MDAllServiceViewController ()
+@interface MDAllServiceViewController ()<sendInfoToCtr>
+{
+    NSArray * orderStatu;
+}
 
 @end
 
@@ -22,11 +27,15 @@
 @synthesize tableView = _tableView;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self dataArray];
+    
+    orderStatu = @[@"等待派单",@"派单中",@"已完成",@"已取消"];
+    
+    [self requestData];
     [self TableView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteEditingStyle:) name:@"deleteEditingStyle" object:nil];
 }
+
 
 -(void)dataArray
 {
@@ -70,6 +79,39 @@
     [dataArray addObject:sfv3];
 }
 
+-(void)requestData
+{
+    NSString * userID = [MDUserVO userVO].userID;
+    NSString * pageSize = @"10";
+    NSString * pageIndex = @"1";
+    NSString * lastID = @"0";
+    
+    MDRequestModel * model = [[MDRequestModel alloc] init];
+    model.path = MDPath;
+    model.methodNum = 11003;
+    model.delegate = self;
+    model.parameter = [NSString stringWithFormat:@"%@@`%@@`%@@`%@",userID,pageSize,pageIndex,lastID];
+    [model starRequest];
+}
+
+
+#pragma mark - sendInfoToCtr
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
+{
+    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    dataArray = [[NSMutableArray alloc] init];
+    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+    NSArray * obj = [dic objectForKey:@"obj"];
+    for (NSDictionary * dictionary in obj) {
+        MDServiceModel * model = [[MDServiceModel alloc] init];
+        [model setValuesForKeysWithDictionary:dictionary];
+        [dataArray addObject:model];
+    }
+    
+    [_tableView reloadData];
+
+}
+
 -(void)TableView
 {
     
@@ -100,14 +142,17 @@
     }
     cell.tag=indexPath.row;
     if ([dataArray count]>0) {
-        MDServiceFolerVO * service=dataArray[indexPath.row];
-        cell.serviceType=service.serviceType;
-        cell.serviceName=service.serviceName;
-        cell.money=service.money;
+        MDServiceModel * model=dataArray[indexPath.row];
+        
+        NSString * Statue = [orderStatu objectAtIndex:model.OrderType];
+        
+        cell.serviceType=@"照护";
+        cell.serviceName=model.CareInfoName;
+        cell.money=@"";
         cell.chouseView=@"全部";
-        cell.nowCondition=service.nowCondition;
-        cell.deleteOrCancel=service.deleteOrCancel;
-        cell.paymentOrRemind=service.paymentOrRemind;
+        cell.nowCondition=Statue;
+//        cell.deleteOrCancel=service.deleteOrCancel;
+//        cell.paymentOrRemind=service.paymentOrRemind;
         
     }
     [cell drawCell];

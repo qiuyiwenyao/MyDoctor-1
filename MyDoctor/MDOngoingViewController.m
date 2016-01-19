@@ -10,20 +10,28 @@
 #import "MDServiceFolerVO.h"
 #import "MDServiceTableViewCell.h"
 #import "MDOrderDetailsViewController.h"
+#import "MDRequestModel.h"
+#import "MDServiceModel.h"
 
-@interface MDOngoingViewController ()
+@interface MDOngoingViewController ()<sendInfoToCtr>
 
 @end
 
 @implementation MDOngoingViewController
 {
     NSMutableArray * dataArray;
+    NSArray * orderStatu;
     
 }
 @synthesize tableView = _tableView;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self dataArray];
+    dataArray=[[NSMutableArray alloc] init];
+    
+//    orderStatu = @{@"WAITDELIVER":@"等待派单",@"DELIVERED":@"派单中",@"COMPLETED":@"已完成",@"CANCEL":@"已取消"};
+    orderStatu = @[@"等待派单",@"派单中",@"已完成",@"已取消"];
+
+    [self requestData];
     [self TableView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteEditingStyle:) name:@"deleteEditingStyle" object:nil];
@@ -31,9 +39,24 @@
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"deleteEditingStyle" object:nil];
 }
+
+-(void)requestData
+{
+    NSString * userID = [MDUserVO userVO].userID;
+    NSString * pageSize = @"10";
+    NSString * pageIndex = @"1";
+    NSString * lastID = @"0";
+    
+    MDRequestModel * model = [[MDRequestModel alloc] init];
+    model.path = MDPath;
+    model.methodNum = 11004;
+    model.delegate = self;
+    model.parameter = [NSString stringWithFormat:@"%@@`%@@`%@@`%@",userID,pageSize,pageIndex,lastID];
+    [model starRequest];
+}
+
 -(void)dataArray
 {
-    dataArray=[[NSMutableArray alloc] init];
     
     MDServiceFolerVO * sfv=[[MDServiceFolerVO alloc] init];
     sfv.serviceType=@"照护";
@@ -45,6 +68,22 @@
     
     
     [dataArray addObject:sfv];
+    
+}
+
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
+{
+    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    dataArray = [[NSMutableArray alloc] init];
+    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+    NSArray * obj = [dic objectForKey:@"obj"];
+    for (NSDictionary * dictionary in obj) {
+        MDServiceModel * model = [[MDServiceModel alloc] init];
+        [model setValuesForKeysWithDictionary:dictionary];
+        [dataArray addObject:model];
+    }
+    
+    [_tableView reloadData];
     
 }
 
@@ -74,14 +113,24 @@
         [item removeFromSuperview];
     }
     if ([dataArray count]>0) {
-        MDServiceFolerVO * service=dataArray[indexPath.row];
-        cell.serviceType=service.serviceType;
-        cell.serviceName=service.serviceName;
-        cell.money=service.money;
+//        MDServiceFolerVO * service=dataArray[indexPath.row];
+//        cell.serviceType=service.serviceType;
+//        cell.serviceName=service.serviceName;
+//        cell.money=service.money;
+//        cell.chouseView=@"进行中";
+//        cell.nowCondition=service.nowCondition;
+//        cell.deleteOrCancel=service.deleteOrCancel;
+//        cell.paymentOrRemind=service.paymentOrRemind;
+//        NSString * orderStatue = orderStatu 
+        
+        MDServiceModel * model = dataArray[indexPath.row];
+        cell.serviceType = @"照护";
+        cell.serviceName=model.CareInfoName;
+        cell.money=@"";
         cell.chouseView=@"进行中";
-        cell.nowCondition=service.nowCondition;
-        cell.deleteOrCancel=service.deleteOrCancel;
-        cell.paymentOrRemind=service.paymentOrRemind;
+        cell.nowCondition=[orderStatu objectAtIndex:model.OrderType];
+        cell.deleteOrCancel=@"取消订单";
+//        cell.paymentOrRemind=service.paymentOrRemind;
         
     }
     cell.backgroundColor=[UIColor clearColor];

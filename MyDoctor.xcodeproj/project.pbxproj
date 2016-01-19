@@ -209,6 +209,7 @@
 		6A65234E1C1E930E00227C63 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A65233E1C1E930E00227C63 /* UIView+WebCacheOperation.m */; };
 		6A6523511C1FBC4000227C63 /* MDDrupDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6523501C1FBC4000227C63 /* MDDrupDetailViewController.m */; };
 		6A6523B01C20085B00227C63 /* NIDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6523AF1C20085B00227C63 /* NIDropDown.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6A8898F71C4CE7C8003DB4BF /* MDServiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8898F61C4CE7C8003DB4BF /* MDServiceModel.m */; };
 		6AB9B0EF1C200D3E004BF6A7 /* MDDrugVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB9B0EC1C200D3E004BF6A7 /* MDDrugVO.m */; };
 		6AB9B0FC1C200EC5004BF6A7 /* MDLectureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB9B0FB1C200EC5004BF6A7 /* MDLectureModel.m */; };
 		6AB9B1061C2010B7004BF6A7 /* MDnoticeCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB9B1051C2010B7004BF6A7 /* MDnoticeCenterCell.m */; };
@@ -1032,6 +1033,8 @@
 		6A6523501C1FBC4000227C63 /* MDDrupDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDrupDetailViewController.m; sourceTree = "<group>"; };
 		6A6523AE1C20085B00227C63 /* NIDropDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDropDown.h; path = NIDropDown/NIDropDown.h; sourceTree = "<group>"; };
 		6A6523AF1C20085B00227C63 /* NIDropDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIDropDown.m; path = NIDropDown/NIDropDown.m; sourceTree = "<group>"; };
+		6A8898F51C4CE7C8003DB4BF /* MDServiceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDServiceModel.h; path = Service/MDServiceModel/MDServiceModel.h; sourceTree = "<group>"; };
+		6A8898F61C4CE7C8003DB4BF /* MDServiceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDServiceModel.m; path = Service/MDServiceModel/MDServiceModel.m; sourceTree = "<group>"; };
 		6AB9B0EB1C200D3E004BF6A7 /* MDDrugVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDDrugVO.h; path = Home/Model/MDDrugVO.h; sourceTree = "<group>"; };
 		6AB9B0EC1C200D3E004BF6A7 /* MDDrugVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDDrugVO.m; path = Home/Model/MDDrugVO.m; sourceTree = "<group>"; };
 		6AB9B0FA1C200EC5004BF6A7 /* MDLectureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDLectureModel.h; path = Home/Model/MDLectureModel.h; sourceTree = "<group>"; };
@@ -1770,6 +1773,8 @@
 			children = (
 				153C1EA41C054D5100F87014 /* MDServiceFolerVO.h */,
 				153C1EA51C054D5100F87014 /* MDServiceFolerVO.m */,
+				6A8898F51C4CE7C8003DB4BF /* MDServiceModel.h */,
+				6A8898F61C4CE7C8003DB4BF /* MDServiceModel.m */,
 			);
 			name = MDServiceModel;
 			sourceTree = "<group>";
@@ -4216,6 +4221,7 @@
 				6A65234D1C1E930E00227C63 /* UIImageView+WebCache.m in Sources */,
 				6AB9BB1D1C2BE6C1004BF6A7 /* SRRefreshView.m in Sources */,
 				6A3EF7DD1C058F1200923D03 /* MDMyViewController.m in Sources */,
+				6A8898F71C4CE7C8003DB4BF /* MDServiceModel.m in Sources */,
 				6AB9BAD71C2BE348004BF6A7 /* PSTCollectionViewItemKey.m in Sources */,
 				6AB9BA0B1C2BE1C0004BF6A7 /* RobotListViewController.m in Sources */,
 				6AB9BA361C2BE23B004BF6A7 /* NSDate+Category.m in Sources */,

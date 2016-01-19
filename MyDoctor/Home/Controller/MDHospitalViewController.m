@@ -219,7 +219,7 @@
 //    [self.navigationController pushViewController:chatController animated:YES];
     
     MainViewController * main=[[MainViewController alloc] init];
-    main.chatID = _docInfo.Phone;
+    main.chatID = _docInfo.HxName;
     main.name = self.title;
     [main setChatIDandName];
     [main networkChanged:eEMConnectionConnected];
