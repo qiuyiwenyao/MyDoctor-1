@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyDoctor/&#x767b;&#x5f55;/logIn/BRSlogInViewController.m"
-            timestampString = "473837943.079894"
+            timestampString = "474949818.637815"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
             landmarkName = "-logInView"
             landmarkType = "5">
          </BreakpointContent>

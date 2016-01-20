@@ -178,14 +178,12 @@
     [button11 addTarget:self action:@selector(forget:) forControlEvents:UIControlEventTouchUpInside];
     
     button=[[UIButton alloc] init];
-    button.backgroundColor = [UIColor clearColor];
-    button.layer.borderColor = [[UIColor whiteColor] CGColor];
-    button.layer.borderWidth = 2;
+    button.backgroundColor = [UIColor colorWithRed:34/255.0 green:207/255.0 blue:169/255.0 alpha:1];
     button.layer.cornerRadius = 6;
     button.layer.masksToBounds = YES;
     [button setTitle:[NSString stringWithFormat:@"登录"] forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor colorWithRed:50/255.0 green:119/255.0 blue:154/255.0 alpha:1] forState:UIControlStateNormal];
-
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
     [button addTarget:self action:@selector(tunch:) forControlEvents:UIControlEventTouchUpInside];
     button.enabled=NO;
     
@@ -245,18 +243,12 @@
     
     UIButton * back=[[UIButton alloc] init];
     [back addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-    back.layer.borderColor = [[UIColor colorWithRed:228/255.0 green:71/255.0 blue:78/255.0 alpha:1] CGColor];
-    back.layer.borderWidth = 1;
-    back.layer.cornerRadius = 5;
-    [back setBackgroundColor:[UIColor clearColor]];
-    back.titleLabel.font=[UIFont systemFontOfSize:15];
-    [back setTitle:@"返回" forState:UIControlStateNormal];
-    [back setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [back setBackgroundImage:[UIImage imageNamed:@"navigationbar_back"] forState:UIControlStateNormal];
     [self.view addSubview:back];
     [back mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.top.equalTo(self.view.mas_top).with.offset(30*autoSizeScaleY);
-        make.left.equalTo(self.view.mas_left).with.offset(20);
-        make.size.mas_equalTo(CGSizeMake(50,25));
+        make.left.equalTo(self.view.mas_left).with.offset(18);
+        make.size.mas_equalTo(CGSizeMake(13,22));
     }];
 }
 -(void)back:(UIButton *)button

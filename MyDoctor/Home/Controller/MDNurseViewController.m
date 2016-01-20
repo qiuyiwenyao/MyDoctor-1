@@ -71,10 +71,10 @@
 
 -(void)createTableView
 {
-    NSArray * group0 = @[@"bluelogo",@"上门输液"];
-    NSArray * group1 = @[@"greenlogo",@"上门体检"];
-    NSArray * group2 = @[@"purplelogo",@"术后康复"];
-    NSArray * group3 = @[@"bluelogo",@"专业照护"];
+    NSArray * group0 = @[@"输液",@"上门输液"];
+    NSArray * group1 = @[@"上门体检",@"上门体检"];
+    NSArray * group2 = @[@"术后康复",@"术后康复"];
+    NSArray * group3 = @[@"专业照护",@"专业照护"];
     
     if (_listArray == nil) {
         _listArray = [NSMutableArray arrayWithObjects:group0,group1,group2,group3, nil];

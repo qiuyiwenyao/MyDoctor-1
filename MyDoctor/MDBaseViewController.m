@@ -50,13 +50,8 @@
     //设置右按钮
     if (rightBtnTitle != nil) {
         _rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _rightBtn.frame = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navigationbar_rightbtn"]].frame;
-        [_rightBtn setTitle:rightBtnTitle forState:UIControlStateNormal];
-        [_rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        _rightBtn.titleLabel.font = [UIFont systemFontOfSize:11];
-        _rightBtn.titleEdgeInsets = UIEdgeInsetsMake(1, 0, 0, 0);
-        _rightBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-        [_rightBtn setBackgroundImage:[UIImage imageNamed:@"navigationbar_rightbtn"] forState:0];
+        _rightBtn.frame = [[UIImageView alloc] initWithImage:[UIImage imageNamed:rightBtnTitle]].frame;
+        [_rightBtn setBackgroundImage:[UIImage imageNamed:rightBtnTitle] forState:UIControlStateNormal];
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_rightBtn];
     }
     
