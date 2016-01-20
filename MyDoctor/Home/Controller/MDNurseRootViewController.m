@@ -208,8 +208,9 @@
     NSString * careInfoName = self.navigationItem.title;
     NSString * careInfoId = [_careInfoIds objectForKey:[NSString stringWithFormat:@"%@",careInfoName]];
     NSString * note = @"备注";
+    NSString * address = @"建昌道街";
     
-    model.parameter = [NSString stringWithFormat:@"%@@`%@@`%@@`%@",userId,careInfoId,careInfoName,note];
+    model.parameter = [NSString stringWithFormat:@"%@@`%@@`%@@`%@@`%@",userId,careInfoId,careInfoName,note,address];
     
     [model starRequest];
 }

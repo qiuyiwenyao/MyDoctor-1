@@ -19,4 +19,6 @@ typedef enum{
     CANCEL,//取消订单
 }orderStatus;
 
+-(void)refesh;
+
 @end

@@ -6,27 +6,34 @@
 //  Copyright (c) 2015年 com.mingxing. All rights reserved.
 //
 
-#import "MDPaymentViewController.h"
+#import "MDCompletedViewController.h"
 #import "MDServiceFolerVO.h"
 #import "MDServiceTableViewCell.h"
+#import "MDServiceModel.h"
+#import "MJRefresh.h"
 
 
-@interface MDPaymentViewController ()
+@interface MDCompletedViewController ()
 
 @end
 
-@implementation MDPaymentViewController
+@implementation MDCompletedViewController
 {
     NSMutableArray * dataArray;
+    NSArray * orderStatu;
+    int currentPage;
     
 }
 @synthesize tableView = _tableView;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self dataArray];
+    currentPage = 1;
+    dataArray=[[NSMutableArray alloc] init];
     [self TableView];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteEditingStyle:) name:@"deleteEditingStyle" object:nil];
+    [self refreshAndLoad];
+    orderStatu = @[@"等待派单",@"派单中",@"已完成",@"已取消"];
+
+       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteEditingStyle:) name:@"deleteEditingStyle" object:nil];
 
     
 }
@@ -59,6 +66,74 @@
     [dataArray addObject:sfv2];
 }
 
+-(void)refreshAndLoad
+{
+    __unsafe_unretained __typeof(self) weakSelf = self;
+    
+    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        currentPage = 1;
+        [weakSelf requestData];
+    }];
+    
+    // 马上进入刷新状态
+    [_tableView.mj_header beginRefreshing];
+    
+    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        currentPage ++;
+        [weakSelf requestData];
+    }];
+    
+}
+
+-(void)refesh
+{
+    [_tableView.mj_header beginRefreshing];
+    
+}
+
+
+-(void)requestData
+{
+    NSString * userID = [MDUserVO userVO].userID;
+    NSString * pageSize = @"10";
+    int pageIndex = currentPage;
+    NSString * lastID = @"0";
+    
+    MDRequestModel * model = [[MDRequestModel alloc] init];
+    model.path = MDPath;
+    model.methodNum = 11005;
+    model.delegate = self;
+    model.parameter = [NSString stringWithFormat:@"%@@`%@@`%d@`%@",userID,pageSize,pageIndex,lastID];
+    [model starRequest];
+}
+
+#pragma mark - sendInfoToCtr
+
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
+{
+    if (currentPage == 1) {
+        [dataArray removeAllObjects];
+    }
+
+    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error: nil];
+    NSArray * obj = [dictionary objectForKey:@"obj"];
+    for (NSDictionary * dictionary in obj) {
+        MDServiceModel * model = [[MDServiceModel alloc] init];
+        [model setValuesForKeysWithDictionary:dictionary];
+        [dataArray addObject:model];
+    }
+    
+    [_tableView reloadData];
+    
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
+
+
+}
+
 -(void)TableView
 {
     _tableView=[[UITableView alloc] initWithFrame:CGRectMake(0,104, appWidth, appHeight-104-49) style:UITableViewStylePlain];
@@ -85,14 +160,23 @@
         [item removeFromSuperview];
     }
     if ([dataArray count]>0) {
-        MDServiceFolerVO * service=dataArray[indexPath.row];
-        cell.serviceType=service.serviceType;
-        cell.serviceName=service.serviceName;
-        cell.money=service.money;
-        cell.chouseView=@"待付款";
-        cell.nowCondition=service.nowCondition;
-        cell.deleteOrCancel=service.deleteOrCancel;
-        cell.paymentOrRemind=service.paymentOrRemind;
+        MDServiceModel * model=dataArray[indexPath.row];
+        NSString * orderStatue;
+        if (model.OrderType == 2) {
+            orderStatue = @"订单已完成";
+        }
+        else if (model.OrderType == 3)
+        {
+            orderStatue = @"订单已取消";
+
+        }
+        cell.serviceType=@"照护";
+        cell.serviceName=model.CareInfoName;
+        cell.money=@"";
+        cell.chouseView=@"已完成";
+        cell.nowCondition=[orderStatu objectAtIndex:model.OrderType];
+        cell.deleteOrCancel=orderStatue;
+//        cell.paymentOrRemind=service.paymentOrRemind;
         
     }
     cell.backgroundColor=[UIColor clearColor];
@@ -135,7 +219,7 @@
 {
     NSString * text= [[sender userInfo] objectForKey:@"cellTag"];
     NSString * view= [[sender userInfo] objectForKey:@"页面"];
-    if ([view isEqualToString:@"待付款"]) {
+    if ([view isEqualToString:@"已完成"]) {
         int cellTag=[text intValue];
         [dataArray removeObjectAtIndex:cellTag];
         [_tableView reloadData];

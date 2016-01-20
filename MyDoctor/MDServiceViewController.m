@@ -9,7 +9,7 @@
 #import "MDServiceViewController.h"
 #import "WBToolBar.h"
 #import "MDAllServiceViewController.h"
-#import "MDPaymentViewController.h"
+#import "MDCompletedViewController.h"
 #import "MDOngoingViewController.h"
 #import "MDOrderDetailsViewController.h"
 #import "MDNoPaymentViewController.h"
@@ -24,7 +24,7 @@
 {
     WBToolBar *bar;
     MDAllServiceViewController * asvc;
-    MDPaymentViewController * pvc;
+    MDCompletedViewController * pvc;
     MDOngoingViewController *ovc;
     int firstShow;
 }
@@ -93,16 +93,19 @@
         asvc.view.hidden=YES;
         pvc.view.hidden=YES;
         ovc.view.hidden=NO;
+        [ovc refesh];
         [self.view bringSubviewToFront:ovc.view];
         [self.view bringSubviewToFront:bar];
     }else if (index==1){
         if (!pvc) {
-            pvc=[[MDPaymentViewController alloc] init];
+            pvc=[[MDCompletedViewController alloc] init];
             [self.view addSubview:pvc.view];
         }
         asvc.view.hidden=YES;
         pvc.view.hidden=NO;
         ovc.view.hidden=YES;
+        [pvc refesh];
+
         [self.view bringSubviewToFront:pvc.view];
         [self.view bringSubviewToFront:bar];
         
@@ -114,6 +117,8 @@
         asvc.view.hidden=NO;
         pvc.view.hidden=YES;
         ovc.view.hidden=YES;
+        [asvc refesh];
+
         [self.view bringSubviewToFront:asvc.view];
         [self.view bringSubviewToFront:bar];
     }

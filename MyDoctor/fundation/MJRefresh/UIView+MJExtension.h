@@ -4,12 +4,12 @@
 //  MJRefreshExample
 //
 //  Created by MJ Lee on 14-5-28.
-//  Copyright (c) 2014年 itcast. All rights reserved.
+//  Copyright (c) 2014年 小码哥. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface UIView (MXMail_MJExtension)
+@interface UIView (MJExtension)
 @property (assign, nonatomic) CGFloat mj_x;
 @property (assign, nonatomic) CGFloat mj_y;
 @property (assign, nonatomic) CGFloat mj_w;

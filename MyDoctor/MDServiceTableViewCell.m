@@ -9,6 +9,7 @@
 #import "MDServiceTableViewCell.h"
 #import "MX_MASConstraintMaker.h"
 #import "View+MASAdditions.h"
+#import "MDUserVO.h"
 
 @implementation MDServiceTableViewCell
 
@@ -92,7 +93,7 @@
     [_deleteOrCancelBtn mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.right.equalTo(view.mas_right).with.offset(-10);
         make.bottom.equalTo(view.mas_bottom).with.offset(-5);
-        make.size.mas_equalTo(CGSizeMake(60,20));
+        make.size.mas_equalTo(CGSizeMake(75,20));
     }];
     
     
@@ -112,20 +113,10 @@
 
 -(void)deleteOrCancel:(UIButton *)button
 {
+    NSLog(@"%ld",(long)self.tag);
+    
     if ([button.titleLabel.text isEqualToString:@"取消订单"]) {
-        MDLog(@"取消");
-        UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"取消成功!"
-                             
-                                                      message:nil
-                             
-                                                     delegate:self
-                             
-                                            cancelButtonTitle:@"好的"
-                             
-                                            otherButtonTitles:nil];
-        
-        [alert show];
-
+        [self requestData];
     }
     
     if ([button.titleLabel.text isEqualToString:@"删除订单"]) {
@@ -177,6 +168,53 @@
 
     }
 
+}
+
+
+-(void)requestData
+{
+    NSString * userID = [MDUserVO userVO].userID;
+    NSString * orderId = [NSString stringWithFormat:@"%d",self.orderId];
+    MDRequestModel * model = [[MDRequestModel alloc]init];
+    model.path = MDPath;
+    model.delegate =self;
+    model.methodNum = 11002;
+    model.parameter = [NSString stringWithFormat:@"%@@`%@",userID,orderId];
+    
+    NSLog(@"%@%@",userID,orderId);
+    [model starRequest];
+    
+}
+
+#pragma mark - sendInfoToCtr
+
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
+{
+    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+    if ([[dictionary objectForKey:@"success"] intValue] == 1) {
+        NSLog(@"true");
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"订单已取消" message:nil delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
+        [alert show];
+        
+    }
+    else
+    {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"订单取消失败" message:nil delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
+        [alert show];
+
+    }
+}
+
+//将订单从列表删除
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if ([alertView.title isEqualToString:@"订单已取消"]) {
+        NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithObject:[NSString stringWithFormat:@"%ld",(long)self.tag] forKey:@"cellTag"];
+        
+        [userInfo setValue:self.chouseView forKeyPath:@"页面"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"deleteEditingStyle" object:nil userInfo:userInfo];
+    }
 }
 
 @end

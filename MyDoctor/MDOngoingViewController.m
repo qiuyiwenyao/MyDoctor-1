@@ -12,6 +12,7 @@
 #import "MDOrderDetailsViewController.h"
 #import "MDRequestModel.h"
 #import "MDServiceModel.h"
+#import "MJRefresh.h"
 
 @interface MDOngoingViewController ()<sendInfoToCtr>
 
@@ -21,18 +22,20 @@
 {
     NSMutableArray * dataArray;
     NSArray * orderStatu;
+    int currentPage;
     
 }
 @synthesize tableView = _tableView;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    currentPage = 1;
     dataArray=[[NSMutableArray alloc] init];
-    
+
 //    orderStatu = @{@"WAITDELIVER":@"等待派单",@"DELIVERED":@"派单中",@"COMPLETED":@"已完成",@"CANCEL":@"已取消"};
     orderStatu = @[@"等待派单",@"派单中",@"已完成",@"已取消"];
 
-    [self requestData];
     [self TableView];
+    [self refreshAndLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteEditingStyle:) name:@"deleteEditingStyle" object:nil];
 }
@@ -40,18 +43,46 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"deleteEditingStyle" object:nil];
 }
 
+-(void)refreshAndLoad
+{
+    __unsafe_unretained __typeof(self) weakSelf = self;
+    
+    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        currentPage = 1;
+        [weakSelf requestData];
+    }];
+    
+    // 马上进入刷新状态
+    [_tableView.mj_header beginRefreshing];
+    
+    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        currentPage ++;
+        [weakSelf requestData];
+    }];
+    
+}
+
+-(void)refesh
+{
+    [_tableView.mj_header beginRefreshing];
+    
+}
+
+
 -(void)requestData
 {
     NSString * userID = [MDUserVO userVO].userID;
     NSString * pageSize = @"10";
-    NSString * pageIndex = @"1";
+    int  pageIndex = currentPage;
     NSString * lastID = @"0";
     
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = MDPath;
     model.methodNum = 11004;
     model.delegate = self;
-    model.parameter = [NSString stringWithFormat:@"%@@`%@@`%@@`%@",userID,pageSize,pageIndex,lastID];
+    model.parameter = [NSString stringWithFormat:@"%@@`%@@`%d@`%@",userID,pageSize,pageIndex,lastID];
     [model starRequest];
 }
 
@@ -73,8 +104,11 @@
 
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
+    if (currentPage == 1) {
+        [dataArray removeAllObjects];
+    }
     NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
-    dataArray = [[NSMutableArray alloc] init];
+    
     NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
     NSArray * obj = [dic objectForKey:@"obj"];
     for (NSDictionary * dictionary in obj) {
@@ -84,7 +118,8 @@
     }
     
     [_tableView reloadData];
-    
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
 }
 
 -(void)TableView
@@ -130,6 +165,7 @@
         cell.chouseView=@"进行中";
         cell.nowCondition=[orderStatu objectAtIndex:model.OrderType];
         cell.deleteOrCancel=@"取消订单";
+        cell.orderId = model.id;
 //        cell.paymentOrRemind=service.paymentOrRemind;
         
     }

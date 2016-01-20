@@ -16,6 +16,8 @@
 @property (nonatomic,assign) int UserId;
 @property (nonatomic,strong) NSString * CreateTime;
 @property (nonatomic,assign) int CareInfoId;
+@property (nonatomic,assign) int id;
+
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key;
 
 

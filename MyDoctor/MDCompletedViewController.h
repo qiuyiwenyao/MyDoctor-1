@@ -8,7 +8,10 @@
 
 #import "MDBaseViewController.h"
 #import "MDConst.h"
-@interface MDPaymentViewController : MDBaseViewController<UITableViewDataSource,UITableViewDelegate>
+#import "MDRequestModel.h"
+@interface MDCompletedViewController : MDBaseViewController<UITableViewDataSource,UITableViewDelegate,sendInfoToCtr>
 @property (nonatomic, strong)     UITableView * tableView;
+
+-(void)refesh;
 
 @end

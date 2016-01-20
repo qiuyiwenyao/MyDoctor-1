@@ -4,12 +4,12 @@
 //  MJRefreshExample
 //
 //  Created by MJ Lee on 14-5-28.
-//  Copyright (c) 2014年 itcast. All rights reserved.
+//  Copyright (c) 2014年 小码哥. All rights reserved.
 //
 
 #import "UIView+MJExtension.h"
 
-@implementation UIView (MXMail_MJExtension)
+@implementation UIView (MJExtension)
 - (void)setMj_x:(CGFloat)mj_x
 {
     CGRect frame = self.frame;
