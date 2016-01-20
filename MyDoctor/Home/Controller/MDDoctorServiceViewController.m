@@ -316,7 +316,7 @@
     cell.unReadView.hidden = YES;
     
     for (NSString * newMessage in _messageArr) {
-        if ([newMessage isEqualToString:model.Phone]) {
+        if ([newMessage isEqualToString:model.HxName]) {
             cell.unReadView.hidden = NO;
         }
     }

@@ -9,7 +9,7 @@
 #import "MDServiceViewController.h"
 #import "WBToolBar.h"
 #import "MDAllServiceViewController.h"
-#import "MDPaymentViewController.h"
+#import "MDCompletedViewController.h"
 #import "MDOngoingViewController.h"
 #import "MDOrderDetailsViewController.h"
 #import "MDNoPaymentViewController.h"
@@ -24,7 +24,7 @@
 {
     WBToolBar *bar;
     MDAllServiceViewController * asvc;
-    MDPaymentViewController * pvc;
+    MDCompletedViewController * pvc;
     MDOngoingViewController *ovc;
     int firstShow;
 }
@@ -38,7 +38,7 @@
     
     if (!bar) {
         bar = [[WBToolBar alloc] initWithFrame:CGRectMake(0, 64, appWidth, 40)];
-        bar.dataSource = [[NSArray alloc] initWithObjects:@"全部",@"待付款",@"进行中", nil];
+        bar.dataSource = [[NSArray alloc] initWithObjects:@"进行中",@"已完成",@"全部", nil];
         bar.delegate = self;
         [bar drawFristRect:CGRectMake(0, 64, appWidth, 40)];
         [self.view addSubview:bar];
@@ -46,6 +46,7 @@
     [self draw];
     
 }
+
 -(void)viewWillAppear:(BOOL)animated
 {
     NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
@@ -65,15 +66,15 @@
 }
 -(void)draw
 {
-    if(!asvc){
-        asvc=[[MDAllServiceViewController alloc] init];
-        [self.view addSubview:asvc.view];
+    if(!ovc){
+        ovc=[[MDOngoingViewController alloc] init];
+        [self.view addSubview:ovc.view];
     }
-    asvc.view.hidden=NO;
+    asvc.view.hidden=YES;
     pvc.view.hidden=YES;
-    ovc.view.hidden=YES;
+    ovc.view.hidden=NO;
     if(firstShow==1){
-        [self.view bringSubviewToFront:asvc.view];
+        [self.view bringSubviewToFront:ovc.view];
         [self.view bringSubviewToFront:bar];
         firstShow=0;
     }
@@ -85,35 +86,40 @@
 -(void) elementSelected:(int)index toolBar:(WBToolBar*)toolBar
 {
     if (index == 0) {
-        if(!asvc){
-            asvc=[[MDAllServiceViewController alloc] init];
-            [self.view addSubview:asvc.view];
-        }
-        asvc.view.hidden=NO;
-        pvc.view.hidden=YES;
-        ovc.view.hidden=YES;
-        [self.view bringSubviewToFront:asvc.view];
-        [self.view bringSubviewToFront:bar];
-    }else if (index==1){
-        if (!pvc) {
-            pvc=[[MDPaymentViewController alloc] init];
-            [self.view addSubview:pvc.view];
-        }
-        asvc.view.hidden=YES;
-        pvc.view.hidden=NO;
-        ovc.view.hidden=YES;
-        [self.view bringSubviewToFront:pvc.view];
-        [self.view bringSubviewToFront:bar];
-        
-    }else if (index==2){
-        if (!ovc) {
+        if(!ovc){
             ovc=[[MDOngoingViewController alloc] init];
             [self.view addSubview:ovc.view];
         }
         asvc.view.hidden=YES;
         pvc.view.hidden=YES;
         ovc.view.hidden=NO;
+        [ovc refesh];
         [self.view bringSubviewToFront:ovc.view];
+        [self.view bringSubviewToFront:bar];
+    }else if (index==1){
+        if (!pvc) {
+            pvc=[[MDCompletedViewController alloc] init];
+            [self.view addSubview:pvc.view];
+        }
+        asvc.view.hidden=YES;
+        pvc.view.hidden=NO;
+        ovc.view.hidden=YES;
+        [pvc refesh];
+
+        [self.view bringSubviewToFront:pvc.view];
+        [self.view bringSubviewToFront:bar];
+        
+    }else if (index==2){
+        if (!asvc) {
+            asvc=[[MDAllServiceViewController alloc] init];
+            [self.view addSubview:asvc.view];
+        }
+        asvc.view.hidden=NO;
+        pvc.view.hidden=YES;
+        ovc.view.hidden=YES;
+        [asvc refesh];
+
+        [self.view bringSubviewToFront:asvc.view];
         [self.view bringSubviewToFront:bar];
     }
 }

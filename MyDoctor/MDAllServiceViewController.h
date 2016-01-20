@@ -12,5 +12,7 @@
 @interface MDAllServiceViewController : MDBaseViewController<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong)     UITableView * tableView;
 
+-(void)refesh;
+
 
 @end

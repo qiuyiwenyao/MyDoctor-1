@@ -28,6 +28,9 @@
 @property (nonatomic,assign) int id;
 @property (nonatomic,assign) int gzFlag;
 @property (nonatomic,assign) int Type;
+@property (nonatomic,copy) NSString * HxPwd;
+@property (nonatomic,copy) NSString * HxName;
+
 
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key;
 

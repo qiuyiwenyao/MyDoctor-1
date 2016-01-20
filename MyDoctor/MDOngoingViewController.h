@@ -12,4 +12,13 @@
 @interface MDOngoingViewController : MDBaseViewController<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong)     UITableView * tableView;
 
+typedef enum{
+    WAITDELIVER            = 0,//等待派单
+    DELIVERED,//派单中
+    COMPLETED,//已经完成
+    CANCEL,//取消订单
+}orderStatus;
+
+-(void)refesh;
+
 @end

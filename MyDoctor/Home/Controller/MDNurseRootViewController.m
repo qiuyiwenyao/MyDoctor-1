@@ -9,7 +9,11 @@
 #import "MDNurseRootViewController.h"
 #import "BRSlogInViewController.h"
 #import "MDNoPaymentViewController.h"
-@interface MDNurseRootViewController ()<UIAlertViewDelegate>
+#import "MDRequestModel.h"
+
+@interface MDNurseRootViewController ()<UIAlertViewDelegate,sendInfoToCtr,UIAlertViewDelegate>
+
+@property (nonatomic,strong) NSDictionary * careInfoIds;
 
 @end
 
@@ -17,6 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _careInfoIds = @{@"上门输液":@(1),@"上门体检":@(2),@"术后康复":@(3),@"专业照护":@(4)};
     
     [self setNavigationBarWithrightBtn:nil leftBtn:@"navigationbar_back"];
     //返回按钮点击
@@ -192,10 +198,38 @@
 
 -(void)showMainView
 {
-    NSLog(@"11");
-    MDNoPaymentViewController * noPaymentVC = [[MDNoPaymentViewController alloc] init];
-    noPaymentVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:noPaymentVC animated:YES];
+    NSLog(@"%@  %@",self.navigationItem.title,[_careInfoIds objectForKey:@"上门输液"]);
+    
+    MDRequestModel * model = [[MDRequestModel alloc] init];
+    model.path = MDPath;
+    model.delegate = self;
+    model.methodNum = 11001;
+    NSString * userId = [MDUserVO userVO].userID;
+    NSString * careInfoName = self.navigationItem.title;
+    NSString * careInfoId = [_careInfoIds objectForKey:[NSString stringWithFormat:@"%@",careInfoName]];
+    NSString * note = @"备注";
+    NSString * address = @"建昌道街";
+    
+    model.parameter = [NSString stringWithFormat:@"%@@`%@@`%@@`%@@`%@",userId,careInfoId,careInfoName,note,address];
+    
+    [model starRequest];
+}
+
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
+{
+    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    
+    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+    if ([[dic objectForKey:@"success"] intValue] == 1) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"预定成功" message:@"我们会尽快安排医护人员上门为您服务" delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
+        [alert show];
+    }
+    else
+    {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"预定失败" message:@"请重试" delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
+        [alert show];
+
+    }
 }
 /*
 #pragma mark - Navigation
