@@ -609,6 +609,8 @@
 		6ABD0C081C321EF900FEE47F /* 询医@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABD0C041C321EF900FEE47F /* 询医@3x.png */; };
 		6ABD0C091C321EF900FEE47F /* 照护@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABD0C051C321EF900FEE47F /* 照护@3x.png */; };
 		6AD872511C48988700299413 /* passwordImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD872501C48988700299413 /* passwordImage@2x.png */; };
+		6AE2EBF21C506F3B00AA4D51 /* MDForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE2EBF11C506F3B00AA4D51 /* MDForgetViewController.m */; };
+		6AE2EBF51C50728B00AA4D51 /* MDResetPsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE2EBF41C50728B00AA4D51 /* MDResetPsdViewController.m */; };
 		6AF2021F1C083F4000933EAF /* activityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2021D1C083F4000933EAF /* activityCell.m */; };
 		6AF202201C083F4000933EAF /* activityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF2021E1C083F4000933EAF /* activityCell.xib */; };
 		6AF202271C08498100933EAF /* MDExpertConsultationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF202261C08498100933EAF /* MDExpertConsultationViewController.m */; };
@@ -1617,6 +1619,10 @@
 		6ABD0C041C321EF900FEE47F /* 询医@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "询医@3x.png"; sourceTree = "<group>"; };
 		6ABD0C051C321EF900FEE47F /* 照护@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "照护@3x.png"; sourceTree = "<group>"; };
 		6AD872501C48988700299413 /* passwordImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "passwordImage@2x.png"; sourceTree = "<group>"; };
+		6AE2EBF01C506F3B00AA4D51 /* MDForgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDForgetViewController.h; sourceTree = "<group>"; };
+		6AE2EBF11C506F3B00AA4D51 /* MDForgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDForgetViewController.m; sourceTree = "<group>"; };
+		6AE2EBF31C50728B00AA4D51 /* MDResetPsdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDResetPsdViewController.h; sourceTree = "<group>"; };
+		6AE2EBF41C50728B00AA4D51 /* MDResetPsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDResetPsdViewController.m; sourceTree = "<group>"; };
 		6AF2021C1C083F4000933EAF /* activityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = activityCell.h; path = Home/View/activityCell.h; sourceTree = "<group>"; };
 		6AF2021D1C083F4000933EAF /* activityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = activityCell.m; path = Home/View/activityCell.m; sourceTree = "<group>"; };
 		6AF2021E1C083F4000933EAF /* activityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = activityCell.xib; path = Home/View/activityCell.xib; sourceTree = "<group>"; };
@@ -2199,6 +2205,10 @@
 				1590496D1C069FA600EE51FB /* BRSSignIn2ViewController.m */,
 				1590497B1C06A71000EE51FB /* BRSEndSignlnViewController.h */,
 				1590497C1C06A71000EE51FB /* BRSEndSignlnViewController.m */,
+				6AE2EBF01C506F3B00AA4D51 /* MDForgetViewController.h */,
+				6AE2EBF11C506F3B00AA4D51 /* MDForgetViewController.m */,
+				6AE2EBF31C50728B00AA4D51 /* MDResetPsdViewController.h */,
+				6AE2EBF41C50728B00AA4D51 /* MDResetPsdViewController.m */,
 				159049701C069FA600EE51FB /* BRSTextField.h */,
 				159049711C069FA600EE51FB /* BRSTextField.m */,
 			);
@@ -4289,6 +4299,7 @@
 				6A3EF8141C05B5B800923D03 /* MDOrderDetailsViewController.m in Sources */,
 				6A3EF85F1C06FD7400923D03 /* MDExaminationViewController.m in Sources */,
 				159049721C069FA600EE51FB /* BRSlogInViewController.m in Sources */,
+				6AE2EBF51C50728B00AA4D51 /* MDResetPsdViewController.m in Sources */,
 				153C1E851C03FB8C00F87014 /* NSArray+MASAdditions.m in Sources */,
 				6A3EF7E01C058F8600923D03 /* MDMyViewItem.m in Sources */,
 				15800F891C4C783500FCB87B /* DebugViewController.m in Sources */,
@@ -4376,6 +4387,7 @@
 				153ED8431C083DB500171DFA /* KTSelectDatePicker.m in Sources */,
 				153C1E801C03FB8C00F87014 /* MX_MASConstraint.m in Sources */,
 				156263071C293C8E00B725EF /* MyDoctor.c in Sources */,
+				6AE2EBF21C506F3B00AA4D51 /* MDForgetViewController.m in Sources */,
 				6AB9BA0A1C2BE1C0004BF6A7 /* RobotChatViewController.m in Sources */,
 				154168E31C34BB0500A69A7D /* AFHTTPSessionManager.m in Sources */,
 				6AB9B1431C210F3B004BF6A7 /* MDnoticeCenterModel.m in Sources */,

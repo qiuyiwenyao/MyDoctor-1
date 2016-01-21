@@ -19,6 +19,7 @@
 #import "EaseMob.h"
 #define IMAGECACHE  @"IMAGE/"
 #import "FileUtils.h"
+#import "MDForgetViewController.h"
 
 @interface BRSlogInViewController ()<sendInfoToCtr>
 
@@ -287,11 +288,11 @@
 }
 -(void)forget:(UIButton *)forget
 {
-    BRSSignInViewController * sic=[[BRSSignInViewController alloc] init];
-    sic.navigationItem.title=@"手机号验证";
-    sic.type=1;
-    sic.loseNumber=logInField.text;
-    [self.navigationController pushViewController:sic animated:YES];
+    MDForgetViewController * forgetVC=[[MDForgetViewController alloc] init];
+    forgetVC.navigationItem.title=@"手机号验证";
+    forgetVC.type=1;
+    forgetVC.loseNumber=logInField.text;
+    [self.navigationController pushViewController:forgetVC animated:YES];
 }
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
