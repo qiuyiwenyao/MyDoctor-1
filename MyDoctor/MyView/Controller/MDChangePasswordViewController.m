@@ -112,7 +112,7 @@
     finishButton.layer.cornerRadius = 8;
     finishButton.layer.masksToBounds = YES;
     finishButton.frame = CGRectMake(10, 172+60, appWidth-20, 44);
-    finishButton.backgroundColor = navBarColor;
+    finishButton.backgroundColor = RedColor;
     [finishButton setTitle:@"完成" forState:UIControlStateNormal];
     [self.view addSubview:finishButton];
 }
@@ -124,22 +124,60 @@
 -(void)finish{
     if (passwordTF.text.length!=0) {
         if ([newPasswordTF.text isEqualToString:againPasswordTF.text]) {
-            finishButton.enabled = NO;
-//            [self.controller doChange:passwordTF.text andNewPassword:newPasswordTF.text];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"密码修改成功" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
-            [alert show];
+//            finishButton.enabled = NO;
+            [self changePassword:passwordTF.text andNewPassword:newPasswordTF.text];
+            
         }else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"新密码两次输入不一致" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
             [alert show];
         }
     }else{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"旧密码输入不正确" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"旧密码输入不正确" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [passwordTF becomeFirstResponder];
         [alert show];
     }
     
 }
 -(void)cleanTF{
     return;
+}
+
+-(void)changePassword:(NSString *)old andNewPassword:(NSString *)new
+{
+    MDRequestModel * model = [[MDRequestModel alloc] init];
+    model.methodNum = 10111;
+    model.path = MDPath;
+    model.delegate = self;
+    NSString * userId = [MDUserVO userVO].userID;
+    model.parameter = [NSString stringWithFormat:@"%@@`%@@`%@",userId,old,new];
+    [model starRequest];
+}
+
+#pragma mark - sendInfoToCtr
+
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
+{
+    NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    if ([[dictionary objectForKey:@"success"]intValue] == 1) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"密码修改成功" message:nil delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"旧密码错误，请重新填写" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+        [passwordTF becomeFirstResponder];
+
+        [alert show];
+    }
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if ([alertView.title isEqualToString:@"密码修改成功"]) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 -(void)changefinshButtonEnabled:(BOOL)enabled{

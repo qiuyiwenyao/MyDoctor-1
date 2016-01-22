@@ -7,7 +7,8 @@
 //
 
 #import "MDBaseViewController.h"
+#import "MDRequestModel.h"
 
-@interface MDChangePasswordViewController : MDBaseViewController
+@interface MDChangePasswordViewController : MDBaseViewController<sendInfoToCtr,UIAlertViewDelegate>
 
 @end
