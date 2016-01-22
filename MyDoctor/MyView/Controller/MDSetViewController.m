@@ -167,9 +167,11 @@
 -(void)EXIT
 {
     UIButton * button=[[UIButton alloc] init];
-    [button setBackgroundImage:[UIImage imageNamed:@"按钮页-红"] forState:UIControlStateNormal];
+//    [button setBackgroundImage:[UIImage imageNamed:@"按钮页-红"] forState:UIControlStateNormal];
+    button.backgroundColor = RedColor;
     [button addTarget:self action:@selector(tunch:) forControlEvents:UIControlEventTouchUpInside];
     [button setTitle:[NSString stringWithFormat:@"退出登录"] forState:UIControlStateNormal];
+    button.layer.cornerRadius = 8.0;
     [self.view addSubview:button];
     [button mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);

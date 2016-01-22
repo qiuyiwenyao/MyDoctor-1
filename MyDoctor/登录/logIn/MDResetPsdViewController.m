@@ -72,7 +72,7 @@
     password.tag=2;
     password.backgroundColor=[UIColor whiteColor];
     password.layer.borderWidth= 1.0f;
-    password.placeholder=@"密码";
+    password.placeholder=@"  密码";
     password.leftViewMode = UITextFieldViewModeAlways;
     [password setBorderStyle:UITextBorderStyleLine];
     password.layer.borderColor=[[UIColor colorWithRed:222/255.0 green:222/255.0 blue:222/255.0 alpha:1]CGColor];
@@ -93,7 +93,7 @@ password2.layer.borderWidth= 1.0f;
     password2.layer.borderWidth= 1.0f;
     password2.tag=3;
     password2.backgroundColor=[UIColor whiteColor];
-    password2.placeholder=@"再次输入密码";
+    password2.placeholder=@"  再次输入密码";
     password2.leftViewMode = UITextFieldViewModeAlways;
     
     [self setNavigationBarWithrightBtn:@"下一步" leftBtn:nil];
@@ -103,17 +103,17 @@ password2.layer.borderWidth= 1.0f;
     
     [password mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
-        make.top.equalTo(self.view.mas_top).with.offset(100);
-        make.left.equalTo(self.view.mas_left).with.offset(15);
-        make.right.equalTo(self.view.mas_right).with.offset(-15);
+        make.top.equalTo(self.view.mas_top).with.offset(85*autoSizeScaleY);
+        make.left.equalTo(self.view.mas_left).with.offset(10);
+        make.right.equalTo(self.view.mas_right).with.offset(-10);
         make.height.mas_equalTo(44*autoSizeScaleY);
     }];
     
     [password2 mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
-        make.top.equalTo(password.mas_bottom).with.offset(20);
-        make.left.equalTo(self.view.mas_left).with.offset(15);
-        make.right.equalTo(self.view.mas_right).with.offset(-15);
+        make.top.equalTo(self.view.mas_top).with.offset(135*autoSizeScaleY);
+        make.left.equalTo(self.view.mas_left).with.offset(10);
+        make.right.equalTo(self.view.mas_right).with.offset(-10);
         make.height.mas_equalTo(44*autoSizeScaleY);
     }];
     
@@ -126,7 +126,7 @@ password2.layer.borderWidth= 1.0f;
 
     [finishButton mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
-        make.top.equalTo(password2.mas_bottom).with.offset(30);
+        make.top.equalTo(self.view.mas_top).with.offset(195*autoSizeScaleY);
         make.left.equalTo(self.view.mas_left).with.offset(10);
         make.right.equalTo(self.view.mas_right).with.offset(-10);
         make.height.mas_equalTo(42*autoSizeScaleY);
@@ -134,6 +134,21 @@ password2.layer.borderWidth= 1.0f;
 
 
 }
+
+//textfield被改变
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (password.text.length>0 && password2.text.length>0) {
+        finishButton.userInteractionEnabled = YES;
+        [finishButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }else{
+        finishButton.userInteractionEnabled = NO;
+        [finishButton setTitleColor:[UIColor colorWithRed:194.0/255.0 green:224.0/255.0 blue:239.0/255.0 alpha:1]forState:UIControlStateNormal];
+        
+    }
+    return YES;
+}
+
 
 -(void)finish
 {
@@ -169,7 +184,7 @@ password2.layer.borderWidth= 1.0f;
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = MDPath;
     model.methodNum = 10108;
-    NSString * parameter=[NSString stringWithFormat:@"%@@`%@@`%@",self.phone,password,self.auth_code];
+    NSString * parameter=[NSString stringWithFormat:@"%@@`%@@`%@",self.phone,password.text,self.auth_code];
     model.parameter = parameter;
     model.delegate = self;
     [model starRequest];
@@ -197,14 +212,14 @@ password2.layer.borderWidth= 1.0f;
     
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if ([alertView.title isEqualToString:@"密码更新成功"]) {
         [alertView removeFromSuperview];
         BRSlogInViewController * loginVC = [[BRSlogInViewController alloc] init];
         [self.navigationController pushViewController:loginVC animated:YES];
     }
- 
+
 }
 
 /*
