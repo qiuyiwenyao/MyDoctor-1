@@ -33,7 +33,7 @@
 }
 -(void)DataArray
 {
-    _dataArray=[[NSMutableArray alloc] initWithObjects:@"修改密码",@"版本信息",@"关于e+康", nil];
+    _dataArray=[[NSMutableArray alloc] initWithObjects:@"修改密码", nil];
 }
 -(void)TableView
 {
@@ -58,18 +58,18 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];;
     }
 
-    if (indexPath.row == 1) {
-        NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-        NSString *ver = [NSString stringWithFormat:@"%@(%@)",@"版本信息", [infoDictionary objectForKey:@"CFBundleShortVersionString"]];
-        CGSize sz = [ver sizeWithFont:[UIFont systemFontOfSize:(15*autoSizeScaleX)] constrainedToSize:CGSizeMake(MAXFLOAT, 40)];
-        cell.textLabel.text = ver;
-        
-    }
-    if (indexPath.row!=1) {
+//    if (indexPath.row == 1) {
+//        NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+//        NSString *ver = [NSString stringWithFormat:@"%@(%@)",@"版本信息", [infoDictionary objectForKey:@"CFBundleShortVersionString"]];
+//        CGSize sz = [ver sizeWithFont:[UIFont systemFontOfSize:(15*autoSizeScaleX)] constrainedToSize:CGSizeMake(MAXFLOAT, 40)];
+//        cell.textLabel.text = ver;
+//        
+//    }
+//    if (indexPath.row!=1) {
         [[cell textLabel]  setText:[_dataArray objectAtIndex:indexPath.row]];
         cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
 
-    }
+//    }
     cell.textLabel.font=[UIFont boldSystemFontOfSize:(15*autoSizeScaleX)];
     
     UIView * view=[[UIView alloc] initWithFrame:CGRectMake(0,39*autoSizeScaleY, appWidth, 1)];
@@ -173,7 +173,7 @@
     [self.view addSubview:button];
     [button mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
-        make.top.equalTo(self.view.mas_top).with.offset(240*autoSizeScaleY);
+        make.top.equalTo(self.view.mas_top).with.offset(110*autoSizeScaleY);
         make.left.equalTo(self.view.mas_left).with.offset(10);
         make.right.equalTo(self.view.mas_right).with.offset(-10);
         make.height.mas_equalTo(40*autoSizeScaleY);
