@@ -20,9 +20,11 @@
 #import "MDHomeCell1.h"
 #import "MDDoctorServiceViewController.h"
 #import "EaseMob.h"
+#import "MDRequestModel.h"
+#import "MDADViewController.h"
 
 
-@interface MDHomeViewController ()<UITableViewDataSource,UITableViewDelegate,UIViewControllerPreviewingDelegate>
+@interface MDHomeViewController ()<UITableViewDataSource,UITableViewDelegate,UIViewControllerPreviewingDelegate,sendInfoToCtr>
 {
     UITableView * _tableView;
     NSMutableArray * _listArray;
@@ -30,6 +32,7 @@
     UIView * _headerView;
     MDSmallADView * _smallADView;
     BOOL isNewMessage;
+    NSMutableArray * ADList;
 
 }
 
@@ -63,16 +66,21 @@
     
     [self createHeadView];
     
+    [self requestTopData];
+    
        //通知按钮点击
     [self.rightBtn addTarget:self action:@selector(noticeClick) forControlEvents:UIControlEventTouchUpInside];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newMessage:) name:@"newMessage" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToADVC:) name:@"jumpToADVC" object:nil];
     
 }
 
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"newMessage" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"jumpToADVC" object:nil];
 
 }
 
@@ -107,6 +115,15 @@
     
     NSLog(@"%@",_messageArr);
     
+}
+
+-(void)jumpToADVC:(NSNotification *)notif
+{
+    NSString * url = [notif object];
+    MDADViewController * adVC = [[MDADViewController alloc] init];
+    adVC.url = url;
+    adVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:adVC animated:YES];
 }
 
 //通知按钮点击
@@ -174,9 +191,8 @@
     };
     
     _smallADView = [[MDSmallADView alloc] initWithFrame:CGRectMake(0, 0, appWidth, 30)];
-    _smallADView.adTitleArray = @[@"12月大促药店选择鸿康健药店，100%正品",@"e＋康服务到家,健康生活在你家",@"国家药监局认证，一站式网上购药"];
-    [_smallADView setText];
-
+    
+    
     _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, appWidth, _adView.height+_smallADView.height)];
     
     [_headerView addSubview:_smallADView];
@@ -185,6 +201,44 @@
     _tableView.tableHeaderView = _headerView;
     [_tableView sendSubviewToBack:_headerView];
 }
+
+//设置顶部广告文字
+-(void)setTopADText
+{
+    NSMutableArray * textArr = [[NSMutableArray alloc] init];
+    NSMutableArray * urlArr = [[NSMutableArray alloc] init];
+    for (NSDictionary * dic in ADList) {
+        NSString * text = [dic objectForKey:@"Remark"];
+        NSString * url = [dic objectForKey:@"Url"];
+        [textArr addObject:text];
+        [urlArr addObject:url];
+    }
+    _smallADView.adTitleArray = textArr;
+    _smallADView.ADURL = urlArr;
+    [_smallADView setText];
+}
+
+-(void)requestTopData
+{
+    MDRequestModel * model = [[MDRequestModel alloc] init];
+    model.methodNum = 10902;
+    model.delegate = self;
+    model.path = MDPath;
+    NSString * userId = [MDUserVO userVO].userID;
+    model.parameter = userId;
+    [model starRequest];
+}
+#pragma mark sendInfoToCtr
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
+{
+    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+//    ADList = [[NSMutableArray alloc] init];
+    NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+    ADList = [[NSMutableArray alloc] initWithArray:[dictionary objectForKey:@"obj"]];
+    [self setTopADText];
+}
+
+
 
 #pragma mark UITableViewDelegate协议方法
 

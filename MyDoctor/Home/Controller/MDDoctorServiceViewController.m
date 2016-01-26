@@ -14,7 +14,10 @@
 #import "MDRequestModel.h"
 #import "UIImageView+WebCache.h"
 #import "MDHomeViewController.h"
-
+#import "FileUtils.h"
+#import "DocPatientSQL.h"
+#import "DocPatientModel.h"
+#define IMAGECACHE  @"PatientsIMAGE/"
 
 @interface MDDoctorServiceViewController ()<UITableViewDataSource,UITableViewDelegate,sendInfoToCtr>
 {
@@ -38,7 +41,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    DocPatientSQL * docPation = [[DocPatientSQL alloc] init];
+    [docPation createAttachmentsDBTableWithPatient];
     _messageArr = [[NSMutableArray alloc] initWithArray:_messageList];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -251,29 +255,47 @@
     NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
     NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
     NSDictionary * dic1 = [dic objectForKey:@"obj"];
-
     NSMutableArray * arr1 = [[NSMutableArray alloc] init];
     NSMutableArray * arr2 = [[NSMutableArray alloc] init];
-
+   
+    MDDocModel * model;
     for (NSDictionary * dic in [dic1 objectForKey:@"list2"]) {
-        MDDocModel * model = [[MDDocModel alloc] init];
+         model= [[MDDocModel alloc] init];
         [model setValuesForKeysWithDictionary:dic];
         [arr1 addObject:model];
+        DocPatientModel * patientModel = [[DocPatientModel alloc] init];
+        patientModel.Name = model.RealName;
+        patientModel.phone =model.Phone;
+        patientModel.ImagePath = [NSString stringWithFormat:@"/Library/Caches/PatientsIMAGE/%@.png",model.HxName];
+        UIImageView * imageV=[[UIImageView alloc] init];
+        [imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,model.Photo]]];
+        UIImage *headImg = imageV.image;
+            FileUtils * fileUtil = [FileUtils sharedFileUtils];
+            NSString * path2 = [fileUtil createCachePath:IMAGECACHE];
+            NSString *uniquePath=[path2 stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",model.HxName]];
+            [UIImagePNGRepresentation(headImg)writeToFile: uniquePath atomically:YES];
     }
     
     for (NSDictionary * dic in [dic1 objectForKey:@"list1"]) {
-        MDDocModel * model = [[MDDocModel alloc] init];
+        model = [[MDDocModel alloc] init];
         [model setValuesForKeysWithDictionary:dic];
         [arr2 addObject:model];
+        DocPatientModel * patientModel = [[DocPatientModel alloc] init];
+        patientModel.Name = model.RealName;
+        patientModel.phone =model.Phone;
+        patientModel.ImagePath = [NSString stringWithFormat:@"/Library/Caches/PatientsIMAGE/%@.png",model.HxName];
+        UIImageView * imageV=[[UIImageView alloc] init];
+        [imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,model.Photo]]];
+        UIImage *headImg = imageV.image;
+        FileUtils * fileUtil = [FileUtils sharedFileUtils];
+        NSString * path2 = [fileUtil createCachePath:IMAGECACHE];
+        NSString *uniquePath=[path2 stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",model.HxName]];
+        [UIImagePNGRepresentation(headImg)writeToFile: uniquePath atomically:YES];
     }
     
     [_dataSource addObject:arr1];
     [_dataSource addObject:arr2];
-        
     [_tableView reloadData];
-    
-    
-    
 }
 
 #pragma mark - UITableViewDelegate

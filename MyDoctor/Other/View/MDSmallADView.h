@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MDSmallADView : UIView
+@interface MDSmallADView : UIView<UIGestureRecognizerDelegate>
 {
     CGFloat _adMoveTime;
 
@@ -16,7 +16,7 @@
 
 @property (retain,nonatomic) NSArray * adTitleArray;
 @property (retain,nonatomic,readonly) UIScrollView * adScrollView;
-@property (retain,nonatomic) NSArray * imageLinkURL;
+@property (retain,nonatomic) NSArray * ADURL;
 
 -(void)setText;
 

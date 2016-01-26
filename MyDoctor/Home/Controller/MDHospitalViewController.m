@@ -12,6 +12,7 @@
 #import "EaseMob.h"
 #import "MainViewController.h"
 #import "MDRequestModel.h"
+#import "UIImageView+WebCache.h"
 
 @interface MDHospitalViewController ()<UIAlertViewDelegate,sendInfoToCtr>
 
@@ -60,7 +61,9 @@
 
     
     UIImageView * headView = [[UIImageView alloc] initWithFrame:CGRectMake(20, topView.height/2-40, 80, 80)];
-    headView.image = [UIImage imageNamed:@"默认头像"];
+//    headView.image = [UIImage imageNamed:@"默认头像"];
+    [headView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,_docInfo.Photo]] placeholderImage:[UIImage imageNamed:@"专家头像"]];
+
     [topView addSubview:headView];
     
     UILabel * nameLab = [[UILabel alloc] initWithFrame:CGRectMake(headView.x+headView.width+20, 30, 60, 20)];

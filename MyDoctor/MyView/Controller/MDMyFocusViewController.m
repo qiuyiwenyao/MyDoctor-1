@@ -12,6 +12,7 @@
 #import "MDDoctorServiceCell.h"
 #import "MDHospitalViewController.h"
 #import "UIPopoverListView.h"
+#import "UIImageView+WebCache.h"
 
 @interface MDMyFocusViewController ()<UITableViewDataSource,UITableViewDelegate,sendInfoToCtr,UIPopoverListViewDataSource,UIPopoverListViewDelegate>
 
@@ -79,12 +80,16 @@
 
 -(void)createView
 {
-    UIButton * titleButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 20, 120, 20)];
+    UIButton * titleButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 20, 200, 20)];
     titleButton.tag = 11;
     [titleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     titleButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
 //    titleButton.backgroundColor = [UIColor redColor];
-    [titleButton setTitle:@"我的关注" forState:UIControlStateNormal];
+    [titleButton setTitle:@"我关注的医生   " forState:UIControlStateNormal];
+    [titleButton setImage:[UIImage imageNamed:@"箭头2"] forState:UIControlStateNormal];
+    [titleButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -25, 0, 25)];
+    [titleButton setImageEdgeInsets:UIEdgeInsetsMake(0, 123, 0, 0)];
+
     [titleButton addTarget:self action:@selector(selectBtn:) forControlEvents:UIControlEventTouchUpInside];
 //    self.navigationController.navigationItem.titleView = titleButton;
     self.navigationItem.titleView = titleButton;
@@ -118,7 +123,7 @@
 #pragma mark - sendInfoToCtr请求数据回调
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
     NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
     _dataSource = [[NSMutableArray alloc] init];
     for (NSDictionary * dic in [dictionary objectForKey:@"obj"]) {
@@ -164,8 +169,11 @@
     cell.nameLab.text = model.RealName;
     cell.hospitalLab.text = model.HospitalName;
     cell.majorLab.text = model.Detail;
+    cell.unReadView.hidden = YES;
     cell.branchLab.text  =model.Department;
     cell.headView.layer.cornerRadius = cell.headView.height/2;
+    [cell.headView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,model.Photo]] placeholderImage:[UIImage imageNamed:@"专家头像"]];
+
     
     return cell;
 }
@@ -209,9 +217,9 @@
     long row = indexPath.row;
     
     if(row == 0){
-        cell.textLabel.text = @"我关注的医生";
+        cell.textLabel.text = @"我关注的医生  ";
     }else if (row == 1){
-        cell.textLabel.text = @"我关注的专家";
+        cell.textLabel.text = @"我关注的专家   ";
     }
     return cell;
 }
@@ -231,12 +239,12 @@
 
     if (indexPath.row == 0) {
         _docType = 1;
-        [button setTitle:@"我关注的医生" forState:UIControlStateNormal];
+        [button setTitle:@"我关注的医生   " forState:UIControlStateNormal];
     }
     else if (indexPath.row == 1)
     {
         _docType = 2;
-        [button setTitle:@"我关注的专家" forState:UIControlStateNormal];
+        [button setTitle:@"我关注的专家   " forState:UIControlStateNormal];
     }
     [self requestData];
 

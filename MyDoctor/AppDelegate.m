@@ -172,7 +172,6 @@
     normalImage = [UIImage imageNamed:@"serviceback"];
     selectImage = [UIImage imageNamed:@"service"];
     serviceNav.tabBarItem=[[UITabBarItem alloc] initWithTitle:@"服务记录" image:[normalImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[selectImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-    
     my=[[MDMyViewController alloc] init];
     myNav = [[UINavigationController alloc] initWithRootViewController:my];
     normalImage = [UIImage imageNamed:@"myback"];

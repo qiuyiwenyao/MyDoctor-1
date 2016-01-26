@@ -58,7 +58,7 @@
     NSLog(@"%@",parameters);
     //参数加密
     parameters = [self GTMEncodeTest:parameters];
-
+    NSLog(@"yi%@",parameters);
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     session.responseSerializer=[AFHTTPResponseSerializer serializer];
 //    [session POST:self.path parameters:@{@"b":parameters} success:^(NSURLSessionDataTask *task, id responseObject) {

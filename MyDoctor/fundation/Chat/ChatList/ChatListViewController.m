@@ -121,7 +121,7 @@
     //    [model starRequest];
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = MDPath;
-    model.methodNum = 10109;
+    model.methodNum = 10110;
     //    NSLog(@"===%@",_chatID);
     NSString * parameter = chatId;
     model.delegate = self;
@@ -753,7 +753,7 @@
         i++;
         
     }
-    [self getNickNameAndPhotoWithChatID:_chatIDs];
+//    [self getNickNameAndPhotoWithChatID:_chatIDs];
     NSLog(@"~~~~~~~~%@",_chatIDs);
 //    [_tableView reloadData];
     [self hideHud];

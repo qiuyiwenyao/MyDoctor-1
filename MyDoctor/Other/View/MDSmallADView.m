@@ -59,6 +59,12 @@
                     label.textColor  =[UIColor grayColor];
         label.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.5];
         label.font = [UIFont systemFontOfSize:15];
+        label.userInteractionEnabled = YES;
+        label.tag = 10 + i;
+        
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+        tap.delegate = self;
+        [label addGestureRecognizer:tap];
         
         [_adScrollView addSubview:label];
                     
@@ -70,6 +76,18 @@
     
 [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(animalMoveImage:) userInfo:nil repeats:YES];
 
+}
+
+-(void)tap:(UIGestureRecognizer *)gesture
+{
+    UILabel * lab = (UILabel *)gesture.view;
+    NSLog(@"%@",lab.text);
+    
+    NSInteger textIndex = lab.tag - 10;
+    NSString * url = self.ADURL[textIndex];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToADVC" object:url];
+
+    NSLog(@"%@",self.ADURL[textIndex]);
 }
 
 #pragma mark - 计时器到时,系统滚动图片

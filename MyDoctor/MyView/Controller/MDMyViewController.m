@@ -292,7 +292,7 @@
 //        myDoctorVC.hidesBottomBarWhenPushed = YES;
 //        [self.navigationController pushViewController:myDoctorVC animated:YES];
         MDMyFocusViewController * myFocusVC = [[MDMyFocusViewController alloc] init];
-        myFocusVC.title  =@"我的关注";
+//        myFocusVC.title  =@"我的关注";
         myFocusVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:myFocusVC animated:YES];
     }

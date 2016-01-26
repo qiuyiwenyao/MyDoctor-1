@@ -608,9 +608,12 @@
 		6ABD0C071C321EF900FEE47F /* 问药@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABD0C031C321EF900FEE47F /* 问药@3x.png */; };
 		6ABD0C081C321EF900FEE47F /* 询医@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABD0C041C321EF900FEE47F /* 询医@3x.png */; };
 		6ABD0C091C321EF900FEE47F /* 照护@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABD0C051C321EF900FEE47F /* 照护@3x.png */; };
+		6AC8AD161C571E5600EAE772 /* MDADViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC8AD151C571E5600EAE772 /* MDADViewController.m */; };
 		6AD872511C48988700299413 /* passwordImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD872501C48988700299413 /* passwordImage@2x.png */; };
 		6AE2EBF21C506F3B00AA4D51 /* MDForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE2EBF11C506F3B00AA4D51 /* MDForgetViewController.m */; };
 		6AE2EBF51C50728B00AA4D51 /* MDResetPsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE2EBF41C50728B00AA4D51 /* MDResetPsdViewController.m */; };
+		6AE2EBFD1C55F61B00AA4D51 /* 箭头2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE2EBFC1C55F61B00AA4D51 /* 箭头2@2x.png */; };
+		6AE2EBFF1C55F62100AA4D51 /* 箭头2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE2EBFE1C55F62100AA4D51 /* 箭头2@3x.png */; };
 		6AF2021F1C083F4000933EAF /* activityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2021D1C083F4000933EAF /* activityCell.m */; };
 		6AF202201C083F4000933EAF /* activityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF2021E1C083F4000933EAF /* activityCell.xib */; };
 		6AF202271C08498100933EAF /* MDExpertConsultationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF202261C08498100933EAF /* MDExpertConsultationViewController.m */; };
@@ -1618,11 +1621,15 @@
 		6ABD0C031C321EF900FEE47F /* 问药@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "问药@3x.png"; sourceTree = "<group>"; };
 		6ABD0C041C321EF900FEE47F /* 询医@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "询医@3x.png"; sourceTree = "<group>"; };
 		6ABD0C051C321EF900FEE47F /* 照护@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "照护@3x.png"; sourceTree = "<group>"; };
+		6AC8AD141C571E5600EAE772 /* MDADViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDADViewController.h; sourceTree = "<group>"; };
+		6AC8AD151C571E5600EAE772 /* MDADViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDADViewController.m; sourceTree = "<group>"; };
 		6AD872501C48988700299413 /* passwordImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "passwordImage@2x.png"; sourceTree = "<group>"; };
 		6AE2EBF01C506F3B00AA4D51 /* MDForgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDForgetViewController.h; sourceTree = "<group>"; };
 		6AE2EBF11C506F3B00AA4D51 /* MDForgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDForgetViewController.m; sourceTree = "<group>"; };
 		6AE2EBF31C50728B00AA4D51 /* MDResetPsdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDResetPsdViewController.h; sourceTree = "<group>"; };
 		6AE2EBF41C50728B00AA4D51 /* MDResetPsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDResetPsdViewController.m; sourceTree = "<group>"; };
+		6AE2EBFC1C55F61B00AA4D51 /* 箭头2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "箭头2@2x.png"; sourceTree = "<group>"; };
+		6AE2EBFE1C55F62100AA4D51 /* 箭头2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "箭头2@3x.png"; sourceTree = "<group>"; };
 		6AF2021C1C083F4000933EAF /* activityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = activityCell.h; path = Home/View/activityCell.h; sourceTree = "<group>"; };
 		6AF2021D1C083F4000933EAF /* activityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = activityCell.m; path = Home/View/activityCell.m; sourceTree = "<group>"; };
 		6AF2021E1C083F4000933EAF /* activityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = activityCell.xib; path = Home/View/activityCell.xib; sourceTree = "<group>"; };
@@ -1878,6 +1885,7 @@
 		153ED8111C08022E00171DFA /* 2x */ = {
 			isa = PBXGroup;
 			children = (
+				6AE2EBFC1C55F61B00AA4D51 /* 箭头2@2x.png */,
 				1572ABB31C4F360A0088DC90 /* 设置@2x.png */,
 				1572ABB41C4F360A0088DC90 /* 通知@2x.png */,
 				1572ABA11C4F33EE0088DC90 /* 上门体检@2x.png */,
@@ -1933,6 +1941,7 @@
 		153ED81A1C08022E00171DFA /* 3x */ = {
 			isa = PBXGroup;
 			children = (
+				6AE2EBFE1C55F62100AA4D51 /* 箭头2@3x.png */,
 				1572ABB71C4F361C0088DC90 /* 设置@3x.png */,
 				1572ABB81C4F361C0088DC90 /* 通知@3x.png */,
 				1572ABA91C4F33FE0088DC90 /* 上门体检@3x.png */,
@@ -2712,6 +2721,8 @@
 				6AB9B6871C2B8A9D004BF6A7 /* MDDoctorServiceViewController.m */,
 				6AB9B68E1C2BA47C004BF6A7 /* MDMoreDocViewController.h */,
 				6AB9B68F1C2BA47C004BF6A7 /* MDMoreDocViewController.m */,
+				6AC8AD141C571E5600EAE772 /* MDADViewController.h */,
+				6AC8AD151C571E5600EAE772 /* MDADViewController.m */,
 				153ED8591C0BF74D00171DFA /* Drug(药品) */,
 				6A3EF8061C05A20400923D03 /* MDNurseViewController.h */,
 				6A3EF8071C05A20400923D03 /* MDNurseViewController.m */,
@@ -3915,6 +3926,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AE2EBFD1C55F61B00AA4D51 /* 箭头2@2x.png in Resources */,
 				6ABD0C081C321EF900FEE47F /* 询医@3x.png in Resources */,
 				6AB9B1341C2013D0004BF6A7 /* 123.jpg in Resources */,
 				6AF2023F1C0B471B00933EAF /* topImg1@3x.png in Resources */,
@@ -4127,6 +4139,7 @@
 				6AB9BCF41C2BED12004BF6A7 /* chat_receiver_audio_playing003.png in Resources */,
 				6AB9BCC21C2BECF1004BF6A7 /* chatBar_colorMore_photo@2x.png in Resources */,
 				6AB9BD051C2BED22004BF6A7 /* chat_sender_audio_playing_000@2x.png in Resources */,
+				6AE2EBFF1C55F62100AA4D51 /* 箭头2@3x.png in Resources */,
 				6AB9BBD81C2BEA0E004BF6A7 /* VoiceSearchFeedback002.png in Resources */,
 				6A3EF7B51C054E2C00923D03 /* feedback@2x.png in Resources */,
 				153ED8261C08022E00171DFA /* 男性@2x.png in Resources */,
@@ -4264,6 +4277,7 @@
 				6AB9BADC1C2BE348004BF6A7 /* PSTGridLayoutRow.m in Sources */,
 				6AB9BAB11C2BE32C004BF6A7 /* UIImage+EMWebP.m in Sources */,
 				1590497D1C06A71000EE51FB /* BRSEndSignlnViewController.m in Sources */,
+				6AC8AD161C571E5600EAE772 /* MDADViewController.m in Sources */,
 				6A3EF8441C05BAFE00923D03 /* MDServiceTableViewCell.m in Sources */,
 				15FBDD6A1C1908B2009E7E39 /* MDDataViewController.m in Sources */,
 				15800F8A1C4C783500FCB87B /* EditNicknameViewController.m in Sources */,
@@ -4649,7 +4663,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = SaBaiNuo.MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a97813bf-8ffd-4f8d-8a62-48fbe427f52d";
+				PROVISIONING_PROFILE = "59a96df7-eab1-4ea2-8c2b-8c1ad1576998";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "ad hoc distribution";
@@ -4796,7 +4810,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = SaBaiNuo.MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a97813bf-8ffd-4f8d-8a62-48fbe427f52d";
+				PROVISIONING_PROFILE = "59a96df7-eab1-4ea2-8c2b-8c1ad1576998";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4831,7 +4845,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = SaBaiNuo.MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a97813bf-8ffd-4f8d-8a62-48fbe427f52d";
+				PROVISIONING_PROFILE = "59a96df7-eab1-4ea2-8c2b-8c1ad1576998";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
