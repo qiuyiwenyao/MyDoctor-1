@@ -7,7 +7,10 @@
 //
 
 #import "MDNurseRootViewController.h"
+#import "MDnoticeCenterModel.h"
 
 @interface MDNoticeDetailViewController : MDNurseRootViewController
+
+@property (nonatomic,strong) MDnoticeCenterModel * noticeDetail;
 
 @end

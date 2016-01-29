@@ -16,8 +16,9 @@
 #import "MDRequestModel.h"
 #import "MDUserVO.h"
 #import "MDConsultDrugModel.h"
+#import "MDADViewController.h"
 
-@interface MDConsultDrupViewController ()<sendInfoToCtr>
+@interface MDConsultDrupViewController ()<sendInfoToCtr,UIGestureRecognizerDelegate>
 
 @end
 
@@ -27,6 +28,7 @@
     UITableView *_tableView;
     UIView * backView;
     NSMutableArray * amedicineArray;
+    NSMutableArray * ADList;
     
 }
 - (void)viewDidLoad
@@ -40,7 +42,7 @@
     //返回按钮点击
     [self.leftBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self searchview];
-    
+
     
 }
 
@@ -54,8 +56,29 @@
     model.parameter = parameter;
     model.delegate = self;
     [model starRequest];
-    
-    
+}
+
+//请求底部广告数据
+-(void)requestADData
+{
+    MDRequestModel * model = [[MDRequestModel alloc] init];
+
+    model.methodNum = 10902;
+    model.delegate = self;
+    model.path = MDPath;
+    NSString * type = @"adwenyao";
+    NSString * userId;
+    if (userId) {
+        userId = [MDUserVO userVO].userID;
+        
+    }
+    else
+    {
+        userId = @"0";
+    }
+    model.parameter = [NSString stringWithFormat:@"%@@`%@",userId,type];
+    [model starRequest];
+
 }
 //请求数据回调
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
@@ -63,28 +86,32 @@
     //回馈数据
     
     NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    NSLog(@"%@",[dic objectForKey:@"success"]);
-    
-    if ([dic objectForKey:@"success"]) {
-        
-        NSArray * array=[[NSArray alloc] init];
-        array=[dic objectForKey:@"obj"];
-        for (int i =0; i<[array count]; i++) {
-            NSDictionary * type=[[NSDictionary alloc] init];
-            type=array[i];
-            MDConsultDrugModel * consult=[[MDConsultDrugModel alloc] init];
-            consult.DrugTypeId=[type objectForKey:@"ID"];
-            consult.TypeName=[type objectForKey:@"CategaryName"];
+    if (num == 10302) {
+        if ([dic objectForKey:@"success"]) {
             
-            [amedicineArray addObject:consult];
+            NSArray * array=[[NSArray alloc] init];
+            array=[dic objectForKey:@"obj"];
+            for (int i =0; i<[array count]; i++) {
+                NSDictionary * type=[[NSDictionary alloc] init];
+                type=array[i];
+                MDConsultDrugModel * consult=[[MDConsultDrugModel alloc] init];
+                consult.DrugTypeId=[type objectForKey:@"ID"];
+                consult.TypeName=[type objectForKey:@"CategaryName"];
+                
+                [amedicineArray addObject:consult];
+            }
+            
         }
         
+        [self medicineButton];
+    }
+    else if (num == 10902)
+    {
+        ADList = [[NSMutableArray alloc] initWithArray:[dic objectForKey:@"obj"]];
+        [self createADView];
     }
     
-    [self medicineButton];
 }
-
-
 
 -(void)searchview{
     mySearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, appWidth, 40)];
@@ -142,27 +169,45 @@
             
         }
     }
-    [self createADView];
+    [self requestADData];
 
 }
 
 //下方滚动广告位
 -(void)createADView
 {
-    NSLog(@"%lu",(unsigned long)amedicineArray.count);
+    
+    NSMutableArray * textArr = [[NSMutableArray alloc] init];
+    NSMutableArray * urlArr = [[NSMutableArray alloc] init];
+    for (NSDictionary * dic in ADList) {
+        NSString * text = [dic objectForKey:@"Remark"];
+        NSString * url = [dic objectForKey:@"Url"];
+        [textArr addObject:text];
+        [urlArr addObject:url];
+    }
+
     UIButton * bottonBtn = (UIButton *)[self.view viewWithTag:amedicineArray.count - 2];
     MDSmallADView * adView = [[MDSmallADView alloc] initWithFrame:CGRectMake(0, 0, appWidth, 50)];
-    adView.adTitleArray = @[@"12月大促药店选择鸿康健药店，100%正品",@"e＋康服务到家,健康生活在你家",@"国家药监局认证，一站式网上购药"];
-    [adView setText];
-    
     [self.view addSubview:adView];
     
     [adView mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.top.equalTo(bottonBtn.mas_bottom).with.offset(10);
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
+        make.height.equalTo(@(50));
     }];
+    adView.adTitleArray = textArr;
+    adView.ADURL = urlArr;
+    NSLog(@"%@",urlArr);
+    [adView setText];
+    
+//    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
+//    tap.delegate = self;
+//    [adView addGestureRecognizer:tap];
+    
+    
 }
+
 
 
 -(void)medicineButton:(UIButton *)button
@@ -174,6 +219,7 @@
     drugTable.hidesBottomBarWhenPushed=YES;
     [self.navigationController pushViewController:drugTable animated:YES];
 }
+
 
 -(void)backBtnClick
 {

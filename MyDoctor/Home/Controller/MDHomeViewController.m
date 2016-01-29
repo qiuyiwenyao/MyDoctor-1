@@ -33,6 +33,7 @@
     MDSmallADView * _smallADView;
     BOOL isNewMessage;
     NSMutableArray * ADList;
+    NSMutableArray * ADPic;
 
 }
 
@@ -62,11 +63,18 @@
     [self setNavigationBarWithrightBtn:@"通知" leftBtn:nil];
     self.automaticallyAdjustsScrollViewInsets = YES;
     
-    [self createView];
+    
     
     [self createHeadView];
+
     
-    [self requestTopData];
+    [self createView];
+    
+    [self requestADPicture];//请求滚动图片
+    
+    [self requestTopData];//请求顶部文字广告
+    
+   
     
        //通知按钮点击
     [self.rightBtn addTarget:self action:@selector(noticeClick) forControlEvents:UIControlEventTouchUpInside];
@@ -167,8 +175,18 @@
 
 -(void)createHeadView
 {
-    NSArray *imagesURL = @[@"topImg1@2x.png",@"topImg2.jpg",@"topImg@2x.png"];
-    _adView = [AdView adScrollViewWithFrame:CGRectMake(0, 30, appWidth, appWidth * 0.42) localImageLinkURL:imagesURL  pageControlShowStyle:UIPageControlShowStyleRight];
+//    NSMutableArray * PicArr = [[NSMutableArray alloc] init];
+//    NSMutableArray * urlArr = [[NSMutableArray alloc] init];
+//    for (NSDictionary * dic in ADPic) {
+//        NSString * pic = [dic objectForKey:@"Pic"];
+//        NSString * url = [dic objectForKey:@"Url"];
+//        [urlArr addObject:url];
+//        [PicArr addObject:pic];
+//    }
+    
+    _adView = [[AdView alloc] initWithFrame:CGRectMake(0, 30, appWidth, appWidth*0.42)];
+    
+//    _adView = [AdView adScrollViewWithFrame:CGRectMake(0, 30, appWidth, appWidth * 0.42) imageLinkURL:PicArr placeHoderImageName:nil pageControlShowStyle:UIPageControlShowStyleRight];
     
     //    是否需要支持定时循环滚动，默认为YES
 //        _adView.isNeedCycleRoll = YES;
@@ -184,11 +202,7 @@
     //    设置图片滚动时间,默认3s
     _adView.adMoveTime = 3.0;
     
-    //图片被点击后回调的方法
-    _adView.callBack = ^(NSInteger index,NSString * imageURL)
-    {
-//        NSLog(@"被点中图片的索引:%ld---地址:%@",(long)index,imageURL);
-    };
+   
     
     _smallADView = [[MDSmallADView alloc] initWithFrame:CGRectMake(0, 0, appWidth, 30)];
     
@@ -213,9 +227,33 @@
         [textArr addObject:text];
         [urlArr addObject:url];
     }
-    _smallADView.adTitleArray = textArr;
-    _smallADView.ADURL = urlArr;
-    [_smallADView setText];
+        _smallADView.adTitleArray = textArr;
+        _smallADView.ADURL = urlArr;
+        [_smallADView setText];
+
+  
+}
+
+//设置滚动图片
+-(void)setADPic
+{
+    NSMutableArray * PicArr = [[NSMutableArray alloc] init];
+    NSMutableArray * urlArr = [[NSMutableArray alloc] init];
+    for (NSDictionary * dic in ADPic) {
+        NSString * pic = [dic objectForKey:@"Pic"];
+        NSString * url = [dic objectForKey:@"Url"];
+        [urlArr addObject:url];
+        [PicArr addObject:pic];
+    }
+    
+    [_adView setImageLinkURL:PicArr];
+    
+    //图片被点击后回调的方法
+    _adView.callBack = ^(NSInteger index,NSString * imageURL)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToADVC" object:urlArr[index]];
+        
+    };
 }
 
 -(void)requestTopData
@@ -224,18 +262,55 @@
     model.methodNum = 10902;
     model.delegate = self;
     model.path = MDPath;
-    NSString * userId = [MDUserVO userVO].userID;
+    NSString * type = @"adhome";
+    NSString * userId;
+    if (userId) {
+    userId = [MDUserVO userVO].userID;
+
+    }
+    else
+    {
+        userId = @"0";
+    }
+    model.parameter = [NSString stringWithFormat:@"%@@`%@",userId,type];
+    [model starRequest];
+}
+
+-(void)requestADPicture
+{
+    MDRequestModel * model = [[MDRequestModel alloc] init];
+    model.methodNum = 10901;
+    model.delegate = self;
+    model.path = MDPath;
+    NSString * userId;
+    if (userId) {
+        userId = [MDUserVO userVO].userID;
+        
+    }
+    else
+    {
+        userId = @"0";
+    }
     model.parameter = userId;
     [model starRequest];
 }
+
 #pragma mark sendInfoToCtr
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
     NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
 //    ADList = [[NSMutableArray alloc] init];
     NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    ADList = [[NSMutableArray alloc] initWithArray:[dictionary objectForKey:@"obj"]];
-    [self setTopADText];
+    if (num == 10902) {
+        ADList = [[NSMutableArray alloc] initWithArray:[dictionary objectForKey:@"obj"]];
+        [self setTopADText];
+    }
+    else if (num == 10901)
+    {
+        ADPic = [[NSMutableArray alloc] initWithArray:[dictionary objectForKey:@"obj"]];
+        [self setADPic];
+    }
+   
 }
 
 
@@ -245,8 +320,8 @@
 //设置tableHeaderView
 -(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 {
-//    _tableView.tableHeaderView = _headerView;
-//        [_tableView sendSubviewToBack:_headerView];
+    _tableView.tableHeaderView = _headerView;
+        [_tableView sendSubviewToBack:_headerView];
     
 }
 //

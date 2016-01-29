@@ -25,6 +25,7 @@
 @implementation MDnoticeCenterController
 
 //临时数据懒加载
+/*
 -(NSMutableArray *)dataSource
 {
     if (_dataSource == nil) {
@@ -64,6 +65,7 @@
     return _dataSource;
 
 }
+ */
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -102,10 +104,19 @@
 
 }
 
+#pragma mark - sendInfoToCtr
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
-//    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+    _dataSource = [[NSMutableArray alloc] init];
+    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+    NSArray * obj = [dictionary objectForKey:@"obj"];
+    for (NSDictionary * dic in obj) {
+        MDnoticeCenterModel * model = [[MDnoticeCenterModel alloc] init];
+        [model setValuesForKeysWithDictionary:dic];
+        [_dataSource addObject:model];
+    }
+    [_tableView reloadData];
 //    NSLog(@"%@",dic);
 }
 
@@ -177,7 +188,7 @@
 //        cell.name=service.Namedrug;
 //        cell.number=service.numberDrug;
 //        cell.money=service.moneyDrug;
-        cell.title = model.TiTle;
+        cell.title = model.Title;
         cell.time = model.AddTime;
         cell.detail = [NSString stringWithFormat:@"   %@",model.Content];
     }
@@ -195,8 +206,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MDNoticeDetailViewController * noticeDetailVC = [[MDNoticeDetailViewController alloc] init];
+    MDnoticeCenterModel * model = _dataSource[indexPath.section];
     noticeDetailVC.titleLab = @"通知公告";
     noticeDetailVC.rightDownBtn.hidden = YES;
+    noticeDetailVC.noticeDetail = model;
     
     noticeDetailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:noticeDetailVC animated:YES];

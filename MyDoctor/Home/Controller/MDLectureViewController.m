@@ -7,17 +7,14 @@
 //
 
 #import "MDLectureViewController.h"
-#import "MDRequestModel.h"
 #import "MDLectureModel.h"
+#import "MDRequestModel.h"
 
 
 @interface MDLectureViewController ()<UIAlertViewDelegate,sendInfoToCtr>
 {
     int lectureID;
 }
-
-@property(nonatomic,strong)NSMutableArray *dataSource;
-
 
 @end
 
@@ -39,10 +36,10 @@
     //添加点击事件
     [self.rightDownBtn addTarget:self action:@selector(orderBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
-    [self postRequest];
+//    [self postRequest];
 
     
-//    [self setText];
+    [self setText];
     
     // Do any additional setup after loading the view.
 }
@@ -52,34 +49,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-//开始请求数据
-- (void)postRequest
-{
-    MDRequestModel * model = [[MDRequestModel alloc] init];
-    model.path = MDPath;
-    model.methodNum = 10201;
-    NSString * parameter=@"";
-    model.parameter = parameter;
-    model.delegate = self;
-    [model starRequest];
-}
-
+#pragma mark - sendInfoToCtr
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    if (num == 10201) {
-        _dataSource = [[NSMutableArray alloc] init];
-        NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-        for (NSDictionary * dic in [dictionary objectForKey:@"obj"]) {
-            MDLectureModel * model = [[MDLectureModel alloc] init];
-            [model setValuesForKeysWithDictionary:dic];
-            lectureID = model.id;
-            [_dataSource addObject:model];
-        }
-        
-        [self setText];
-
-    }else if (num == 10202)
-    {
 //        NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
         if ([[dic objectForKey:@"msg"] isEqualToString:@"已经报名"]) {
@@ -92,8 +64,7 @@
             UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"预约失败，请重试" message:nil delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
             [alert show];
         }
-        MDLog(@"%@",[dic objectForKey:@"msg"]);
-    }
+    
 //    MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
     //    healthEducateName": "健康讲座",
 //    "participateInPeople": "接受教育的人群",
@@ -148,12 +119,9 @@
 
 -(void)setText
 {
-    //取出数据模型
-    MDLectureModel * model = _dataSource[0];
-    MDLog(@"%@",_dataSource);
     
     UILabel * startTimeLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, appWidth - 48*2, 0)];
-    startTimeLab.text = [NSString stringWithFormat:@"开始时间:%@",model.starttime];
+    startTimeLab.text = [NSString stringWithFormat:@"开始时间:%@",self.lectureDetail.starttime];
 //    startTimeLab.text = @"开始时间:2015-12-08";
     startTimeLab.textAlignment = NSTextAlignmentLeft;
     startTimeLab.font = [UIFont systemFontOfSize:14];
@@ -163,7 +131,7 @@
     [self.scrollView addSubview:startTimeLab];
     
     UILabel * endTimeLab = [[UILabel alloc] initWithFrame:CGRectMake(0, startTimeLab.y+startTimeLab.height+21, appWidth - 48*2, 0)];
-    endTimeLab.text = [NSString stringWithFormat:@"结束时间:%@",model.endtime];
+    endTimeLab.text = [NSString stringWithFormat:@"结束时间:%@",self.lectureDetail.endtime];
 //    endTimeLab.text = @"结束时间:2015-12-09";
     endTimeLab.textAlignment = NSTextAlignmentLeft;
     endTimeLab.font = [UIFont systemFontOfSize:14];
@@ -173,7 +141,7 @@
     [self.scrollView addSubview:endTimeLab];
     
     UILabel * placeLab = [[UILabel alloc] initWithFrame:CGRectMake(0, endTimeLab.y+endTimeLab.height+21, appWidth - 48*2, 0)];
-    placeLab.text = @"地点: 天津市南开区鞍山西道风湖里11-1-103";
+    placeLab.text = [NSString stringWithFormat:@"地点%@:",self.lectureDetail.addree];
     placeLab.textAlignment = NSTextAlignmentLeft;
     placeLab.font = [UIFont systemFontOfSize:14];
     placeLab.textColor = ColorWithRGB(97, 103, 111, 1);
@@ -182,7 +150,7 @@
     [self.scrollView addSubview:placeLab];
     
     UILabel * detailsLab = [[UILabel alloc] initWithFrame:CGRectMake(0, placeLab.y+placeLab.height+21, appWidth - 48*2, 0)];
-    detailsLab.text = @"内容: 从健康的四大基石（合理膳食、适量运动、戒烟限酒、心理平衡）详细讲解如何保持快乐的心境、老年人常见病的预防保健、用药常识，以及如何适当运动和合理膳食等";
+    detailsLab.text = [NSString stringWithFormat:@"内容 :%@",self.lectureDetail.content];
     detailsLab.textAlignment = NSTextAlignmentLeft;
     detailsLab.font = [UIFont systemFontOfSize:14];
     detailsLab.textColor = ColorWithRGB(97, 103, 111, 1);
@@ -198,7 +166,7 @@
     [self.scrollView addSubview:detailsLab];
     
     UILabel * telLab = [[UILabel alloc] initWithFrame:CGRectMake(0, detailsLab.y+detailsLab.height+21, detailsLab.width, 0)];
-    telLab.text = @"联系电话: 18234092837";
+    telLab.text =[NSString stringWithFormat:@"联系电话%@: ",self.lectureDetail.phone];
     telLab.textAlignment = NSTextAlignmentLeft;
     telLab.font = [UIFont systemFontOfSize:14];
     telLab.textColor = ColorWithRGB(97, 103, 111, 1);
