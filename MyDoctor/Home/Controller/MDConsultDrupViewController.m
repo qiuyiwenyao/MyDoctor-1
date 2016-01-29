@@ -89,6 +89,8 @@
     if (num == 10302) {
         if ([dic objectForKey:@"success"]) {
             
+            NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+            
             NSArray * array=[[NSArray alloc] init];
             array=[dic objectForKey:@"obj"];
             for (int i =0; i<[array count]; i++) {
@@ -155,10 +157,11 @@
             [medicineButton setBackgroundImage:[UIImage imageNamed:@"按钮框"] forState:UIControlStateNormal];
             [medicineButton setBackgroundColor:[UIColor clearColor]];
             [medicineButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            a++;
+           
             if (a==[amedicineArray count]) {
                 break;
             }
+            a++;
             [backView addSubview:medicineButton];
             
             [medicineButton mas_makeConstraints:^(MX_MASConstraintMaker *make) {

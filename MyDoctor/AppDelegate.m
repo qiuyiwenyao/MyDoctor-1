@@ -14,7 +14,9 @@
 #import "EaseMob.h"
 #import "UserProfileManager.h"
 #import "EMCDDeviceManager.h"
-
+#import "FMDB.h"
+#import "DocPatientModel.h"
+#import "DocPatientSQL.h"
 
 @interface AppDelegate ()
 
@@ -315,6 +317,7 @@
 - (void)showNotificationWithMessage:(EMMessage *)message
 {
     EMPushNotificationOptions *options = [[EaseMob sharedInstance].chatManager pushNotificationOptions];
+    options.displayStyle = ePushNotificationDisplayStyle_messageSummary;
     //发送本地推送
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     notification.fireDate = [NSDate date]; //触发通知的时间
@@ -372,7 +375,11 @@
                 title = [NSString stringWithFormat:@"%@(%@)", message.groupSenderName, chatroomName];
             }
         }
+        DocPatientSQL * docPation = [[DocPatientSQL alloc] init];
+        [docPation createAttachmentsDBTableWithPatient];
+        title=[docPation searchDataWithHxName:title];
         
+        //此处设置环信推送显示对方的昵称
         notification.alertBody = [NSString stringWithFormat:@"%@:%@", title, messageStr];
     }
     else{
@@ -425,4 +432,5 @@
     
     return ret;
 }
+
 @end

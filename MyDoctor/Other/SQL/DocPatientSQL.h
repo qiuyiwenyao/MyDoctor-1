@@ -13,6 +13,6 @@
 -(void)createAttachmentsDBTableWithPatient;
 -(void)updatePopAttachmentsDBTable:(NSArray *)attachmentArr;
 -(NSArray *)getAttachmentswithMailPhone:(NSString *)Phone ;
-
+-(NSString *)searchDataWithHxName:(NSString *)HxName;
 
 @end

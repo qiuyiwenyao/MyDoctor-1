@@ -125,6 +125,8 @@
                 //
                 //设置是否自动登录
                 [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+                //设置推送昵称
+                [[EaseMob sharedInstance].chatManager setApnsNickname:logInField.text];
             }
         } onQueue:nil];
         

@@ -41,8 +41,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    DocPatientSQL * docPation = [[DocPatientSQL alloc] init];
-    [docPation createAttachmentsDBTableWithPatient];
+    
     _messageArr = [[NSMutableArray alloc] initWithArray:_messageList];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -249,6 +248,8 @@
 #pragma mark - sendInfoToCtr 请求数据回调
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
+    DocPatientSQL * docPation = [[DocPatientSQL alloc] init];
+    [docPation createAttachmentsDBTableWithPatient];
     _dataSource = [[NSMutableArray alloc] init];
     
 //    MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
@@ -263,10 +264,15 @@
          model= [[MDDocModel alloc] init];
         [model setValuesForKeysWithDictionary:dic];
         [arr1 addObject:model];
+        NSMutableArray * array=[[NSMutableArray alloc] init];
         DocPatientModel * patientModel = [[DocPatientModel alloc] init];
         patientModel.Name = model.RealName;
         patientModel.phone =model.Phone;
+        patientModel.HxName = model.HxName;
         patientModel.ImagePath = [NSString stringWithFormat:@"/Library/Caches/PatientsIMAGE/%@.png",model.HxName];
+        [array addObject:patientModel];
+        [docPation updatePopAttachmentsDBTable:array];
+        
         UIImageView * imageV=[[UIImageView alloc] init];
         [imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,model.Photo]]];
         UIImage *headImg = imageV.image;
@@ -280,10 +286,15 @@
         model = [[MDDocModel alloc] init];
         [model setValuesForKeysWithDictionary:dic];
         [arr2 addObject:model];
+        
+        NSMutableArray * array=[[NSMutableArray alloc] init];
         DocPatientModel * patientModel = [[DocPatientModel alloc] init];
         patientModel.Name = model.RealName;
         patientModel.phone =model.Phone;
+        patientModel.HxName = model.HxName;
         patientModel.ImagePath = [NSString stringWithFormat:@"/Library/Caches/PatientsIMAGE/%@.png",model.HxName];
+        [array addObject:patientModel];
+        [docPation updatePopAttachmentsDBTable:array];
         UIImageView * imageV=[[UIImageView alloc] init];
         [imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,model.Photo]]];
         UIImage *headImg = imageV.image;

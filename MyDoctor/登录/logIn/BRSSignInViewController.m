@@ -179,7 +179,7 @@
     
 
     
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"验证码" message:@"验证码已发送"  delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil,nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"验证码" message:@"验证码已发送"  delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil,nil];
             //                alert.alertViewStyle=UIAlertViewStylePlainTextInput;
             [alert show];
             myTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(scrollTimer) userInfo:nil repeats:YES];
@@ -209,7 +209,15 @@
     NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
     NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
 //    NSString * msgCode = [dic objectForKey:@"msg"];
-    msgCode = [NSString stringWithString:[dic objectForKey:@"msg"]];
+    if ([[dic objectForKey:@"success"] intValue]==0) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"验证码获取失败，请稍后再试"  delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil,nil];
+        //                alert.alertViewStyle=UIAlertViewStylePlainTextInput;
+        [alert show];
+        
+    }else{
+        msgCode = [NSString stringWithString:[dic objectForKey:@"msg"]];
+    }
     
 }
 
