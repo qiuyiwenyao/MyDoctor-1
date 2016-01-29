@@ -161,7 +161,7 @@
     [_scrollView mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.top.equalTo(titleLab.mas_bottom).with.offset(15);
         make.left.equalTo(_whiteView.mas_left).with.offset(30);
-        make.right.equalTo(_whiteView.mas_right).with.offset(-30);
+        make.right.equalTo(_whiteView.mas_right).with.offset(-27);
         make.bottom.equalTo(_whiteView.mas_bottom).with.offset(0);
 
     }];
@@ -207,7 +207,7 @@
     NSString * userId = [MDUserVO userVO].userID;
     NSString * careInfoName = self.navigationItem.title;
     NSString * careInfoId = [_careInfoIds objectForKey:[NSString stringWithFormat:@"%@",careInfoName]];
-    NSString * note = @"备注";
+    NSString * note = _remarkView.text;
     NSString * address = @"建昌道街";
     
     model.parameter = [NSString stringWithFormat:@"%@@`%@@`%@@`%@@`%@",userId,careInfoId,careInfoName,note,address];

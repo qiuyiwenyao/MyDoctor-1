@@ -7,7 +7,10 @@
 //
 
 #import "MDNurseRootViewController.h"
+#import "MDLectureModel.h"
 
 @interface MDLectureViewController : MDNurseRootViewController
+
+@property (nonatomic,strong) MDLectureModel * lectureDetail;
 
 @end

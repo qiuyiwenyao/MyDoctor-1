@@ -15,5 +15,6 @@
 @property (nonatomic,strong) NSString * titleLab;
 @property (nonatomic,strong) UIButton * leftDownBtn;
 @property (nonatomic,strong) UIButton * rightDownBtn;
+@property (nonatomic,strong) UITextView * remarkView;
 
 @end

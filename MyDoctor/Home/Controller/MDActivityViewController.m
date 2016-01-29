@@ -10,8 +10,10 @@
 #import "activityCell.h"
 #import "MDExpertConsultationViewController.h"
 #import "MDLectureViewController.h"
+#import "MDRequestModel.h"
+#import "MDLectureModel.h"
 
-@interface MDActivityViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface MDActivityViewController ()<UITableViewDataSource,UITableViewDelegate,sendInfoToCtr>
 {
     UITableView * _tableView;
     NSMutableArray * _dataList;
@@ -36,6 +38,8 @@
     [self createHeaderView];
     
     [self createTableView];
+    
+    [self requestData];
     // Do any additional setup after loading the view.
 }
 
@@ -139,6 +143,40 @@
 
 }
 
+-(void)requestData
+{
+    MDRequestModel * model = [[MDRequestModel alloc] init];
+    model.path = MDPath;
+    model.methodNum = 10201;
+    NSString * parameter=@"";
+    model.parameter = parameter;
+    model.delegate = self;
+    [model starRequest];
+}
+
+#pragma mark - sendInfoToCtr
+-(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
+{
+    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    
+    _dataList = [[NSMutableArray alloc] init];
+    
+    MDLectureModel * model = [[MDLectureModel alloc] init];
+    [model setValue:@"神经内科专家进行免费咨询讲座" forKey:@"healthEducateName"];
+    [model setValue:@"2016-02-15 08:00:00" forKey:@"starttime"];
+    [_dataList addObject:model];
+    
+    NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+    NSArray * obj = [dictionary objectForKey:@"obj"];
+    for (NSDictionary * dic in obj) {
+        MDLectureModel * model = [[MDLectureModel alloc] init];
+        [model setValuesForKeysWithDictionary:dic];
+        [_dataList addObject:model];
+    }
+    
+    [_tableView reloadData];
+}
+
 -(void)createTableView
 {
     
@@ -171,7 +209,7 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return _dataList.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -200,15 +238,18 @@
     }
     cell.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.7];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    MDLectureModel * model = _dataList[indexPath.section];
     if (indexPath.section == 0) {
         cell.cellTitleLab.text = @"专家咨询";
-        cell.detailsLab.text = @"神经内科专家进行免费咨询和义诊";
     }
     else if (indexPath.section == 1)
     {
         cell.cellTitleLab.text = @"专题讲座";
-        cell.detailsLab.text = @"医疗保健知识讲座进社区";
+       
     }
+    cell.timeLab.text = model.starttime;
+    
+    cell.detailsLab.text = model.healthEducateName;
 
     return cell;
 }
@@ -223,6 +264,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    MDLectureModel * model = _dataList[indexPath.section];
     if (indexPath.section == 0) {
         MDExpertConsultationViewController * expertVC = [[MDExpertConsultationViewController alloc] init];
         expertVC.hidesBottomBarWhenPushed = YES;
@@ -231,6 +273,7 @@
     else if (indexPath.section == 1)
     {
         MDLectureViewController * lectureVC = [[MDLectureViewController alloc] init];
+        lectureVC.lectureDetail = model;
         lectureVC.titleLab = @"医疗讲座进社区";
         lectureVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:lectureVC animated:YES];
