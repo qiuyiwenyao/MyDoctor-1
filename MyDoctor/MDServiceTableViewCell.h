@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MDConst.h"
 #import "MDRequestModel.h"
-@interface MDServiceTableViewCell : UITableViewCell<UIAlertViewDelegate,sendInfoToCtr,UIAlertViewDelegate>
+@interface MDServiceTableViewCell : UITableViewCell<UIAlertViewDelegate,sendInfoToCtr,UIAlertViewDelegate,UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSString * serviceType;
 @property (nonatomic, strong) NSString * serviceName;
