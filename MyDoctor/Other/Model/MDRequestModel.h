@@ -18,6 +18,7 @@
 @interface MDRequestModel : NSObject<MBProgressHUDDelegate>
 {
     id  response;
+    MBProgressHUD *hud;
 }
 
 @property (nonatomic,copy) NSString * path;
@@ -26,11 +27,13 @@
 
 @property (nonatomic,strong) NSString * parameter;
 
-@property (nonatomic,strong) NSString * hudTitle;
+@property (nonatomic,strong) NSString * hudTitle;//等待文字
 
 @property (nonatomic,assign) int methodNum;
 
 @property (nonatomic,weak) id<sendInfoToCtr>delegate;
+
+@property (nonatomic,assign) BOOL isHideHud;
 
 -(void)starRequest;
 

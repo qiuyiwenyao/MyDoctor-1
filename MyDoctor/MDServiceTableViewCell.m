@@ -186,6 +186,7 @@
     NSString * orderId = [NSString stringWithFormat:@"%d",self.orderId];
     MDRequestModel * model = [[MDRequestModel alloc]init];
     model.path = MDPath;
+    model.isHideHud = YES;
     model.delegate =self;
     model.methodNum = 11002;
     model.parameter = [NSString stringWithFormat:@"%@@`%@",userID,orderId];

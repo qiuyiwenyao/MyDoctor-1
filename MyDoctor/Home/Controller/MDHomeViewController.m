@@ -23,6 +23,7 @@
 #import "MDRequestModel.h"
 #import "MDADViewController.h"
 #import "MDDoctorServiceViewController.h"
+#import "BRSlogInViewController.h"
 
 
 @interface MDHomeViewController ()<UITableViewDataSource,UITableViewDelegate,UIViewControllerPreviewingDelegate,sendInfoToCtr>
@@ -403,13 +404,25 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
     if (indexPath.section==0) {
-        MDDoctorServiceViewController * doctorServiceVC = [[MDDoctorServiceViewController alloc] init];
-        doctorServiceVC.messageArr = _messageArr;
-        doctorServiceVC.hidesBottomBarWhenPushed=YES;
-        [self.navigationController pushViewController:doctorServiceVC animated:YES];
-    }else if(indexPath.section==1){
+        
+        NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
+        NSString * str=[stdDefault objectForKey:@"user_name"];
+        if ([str length]>0) {
+            MDDoctorServiceViewController * doctorServiceVC = [[MDDoctorServiceViewController alloc] init];
+            doctorServiceVC.messageArr = _messageArr;
+            doctorServiceVC.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:doctorServiceVC animated:YES];
+
+            
+        }else{
+            BRSlogInViewController * logIn=[[BRSlogInViewController alloc] init];
+            UINavigationController * nvc=[[UINavigationController alloc] initWithRootViewController:logIn];
+            
+            nvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            [self presentViewController:nvc animated:NO completion:nil];
+        }
+           }else if(indexPath.section==1){
         MDConsultDrupViewController * consultDrupVC = [[MDConsultDrupViewController alloc] init];
         consultDrupVC.hidesBottomBarWhenPushed=YES;
         [self.navigationController pushViewController:consultDrupVC animated:YES];
