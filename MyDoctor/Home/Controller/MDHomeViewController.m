@@ -22,6 +22,7 @@
 #import "EaseMob.h"
 #import "MDRequestModel.h"
 #import "MDADViewController.h"
+#import "MDDoctorServiceViewController.h"
 
 
 @interface MDHomeViewController ()<UITableViewDataSource,UITableViewDelegate,UIViewControllerPreviewingDelegate,sendInfoToCtr>
@@ -41,22 +42,13 @@
 
 @implementation MDHomeViewController
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:YES];
-    _messageArr = [[NSMutableArray alloc] init];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    NSString * str1 = [[UIDevice currentDevice] uniqueDeviceIdentifier];
-//    NSString *identifierForVendor = [[UIDevice currentDevice].identifierForVendor UUIDString];
-//    MDLog(@"%@",identifierForVendor);q
-    
-    isNewMessage = YES;
+
     
     _messageArr = [[NSMutableArray alloc] init];
+    
+    isNewMessage = YES;
 
     self.navigationItem.title=@"e+康";
     
@@ -83,12 +75,17 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToADVC:) name:@"jumpToADVC" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteRedButton:) name:@"deleteRedButton" object:nil];
+
+    
 }
 
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"newMessage" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"jumpToADVC" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"deleteRedButton" object:nil];
+
 
 }
 
@@ -103,8 +100,7 @@
 //    UITableViewCell * cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathWithIndex:0]];
     isNewMessage = NO;
     [_tableView reloadData];
-//    NSLog(@"%@",[notif.userInfo objectForKey:@"message"]);
-//    EMMessage * message=[notif.userInfo objectForKey:@"message"];
+    
     NSString * sender = [notif.userInfo objectForKey:@"message"];
     
     if (_messageArr.count == 0) {
@@ -120,8 +116,6 @@
             [_messageArr addObject:sender];
         }
     }
-    
-    NSLog(@"%@",_messageArr);
     
 }
 
@@ -298,7 +292,7 @@
 #pragma mark sendInfoToCtr
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+//    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
 //    ADList = [[NSMutableArray alloc] init];
     NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
     if (num == 10902) {
@@ -412,8 +406,7 @@
     UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
     if (indexPath.section==0) {
         MDDoctorServiceViewController * doctorServiceVC = [[MDDoctorServiceViewController alloc] init];
-        doctorServiceVC.messageList = _messageArr;
-        cell.detailTextLabel.hidden = YES;
+        doctorServiceVC.messageArr = _messageArr;
         doctorServiceVC.hidesBottomBarWhenPushed=YES;
         [self.navigationController pushViewController:doctorServiceVC animated:YES];
     }else if(indexPath.section==1){
@@ -450,6 +443,25 @@
 - (void)previewContext:(id<UIViewControllerPreviewing>)context commitViewController:(UIViewController*)vc
 {
     [self showViewController:vc sender:self];
+}
+
+//将_messageArr里已读的消息删除（取消红点）
+-(void)deleteRedButton:(NSNotification *)notif
+{
+    NSString * sender = [notif.userInfo objectForKey:@"message"];
+    //    _messageArr
+    for (int i=0 ; i<[_messageArr count]; i++) {
+        NSString * newMessage=_messageArr[i];
+        
+        if ([newMessage isEqualToString:sender]) {
+            [_messageArr removeObjectAtIndex:i];
+        }
+    }
+    if (_messageArr.count == 0) {
+        isNewMessage = YES;
+    }
+    
+    [_tableView reloadData];
 }
 
 @end

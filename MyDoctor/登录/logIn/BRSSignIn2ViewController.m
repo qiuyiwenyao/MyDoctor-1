@@ -574,6 +574,7 @@
 
             MDLog(@"环信登陆成功！！%@",loginInfo);
             [[EaseMob sharedInstance].chatManager setApnsNickname:number.text];
+            
             //
             //
             //设置是否自动登录

@@ -18,6 +18,7 @@
 #import "UIKit+AFNetworking.h"
 #import "MDRequestModel.h"
 #import "MDUserVO.h"
+#import "MJRefresh.h"
 
 @interface MDDrugTableViewController ()  <sendInfoToCtr>
 {
@@ -31,6 +32,7 @@
     UIButton * sales;
     UIButton * screen;
     NSMutableArray * dataArray;
+    int curruntPage;
 }
 
 
@@ -41,6 +43,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    curruntPage = 1;
     
     [self setNavigationBarWithrightBtn:nil leftBtn:@"navigationbar_back"];
     //返回按钮点击
@@ -54,23 +57,49 @@
     //数据
     dataArray=[[NSMutableArray alloc] init];
     [self searchDrug];
+    [self TableView];
+
     if ([_SearchDrup length]) {
         _searchDrug.text=_SearchDrup;
         [self search];
     }else{
-        [self postRequest];
+        [self refreshAndLoad];
     }
     
-    [self TableView];
 
 }
+
+//刷新加载
+-(void)refreshAndLoad
+{
+    __unsafe_unretained __typeof(self) weakSelf = self;
+    
+    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        curruntPage = 1;
+        [weakSelf postRequest];
+    }];
+    
+    // 马上进入刷新状态
+    [_tableView.mj_header beginRefreshing];
+    
+    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+    _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        curruntPage ++;
+        [weakSelf postRequest];
+    }];
+    
+}
+
+
 #pragma mark - POST请求
 - (void)postRequest
 {
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = MDPath;
     model.methodNum = 10303;
-    NSString * parameter=[NSString stringWithFormat:@"%@@`%@@`%@",_DrugTypeId,@"10",@"1"];
+    int pageIndex = curruntPage;
+    NSString * parameter=[NSString stringWithFormat:@"%@@`%@@`%d",_DrugTypeId,@"10",pageIndex];
     model.parameter = parameter;
     model.delegate = self;
     [model starRequest];
@@ -81,7 +110,9 @@
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
     //回馈数据
-    [dataArray removeAllObjects];
+    if (curruntPage == 1) {
+        [dataArray removeAllObjects];
+    }
     NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
     NSLog(@"%@",dic);
     
@@ -114,6 +145,8 @@
         
     }
     [_tableView reloadData];
+    [_tableView.mj_header endRefreshing];
+    [_tableView.mj_footer endRefreshing];
 }
 
 -(void)TableView

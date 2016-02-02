@@ -116,7 +116,8 @@
     NSLog(@"%ld",(long)self.tag);
     
     if ([button.titleLabel.text isEqualToString:@"取消订单"]) {
-        [self requestData];
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"取消订单" message:@"是否取消订单？" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"先不取消", nil];
+        [alert show];
     }
     
     if ([button.titleLabel.text isEqualToString:@"删除订单"]) {
@@ -128,6 +129,14 @@
         
     }
 
+}
+
+#pragma mark - UIAlertViewDelegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([alertView.message isEqualToString:@"是否取消订单？"] && buttonIndex == 0) {
+        [self requestData];
+    }
 }
 
 -(void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex

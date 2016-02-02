@@ -3,7 +3,7 @@
 //  MyDoctor
 //
 //  Created by 巫筠 on 15/12/16.
-//  Copyright © 2015年 com.mingxing. All rights reserved.
+//  Copyr/Users/WuJun/Desktop/NewDoctorSystem/MyDoctor/fundation/Chat/ChatView/MessageView/ChatCell/ChatCellBubble/EMChatLocationBubbleView.might © 2015年 com.mingxing. All rights reserved.
 //
 /*   "Content": "为了让广大居民度过一个健康祥和的冬季，居委会特邀社区医院的医护人员来我社区为广大居民进行一次全面的免费普查活动",
  "UserID": 1,

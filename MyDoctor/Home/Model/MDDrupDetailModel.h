@@ -38,6 +38,7 @@
 @property (nonatomic,assign) NSString * unit;
 @property (nonatomic,assign) NSString * specification;
 @property (nonatomic,assign) NSString * validity;
+@property (nonatomic,assign) NSString * habitat;
 
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key;
 

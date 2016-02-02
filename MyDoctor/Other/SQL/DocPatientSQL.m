@@ -24,7 +24,7 @@
     FMDatabase *db=[FMDatabase databaseWithPath:fileName];
     //3.打开数据库
     if ([db open]) {
-        BOOL result=[db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_Patient (id text, Phone text NOT NULL, name text,imagePath text);"];
+        BOOL result=[db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_Patient (id text, Phone text NOT NULL, name text, HxName text,imagePath text);"];
         if (result) {
             NSLog(@"创t_Patient表成功");
         }else{
@@ -39,14 +39,14 @@
     for(DocPatientModel *item in attachmentArr) {
         FMResultSet *result = [self.db executeQuery:@"select * from t_Patient where Phone = ?", item.phone];
         if ([result next]) {
-            BOOL result = [self.db executeUpdate:@"update t_Patient set id=?, name=?, imagePath=? where Phone=?",item.ID, item.Name, item.ImagePath, item.phone];
+            BOOL result = [self.db executeUpdate:@"update t_Patient set id=?, name=?,HxName=? ,imagePath=? where Phone=?",item.ID, item.Name, item.HxName,item.ImagePath, item.phone];
             if(result) {
                 NSLog(@"更新t_mail_attachment数据%@成功", item.Name);
             } else {
                 NSLog(@"更新t_mail_attachment数据%@失败", item.Name);
             }
         } else {
-        BOOL result = [self.db executeUpdate:@"insert into t_Patient(id, Phone, name, imagePath) values(?,?,?,?)", item.ID, item.phone, item.Name, item.ImagePath];
+        BOOL result = [self.db executeUpdate:@"insert into t_Patient(id, Phone, name, HxName,imagePath) values(?,?,?,?,?)", item.ID, item.phone, item.Name, item.HxName,item.ImagePath];
             if(result) {
                 NSLog(@"插入t_mail_attachment数据%@成功", item.Name);
                 
@@ -72,6 +72,14 @@
         }
     return attachmentArray;
 }
-
+-(NSString *)searchDataWithHxName:(NSString *)HxName {
+    FMResultSet *result = [self.db executeQuery:@"select * from t_Patient where HxName = ? ", HxName];
+    if ([result next]) {
+        NSLog(@"yes");
+        return [result stringForColumn:@"name"];
+    }
+    NSLog(@"no");
+    return nil;
+}
 
 @end

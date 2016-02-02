@@ -14,7 +14,9 @@
 #import "EaseMob.h"
 #import "UserProfileManager.h"
 #import "EMCDDeviceManager.h"
-
+#import "FMDB.h"
+#import "DocPatientModel.h"
+#import "DocPatientSQL.h"
 
 @interface AppDelegate ()
 
@@ -33,7 +35,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     
-    [[EaseMob sharedInstance] registerSDKWithAppKey:@"crossgk#ehealth" apnsCertName:@"MyDoctor_Client_Dev"];//环信
+    [[EaseMob sharedInstance] registerSDKWithAppKey:@"crossgk#ehealth" apnsCertName:@"MyDoctor_Client"];//环信
     [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     
     //iOS8 注册APNS  环信
@@ -89,6 +91,7 @@
     [self.window addSubview:statusBarView];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
+    
     return YES;
 }
 
@@ -271,27 +274,42 @@
 // 收到消息回调
 -(void)didReceiveMessage:(EMMessage *)message
 {
-    
         UIApplicationState state = [[UIApplication sharedApplication] applicationState];
     switch (state) {
         case UIApplicationStateActive:
              [self playSoundAndVibration];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"newMessage" object:nil userInfo:@{@"message":message.from,@"hide":@NO}];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"newMessage" object:nil userInfo:@{@"message":message.from}];
             break;
         case UIApplicationStateInactive:
              [self playSoundAndVibration];
             break;
         case UIApplicationStateBackground:
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"newMessage" object:nil userInfo:@{@"message":message.from}];
+            [self playSoundAndVibration];
 
             [self showNotificationWithMessage:message];
             break;
         default:
             break;
     }
-
-
-
+    [self setupUnreadMessageCount];
 }
+
+
+// 统计未读消息数
+-(void)setupUnreadMessageCount
+{
+    NSArray *conversations = [[[EaseMob sharedInstance] chatManager] conversations];
+    NSInteger unreadCount = 0;
+    for (EMConversation *conversation in conversations) {
+        unreadCount += conversation.unreadMessagesCount;
+    }
+    UIApplication *application = [UIApplication sharedApplication];
+    [application setApplicationIconBadgeNumber:unreadCount];
+}
+
+
 - (void)playSoundAndVibration{
     NSTimeInterval timeInterval = [[NSDate date]
                                    timeIntervalSinceDate:self.lastPlaySoundDate];
@@ -315,6 +333,7 @@
 - (void)showNotificationWithMessage:(EMMessage *)message
 {
     EMPushNotificationOptions *options = [[EaseMob sharedInstance].chatManager pushNotificationOptions];
+    options.displayStyle = ePushNotificationDisplayStyle_messageSummary;
     //发送本地推送
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     notification.fireDate = [NSDate date]; //触发通知的时间
@@ -372,7 +391,11 @@
                 title = [NSString stringWithFormat:@"%@(%@)", message.groupSenderName, chatroomName];
             }
         }
+        DocPatientSQL * docPation = [[DocPatientSQL alloc] init];
+        [docPation createAttachmentsDBTableWithPatient];
+        title=[docPation searchDataWithHxName:title];
         
+        //此处设置环信推送显示对方的昵称
         notification.alertBody = [NSString stringWithFormat:@"%@:%@", title, messageStr];
     }
     else{
@@ -425,4 +448,5 @@
     
     return ret;
 }
+
 @end

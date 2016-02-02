@@ -14,7 +14,7 @@
 @property (nonatomic, strong) NSString * Name;
 @property (nonatomic, strong) NSString * phone;
 @property (nonatomic, strong) NSString * ImagePath;
-
+@property (nonatomic, strong) NSString * HxName;
 
 
 @end
