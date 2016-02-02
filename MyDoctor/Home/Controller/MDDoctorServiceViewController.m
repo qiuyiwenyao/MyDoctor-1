@@ -49,13 +49,10 @@
         [self presentViewController:nvc animated:NO completion:nil];
     }
 
-//    [self requestData];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    _messageArr = [[NSMutableArray alloc] initWithArray:_messageList];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -72,15 +69,24 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newMessage:) name:@"newMessage" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteRedButton:) name:@"deleteRedButton" object:nil];
 
     
     // Do any additional setup after loading the view.
 }
 
+
+
 -(void)newMessage:(NSNotification *)notif
 {
     //    UITableViewCell * cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathWithIndex:0]];
 //    isNewMessage = NO;
+    if (_messageArr.count == 0) {
+        _messageArr = [[NSMutableArray alloc] init];
+    }
+  
+
+    
     [_tableView reloadData];
     //    NSLog(@"%@",[notif.userInfo objectForKey:@"message"]);
     //    EMMessage * message=[notif.userInfo objectForKey:@"message"];
@@ -100,61 +106,9 @@
         }
     }
     
-    NSLog(@"%@",_messageArr);
+    
     
 }
-
-
-//临时懒加载数据源
-/*
-周凤阳  男  大专  主治医师  各种小儿科疾病，尤以消化系统、呼吸系统及各种发热 疾患  小儿各种上呼吸道疾患、哮喘、肺炎、腹泻 及外感发热、食积发热等
-王荣宝 男 研究生  主治医师  心脑血管常见病、多发病、急危重症 冠心病、心衰、心绞痛、心肌梗死、心律失 常、高血压、高脂血症、支气管哮喘、慢性 支气管炎、慢性阻塞性肺病、肺心病、胃溃 疡、胃炎   
- 张月霞 女 本科 副主任医师 糖尿病、心血管系统疾病  
- 赵中华  女  本科  副主任医师  心血管、呼吸系统疾病    发表《炙甘草汤加附子治疗Ⅲ°房室传导阻滞20例》、《支气管哮喘 治验》等论文4篇 
- 陈兰燕 女  主治医师 内科常见病  冠心病、脑梗塞、高血压病、支气管炎、肺 炎、糖尿病及消化系统疾病    
- 杨翠萍 女 研究生 主治医师 内科常见病  各种急慢性肾炎、继发性肾损害及糖尿病等疾病的治疗，运用血液净化技术，对急慢性肾功能不全、惊醒中毒等危重病的抢救有较 丰富的临床经验  发表论文4篇，参与省级和市级课 题各一项 
- 王跃峰 男 大专 主治医师 外科、泌尿男科 泌尿系感染疾病、各种性病、男女不孕不育症、性功能障碍及男性各种整形手术  发表论文3篇
- 天津肿瘤医院 (三甲, 特色:肿瘤) 天津医科大学第二医院 (三甲) 天津医院 (三甲, 特色:骨科) 天津环湖医院 (三甲, 特色:神外、神内) 天津儿童医院 (三甲, 特色:儿童) 天津安定医院 (三甲, 特色:精神)
- 和平
- 天津总医院 (三甲, 特色:综合) 天津市口腔医院 (三甲, 特色:口腔) 天津血液病医院 (三甲, 特色:血液病) 天津眼科医院 (三甲, 特色:眼科) 天津医科大学口腔医院 (三甲, 特色:口腔)
- */
-//-(NSMutableArray *)dataSource
-//{
-//    if (_dataSource == nil) {
-//        _dataSource = [[NSMutableArray alloc] init];
-//        MDDocModel * model1 = [[MDDocModel alloc] init];
-//        model1.name = @"周凤阳";
-//        model1.branch = @"小儿科";
-//        model1.hospital = @"天津环湖医院";
-//        model1.major = @"小儿各种上呼吸道疾患、哮喘、肺炎、腹泻 及外感发热、食积发热等";
-//        
-//        MDDocModel * model2 = [[MDDocModel alloc] init];
-//        model2.name = @"王荣宝";
-//        model2.branch = @"耳鼻喉科";
-//        model2.hospital = @"天津医科大学口腔医院";
-//        model2.major = @"支气管哮喘、慢性 支气管炎、慢性阻塞性肺病、肺心病";
-//        
-//        MDDocModel * model3 = [[MDDocModel alloc] init];
-//        model3.name = @"王跃峰";
-//        model3.branch = @"内科";
-//        model3.hospital = @"天津医院";
-//        model3.major = @"冠心病、脑梗塞、高血压病、支气管炎、肺 炎";
-//        
-//        MDDocModel * model4 = [[MDDocModel alloc] init];
-//        model4.name = @"杨翠萍";
-//        model4.branch = @"内科";
-//        model4.hospital = @"天津安定医院";
-//        model4.major = @"泌尿系感染疾病、各种性病、男女不孕不育症、性功能障碍";
-//        
-//        NSArray * group1 = @[model1,model3,model4];
-//        NSArray * gropu2 = @[model2,model4,model1];
-//        
-//        [_dataSource addObject:group1];
-//        [_dataSource addObject:gropu2];
-//    }
-//    return _dataSource;
-//
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -164,13 +118,17 @@
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"newMessage" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"deleteRedButton" object:nil];
 
 }
 
 -(void)backBtnClick
 {
-    MDHomeViewController * homeVC = [[MDHomeViewController alloc] init];
-    homeVC.messageArr = [[NSMutableArray alloc] init];
+//    MDHomeViewController * homeVC = [[MDHomeViewController alloc] init];
+//    self.delegate = homeVC;
+//    [self.delegate getMessageArrWithArray:_messageArr];
+    
+
     [self.navigationController popViewControllerAnimated:YES
      ];
     
@@ -367,7 +325,7 @@
         }
     }
     
-    NSLog(@"%@%@",[MDUserVO userVO].photourl,model.Photo);
+//    NSLog(@"%@%@",[MDUserVO userVO].photourl,model.Photo);
 
     
     return cell;
@@ -375,7 +333,6 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-//    return _headerView;
     if (section == 0) {
         return _headerView;
     }
@@ -383,15 +340,10 @@
     return _headerView1;
 }
 
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
-//    return nil;
-//}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return appWidth*(67.0/750.0);
-//    return _headerView1.height*1.5;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -407,25 +359,22 @@
     hospitalVC.title = docInfo.RealName;
     hospitalVC.docInfo = docInfo;
     
-    for (NSString * newMessage in _messageArr) {
-        if ([docInfo.Phone isEqualToString:newMessage]) {
-            [_messageArr removeObject:newMessage];
-        }
-    }
-    
     [self.navigationController pushViewController:hospitalVC animated:YES];
 }
 
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+//将_messageArr里已读的消息删除（取消红点）
+-(void)deleteRedButton:(NSNotification *)notif
+{
+    NSString * sender = [notif.userInfo objectForKey:@"message"];
+//    _messageArr
+    for (int i=0 ; i<[_messageArr count]; i++) {
+        NSString * newMessage=_messageArr[i];
+        
+        if ([newMessage isEqualToString:sender]) {
+            [_messageArr removeObjectAtIndex:i];
+        }
+    }
+    [_tableView reloadData];
 }
-*/
 
 @end

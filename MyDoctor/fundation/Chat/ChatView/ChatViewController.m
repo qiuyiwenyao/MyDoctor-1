@@ -320,6 +320,13 @@
     }else{
         [self.navigationController popViewControllerAnimated:YES];
     }
+    
+    if (message.from) {
+        NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:message.from,@"message", nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"deleteRedButton" object:nil userInfo:dictionary];
+
+    }
+    
 }
 
 - (void)setIsInvisible:(BOOL)isInvisible

@@ -215,7 +215,7 @@
     [scrollView addSubview:approvalNumLab];
     
     UILabel * productionLab = [[UILabel alloc] initWithFrame:CGRectMake(0, approvalNumLab.y+approvalNumLab.height+12,appWidth - 90, 0)];
-    productionLab.text = @"【生产企业】黑龙江葵花药业股份有限公司";
+    productionLab.text = [[NSString alloc] initWithFormat:@"【生 产 企 业】%@",model.habitat];
     productionLab.numberOfLines = 0;
     [productionLab sizeToFit];
     productionLab.textColor = ColorWithRGB(97, 103, 111, 1);
@@ -236,25 +236,6 @@
 //请求数据
 -(void)requestData
 {
-    
-//    NSString* date;
-//    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
-//    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
-//    date = [formatter stringFromDate:[NSDate date]];
-//    
-//    int pageSize = 10;
-//    int pageIndex = 1;
-//    int maxId = 0;
-//    
-//    MDRequestModel * model = [[MDRequestModel alloc] init];
-//    model.path = MDPath;
-//    NSString * getNoticeInfo=[NSString stringWithFormat:@"10501@`3@`3@`%@@`1@`3@`%d@`%d@`%d",date,pageSize,pageIndex,maxId];
-//    getNoticeInfo=[self GTMEncodeTest:getNoticeInfo];
-//    //post键值对
-//    model.parameters = @{@"b":getNoticeInfo};
-//    model.delegate = self;
-//    [model starRequest];
-
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = MDPath;
     model.methodNum = 10305;
@@ -281,6 +262,7 @@
      "specification": "30ml*1瓶/盒",
      "validity": "暂定36个月"    },*/
 //    MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
     NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
     MDDrupDetailModel * model = [[MDDrupDetailModel alloc] init];
     [model setValuesForKeysWithDictionary:[dictionary objectForKey:@"obj"]];

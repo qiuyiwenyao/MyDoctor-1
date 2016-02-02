@@ -91,6 +91,7 @@
     [self.window addSubview:statusBarView];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
+    
     return YES;
 }
 
@@ -273,12 +274,24 @@
 // 收到消息回调
 -(void)didReceiveMessage:(EMMessage *)message
 {
-    
         UIApplicationState state = [[UIApplication sharedApplication] applicationState];
     switch (state) {
         case UIApplicationStateActive:
              [self playSoundAndVibration];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"newMessage" object:nil userInfo:@{@"message":message.from,@"hide":@NO}];
+//            if (_messageArr.count == 0) {
+//                [_messageArr addObject:message.from];
+//            }
+//            
+//            for (int i=0; i<[_messageArr count]; i++) {
+//                
+//                if ([_messageArr[i] isEqualToString:message.from]) {
+//                    break;
+//                }
+//                if (i==[_messageArr count]-1) {
+//                    [_messageArr addObject:message.from];
+//                }
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"newMessage" object:nil userInfo:@{@"message":message.from}];
             break;
         case UIApplicationStateInactive:
              [self playSoundAndVibration];
