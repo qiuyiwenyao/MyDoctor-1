@@ -214,6 +214,7 @@
             [userDefatlut synchronize];
         }
         [self.navigationController popViewControllerAnimated:YES];
+
         [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES/NO completion:^(NSDictionary *info, EMError *error) {
             if (!error && info) {
                 NSLog(@"退出成功");

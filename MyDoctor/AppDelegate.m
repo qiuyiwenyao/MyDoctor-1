@@ -35,7 +35,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     
-    [[EaseMob sharedInstance] registerSDKWithAppKey:@"crossgk#ehealth" apnsCertName:@"MyDoctor_Client_Dev"];//环信
+    [[EaseMob sharedInstance] registerSDKWithAppKey:@"crossgk#ehealth" apnsCertName:@"MyDoctor_Client"];//环信
     [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     
     //iOS8 注册APNS  环信
@@ -278,18 +278,6 @@
     switch (state) {
         case UIApplicationStateActive:
              [self playSoundAndVibration];
-//            if (_messageArr.count == 0) {
-//                [_messageArr addObject:message.from];
-//            }
-//            
-//            for (int i=0; i<[_messageArr count]; i++) {
-//                
-//                if ([_messageArr[i] isEqualToString:message.from]) {
-//                    break;
-//                }
-//                if (i==[_messageArr count]-1) {
-//                    [_messageArr addObject:message.from];
-//                }
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"newMessage" object:nil userInfo:@{@"message":message.from}];
             break;
@@ -297,16 +285,31 @@
              [self playSoundAndVibration];
             break;
         case UIApplicationStateBackground:
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"newMessage" object:nil userInfo:@{@"message":message.from}];
+            [self playSoundAndVibration];
 
             [self showNotificationWithMessage:message];
             break;
         default:
             break;
     }
-
-
-
+    [self setupUnreadMessageCount];
 }
+
+
+// 统计未读消息数
+-(void)setupUnreadMessageCount
+{
+    NSArray *conversations = [[[EaseMob sharedInstance] chatManager] conversations];
+    NSInteger unreadCount = 0;
+    for (EMConversation *conversation in conversations) {
+        unreadCount += conversation.unreadMessagesCount;
+    }
+    UIApplication *application = [UIApplication sharedApplication];
+    [application setApplicationIconBadgeNumber:unreadCount];
+}
+
+
 - (void)playSoundAndVibration{
     NSTimeInterval timeInterval = [[NSDate date]
                                    timeIntervalSinceDate:self.lastPlaySoundDate];
