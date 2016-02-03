@@ -17,7 +17,6 @@
 #import "FileUtils.h"
 #import "DocPatientSQL.h"
 #import "DocPatientModel.h"
-#import "BRSlogInViewController.h"
 #define IMAGECACHE  @"PatientsIMAGE/"
 
 @interface MDDoctorServiceViewController ()<UITableViewDataSource,UITableViewDelegate,sendInfoToCtr>
@@ -37,17 +36,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
-    NSString * str=[stdDefault objectForKey:@"user_name"];
-    if ([str length]>0) {
-        
-    }else{
-        BRSlogInViewController * logIn=[[BRSlogInViewController alloc] init];
-        UINavigationController * nvc=[[UINavigationController alloc] initWithRootViewController:logIn];
-        
-        nvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [self presentViewController:nvc animated:NO completion:nil];
-    }
 
 }
 
