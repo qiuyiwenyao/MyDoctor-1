@@ -33,9 +33,8 @@
 
     
     
-    [self setNavigationBarWithrightBtn:nil leftBtn:@"navigationbar_back"];
-    //返回按钮点击
-    [self.leftBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
+    [util setNavigationLeftButton:self.navigationItem target:self selector:@selector(back) image:[UIImage imageNamed:@"navigationbar_back"] title:nil];
 
 }
 -(void)textfield
@@ -63,8 +62,9 @@
     password2.placeholder=@"再次输入密码";
     password2.leftViewMode = UITextFieldViewModeAlways;
     
-    [self setNavigationBarWithrightBtn:@"完成" leftBtn:nil];
-    [self.rightBtn addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
+
+    BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
+    [util setNavigationRightButton:self.navigationItem target:self selector:@selector(next:) image:[UIImage imageNamed:@"完成"] title:nil UIColor:nil];
     
     [self.view addSubview:password];
     [self.view addSubview:password2];

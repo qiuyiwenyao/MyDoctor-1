@@ -84,9 +84,10 @@
     [super viewDidLoad];
     self.navigationItem.title = @"个人信息";
     
-    [self setNavigationBarWithrightBtn:@"设置" leftBtn:nil];
-//    [self.rightBtn addTarget:self action:@selector(setButton) forControlEvents:UIControlEventTouchUpInside];
-    [self.rightBtn addTarget:self action:@selector(noticeClick) forControlEvents:UIControlEventTouchUpInside];
+
+    BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
+    [util setNavigationRightButton:self.navigationItem target:self selector:@selector(noticeClick) image:[UIImage imageNamed:@"设置"] title:nil UIColor:nil];
+    
     [self createView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeUserName:) name:@"changeUserName" object:nil] ;

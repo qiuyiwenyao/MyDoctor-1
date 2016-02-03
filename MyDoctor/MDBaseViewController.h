@@ -11,13 +11,9 @@
 #import "MX_MASConstraintMaker.h"
 #import "View+MASAdditions.h"
 #import "UIView+ViewExtension.h"
+#import "BRSSysUtil.h"
 
 @interface MDBaseViewController : UIViewController
-
-@property (nonatomic,strong) UIButton * leftBtn;
-@property (nonatomic,strong) UIButton * rightBtn;
-
--(void)setNavigationBarWithrightBtn:(NSString *)rightBtnTitle leftBtn:(NSString *)leftBtnImg;
 
 @end
 

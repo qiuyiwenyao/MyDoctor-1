@@ -44,9 +44,8 @@
     [self.view addGestureRecognizer:tapGesture];
     [self textfield];
     
-    [self setNavigationBarWithrightBtn:nil leftBtn:@"navigationbar_back"];
-    //返回按钮点击
-    [self.leftBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
+    [util setNavigationLeftButton:self.navigationItem target:self selector:@selector(back) image:[UIImage imageNamed:@"navigationbar_back"] title:nil];
     self.navigationItem.title=@"注册";
 }
 -(void)textfield
@@ -149,19 +148,6 @@
         [alert show];
         return;
     }
-    
-    
-//    MXNetModel *netModel = [MXNetModel shareNetModel];
-//    NSString *tmpUrl = @"/connectors/new_auth_code";
-//    NSString * url=[NSString stringWithFormat:@"%@:%@%@?mobile=%@",MX_URL,MX_PORT,tmpUrl,number.text];
-//   
-//    if(_type==1){
-//        url=[NSString stringWithFormat:@"%@&change_mobile=true",url];
-//    }
-//    //    NSString * dic=[NSString stringWithFormat:@"%@ mobile=%@",url,number.text];
-//    [netModel startRequset:@"GET" withURL:url withParams:nil withAttachment:nil withIndicator:YES withCallback:^(id object, MXError *error) {
-//        NSLog(@"reply == %@", object);
-//        if(object){
     
     NSString *identifierForVendor = [[UIDevice currentDevice].identifierForVendor UUIDString];//设备标示
     

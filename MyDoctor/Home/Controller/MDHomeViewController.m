@@ -45,39 +45,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    
     _messageArr = [[NSMutableArray alloc] init];
-    
     isNewMessage = YES;
-
     self.navigationItem.title=@"e+康";
     
-    [self setNavigationBarWithrightBtn:@"通知" leftBtn:nil];
+    BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
+     [util setNavigationRightButton:self.navigationItem target:self selector:@selector(noticeClick) image:[UIImage imageNamed:@"通知"] title:nil UIColor:nil];
     self.automaticallyAdjustsScrollViewInsets = YES;
     
-    
-    
     [self createHeadView];
-
-    
     [self createView];
-    
     [self requestADPicture];//请求滚动图片
-    
     [self requestTopData];//请求顶部文字广告
     
-   
-    
-       //通知按钮点击
-    [self.rightBtn addTarget:self action:@selector(noticeClick) forControlEvents:UIControlEventTouchUpInside];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newMessage:) name:@"newMessage" object:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToADVC:) name:@"jumpToADVC" object:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteRedButton:) name:@"deleteRedButton" object:nil];
 
-    
 }
 
 -(void)dealloc

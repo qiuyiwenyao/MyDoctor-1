@@ -30,9 +30,8 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chooseAddress:) name:@"chooseAddress" object:nil];
 
-    [self setNavigationBarWithrightBtn:nil leftBtn:@"navigationbar_back"];
-    //返回按钮点击
-    [self.leftBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
+    [util setNavigationLeftButton:self.navigationItem target:self selector:@selector(backBtnClick) image:[UIImage imageNamed:@"navigationbar_back"] title:nil];
     
 }
 -(void)dealloc

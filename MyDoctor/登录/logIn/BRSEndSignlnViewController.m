@@ -38,10 +38,10 @@
     i=0;
     self.view.backgroundColor=[UIColor whiteColor];
     [self sethead];
-    [self setNavigationBarWithrightBtn:nil leftBtn:@"navigationbar_back"];
+    BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
+    [util setNavigationLeftButton:self.navigationItem target:self selector:@selector(back) image:[UIImage imageNamed:@"navigationbar_back"] title:nil];
 
     //返回按钮点击
-    [self.leftBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.title=@"设置头像";
     
 }
