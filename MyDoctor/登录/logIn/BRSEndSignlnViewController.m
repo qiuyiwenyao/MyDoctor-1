@@ -136,7 +136,6 @@
         NSLog(@"dic   %@",dic);
         
         headImg = [dic objectForKey:@"msg"];
-        
         //        设置头像
         MDRequestModel * model = [[MDRequestModel alloc] init];
         model.path = MDPath;

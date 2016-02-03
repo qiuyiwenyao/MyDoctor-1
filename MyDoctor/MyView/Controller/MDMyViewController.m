@@ -379,6 +379,8 @@
         
         headImg = [dic objectForKey:@"msg"];
         
+        NSLog(@"%@",headImg);
+        
         MDRequestModel * model = [[MDRequestModel alloc] init];
         model.path = MDPath;
         model.methodNum = 10103;

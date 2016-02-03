@@ -151,7 +151,7 @@
     cell.hospitalLab.text = model.HospitalName;
     cell.majorLab.text = model.Detail;
     cell.branchLab.text  =model.Department;
-    cell.headView.layer.cornerRadius = cell.headView.height/2;
+    cell.headView.layer.cornerRadius = 5;
     cell.unReadView.hidden = YES;
     [cell.headView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,model.Photo]] placeholderImage:[UIImage imageNamed:@"专家头像"]];
 

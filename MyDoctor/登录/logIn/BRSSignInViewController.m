@@ -99,11 +99,7 @@
 
     button2.tag=101;
     button2.userInteractionEnabled = NO;
-//    BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
-//    [util setNavigationRightButton:self.navigationItem target:self selector:@selector(next:) image:nil title:@"下一步" UIColor:[UIColor colorWithRed:20/255.0 green:204/255.0 blue:164/255.0 alpha:1]];
-
     
-   
     [self.view addSubview:number];
     [self.view addSubview:password];
     [self.view addSubview:button];
@@ -150,19 +146,6 @@
         return;
     }
     
-    
-//    MXNetModel *netModel = [MXNetModel shareNetModel];
-//    NSString *tmpUrl = @"/connectors/new_auth_code";
-//    NSString * url=[NSString stringWithFormat:@"%@:%@%@?mobile=%@",MX_URL,MX_PORT,tmpUrl,number.text];
-//   
-//    if(_type==1){
-//        url=[NSString stringWithFormat:@"%@&change_mobile=true",url];
-//    }
-//    //    NSString * dic=[NSString stringWithFormat:@"%@ mobile=%@",url,number.text];
-//    [netModel startRequset:@"GET" withURL:url withParams:nil withAttachment:nil withIndicator:YES withCallback:^(id object, MXError *error) {
-//        NSLog(@"reply == %@", object);
-//        if(object){
-    
     NSString *identifierForVendor = [[UIDevice currentDevice].identifierForVendor UUIDString];//设备标示
     
     NSLog(@"identifierForVendor%@",identifierForVendor);
@@ -208,7 +191,6 @@
 {
     NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
     NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-//    NSString * msgCode = [dic objectForKey:@"msg"];
     if ([[dic objectForKey:@"success"] intValue]==0) {
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"验证码获取失败，请稍后再试"  delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil,nil];
@@ -263,10 +245,6 @@
                 si2.login_name=textField1.text;
                 si2.auth_code=textField2.text;
     
-    [self.navigationController pushViewController:si2 animated:YES];
-
-    
-    /*验证码
     if ([textField2.text isEqualToString:msgCode]) {
         [self.navigationController pushViewController:si2 animated:YES];
     }else
@@ -274,7 +252,6 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"验证码错误" message:nil delegate:self cancelButtonTitle:@"重试" otherButtonTitles: nil];
                     [alert show];
     }
-     */
     
 //                [self.navigationController pushViewController:si2 animated:YES];
 //            }else{

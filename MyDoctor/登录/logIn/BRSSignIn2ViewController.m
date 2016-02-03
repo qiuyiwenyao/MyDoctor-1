@@ -64,7 +64,7 @@
     [self.view addGestureRecognizer:tapGesture];
     [self textfield];
    
-    [self setNavigationBarWithrightBtn:nil leftBtn:@"navigationbar_back"];
+    [self setNavigationBarWithrightBtn:@"下一步" leftBtn:@"navigationbar_back"];
     //返回按钮点击
     [self.leftBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.title=@"注册";
@@ -85,18 +85,6 @@
     number.layer.borderWidth= 1.0f;
     number.placeholder=@"名字";
     number.leftViewMode = UITextFieldViewModeAlways;
-    
-//    IdNumber = [[UITextField alloc] init];
-//    [IdNumber setBorderStyle:UITextBorderStyleLine]; //外框类型
-//    IdNumber.returnKeyType = UIReturnKeyNext;  //键盘返回类型
-//    IdNumber.delegate = self;
-//    IdNumber.keyboardType = UIKeyboardTypeNumberPad;//键盘显示类型
-//    IdNumber.tag=22;
-//    IdNumber.placeholder=@"身份证号";
-//    IdNumber.backgroundColor=[UIColor whiteColor];
-//    IdNumber.leftViewMode = UITextFieldViewModeAlways;
-//    IdNumber.layer.borderColor=[[UIColor colorWithRed:222/255.0 green:222/255.0 blue:222/255.0 alpha:1]CGColor];
-//    IdNumber.layer.borderWidth= 1.0f;
     
     password = [[UITextField alloc] init];
     [password setBorderStyle:UITextBorderStyleLine]; //外框类型
@@ -123,7 +111,6 @@
     password2.placeholder=@"再次输入密码";
     password2.leftViewMode = UITextFieldViewModeAlways;
     
-    [self setNavigationBarWithrightBtn:@"下一步" leftBtn:nil];
     [self.rightBtn addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:number];
@@ -131,35 +118,7 @@
     [self.view addSubview:password];
     [self.view addSubview:password2];
     
-    
-    
-//    sexField = [[UITextField alloc] init];
-//    [sexField setBorderStyle:UITextBorderStyleLine]; //外框类型
-//    
-//    sexField.returnKeyType = UIReturnKeyNext;  //键盘返回类型
-//    sexField.delegate = self;
-//    sexField.keyboardType = UIKeyboardTypeDefault;//键盘显示类型
-//    sexField.tag=1;
-//    sexField.backgroundColor=[UIColor whiteColor];
-//    sexField.layer.borderColor=[[UIColor colorWithRed:222/255.0 green:222/255.0 blue:222/255.0 alpha:1]CGColor];
-//    sexField.layer.borderWidth= 1.0f;
-//    sexField.placeholder=@"性别";
-//    sexField.leftViewMode = UITextFieldViewModeAlways;
-//    [self.view addSubview:sexField];
-//    
-//    maleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [maleButton setImage:[UIImage imageNamed:@"绿色单选"] forState:UIControlStateNormal];
-//    [maleButton setTitle:@"男性" forState:UIControlStateNormal];
-//    [maleButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-//    [self.view addSubview:maleButton];
-//    [maleButton addTarget:self action:@selector(maleSelect) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    femaleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [femaleButton setImage:[UIImage imageNamed:@"灰色单选"] forState:UIControlStateNormal];
-//    [femaleButton setTitle:@"女性" forState:UIControlStateNormal];
-//    [femaleButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-//    [self.view addSubview:femaleButton];
-//    [femaleButton addTarget:self action:@selector(femaleSelect) forControlEvents:UIControlEventTouchUpInside];
+ 
 
     [number mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
@@ -168,36 +127,6 @@
         make.right.equalTo(self.view.mas_right).with.offset(-15);
         make.height.mas_equalTo(40);
     }];
-//    [sexField mas_makeConstraints:^(MX_MASConstraintMaker *make) {
-//        make.top.equalTo(self.view.mas_top).with.offset(135);
-//        make.left.equalTo(self.view.mas_left).with.offset(15);
-//        make.right.equalTo(self.view.mas_right).with.offset(-15);
-//        make.height.mas_equalTo(40);
-//    }];
-//    
-//    [maleButton mas_makeConstraints:^(MX_MASConstraintMaker *make) {
-//        make.left.equalTo(self.view.mas_left).with.offset(40+15);
-//        make.top.equalTo(self.view.mas_top).with.offset(135);
-////        make.bottom.equalTo(sexField.mas_bottom).with.offset(0);
-//        make.size.mas_equalTo(CGSizeMake(80, 40));
-//    }];
-//    
-//    [femaleButton mas_makeConstraints:^(MX_MASConstraintMaker *make) {
-//        make.left.equalTo(self.view.mas_left).with.offset(120+15);
-//        make.size.mas_equalTo(CGSizeMake(80, 40));
-//        make.top.equalTo(self.view.mas_top).with.offset(135);
-////        make.bottom.equalTo(sexField.mas_bottom).with.offset(0);
-//    }];
-//    
-//    
-//    [IdNumber mas_makeConstraints:^(MX_MASConstraintMaker *make) {
-//        make.centerX.equalTo(self.view.mas_centerX);
-//        make.top.equalTo(self.view.mas_top).with.offset(185);
-//        make.left.equalTo(self.view.mas_left).with.offset(15);
-//        make.right.equalTo(self.view.mas_right).with.offset(-15);
-//        make.height.mas_equalTo(40);
-//    }];
-    
     
     [password mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
