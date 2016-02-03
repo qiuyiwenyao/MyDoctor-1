@@ -45,9 +45,8 @@
     [super viewDidLoad];
     curruntPage = 1;
     
-    [self setNavigationBarWithrightBtn:nil leftBtn:@"navigationbar_back"];
-    //返回按钮点击
-    [self.leftBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
+    [util setNavigationLeftButton:self.navigationItem target:self selector:@selector(backBtnClick) image:[UIImage imageNamed:@"navigationbar_back"] title:nil];
     self.automaticallyAdjustsScrollViewInsets=NO;
     
 //    UITapGestureRecognizer*tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(Actiondo)];
@@ -114,7 +113,7 @@
         [dataArray removeAllObjects];
     }
     NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    NSLog(@"%@",dic);
+//    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
     
     if ([dic objectForKey:@"success"]) {
         

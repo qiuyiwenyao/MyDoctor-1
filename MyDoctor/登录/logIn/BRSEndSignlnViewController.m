@@ -38,10 +38,10 @@
     i=0;
     self.view.backgroundColor=[UIColor whiteColor];
     [self sethead];
-    [self setNavigationBarWithrightBtn:nil leftBtn:@"navigationbar_back"];
+    BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
+    [util setNavigationLeftButton:self.navigationItem target:self selector:@selector(back) image:[UIImage imageNamed:@"navigationbar_back"] title:nil];
 
     //返回按钮点击
-    [self.leftBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.title=@"设置头像";
     
 }
@@ -251,23 +251,6 @@
 
 -(void)uploadImage2Server:(NSData *)data callback:(void (^)(BOOL, NSDictionary *))callback
 {
-    //    NSURL *url = [NSURL URLWithString:@"http://rmabcdef001:8080/CommunityWs/servlet/UploadPhoto"];
-    
-    //    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    //
-    //    [manager POST:@"http://111.160.245.75:8082/CommunityWs/servlet/UploadPhoto" parameters:/*@{@"b":@"test222",@"username":@"13662142222"}*/nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-    //        //        [formData appendPartWithFileData:data name:@"f1" fileName:@"1234567.jpeg" mimeType:@"image/jpeg"];
-    //        [formData appendPartWithFormData:data name:@"f1"];
-    //    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    //        NSLog(@"====");
-    //        callback(YES,responseObject);
-    //    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    //        NSLog(@"====");
-    //        callback(YES,nil);
-    //    }];
-    
-    
     
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     
@@ -290,22 +273,7 @@
         MDLog(@"头像失败");
         callback(YES,nil);
     }];
-    
-    
-    //    [session POST:@"http://111.160.245.75:8082/CommunityWs/servlet/UploadPhoto" parameters:@{@"b":@"test222",@"username":@"f1"} progress:^(NSProgress * _Nonnull uploadProgress) {
-    //        [uploadProgress appendPartWithFileData:data name:@"img" fileName:@"1234567.jpeg" mimeType:@"image/jpeg"];
-    //
-    //    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-    //        [responseObject appendPartWithFormData:data name:@"f1.jpeg"];
-    //        NSLog(@"成功");
-    //        callback(YES,responseObject);
-    //    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-    //         NSLog(@"失败");
-    //        callback(YES,nil);
-    //    }];
-    
-    
-    
+
 }
 
 #pragma mark - 请求数据回调

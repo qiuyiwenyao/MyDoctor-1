@@ -84,9 +84,10 @@
     [super viewDidLoad];
     self.navigationItem.title = @"个人信息";
     
-    [self setNavigationBarWithrightBtn:@"设置" leftBtn:nil];
-//    [self.rightBtn addTarget:self action:@selector(setButton) forControlEvents:UIControlEventTouchUpInside];
-    [self.rightBtn addTarget:self action:@selector(noticeClick) forControlEvents:UIControlEventTouchUpInside];
+
+    BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
+    [util setNavigationRightButton:self.navigationItem target:self selector:@selector(noticeClick) image:[UIImage imageNamed:@"设置"] title:nil UIColor:nil];
+    
     [self createView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeUserName:) name:@"changeUserName" object:nil] ;
@@ -443,24 +444,7 @@
 
 -(void)uploadImage2Server:(NSData *)data callback:(void (^)(BOOL, NSDictionary *))callback
 {
-//    NSURL *url = [NSURL URLWithString:@"http://rmabcdef001:8080/CommunityWs/servlet/UploadPhoto"];
-    
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-//    
-//    [manager POST:@"http://111.160.245.75:8082/CommunityWs/servlet/UploadPhoto" parameters:/*@{@"b":@"test222",@"username":@"13662142222"}*/nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-//        //        [formData appendPartWithFileData:data name:@"f1" fileName:@"1234567.jpeg" mimeType:@"image/jpeg"];
-//        [formData appendPartWithFormData:data name:@"f1"];
-//    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"====");
-//        callback(YES,responseObject);
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"====");
-//        callback(YES,nil);
-//    }];
-    
-    
-    
+
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
 
     session.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -483,27 +467,12 @@
         callback(YES,nil);
     }];
     
-    
-//    [session POST:@"http://111.160.245.75:8082/CommunityWs/servlet/UploadPhoto" parameters:@{@"b":@"test222",@"username":@"f1"} progress:^(NSProgress * _Nonnull uploadProgress) {
-//        [uploadProgress appendPartWithFileData:data name:@"img" fileName:@"1234567.jpeg" mimeType:@"image/jpeg"];
-//        
-//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        [responseObject appendPartWithFormData:data name:@"f1.jpeg"];
-//        NSLog(@"成功");
-//        callback(YES,responseObject);
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//         NSLog(@"失败");
-//        callback(YES,nil);
-//    }];
-    
-  
-    
 }
 
 #pragma mark - asendInfoToCtrDelegate
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    MDLog(@"头像设置%@",[[NSString alloc]initWithData:response encoding:NSUTF8StringEncoding]);
+    NSLog(@"头像设置%@",[[NSString alloc]initWithData:response encoding:NSUTF8StringEncoding]);
     
 //    MDLog(@"");
 }

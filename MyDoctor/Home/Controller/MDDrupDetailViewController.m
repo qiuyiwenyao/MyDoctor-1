@@ -22,9 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setNavigationBarWithrightBtn:nil leftBtn:@"navigationbar_back"];
-    //返回按钮点击
-    [self.leftBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
+    [util setNavigationLeftButton:self.navigationItem target:self selector:@selector(backBtnClick) image:[UIImage imageNamed:@"navigationbar_back"] title:nil];
     
     [self requestData];
     
@@ -247,21 +246,6 @@
 
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    /*
-     "id": 3,
-     "photo": "http://p3.maiyaole.com/img/50082/50082920/org_org.jpg?a=421394179",
-     "medicineName": "美林 布洛芬混悬液 30ml",
-     "commonName": "布洛芬混悬液",
-     "function": "用于儿童普通感冒或流行性感冒引起的发热。也用于缓解儿童轻至中度疼痛如头痛、关节痛，神经痛，偏头痛，肌肉痛，牙痛。",
-     "medicinedosage": "口服，12岁以下小儿用量见下： 1—3岁，体重10—15公斤，一次用量4毫升。4—6岁，体重16—21公斤， 一次用量5毫升。 7—9岁，体重22—27公斤，一次用量8毫升。 10—12岁，体重28—32公斤，一次用量10毫升。 若持续疼痛或发热，可每隔4—6小时重复用药一次，24小时不超过4次。",
-     "untowardeffect": "1.少数病人可出现恶心、呕吐、胃烧灼感或轻度消化不良，胃肠道溃疡及出血、转氨酶升高、头痛、头晕、耳鸣、视力模糊、精神紧张、嗜睡、下肢水肿或体重骤增。2.罕见皮疹、过敏性肾炎、膀胱炎、肾病综合症、肾乳头坏死或肾功能衰竭、支气管痉挛。",
-     "taboo": "1.对其他非甾体抗炎药过敏者禁用。2.对阿司匹林过敏的哮喘患者禁用。",
-     "pinyinCode": "BuLuoFenHunXuanYe",
-     "categaryId": 2,
-     "unit": "1",
-     "specification": "30ml*1瓶/盒",
-     "validity": "暂定36个月"    },*/
-//    MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
     NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
     NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
     MDDrupDetailModel * model = [[MDDrupDetailModel alloc] init];

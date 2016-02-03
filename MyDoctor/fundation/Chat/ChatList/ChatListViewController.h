@@ -14,7 +14,7 @@
 #import "BaseViewController.h"
 #import "EaseMob.h"
 #import "MDRequestModel.h"
-@interface ChatListViewController : BaseViewController<sendInfoToCtr>
+@interface ChatListViewController : BaseViewController
 //{
 //    NSMutableArray * RealName;
 //    NSMutableArray * headImg;

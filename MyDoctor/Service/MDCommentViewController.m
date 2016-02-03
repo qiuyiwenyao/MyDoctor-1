@@ -21,10 +21,8 @@
     
     self.navigationItem.title = @"服务评价";
     
-    [self setNavigationBarWithrightBtn:nil leftBtn:@"navigationbar_back"];
-    
-    [self.leftBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    
+    BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
+    [util setNavigationLeftButton:self.navigationItem target:self selector:@selector(backBtnClick) image:[UIImage imageNamed:@"navigationbar_back"] title:nil];
     [self createUI];
     // Do any additional setup after loading the view.
 }

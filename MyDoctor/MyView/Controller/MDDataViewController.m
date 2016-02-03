@@ -36,9 +36,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title=@"我的资料";
-    [self setNavigationBarWithrightBtn:nil leftBtn:@"navigationbar_back"];
-    //返回按钮点击
-    [self.leftBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
+    [util setNavigationLeftButton:self.navigationItem target:self selector:@selector(backBtnClick) image:[UIImage imageNamed:@"navigationbar_back"] title:nil];
     UITapGestureRecognizer*tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(Actiondo)];
     [self.view addGestureRecognizer:tapGesture];
     
@@ -248,6 +247,7 @@
     
     NSString * birthday1=[NSString stringWithFormat:@"%@-%@-%@ 00:00:00",year.titleLabel.text,month.titleLabel.text,day.titleLabel.text];
     NSString * parameter=[NSString stringWithFormat:@"%@@`%@@`%d@`%@@`%@@`%@",userId,name.text,sex,str,IdNumber.text,birthday1];
+    NSLog(@"===%@",str);
     model.parameter = parameter;
        [model starRequest];
     

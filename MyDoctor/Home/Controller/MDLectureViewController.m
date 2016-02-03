@@ -23,21 +23,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"专题讲座";
-    [self setNavigationBarWithrightBtn:nil leftBtn:@"navigationbar_back"];
-    //返回按钮点击
-    [self.leftBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    
+    BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
+    [util setNavigationLeftButton:self.navigationItem target:self selector:@selector(backBtnClick) image:[UIImage imageNamed:@"navigationbar_back"] title:nil];
     [self.leftDownBtn setTitle:@"电话咨询" forState:UIControlStateNormal];
     [self.rightDownBtn setTitle:@"免费预约" forState:UIControlStateNormal];
     
     //  取消继承的点击事件
     [self.rightDownBtn removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    [self.leftDownBtn removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
     
     //添加点击事件
     [self.rightDownBtn addTarget:self action:@selector(orderBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
-//    [self postRequest];
-
+    [self.leftDownBtn addTarget:self action:@selector(callBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     
     [self setText];
     
@@ -52,7 +52,7 @@
 #pragma mark - sendInfoToCtr
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-//        NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+        NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
         if ([[dic objectForKey:@"msg"] isEqualToString:@"已经报名"]) {
             UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"预约成功" message:nil delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
@@ -64,31 +64,6 @@
             UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"预约失败，请重试" message:nil delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
             [alert show];
         }
-    
-//    MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
-    //    healthEducateName": "健康讲座",
-//    "participateInPeople": "接受教育的人群",
-//    "starttime": "2015-11-30 21:10:53",
-//    "endtime": "2015-12-03 21:11:00",
-//    "content": "内容",
-//    "addree": "地点",
-//    "purpose": "目的",
-//    "company": "主办单位",
-//    NSLog(@"%@  %@  %@",[_dataSource[0] objectForKey:@"healthEducateName"],[_dataSource[0] objectForKey:@"participateInPeople"],[_dataSource[0] objectForKey:@"company"]);
-    
-    
-//    NSArray *array = [str componentsSeparatedByString:@","];
-//    NSArray *success=[array[0] componentsSeparatedByString:@":"];
-//    
-//    if ([success[1] isEqualToString:@"true"]) {
-//        [[NSNotificationCenter defaultCenter]
-//         postNotificationName:@"showBRSMainView" object:self];
-//        NSUserDefaults *stdDefault = [NSUserDefaults standardUserDefaults];
-//        [stdDefault setObject:logInField.text forKey:@"user_name"];
-//        [self dismissViewControllerAnimated:YES completion:^{
-//            NSLog(@"back");
-//        }];
-//    }
     
 
 }
@@ -105,7 +80,6 @@
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = MDPath;
     model.methodNum = 10202;
-//    model.methodNum = 10201;
     NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
     int userId = [[stdDefault objectForKey:@"user_Id"] intValue];
     NSString * parameter = [NSString stringWithFormat:@"%d@`%d",userId,lectureID];
@@ -115,6 +89,13 @@
 
     
     
+}
+
+-(void)callBtnClick
+{
+    NSString * phoneNum = [NSString stringWithFormat:@"tel:%@",self.lectureDetail.phone];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNum]];
+
 }
 
 -(void)setText

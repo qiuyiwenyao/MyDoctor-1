@@ -11,9 +11,8 @@
 #import "MDTransfuseViewController.h"
 #import "MDExaminationViewController.h"
 #import "MDRecoveryViewController.h"
-#import "MDRequestModel.h"
 
-@interface MDNurseViewController ()<UITableViewDataSource,UITableViewDelegate,sendInfoToCtr>
+@interface MDNurseViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView * _tableView;
     NSMutableArray * _listArray;
@@ -27,13 +26,12 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.title = @"照护";
-    [self setNavigationBarWithrightBtn:nil leftBtn:@"navigationbar_back"];
-    //返回按钮点击
-    [self.leftBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
+    [util setNavigationLeftButton:self.navigationItem target:self selector:@selector(backBtnClick) image:[UIImage imageNamed:@"navigationbar_back"] title:nil];
+
     
     [self createTableView];
     
-//    [self postRequest];
 
     // Do any additional setup after loading the view.
 }
@@ -49,25 +47,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-- (void)postRequest
-{
-    MDRequestModel * model = [[MDRequestModel alloc] init];
-    model.path = MDPath;
-    model.methodNum = 10302;
-    NSString * parameter=[NSString stringWithFormat:@"%d@`%d@`%d",3,10,1];
-    model.parameter = parameter;
-    model.delegate = self;
-    [model starRequest];
-}
-
--(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
-{
-    NSLog(@"======%@",[NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil]);
-    NSString * str = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-    NSLog(@"%@",str);
-}
-
 
 -(void)createTableView
 {

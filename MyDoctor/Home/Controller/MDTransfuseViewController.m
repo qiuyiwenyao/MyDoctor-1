@@ -57,7 +57,7 @@
     [introduceLab sizeToFit];
     [self.scrollView addSubview:introduceLab];
     
-    UILabel * priceLab = [[UILabel alloc] initWithFrame:CGRectMake(0, introduceLab.frame.origin.y+introduceLab.frame.size.height+50, appWidth - 48*2, 0)];
+    UILabel * priceLab = [[UILabel alloc] initWithFrame:CGRectMake(0, introduceLab.frame.origin.y+introduceLab.frame.size.height+30, appWidth - 48*2, 0)];
 //    priceLab.text = @"每次价格:";
     [priceLab sizeToFit];
     priceLab.textColor = ColorWithRGB(97, 103, 111, 1);
@@ -65,7 +65,7 @@
     priceLab.font = [UIFont systemFontOfSize:14];
     [self.scrollView addSubview:priceLab];
     
-    UILabel * remarkLab = [[UILabel alloc] initWithFrame:CGRectMake(0, priceLab.y+priceLab.height+40, appWidth - 48*2, 0)];
+    UILabel * remarkLab = [[UILabel alloc] initWithFrame:CGRectMake(0, priceLab.y, appWidth - 48*2, 0)];
     remarkLab.text = @"备注:";
     remarkLab.textColor = ColorWithRGB(97, 103, 111, 1);
     remarkLab.textAlignment = NSTextAlignmentLeft;

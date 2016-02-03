@@ -46,9 +46,8 @@
     
     self.navigationItem.title = @"寻医";
     
-    [self setNavigationBarWithrightBtn:nil leftBtn:@"navigationbar_back"];
-    //返回按钮点击
-    [self.leftBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
+    [util setNavigationLeftButton:self.navigationItem target:self selector:@selector(backBtnClick) image:[UIImage imageNamed:@"navigationbar_back"] title:nil];
     
     [self createView];
 
@@ -211,7 +210,6 @@
     [docPation createAttachmentsDBTableWithPatient];
     _dataSource = [[NSMutableArray alloc] init];
     
-//    MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
     NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
     NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
     NSDictionary * dic1 = [dic objectForKey:@"obj"];

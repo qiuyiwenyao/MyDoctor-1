@@ -16,9 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setNavigationBarWithrightBtn:nil leftBtn:@"navigationbar_back"];
-    //返回按钮点击
-    [self.leftBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
+    [util setNavigationLeftButton:self.navigationItem target:self selector:@selector(backBtnClick) image:[UIImage imageNamed:@"navigationbar_back"] title:nil];    //返回按钮点击
     UIWebView * view = [[UIWebView alloc]initWithFrame:self.view.frame];
     [view loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
     [self.view addSubview:view];

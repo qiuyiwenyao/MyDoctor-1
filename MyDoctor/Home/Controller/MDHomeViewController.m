@@ -46,39 +46,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    
     _messageArr = [[NSMutableArray alloc] init];
-    
     isNewMessage = YES;
-
     self.navigationItem.title=@"e+康";
     
-    [self setNavigationBarWithrightBtn:@"通知" leftBtn:nil];
+    BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
+     [util setNavigationRightButton:self.navigationItem target:self selector:@selector(noticeClick) image:[UIImage imageNamed:@"通知"] title:nil UIColor:nil];
     self.automaticallyAdjustsScrollViewInsets = YES;
     
-    
-    
     [self createHeadView];
-
-    
     [self createView];
-    
     [self requestADPicture];//请求滚动图片
-    
     [self requestTopData];//请求顶部文字广告
     
-   
-    
-       //通知按钮点击
-    [self.rightBtn addTarget:self action:@selector(noticeClick) forControlEvents:UIControlEventTouchUpInside];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newMessage:) name:@"newMessage" object:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToADVC:) name:@"jumpToADVC" object:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteRedButton:) name:@"deleteRedButton" object:nil];
 
-    
 }
 
 -(void)dealloc
@@ -170,14 +154,6 @@
 
 -(void)createHeadView
 {
-//    NSMutableArray * PicArr = [[NSMutableArray alloc] init];
-//    NSMutableArray * urlArr = [[NSMutableArray alloc] init];
-//    for (NSDictionary * dic in ADPic) {
-//        NSString * pic = [dic objectForKey:@"Pic"];
-//        NSString * url = [dic objectForKey:@"Url"];
-//        [urlArr addObject:url];
-//        [PicArr addObject:pic];
-//    }
     
     _adView = [[AdView alloc] initWithFrame:CGRectMake(0, 30, appWidth, appWidth*0.42)];
     
@@ -242,6 +218,7 @@
     }
     
     [_adView setImageLinkURL:PicArr];
+    [_adView setPageControlShowStyle:UIPageControlShowStyleRight];
     
     //图片被点击后回调的方法
     _adView.callBack = ^(NSInteger index,NSString * imageURL)

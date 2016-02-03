@@ -109,95 +109,6 @@
     [super didReceiveMemoryWarning];
 }
 
-//根据手机号获得头像和昵称
--(void)getNickNameAndPhotoWithChatID:(NSString *)chatId
-{
-    //    MDRequestModel * model = [[MDRequestModel alloc] init];
-    //    model.path = MDPath;
-    //    model.methodNum = 10102;
-    //    NSString * parameter=[NSString stringWithFormat:@"%@@`%@",logInField.text,password.text];
-    //    model.parameter = parameter;
-    //    model.delegate = self;
-    //    [model starRequest];
-    MDRequestModel * model = [[MDRequestModel alloc] init];
-    model.path = MDPath;
-    model.methodNum = 10110;
-    //    NSLog(@"===%@",_chatID);
-    NSString * parameter = chatId;
-    model.delegate = self;
-    model.parameter = parameter;
-    [model starRequest];
-    
-}
-
-
-#pragma mark - sen
--(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
-{
-    
-    NSLog(@"~~~~~~~~%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
-    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    NSArray * arr = [dic objectForKey:@"obj"];
-    
-    NSMutableArray * attachmentArr = [[NSMutableArray alloc] init];
-    DocPatientSQL * docPation = [[DocPatientSQL alloc] init];
-    [docPation createAttachmentsDBTableWithPatient];
-    
-    for (NSDictionary * dic in arr) {
-        
-        //创建数据库
-        
-        DocPatientModel * patientModel = [[DocPatientModel alloc] init];
-        patientModel.Name = [dic objectForKey:@"RealName"];
-        if (![dic objectForKey:@"RealName"]) {
-            patientModel.Name = [dic objectForKey:@"Phone"];
-        }
-        patientModel.phone = [dic objectForKey:@"Phone"];
-        if ([dic objectForKey:@"Photo"]) {
-//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                NSData * data = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,[dic objectForKey:@"Photo"]]]];
-                UIImage *headImg = [[UIImage alloc]initWithData:data];
-                if (data != nil) {
-//                    dispatch_async(dispatch_get_main_queue(), ^{
-                        //在这里做UI操作(UI操作都要放在主线程中执行)
-                        FileUtils * fileUtil = [FileUtils sharedFileUtils];
-                        //创建文件下载目录
-                        NSString * path2 = [fileUtil createCachePath:IMAGECACHE];
-                        
-                        NSString *uniquePath=[path2 stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",[dic objectForKey:@"Phone"]]];
-                        BOOL result=[UIImagePNGRepresentation(headImg)writeToFile: uniquePath atomically:YES];
-                        
-                        if(result)
-                        {
-                            patientModel.ImagePath = [NSString stringWithFormat:@"/Library/Caches/PatientsIMAGE/%@.png",[dic objectForKey:@"Phone"]];
-                            NSLog(@"%@",patientModel.ImagePath);
-                            
-                            [attachmentArr addObject:patientModel];
-                            [docPation updatePopAttachmentsDBTable:attachmentArr];
-                            [_tableView reloadData];
-                        }
-                        
-                        
-//                    });
-                }
-//            });
-            
-            
-        }
-        
-        
-        
-    }
-    
-    
-    
-    
-    
-    
-    
-    //
-    //    NSLog(@"+++++%@%@",nickName,headImg);
-}
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -744,7 +655,6 @@
     _chatIDs = [[NSString alloc] init];
     int i=0;
     for (EMConversation *conversation in self.dataSource) {
-        //        [self getNickNameAndPhotoWithChatID:conversation.chatter];
         if (i==0) {
             _chatIDs=conversation.chatter;
         }else{
@@ -753,7 +663,6 @@
         i++;
         
     }
-//    [self getNickNameAndPhotoWithChatID:_chatIDs];
     NSLog(@"~~~~~~~~%@",_chatIDs);
 //    [_tableView reloadData];
     [self hideHud];

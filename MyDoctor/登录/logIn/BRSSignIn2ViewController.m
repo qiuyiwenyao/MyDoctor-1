@@ -23,6 +23,7 @@
 #import "EaseMob.h"
 #import "NIDropDown.h"
 #import "UserProfileManager.h"
+#import "BRSSysUtil.h"
 
 #define autoSizeScaleX  (appWidth>320?appWidth/320:1)
 #define autoSizeScaleY  (appHeight>568?appHeight/568:1)
@@ -64,9 +65,11 @@
     [self.view addGestureRecognizer:tapGesture];
     [self textfield];
    
-    [self setNavigationBarWithrightBtn:@"下一步" leftBtn:@"navigationbar_back"];
-    //返回按钮点击
-    [self.leftBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+
+    BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
+    [util setNavigationLeftButton:self.navigationItem target:self selector:@selector(back) image:[UIImage imageNamed:@"navigationbar_back"] title:nil];
+    [util setNavigationRightButton:self.navigationItem target:self selector:@selector(next:) image:nil title:@"下一步" UIColor:RedColor];
+
     self.navigationItem.title=@"注册";
     sex = 1;
     
@@ -111,7 +114,6 @@
     password2.placeholder=@"再次输入密码";
     password2.leftViewMode = UITextFieldViewModeAlways;
     
-    [self.rightBtn addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:number];
 //    [self.view addSubview:IdNumber];

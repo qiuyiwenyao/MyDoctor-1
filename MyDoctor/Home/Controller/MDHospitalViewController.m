@@ -24,11 +24,8 @@
     [super viewDidLoad];
     
 //    self.navigationItem.title = @"社区医院";
-    
-    [self setNavigationBarWithrightBtn:nil leftBtn:@"navigationbar_back"];
-    //返回按钮点击
-    [self.leftBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    // Do any additional setup after loading the view.
+    BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
+    [util setNavigationLeftButton:self.navigationItem target:self selector:@selector(backBtnClick) image:[UIImage imageNamed:@"navigationbar_back"] title:nil];
     [self createView];
     
     }
@@ -212,15 +209,6 @@
 -(void)consult:(UIButton *)button
 
 {
-
-//    EMConversation *conversation =  [[EaseMob sharedInstance].chatManager conversationForChatter:@"18234087856" conversationType:0] ;
-//    NSString *chatter = conversation.chatter;
-//    ChatViewController * chatController = [[ChatViewController alloc] initWithChatter:chatter
-//                                                conversationType:conversation.conversationType];
-//    chatController.title = @"医生";
-//    chatController.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:chatController animated:YES];
-    
     MainViewController * main=[[MainViewController alloc] init];
     main.chatID = _docInfo.HxName;
     main.name = self.title;
