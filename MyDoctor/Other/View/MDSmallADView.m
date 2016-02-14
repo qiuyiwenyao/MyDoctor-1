@@ -85,7 +85,10 @@
     
     NSInteger textIndex = lab.tag - 10;
     NSString * url = self.ADURL[textIndex];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToADVC" object:url];
+    if (![url isEqualToString:@"http://www.baidu.com"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToADVC" object:url];
+
+    }
 
     NSLog(@"%@",self.ADURL[textIndex]);
 }
