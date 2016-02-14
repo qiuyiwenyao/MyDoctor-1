@@ -223,7 +223,9 @@
     //图片被点击后回调的方法
     _adView.callBack = ^(NSInteger index,NSString * imageURL)
     {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToADVC" object:urlArr[index]];
+        if (![urlArr[index] isEqualToString:@"http://www.baidu.com"]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToADVC" object:urlArr[index]];
+        }
         
     };
 }
