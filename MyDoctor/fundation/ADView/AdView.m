@@ -147,7 +147,7 @@
         [imagePaths addObject:imageURL];
     }
     AdView * adView = [AdView adScrollViewWithFrame:frame imageLinkURL:imageLinkURL   pageControlShowStyle:PageControlShowStyle];
-    adView.placeHoldImage = [UIImage imageNamed:imageName];
+//    adView.placeHoldImage = [UIImage imageNamed:imageName];
     return adView;
 }
 
@@ -197,22 +197,36 @@
 #pragma mark - 设置广告所使用的图片(名字)
 - (void)setImageLinkURL:(NSArray *)imageLinkURL
 {
-    _imageLinkURL = imageLinkURL;
-    leftImageIndex = imageLinkURL.count-1;
-    centerImageIndex = 0;
-    rightImageIndex = 1;
-    
     if (imageLinkURL.count==1)
     {
         _adScrollView.scrollEnabled = NO;
         rightImageIndex = 0;
     }
-    _pageControl.numberOfPages = _imageLinkURL.count;
-    _pageControl.currentPage = 0;
+    
+    if (imageLinkURL.count == 0) {
+        leftImageIndex = 2;
+        centerImageIndex = 0;
+        rightImageIndex = 1;
 
-    [_leftImageView sd_setImageWithURL:imageLinkURL[leftImageIndex] placeholderImage:self.placeHoldImage];
-    [_centerImageView sd_setImageWithURL:imageLinkURL[centerImageIndex] placeholderImage:self.placeHoldImage];
-    [_rightImageView sd_setImageWithURL:imageLinkURL[rightImageIndex] placeholderImage:self.placeHoldImage];
+        _leftImageView.image = self.placeHoldImage;
+        _centerImageView.image = self.placeHoldImage;
+        _rightImageView.image  = self.placeHoldImage;
+    }
+    else
+    {
+        _imageLinkURL = imageLinkURL;
+        leftImageIndex = imageLinkURL.count-1;
+        centerImageIndex = 0;
+        rightImageIndex = 1;
+        _pageControl.numberOfPages = _imageLinkURL.count;
+        _pageControl.currentPage = 0;
+        
+        [_leftImageView sd_setImageWithURL:imageLinkURL[leftImageIndex] placeholderImage:self.placeHoldImage];
+        [_centerImageView sd_setImageWithURL:imageLinkURL[centerImageIndex] placeholderImage:self.placeHoldImage];
+        [_rightImageView sd_setImageWithURL:imageLinkURL[rightImageIndex] placeholderImage:self.placeHoldImage];
+    }
+    
+    
     [self setPageControlShowStyle:self.PageControlShowStyle];
 }
 

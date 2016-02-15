@@ -200,21 +200,24 @@
 
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
-    NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    if ([[dictionary objectForKey:@"success"] intValue] == 1) {
-        NSLog(@"true");
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"订单已取消" message:nil delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
-        [alert show];
-        
-    }
-    else
-    {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"订单取消失败" message:nil delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
-        [alert show];
+    if (response) {
+        NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+        NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+        if ([[dictionary objectForKey:@"success"] intValue] == 1) {
+            NSLog(@"true");
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"订单已取消" message:nil delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
+            [alert show];
+            
+        }
+        else
+        {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"订单取消失败" message:nil delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
+            [alert show];
+            
+        }
 
     }
-}
+    }
 
 //将订单从列表删除
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex

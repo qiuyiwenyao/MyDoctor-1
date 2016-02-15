@@ -156,20 +156,23 @@
 
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
-    if ([[dictionary objectForKey:@"success"]intValue] == 1) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"密码修改成功" message:nil delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-    else
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"旧密码错误，请重新填写" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
-        [passwordTF becomeFirstResponder];
+    if (response) {
+        NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+        if ([[dictionary objectForKey:@"success"]intValue] == 1) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"密码修改成功" message:nil delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"旧密码错误，请重新填写" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+            [passwordTF becomeFirstResponder];
+            
+            [alert show];
+        }
 
-        [alert show];
     }
-}
+    }
 
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex

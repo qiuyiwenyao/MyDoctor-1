@@ -64,5 +64,15 @@
 }
 
 
++(BOOL)checkNetWork{
+    if(NO_NET_WORK)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"此操作需要联网，请检查网络设置" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+        [alert show];
+        return NO;
+    }else{
+        return YES;
+    }
+}
 
 @end

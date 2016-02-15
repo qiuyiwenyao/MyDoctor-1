@@ -281,17 +281,20 @@
 //请求数据回调
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    NSString * str = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-    //回馈数据
-    NSLog(@"%@", str);
-    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    if ([dic objectForKey:@"success"]) {
-        [self dismissViewControllerAnimated:YES completion:^{
-            NSLog(@"back");
-        }];
-        
-    }
+    if (response) {
+        NSString * str = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+        //回馈数据
+        NSLog(@"%@", str);
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+        if ([dic objectForKey:@"success"]) {
+            [self dismissViewControllerAnimated:YES completion:^{
+                NSLog(@"back");
+            }];
+            
+        }
 
+    }
+   
 }
 
 

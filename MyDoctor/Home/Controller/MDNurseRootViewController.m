@@ -216,20 +216,23 @@
 
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
-    
-    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    if ([[dic objectForKey:@"success"] intValue] == 1) {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"预定成功" message:@"我们会尽快安排医护人员上门为您服务" delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
-        [alert show];
-    }
-    else
-    {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"预定失败" message:@"请重试" delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
-        [alert show];
+    if (response) {
+        NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+        
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+        if ([[dic objectForKey:@"success"] intValue] == 1) {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"预定成功" message:@"我们会尽快安排医护人员上门为您服务" delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
+            [alert show];
+        }
+        else
+        {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"预定失败" message:@"请重试" delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
+            [alert show];
+            
+        }
 
     }
-}
+   }
 /*
 #pragma mark - Navigation
 

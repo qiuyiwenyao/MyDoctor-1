@@ -185,16 +185,19 @@
 //数据请求回调
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
-    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    if ([[dic objectForKey:@"success"] intValue]==0) {
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"验证码获取失败，请稍后再试"  delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil,nil];
-        //                alert.alertViewStyle=UIAlertViewStylePlainTextInput;
-        [alert show];
-        
-    }else{
-        msgCode = [NSString stringWithString:[dic objectForKey:@"msg"]];
+    if (response) {
+        NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+        if ([[dic objectForKey:@"success"] intValue]==0) {
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"验证码获取失败，请稍后再试"  delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil,nil];
+            //                alert.alertViewStyle=UIAlertViewStylePlainTextInput;
+            [alert show];
+            
+        }else{
+            msgCode = [NSString stringWithString:[dic objectForKey:@"msg"]];
+        }
+
     }
     
 }

@@ -156,25 +156,32 @@
 #pragma mark - sendInfoToCtr
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
-    
-    _dataList = [[NSMutableArray alloc] init];
-    
-    MDLectureModel * model = [[MDLectureModel alloc] init];
-    [model setValue:@"神经内科专家进行免费咨询讲座" forKey:@"healthEducateName"];
-    [model setValue:@"2016-02-15 08:00:00" forKey:@"starttime"];
-    [_dataList addObject:model];
-    
-    NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    NSArray * obj = [dictionary objectForKey:@"obj"];
-    for (NSDictionary * dic in obj) {
-        MDLectureModel * model = [[MDLectureModel alloc] init];
-        [model setValuesForKeysWithDictionary:dic];
-        [_dataList addObject:model];
+    if (response) {
+        NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+        
+        _dataList = [[NSMutableArray alloc] init];
+        
+        if (response) {
+            MDLectureModel * model = [[MDLectureModel alloc] init];
+            [model setValue:@"神经内科专家进行免费咨询讲座" forKey:@"healthEducateName"];
+            [model setValue:@"2016-02-15 08:00:00" forKey:@"starttime"];
+            [_dataList addObject:model];
+            
+            NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+            NSArray * obj = [dictionary objectForKey:@"obj"];
+            for (NSDictionary * dic in obj) {
+                MDLectureModel * model = [[MDLectureModel alloc] init];
+                [model setValuesForKeysWithDictionary:dic];
+                [_dataList addObject:model];
+            }
+            
+            [_tableView reloadData];
+        }
+        
+        
+
     }
-    
-    [_tableView reloadData];
-}
+    }
 
 -(void)createTableView
 {

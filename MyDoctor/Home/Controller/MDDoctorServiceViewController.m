@@ -33,12 +33,6 @@
 
 @implementation MDDoctorServiceViewController
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:YES];
-
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -206,76 +200,87 @@
 #pragma mark - sendInfoToCtr 请求数据回调
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    DocPatientSQL * docPation = [[DocPatientSQL alloc] init];
-    [docPation createAttachmentsDBTableWithPatient];
-    _dataSource = [[NSMutableArray alloc] init];
-    
-    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
-    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    NSDictionary * dic1 = [dic objectForKey:@"obj"];
-    NSMutableArray * arr1 = [[NSMutableArray alloc] init];
-    NSMutableArray * arr2 = [[NSMutableArray alloc] init];
-   
-    MDDocModel * model;
-    for (NSDictionary * dic in [dic1 objectForKey:@"list2"]) {
-         model= [[MDDocModel alloc] init];
-        [model setValuesForKeysWithDictionary:dic];
-        [arr1 addObject:model];
-        NSMutableArray * array=[[NSMutableArray alloc] init];
-        DocPatientModel * patientModel = [[DocPatientModel alloc] init];
-        patientModel.Name = model.RealName;
-        patientModel.phone =model.Phone;
-        patientModel.HxName = model.HxName;
-        patientModel.ImagePath = [NSString stringWithFormat:@"/Library/Caches/PatientsIMAGE/%@.png",model.HxName];
-        [array addObject:patientModel];
-        [docPation updatePopAttachmentsDBTable:array];
+    if (response) {
+        DocPatientSQL * docPation = [[DocPatientSQL alloc] init];
+        [docPation createAttachmentsDBTableWithPatient];
+        _dataSource = [[NSMutableArray alloc] init];
         
-        UIImageView * imageV=[[UIImageView alloc] init];
-        [imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,model.Photo]]];
-        UIImage *headImg = imageV.image;
-            FileUtils * fileUtil = [FileUtils sharedFileUtils];
-            NSString * path2 = [fileUtil createCachePath:IMAGECACHE];
-            NSString *uniquePath=[path2 stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",model.HxName]];
-            [UIImagePNGRepresentation(headImg)writeToFile: uniquePath atomically:YES];
-    }
-    
-    for (NSDictionary * dic in [dic1 objectForKey:@"list1"]) {
-        model = [[MDDocModel alloc] init];
-        [model setValuesForKeysWithDictionary:dic];
-        [arr2 addObject:model];
+        NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+        if (response) {
+            NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+            NSDictionary * dic1 = [dic objectForKey:@"obj"];
+            NSMutableArray * arr1 = [[NSMutableArray alloc] init];
+            NSMutableArray * arr2 = [[NSMutableArray alloc] init];
+            
+            MDDocModel * model;
+            for (NSDictionary * dic in [dic1 objectForKey:@"list2"]) {
+                model= [[MDDocModel alloc] init];
+                [model setValuesForKeysWithDictionary:dic];
+                [arr1 addObject:model];
+                NSMutableArray * array=[[NSMutableArray alloc] init];
+                DocPatientModel * patientModel = [[DocPatientModel alloc] init];
+                patientModel.Name = model.RealName;
+                patientModel.phone =model.Phone;
+                patientModel.HxName = model.HxName;
+                patientModel.ImagePath = [NSString stringWithFormat:@"/Library/Caches/PatientsIMAGE/%@.png",model.HxName];
+                [array addObject:patientModel];
+                [docPation updatePopAttachmentsDBTable:array];
+                
+                UIImageView * imageV=[[UIImageView alloc] init];
+                [imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,model.Photo]]];
+                UIImage *headImg = imageV.image;
+                FileUtils * fileUtil = [FileUtils sharedFileUtils];
+                NSString * path2 = [fileUtil createCachePath:IMAGECACHE];
+                NSString *uniquePath=[path2 stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",model.HxName]];
+                [UIImagePNGRepresentation(headImg)writeToFile: uniquePath atomically:YES];
+            }
+            
+            for (NSDictionary * dic in [dic1 objectForKey:@"list1"]) {
+                model = [[MDDocModel alloc] init];
+                [model setValuesForKeysWithDictionary:dic];
+                [arr2 addObject:model];
+                
+                NSMutableArray * array=[[NSMutableArray alloc] init];
+                DocPatientModel * patientModel = [[DocPatientModel alloc] init];
+                patientModel.Name = model.RealName;
+                patientModel.phone =model.Phone;
+                patientModel.HxName = model.HxName;
+                patientModel.ImagePath = [NSString stringWithFormat:@"/Library/Caches/PatientsIMAGE/%@.png",model.HxName];
+                [array addObject:patientModel];
+                [docPation updatePopAttachmentsDBTable:array];
+                UIImageView * imageV=[[UIImageView alloc] init];
+                [imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,model.Photo]]];
+                UIImage *headImg = imageV.image;
+                FileUtils * fileUtil = [FileUtils sharedFileUtils];
+                NSString * path2 = [fileUtil createCachePath:IMAGECACHE];
+                NSString *uniquePath=[path2 stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",model.HxName]];
+                [UIImagePNGRepresentation(headImg)writeToFile: uniquePath atomically:YES];
+            }
+            
+            [_dataSource addObject:arr1];
+            [_dataSource addObject:arr2];
+            [_tableView reloadData];
+            
+        }
+        else
+        {
+            [_tableView reloadData];
+        }
         
-        NSMutableArray * array=[[NSMutableArray alloc] init];
-        DocPatientModel * patientModel = [[DocPatientModel alloc] init];
-        patientModel.Name = model.RealName;
-        patientModel.phone =model.Phone;
-        patientModel.HxName = model.HxName;
-        patientModel.ImagePath = [NSString stringWithFormat:@"/Library/Caches/PatientsIMAGE/%@.png",model.HxName];
-        [array addObject:patientModel];
-        [docPation updatePopAttachmentsDBTable:array];
-        UIImageView * imageV=[[UIImageView alloc] init];
-        [imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,model.Photo]]];
-        UIImage *headImg = imageV.image;
-        FileUtils * fileUtil = [FileUtils sharedFileUtils];
-        NSString * path2 = [fileUtil createCachePath:IMAGECACHE];
-        NSString *uniquePath=[path2 stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",model.HxName]];
-        [UIImagePNGRepresentation(headImg)writeToFile: uniquePath atomically:YES];
+
     }
-    
-    [_dataSource addObject:arr1];
-    [_dataSource addObject:arr2];
-    [_tableView reloadData];
-}
+       }
 
 #pragma mark - UITableViewDelegate
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return _dataSource.count;
+    return 2;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_dataSource[section] count];
+    return 3;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -297,18 +302,27 @@
 //    for (UIView *item in cell.contentView.subviews) {
 //        [item removeFromSuperview];
 //    }
-    MDDocModel * model = _dataSource[indexPath.section][indexPath.row];
-    cell.nameLab.text = model.RealName;
-    cell.hospitalLab.text = model.HospitalName;
-    cell.majorLab.text = model.Detail;
-    cell.branchLab.text  =model.Department;
-    [cell.headView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,model.Photo]] placeholderImage:[UIImage imageNamed:@"专家头像"]];
-    cell.unReadView.hidden = YES;
-    
-    for (NSString * newMessage in _messageArr) {
-        if ([newMessage isEqualToString:model.HxName]) {
-            cell.unReadView.hidden = NO;
+    if (_dataSource.count != 0) {
+        MDDocModel * model = _dataSource[indexPath.section][indexPath.row];
+        cell.nameLab.text = model.RealName;
+        cell.hospitalLab.text = model.HospitalName;
+        cell.majorLab.text = model.Detail;
+        cell.branchLab.text  =model.Department;
+        [cell.headView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl,model.Photo]] placeholderImage:[UIImage imageNamed:@"专家头像"]];
+        cell.unReadView.hidden = YES;
+        
+        for (NSString * newMessage in _messageArr) {
+            if ([newMessage isEqualToString:model.HxName]) {
+                cell.unReadView.hidden = NO;
+            }
         }
+
+    }
+    else
+    {
+        cell.headView.image = [UIImage imageNamed:@"专家头像"];
+        cell.unReadView.hidden = YES;
+
     }
     
 //    NSLog(@"%@%@",[MDUserVO userVO].photourl,model.Photo);
@@ -339,13 +353,16 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    MDHospitalViewController * hospitalVC = [[MDHospitalViewController alloc] init];
-    MDDocModel * docInfo = _dataSource[indexPath.section][indexPath.row];
-    hospitalVC.title = docInfo.RealName;
-    hospitalVC.docInfo = docInfo;
-    
-    [self.navigationController pushViewController:hospitalVC animated:YES];
+    if ([MDBaseViewController checkNetWork]) {
+        MDHospitalViewController * hospitalVC = [[MDHospitalViewController alloc] init];
+        MDDocModel * docInfo = _dataSource[indexPath.section][indexPath.row];
+        hospitalVC.title = docInfo.RealName;
+        hospitalVC.docInfo = docInfo;
+        
+        [self.navigationController pushViewController:hospitalVC animated:YES];
+
+    }
+
 }
 
 //将_messageArr里已读的消息删除（取消红点）

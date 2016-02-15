@@ -109,43 +109,46 @@
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
     //回馈数据
-    if (curruntPage == 1) {
-        [dataArray removeAllObjects];
-    }
-    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-//    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
-    
-    if ([dic objectForKey:@"success"]) {
-        
-        NSArray * array=[[NSArray alloc] init];
-        array=[dic objectForKey:@"obj"];
-        for (int i =0; i<[array count]; i++) {
-            NSDictionary * type=[[NSDictionary alloc] init];
-            type=array[i];
-            MDDrugVO * drug=[[MDDrugVO alloc] init];
-            drug.Untowardeffect=[type objectForKey:@"Untowardeffect"];
-            drug.Photo=[type objectForKey:@"Photo"];
-            drug.Medicinedosage=[type objectForKey:@"Medicinedosage"];
-            drug.Function=[type objectForKey:@"Function"];
-            drug.MedicineName=[type objectForKey:@"MedicineName"];
-            drug.Taboo=[type objectForKey:@"Taboo"];
-            drug.Habitat=[type objectForKey:@"Habitat"];
-            drug.ID=[type objectForKey:@"ID"];
-            drug.CommonName=[type objectForKey:@"CommonName"];
-            drug.Specification=[type objectForKey:@"Specification"];
-            drug.Validity=[type objectForKey:@"Validity"];
-            drug.Specification=[type objectForKey:@"Specification"];
-            drug.CategaryID=[type objectForKey:@"CategaryID"];
-            drug.OrderFlag=[type objectForKey:@"OrderFlag"];
-            [dataArray addObject:drug];
-            
-//            [amedicineArray addObject:consult];
+    if (response) {
+        if (curruntPage == 1) {
+            [dataArray removeAllObjects];
         }
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+        //    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
         
+        if ([dic objectForKey:@"success"]) {
+            
+            NSArray * array=[[NSArray alloc] init];
+            array=[dic objectForKey:@"obj"];
+            for (int i =0; i<[array count]; i++) {
+                NSDictionary * type=[[NSDictionary alloc] init];
+                type=array[i];
+                MDDrugVO * drug=[[MDDrugVO alloc] init];
+                drug.Untowardeffect=[type objectForKey:@"Untowardeffect"];
+                drug.Photo=[type objectForKey:@"Photo"];
+                drug.Medicinedosage=[type objectForKey:@"Medicinedosage"];
+                drug.Function=[type objectForKey:@"Function"];
+                drug.MedicineName=[type objectForKey:@"MedicineName"];
+                drug.Taboo=[type objectForKey:@"Taboo"];
+                drug.Habitat=[type objectForKey:@"Habitat"];
+                drug.ID=[type objectForKey:@"ID"];
+                drug.CommonName=[type objectForKey:@"CommonName"];
+                drug.Specification=[type objectForKey:@"Specification"];
+                drug.Validity=[type objectForKey:@"Validity"];
+                drug.Specification=[type objectForKey:@"Specification"];
+                drug.CategaryID=[type objectForKey:@"CategaryID"];
+                drug.OrderFlag=[type objectForKey:@"OrderFlag"];
+                [dataArray addObject:drug];
+                
+                //            [amedicineArray addObject:consult];
+            }
+            
+        }
+        [_tableView reloadData];
+        [_tableView.mj_header endRefreshing];
+        [_tableView.mj_footer endRefreshing];
     }
-    [_tableView reloadData];
-    [_tableView.mj_header endRefreshing];
-    [_tableView.mj_footer endRefreshing];
+   
 }
 
 -(void)TableView

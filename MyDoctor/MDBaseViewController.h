@@ -14,6 +14,7 @@
 #import "BRSSysUtil.h"
 
 @interface MDBaseViewController : UIViewController
++(BOOL)checkNetWork;
 
 @end
 

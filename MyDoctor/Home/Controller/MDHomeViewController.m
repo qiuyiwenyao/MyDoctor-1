@@ -64,6 +64,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteRedButton:) name:@"deleteRedButton" object:nil];
 
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+}
 
 -(void)dealloc
 {
@@ -190,19 +194,26 @@
 //设置顶部广告文字
 -(void)setTopADText
 {
-    NSMutableArray * textArr = [[NSMutableArray alloc] init];
-    NSMutableArray * urlArr = [[NSMutableArray alloc] init];
-    for (NSDictionary * dic in ADList) {
-        NSString * text = [dic objectForKey:@"Remark"];
-        NSString * url = [dic objectForKey:@"Url"];
-        [textArr addObject:text];
-        [urlArr addObject:url];
+    if (ADList.count == 0) {
+        _smallADView.adTitleArray = @[@"e+康，健康生活到您家！"];
+        _smallADView.ADURL = nil;
+        [_smallADView setText];
     }
+    else
+    {
+        NSMutableArray * textArr = [[NSMutableArray alloc] init];
+        NSMutableArray * urlArr = [[NSMutableArray alloc] init];
+        for (NSDictionary * dic in ADList) {
+            NSString * text = [dic objectForKey:@"Remark"];
+            NSString * url = [dic objectForKey:@"Url"];
+            [textArr addObject:text];
+            [urlArr addObject:url];
+        }
         _smallADView.adTitleArray = textArr;
         _smallADView.ADURL = urlArr;
         [_smallADView setText];
+    }
 
-  
 }
 
 //设置滚动图片
@@ -218,11 +229,16 @@
     }
     
     [_adView setImageLinkURL:PicArr];
+    _adView.placeHoldImage = [UIImage imageNamed:@"Icon"];
+
     [_adView setPageControlShowStyle:UIPageControlShowStyleRight];
     
     //图片被点击后回调的方法
     _adView.callBack = ^(NSInteger index,NSString * imageURL)
     {
+        if (urlArr.count == 0) {
+            return;
+        }
         if (![urlArr[index] isEqualToString:@"http://www.baidu.com"]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToADVC" object:urlArr[index]];
         }
@@ -273,17 +289,25 @@
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
     NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
-//    ADList = [[NSMutableArray alloc] init];
-    NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    if (num == 10902) {
-        ADList = [[NSMutableArray alloc] initWithArray:[dictionary objectForKey:@"obj"]];
+    if (response) {
+        NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+        if (num == 10902) {
+            ADList = [[NSMutableArray alloc] initWithArray:[dictionary objectForKey:@"obj"]];
+            [self setTopADText];
+        }
+        else if (num == 10901)
+        {
+            ADPic = [[NSMutableArray alloc] initWithArray:[dictionary objectForKey:@"obj"]];
+            [self setADPic];
+        }
+    }
+    else
+    {
+        [self setADPic];
         [self setTopADText];
     }
-    else if (num == 10901)
-    {
-        ADPic = [[NSMutableArray alloc] initWithArray:[dictionary objectForKey:@"obj"]];
-        [self setADPic];
-    }
+//    ADList = [[NSMutableArray alloc] init];
+   
    
 }
 

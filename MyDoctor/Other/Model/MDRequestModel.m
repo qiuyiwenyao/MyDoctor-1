@@ -14,18 +14,14 @@
 #import "MDConst.h"
 #import "GTMBase64.h"
 #import "MBProgressHUD.h"
+#import "MDBaseViewController.h"
 
 
 @implementation MDRequestModel
 
 -(void)starRequest
 {
-    
-//    // Configure for text only and offset down
-//    hud.mode = MBProgressHUDModeText;
-//    hud.labelText = @"Some message...";
-//    hud.margin = 10.f;
-//    hud.removeFromSuperViewOnHide = YES;
+    if ([MDBaseViewController checkNetWork]) {
     
     if (_isHideHud) {
         hud = nil;
@@ -48,13 +44,7 @@
         }
 
     }
-    
-    
-    // Show the HUD while the provided method executes in a new thread
-//    [hud showWhileExecuting:@selector(myTask) onTarget:self withObject:nil animated:YES];
-
-
-
+    }
     
     NSString* date;
     NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
@@ -78,6 +68,8 @@
         NSLog(@"成功");
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"失败");
+        [self.delegate sendInfoFromRequest:nil andPath:self.path number:self.methodNum];
+
     }];
     
 

@@ -77,67 +77,70 @@
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
     //回馈数据
-    
-    NSLog(@"登录信息%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
-    
-    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    NSLog(@"%@",dic);
-    MDUserVO *user = [MDUserVO convertFromAccountHomeUser:dic];
-    [MDUserVO  initWithCoder:user];
-    
-    NSDictionary * obj = [dic objectForKey:@"obj"];
-    NSString * hxName = [obj objectForKey:@"hxName"];
-    NSString * hxPwd = [obj objectForKey:@"hxPwd"];
-
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSData * data = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",user.photourl,user.photo]]];
-        UIImage *headImg = [[UIImage alloc]initWithData:data];
-        if (data != nil) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                //在这里做UI操作(UI操作都要放在主线程中执行)
-                FileUtils * fileUtil = [FileUtils sharedFileUtils];
-                //创建文件下载目录
-                NSString * path2 = [fileUtil createCachePath:IMAGECACHE];
-                
-                NSString *uniquePath=[path2 stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",[MDUserVO userVO].userID]];
-                BOOL result=[UIImagePNGRepresentation(headImg)writeToFile: uniquePath atomically:YES];
-                MDLog(@"===========uniquePath:%@",uniquePath);
-
-                
-            });
-        }
-    });
-    
-    NSLog(@"%@",dic);
-    
-    if ([[dic objectForKey:@"msg"] isEqualToString:@"登录成功"]) {
-        [[NSNotificationCenter defaultCenter]
-         postNotificationName:@"showBRSMainView" object:self];
-        NSUserDefaults *stdDefault = [NSUserDefaults standardUserDefaults];
-        [stdDefault setObject:logInField.text forKey:@"user_name"];
-        [stdDefault setObject:[MDUserVO userVO].userID forKey:@"user_Id"];
+    if (response) {
+        NSLog(@"登录信息%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
         
-        //环信登录
-        [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:hxName password:hxPwd completion:^(NSDictionary *loginInfo, EMError *error) {
-            if (!error && loginInfo) {
-                MDLog(@"环信登陆成功！！%@",loginInfo);
-                //
-                //
-                //设置是否自动登录
-                [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
-                //设置推送昵称
-                [[EaseMob sharedInstance].chatManager setApnsNickname:logInField.text];
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"%@",dic);
+        MDUserVO *user = [MDUserVO convertFromAccountHomeUser:dic];
+        [MDUserVO  initWithCoder:user];
+        
+        NSDictionary * obj = [dic objectForKey:@"obj"];
+        NSString * hxName = [obj objectForKey:@"hxName"];
+        NSString * hxPwd = [obj objectForKey:@"hxPwd"];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSData * data = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",user.photourl,user.photo]]];
+            UIImage *headImg = [[UIImage alloc]initWithData:data];
+            if (data != nil) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    //在这里做UI操作(UI操作都要放在主线程中执行)
+                    FileUtils * fileUtil = [FileUtils sharedFileUtils];
+                    //创建文件下载目录
+                    NSString * path2 = [fileUtil createCachePath:IMAGECACHE];
+                    
+                    NSString *uniquePath=[path2 stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",[MDUserVO userVO].userID]];
+                    BOOL result=[UIImagePNGRepresentation(headImg)writeToFile: uniquePath atomically:YES];
+                    MDLog(@"===========uniquePath:%@",uniquePath);
+                    
+                    
+                });
             }
-        } onQueue:nil];
+        });
         
-        NSLog(@"%@",[MDUserVO userVO].userID);
-        [self dismissViewControllerAnimated:YES completion:^{
-            NSLog(@"back");
-        }];
-    }else{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:[dic objectForKey:@"msg"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-        [alert show];
+        NSLog(@"%@",dic);
+        
+        if ([[dic objectForKey:@"msg"] isEqualToString:@"登录成功"]) {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"showBRSMainView" object:self];
+            NSUserDefaults *stdDefault = [NSUserDefaults standardUserDefaults];
+            [stdDefault setObject:logInField.text forKey:@"user_name"];
+            [stdDefault setObject:[MDUserVO userVO].userID forKey:@"user_Id"];
+            
+            //环信登录
+            [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:hxName password:hxPwd completion:^(NSDictionary *loginInfo, EMError *error) {
+                if (!error && loginInfo) {
+                    MDLog(@"环信登陆成功！！%@",loginInfo);
+                    //
+                    //
+                    //设置是否自动登录
+                    [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+                    //设置推送昵称
+                    [[EaseMob sharedInstance].chatManager setApnsNickname:logInField.text];
+                }
+            } onQueue:nil];
+            
+            NSLog(@"%@",[MDUserVO userVO].userID);
+            [self dismissViewControllerAnimated:YES completion:^{
+                NSLog(@"back");
+            }];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:[dic objectForKey:@"msg"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+        }
     }
+    
+   
 }
 
 -(void)logInView

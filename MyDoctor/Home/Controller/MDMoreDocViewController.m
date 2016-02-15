@@ -103,16 +103,19 @@
 #pragma mark - sendInfoToCtr请求数据回调
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
-    NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    _dataSource = [[NSMutableArray alloc] init];
-    for (NSDictionary * dic in [dictionary objectForKey:@"obj"]) {
-        MDDocModel * model = [[MDDocModel alloc] init];
-        [model setValuesForKeysWithDictionary:dic];
-        [_dataSource addObject:model];
+    if (response) {
+        MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+        NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+        _dataSource = [[NSMutableArray alloc] init];
+        for (NSDictionary * dic in [dictionary objectForKey:@"obj"]) {
+            MDDocModel * model = [[MDDocModel alloc] init];
+            [model setValuesForKeysWithDictionary:dic];
+            [_dataSource addObject:model];
+        }
+        [_tableView reloadData];
+
     }
-    [_tableView reloadData];
-}
+   }
 
 #pragma mark - UITableViewDelegate
 

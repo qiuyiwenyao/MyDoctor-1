@@ -171,6 +171,7 @@
 		6A2582B81C0FE21D005E3404 /* topImg2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6A2582B71C0FE21D005E3404 /* topImg2.jpg */; };
 		6A2582C71C102ECF005E3404 /* 赞@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A2582C51C102ECF005E3404 /* 赞@2x.png */; };
 		6A2582C81C102ECF005E3404 /* 未赞@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A2582C61C102ECF005E3404 /* 未赞@2x.png */; };
+		6A26CE1D1C716602003C6AF6 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A26CE1C1C716602003C6AF6 /* Reachability.m */; };
 		6A3EF7B11C054E1E00923D03 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A3EF7AF1C054E1E00923D03 /* arrow@2x.png */; };
 		6A3EF7B51C054E2C00923D03 /* feedback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A3EF7B31C054E2C00923D03 /* feedback@2x.png */; };
 		6A3EF7B81C054E3400923D03 /* notes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A3EF7B71C054E3400923D03 /* notes@2x.png */; };
@@ -988,6 +989,8 @@
 		6A2582B71C0FE21D005E3404 /* topImg2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = topImg2.jpg; sourceTree = "<group>"; };
 		6A2582C51C102ECF005E3404 /* 赞@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "赞@2x.png"; sourceTree = "<group>"; };
 		6A2582C61C102ECF005E3404 /* 未赞@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未赞@2x.png"; sourceTree = "<group>"; };
+		6A26CE1B1C716602003C6AF6 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		6A26CE1C1C716602003C6AF6 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		6A3EF7AF1C054E1E00923D03 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
 		6A3EF7B31C054E2C00923D03 /* feedback@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedback@2x.png"; sourceTree = "<group>"; };
 		6A3EF7B71C054E3400923D03 /* notes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notes@2x.png"; sourceTree = "<group>"; };
@@ -1800,6 +1803,7 @@
 		153C1E661C03FB8C00F87014 /* fundation */ = {
 			isa = PBXGroup;
 			children = (
+				6A26CE191C7165E0003C6AF6 /* Reachability */,
 				1523EC721C619B4300321DF8 /* BRSSysUtil */,
 				6A8899381C4F1C80003DB4BF /* MJRefresh */,
 				155CEC441C0E8992006B5CFA /* gtmbase64 */,
@@ -2619,6 +2623,16 @@
 				6A0D68C71C44949E00F207C3 /* libGeTuiSdk-1.3.2.a */,
 			);
 			path = GtSdkLib;
+			sourceTree = "<group>";
+		};
+		6A26CE191C7165E0003C6AF6 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				6A26CE1B1C716602003C6AF6 /* Reachability.h */,
+				6A26CE1C1C716602003C6AF6 /* Reachability.m */,
+			);
+			name = Reachability;
+			path = ../../../NewDoctorSystem/MyDoctor/fundation/Reachability;
 			sourceTree = "<group>";
 		};
 		6A3EF7C41C058B4D00923D03 /* Model */ = {
@@ -4296,6 +4310,7 @@
 				15800F8A1C4C783500FCB87B /* EditNicknameViewController.m in Sources */,
 				6AB9BAD61C2BE348004BF6A7 /* PSTCollectionViewFlowLayout.m in Sources */,
 				6A8899AD1C4F1CF3003DB4BF /* UIScrollView+MJRefresh.m in Sources */,
+				6A26CE1D1C716602003C6AF6 /* Reachability.m in Sources */,
 				6A6523461C1E930E00227C63 /* SDWebImageManager.m in Sources */,
 				6A3EF8621C06FDB300923D03 /* MDTransfuseViewController.m in Sources */,
 				6AF2024D1C0C1A5600933EAF /* MDMyDoctorViewController.m in Sources */,
