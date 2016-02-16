@@ -113,24 +113,27 @@
 
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    if (currentPage == 1) {
-        [dataArray removeAllObjects];
-    }
+    if (response) {
+        if (currentPage == 1) {
+            [dataArray removeAllObjects];
+        }
+        
+        NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+        NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error: nil];
+        NSArray * obj = [dictionary objectForKey:@"obj"];
+        for (NSDictionary * dictionary in obj) {
+            MDServiceModel * model = [[MDServiceModel alloc] init];
+            [model setValuesForKeysWithDictionary:dictionary];
+            [dataArray addObject:model];
+        }
+        
+        [_tableView reloadData];
+        
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
 
-    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
-    NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error: nil];
-    NSArray * obj = [dictionary objectForKey:@"obj"];
-    for (NSDictionary * dictionary in obj) {
-        MDServiceModel * model = [[MDServiceModel alloc] init];
-        [model setValuesForKeysWithDictionary:dictionary];
-        [dataArray addObject:model];
     }
-    
-    [_tableView reloadData];
-    
-    [self.tableView.mj_header endRefreshing];
-    [self.tableView.mj_footer endRefreshing];
-
+   
 
 }
 

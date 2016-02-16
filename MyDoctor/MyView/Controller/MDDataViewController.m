@@ -257,27 +257,30 @@
 //请求数据回调
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    NSString * str = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-    //回馈数据
-    NSLog(@"＝＝＝＝＝＝＝%@", str);
-    
-    NSArray *array = [str componentsSeparatedByString:@","];
-    NSArray *success=[array[0] componentsSeparatedByString:@":"];
-    
-    if ([success[1] isEqualToString:@"true"]) {
+    if (response) {
+        NSString * str = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+        //回馈数据
+        NSLog(@"＝＝＝＝＝＝＝%@", str);
         
-        MDUserVO *user = [MDUserVO setPersonInfoFromUserInfer:@{@"userName":name.text,@"userId":[MDUserVO userVO].userID}];
-        [MDUserVO initWithCoder:user];
+        NSArray *array = [str componentsSeparatedByString:@","];
+        NSArray *success=[array[0] componentsSeparatedByString:@":"];
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"changeUserName" object:@{@"userName":name.text}];
-        
-        [self.navigationController popViewControllerAnimated:YES];
+        if ([success[1] isEqualToString:@"true"]) {
+            
+            MDUserVO *user = [MDUserVO setPersonInfoFromUserInfer:@{@"userName":name.text,@"userId":[MDUserVO userVO].userID}];
+            [MDUserVO initWithCoder:user];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"changeUserName" object:@{@"userName":name.text}];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+            
+            
+            
+            
+        }
 
-
-        
-      
     }
-}
+   }
 -(void)backBtnClick
 {
     [self.navigationController popViewControllerAnimated:YES];

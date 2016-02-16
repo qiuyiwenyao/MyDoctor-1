@@ -107,15 +107,19 @@
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
     _dataSource = [[NSMutableArray alloc] init];
-    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
-    NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    NSArray * obj = [dictionary objectForKey:@"obj"];
-    for (NSDictionary * dic in obj) {
-        MDnoticeCenterModel * model = [[MDnoticeCenterModel alloc] init];
-        [model setValuesForKeysWithDictionary:dic];
-        [_dataSource addObject:model];
+
+    if (response) {
+        NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+        NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+        NSArray * obj = [dictionary objectForKey:@"obj"];
+        for (NSDictionary * dic in obj) {
+            MDnoticeCenterModel * model = [[MDnoticeCenterModel alloc] init];
+            [model setValuesForKeysWithDictionary:dic];
+            [_dataSource addObject:model];
+        }
+        [_tableView reloadData];
     }
-    [_tableView reloadData];
+   
 //    NSLog(@"%@",dic);
 }
 

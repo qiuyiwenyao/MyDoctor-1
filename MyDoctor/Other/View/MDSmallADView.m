@@ -52,7 +52,7 @@
 
 -(void)setText
 {
-    for (int i = 0; i < 3; i ++) {
+    for (int i = 0; i < self.adTitleArray.count; i ++) {
                     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, i * kAdViewHeight, kAdViewWidth, kAdViewHeight)];
                     label.text = _adTitleArray[i];
                     label.textAlignment = NSTextAlignmentCenter;
@@ -74,7 +74,11 @@
     lab.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.5];
     [_adScrollView addSubview:lab];
     
-[NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(animalMoveImage:) userInfo:nil repeats:YES];
+    if (self.adTitleArray.count != 1) {
+        [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(animalMoveImage:) userInfo:nil repeats:YES];
+
+    }
+    
 
 }
 
@@ -85,7 +89,7 @@
     
     NSInteger textIndex = lab.tag - 10;
     NSString * url = self.ADURL[textIndex];
-    if (![url isEqualToString:@"http://www.baidu.com"]) {
+    if (![url isEqualToString:@"http://www.baidu.com"] && url.length != 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToADVC" object:url];
 
     }

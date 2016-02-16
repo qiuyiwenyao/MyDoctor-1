@@ -170,39 +170,42 @@
 #pragma mark - 数据请求回调
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    
-    if ([[dic objectForKey:@"success"] isEqualToNumber:[NSNumber numberWithInt:1]]) {
-        NSLog(@"success");
-        UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"反馈成功!"
-                             
-                                                      message:nil
-                             
-                                                     delegate:self
-                             
-                                            cancelButtonTitle:@"好的"
-                             
-                                            otherButtonTitles:nil];
+    if (response) {
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
         
-        [alert show];
-    }
-    
-    else
-    {
-        UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"反馈失败，请重试"
-                             
-                                                      message:nil
-                             
-                                                     delegate:self
-                             
-                                            cancelButtonTitle:@"好的"
-                             
-                                            otherButtonTitles:nil];
+        if ([[dic objectForKey:@"success"] isEqualToNumber:[NSNumber numberWithInt:1]]) {
+            NSLog(@"success");
+            UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"反馈成功!"
+                                 
+                                                          message:nil
+                                 
+                                                         delegate:self
+                                 
+                                                cancelButtonTitle:@"好的"
+                                 
+                                                otherButtonTitles:nil];
+            
+            [alert show];
+        }
         
-        [alert show];
+        else
+        {
+            UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"反馈失败，请重试"
+                                 
+                                                          message:nil
+                                 
+                                                         delegate:self
+                                 
+                                                cancelButtonTitle:@"好的"
+                                 
+                                                otherButtonTitles:nil];
+            
+            [alert show];
+            
+        }
 
     }
-}
+  }
 
 -(void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
 {

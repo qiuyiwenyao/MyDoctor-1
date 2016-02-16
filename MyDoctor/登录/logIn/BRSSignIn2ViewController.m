@@ -476,50 +476,53 @@
 //请求数据回调
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    NSMutableDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-//    NSLog(@"%@",dic);
-    NSLog(@"登陆信息：%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
-    NSLog(@"======dic%@",dic);
-    NSDictionary * obj = [dic objectForKey:@"obj"];
-    NSString * hxName = [obj objectForKey:@"hxName"];
-    NSString * hxPwd = [obj objectForKey:@"hxPwd"];
-    
-    NSDictionary * userInfo = @{@"userId":[dic objectForKey:@"msg"],@"userName":number.text,@"userAccount":self.login_name};
-    
-    [dic setValue:number.text forKey:@"user_Name"];
-    
-    MDUserVO *user = [MDUserVO registeredFromDignInUser:userInfo];
-    [MDUserVO  initWithCoder:user];
-    //回馈数据
-//    NSLog(@"%d",[[dic objectForKey:@"success"] intValue]);
-
-    if ([[dic objectForKey:@"success"] intValue] ==1) {
-        NSUserDefaults *stdDefault = [NSUserDefaults standardUserDefaults];
-        [stdDefault setObject:self.login_name forKey:@"user_name"];
-        [stdDefault setObject:[MDUserVO userVO].userID forKey:@"user_Id"];
- //环信登录
-    [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:hxName password:hxPwd completion:^(NSDictionary *loginInfo, EMError *error) {
-        NSLog(@"11%@=====%@",hxName,hxPwd);
-        if (!error && loginInfo) {
-            NSLog(@"22%@=====%@",hxName,hxPwd);
-
-            MDLog(@"环信登陆成功！！%@",loginInfo);
-            [[EaseMob sharedInstance].chatManager setApnsNickname:number.text];
+    if (response) {
+        NSMutableDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+        //    NSLog(@"%@",dic);
+        NSLog(@"登陆信息：%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+        NSLog(@"======dic%@",dic);
+        NSDictionary * obj = [dic objectForKey:@"obj"];
+        NSString * hxName = [obj objectForKey:@"hxName"];
+        NSString * hxPwd = [obj objectForKey:@"hxPwd"];
+        
+        NSDictionary * userInfo = @{@"userId":[dic objectForKey:@"msg"],@"userName":number.text,@"userAccount":self.login_name};
+        
+        [dic setValue:number.text forKey:@"user_Name"];
+        
+        MDUserVO *user = [MDUserVO registeredFromDignInUser:userInfo];
+        [MDUserVO  initWithCoder:user];
+        //回馈数据
+        //    NSLog(@"%d",[[dic objectForKey:@"success"] intValue]);
+        
+        if ([[dic objectForKey:@"success"] intValue] ==1) {
+            NSUserDefaults *stdDefault = [NSUserDefaults standardUserDefaults];
+            [stdDefault setObject:self.login_name forKey:@"user_name"];
+            [stdDefault setObject:[MDUserVO userVO].userID forKey:@"user_Id"];
+            //环信登录
+            [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:hxName password:hxPwd completion:^(NSDictionary *loginInfo, EMError *error) {
+                NSLog(@"11%@=====%@",hxName,hxPwd);
+                if (!error && loginInfo) {
+                    NSLog(@"22%@=====%@",hxName,hxPwd);
+                    
+                    MDLog(@"环信登陆成功！！%@",loginInfo);
+                    [[EaseMob sharedInstance].chatManager setApnsNickname:number.text];
+                    
+                    //
+                    //
+                    //设置是否自动登录
+                    [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+                }
+            } onQueue:nil];
             
-            //
-            //
-            //设置是否自动登录
-            [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+            
+            
+            BRSEndSignlnViewController * esv=[[BRSEndSignlnViewController alloc] init];
+            [self.navigationController pushViewController:esv animated:YES];
+            
         }
-    } onQueue:nil];
-
-        
-        
-        BRSEndSignlnViewController * esv=[[BRSEndSignlnViewController alloc] init];
-        [self.navigationController pushViewController:esv animated:YES];
 
     }
-}
+    }
 
 
 

@@ -83,34 +83,41 @@
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
     //回馈数据
-    
-    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    if (num == 10302) {
-        if ([dic objectForKey:@"success"]) {
-            
-            NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
-            
-            NSArray * array=[[NSArray alloc] init];
-            array=[dic objectForKey:@"obj"];
-            for (int i =0; i<[array count]; i++) {
-                NSDictionary * type=[[NSDictionary alloc] init];
-                type=array[i];
-                MDConsultDrugModel * consult=[[MDConsultDrugModel alloc] init];
-                consult.DrugTypeId=[type objectForKey:@"ID"];
-                consult.TypeName=[type objectForKey:@"CategaryName"];
+    if (response) {
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+        if (num == 10302) {
+            if ([dic objectForKey:@"success"]) {
                 
-                [amedicineArray addObject:consult];
+                NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+                
+                NSArray * array=[[NSArray alloc] init];
+                array=[dic objectForKey:@"obj"];
+                for (int i =0; i<[array count]; i++) {
+                    NSDictionary * type=[[NSDictionary alloc] init];
+                    type=array[i];
+                    MDConsultDrugModel * consult=[[MDConsultDrugModel alloc] init];
+                    consult.DrugTypeId=[type objectForKey:@"ID"];
+                    consult.TypeName=[type objectForKey:@"CategaryName"];
+                    
+                    [amedicineArray addObject:consult];
+                }
+                
             }
             
+            [self medicineButton];
         }
-        
-        [self medicineButton];
+        else if (num == 10902)
+        {
+            ADList = [[NSMutableArray alloc] initWithArray:[dic objectForKey:@"obj"]];
+            [self createADView];
+        }
+
     }
-    else if (num == 10902)
+    else
     {
-        ADList = [[NSMutableArray alloc] initWithArray:[dic objectForKey:@"obj"]];
         [self createADView];
     }
+    
     
 }
 
@@ -178,16 +185,6 @@
 //下方滚动广告位
 -(void)createADView
 {
-    
-    NSMutableArray * textArr = [[NSMutableArray alloc] init];
-    NSMutableArray * urlArr = [[NSMutableArray alloc] init];
-    for (NSDictionary * dic in ADList) {
-        NSString * text = [dic objectForKey:@"Remark"];
-        NSString * url = [dic objectForKey:@"Url"];
-        [textArr addObject:text];
-        [urlArr addObject:url];
-    }
-
     UIButton * bottonBtn = (UIButton *)[self.view viewWithTag:amedicineArray.count - 2];
     MDSmallADView * adView = [[MDSmallADView alloc] initWithFrame:CGRectMake(0, 0, appWidth, 50)];
     [self.view addSubview:adView];
@@ -198,10 +195,30 @@
         make.right.equalTo(self.view.mas_right);
         make.height.equalTo(@(50));
     }];
-    adView.adTitleArray = textArr;
-    adView.ADURL = urlArr;
-    NSLog(@"%@",urlArr);
-    [adView setText];
+
+    if (ADList.count == 0) {
+        adView.adTitleArray = @[@"e+康，健康生活到您家！"];
+        adView.ADURL = nil;
+        [adView setText];
+
+    }
+    else
+    {
+        NSMutableArray * textArr = [[NSMutableArray alloc] init];
+        NSMutableArray * urlArr = [[NSMutableArray alloc] init];
+        for (NSDictionary * dic in ADList) {
+            NSString * text = [dic objectForKey:@"Remark"];
+            NSString * url = [dic objectForKey:@"Url"];
+            [textArr addObject:text];
+            [urlArr addObject:url];
+        }
+        
+        adView.adTitleArray = textArr;
+        adView.ADURL = urlArr;
+        NSLog(@"%@",urlArr);
+        [adView setText];
+    }
+   
     
 //    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
 //    tap.delegate = self;

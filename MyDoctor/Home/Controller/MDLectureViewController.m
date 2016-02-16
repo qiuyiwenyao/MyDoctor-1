@@ -52,20 +52,21 @@
 #pragma mark - sendInfoToCtr
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
+    if (response) {
         NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
         if ([[dic objectForKey:@"msg"] isEqualToString:@"已经报名"]) {
             UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"预约成功" message:nil delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
             [alert show];
-
+            
         }
         else
         {
             UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"预约失败，请重试" message:nil delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
             [alert show];
         }
-    
 
+    }
 }
 
 -(void)backBtnClick

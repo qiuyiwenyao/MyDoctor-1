@@ -193,20 +193,23 @@ password2.layer.borderWidth= 1.0f;
 
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
-    
-    NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    if ([[dictionary objectForKey:@"success"] intValue] == 1) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"密码更新成功" message:@"请重新登陆" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-        alert.delegate =self;
-        [alert show];
-
-    }
-    else
-    { UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"密码更新失败" message:@"请重试" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-        alert.delegate =self;
-        [alert show];
+    if (response) {
+        NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
         
+        NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+        if ([[dictionary objectForKey:@"success"] intValue] == 1) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"密码更新成功" message:@"请重新登陆" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            alert.delegate =self;
+            [alert show];
+            
+        }
+        else
+        { UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"密码更新失败" message:@"请重试" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            alert.delegate =self;
+            [alert show];
+            
+        }
+
     }
     
 }

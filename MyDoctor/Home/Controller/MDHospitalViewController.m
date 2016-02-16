@@ -22,8 +22,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    self.navigationItem.title = @"社区医院";
     BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
     [util setNavigationLeftButton:self.navigationItem target:self selector:@selector(backBtnClick) image:[UIImage imageNamed:@"navigationbar_back"] title:nil];
     [self createView];
@@ -251,28 +249,31 @@
 #pragma mark - sendInfoToCtr请求数据回调
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
-
-    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    UIButton * focusButton = (UIButton *)[self.view viewWithTag:11];
-    if (num == 10404) {
-        if ([[dic objectForKey:@"msg"] isEqualToString:@"关注成功!"]) {
-            MDLog(@"关注成功!");
-            [focusButton setTitle:@"已关注" forState:UIControlStateNormal];
-        }
-    }
-    else if (num == 10405)
-    {
-        MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+    if (response) {
+        NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
         
-        if ([dic objectForKey:@"success"]) {
-            MDLog(@"取消关注");
-            [focusButton setTitle:@"+ 关注" forState:UIControlStateNormal];
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+        UIButton * focusButton = (UIButton *)[self.view viewWithTag:11];
+        if (num == 10404) {
+            if ([[dic objectForKey:@"msg"] isEqualToString:@"关注成功!"]) {
+                MDLog(@"关注成功!");
+                [focusButton setTitle:@"已关注" forState:UIControlStateNormal];
+            }
         }
-    }else if (num==10602){
-        NSLog(@"%@",dic);
+        else if (num == 10405)
+        {
+            MDLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+            
+            if ([dic objectForKey:@"success"]) {
+                MDLog(@"取消关注");
+                [focusButton setTitle:@"+ 关注" forState:UIControlStateNormal];
+            }
+        }else if (num==10602){
+            NSLog(@"%@",dic);
+        }
+
     }
-}
+   }
 
 
 

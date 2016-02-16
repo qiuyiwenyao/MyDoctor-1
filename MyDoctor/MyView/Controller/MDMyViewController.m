@@ -472,9 +472,11 @@
 #pragma mark - asendInfoToCtrDelegate
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    NSLog(@"头像设置%@",[[NSString alloc]initWithData:response encoding:NSUTF8StringEncoding]);
+    if (response) {
+        NSLog(@"头像设置%@",[[NSString alloc]initWithData:response encoding:NSUTF8StringEncoding]);
+
+    }
     
-//    MDLog(@"");
 }
 
 @end

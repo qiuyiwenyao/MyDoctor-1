@@ -246,17 +246,20 @@
 
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
-    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
-    NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    MDDrupDetailModel * model = [[MDDrupDetailModel alloc] init];
-    [model setValuesForKeysWithDictionary:[dictionary objectForKey:@"obj"]];
-    
-    dataSource = [[NSMutableArray alloc] initWithObjects:model, nil];
-    
-    MDLog(@"=====%@",model.validity);
-    
-    [self createView];
-}
+    if (response) {
+        NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+        NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+        MDDrupDetailModel * model = [[MDDrupDetailModel alloc] init];
+        [model setValuesForKeysWithDictionary:[dictionary objectForKey:@"obj"]];
+        
+        dataSource = [[NSMutableArray alloc] initWithObjects:model, nil];
+        
+        MDLog(@"=====%@",model.validity);
+        
+        [self createView];
+
+    }
+   }
 
 
 
