@@ -120,7 +120,7 @@
             [dataArray removeAllObjects];
         }
         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-        //    NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
+            NSLog(@"%@",[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]);
         
         if ([dic objectForKey:@"success"]) {
             
@@ -293,7 +293,7 @@
     }
     if ([dataArray count]>0) {
         MDDrugVO * service=dataArray[indexPath.row];
-        cell.name=service.CommonName;
+        cell.name=service.MedicineName;
         cell.image=service.Photo;
         cell.number=service.Specification;
         cell.money=service.Validity;

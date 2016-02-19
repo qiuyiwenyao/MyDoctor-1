@@ -407,6 +407,7 @@ static NSString *kGroupName = @"GroupName";
     [[EMCDDeviceManager sharedInstance] playVibration];
 }
 
+
 - (void)showNotificationWithMessage:(EMMessage *)message
 {
     EMPushNotificationOptions *options = [[EaseMob sharedInstance].chatManager pushNotificationOptions];
@@ -468,10 +469,10 @@ static NSString *kGroupName = @"GroupName";
             }
         }
         
-        notification.alertBody = [NSString stringWithFormat:@"%@:%@", title, messageStr];
+//        notification.alertBody = [NSString stringWithFormat:@"%@:%@", title, messageStr];
     }
     else{
-        notification.alertBody = NSLocalizedString(@"receiveMessage", @"you have a new message");
+//        notification.alertBody = NSLocalizedString(@"receiveMessage", @"you have a new message");
     }
     
 #warning 去掉注释会显示[本地]开头, 方便在开发中区分是否为本地推送

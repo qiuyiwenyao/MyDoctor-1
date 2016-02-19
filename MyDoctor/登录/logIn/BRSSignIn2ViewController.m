@@ -447,6 +447,14 @@
     if ([array count]==1) {
         array=[housenumber.text componentsSeparatedByString:@"－"];
     }
+    if ([array count]==1) {
+         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"地址格式不正确" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+  
+        [alert show];
+        return;
+    }
+   
+    
     NSString * parameter=[NSString stringWithFormat:@"%@@`%@@`%@@`%d@`%@@`%@",number.text,self.login_name,password.text,villageID,array[0],array[1]];
     //    //post键值对
     model.parameter = parameter;
