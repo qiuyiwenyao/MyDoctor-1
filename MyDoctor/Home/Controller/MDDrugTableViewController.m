@@ -58,36 +58,42 @@
     [self searchDrug];
     [self TableView];
 
+    
+    
+    __unsafe_unretained __typeof(self) weakSelf = self;
+    
+    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        curruntPage = 1;
+        if ([_SearchDrup length]) {
+            [weakSelf search];
+        }else{
+            [weakSelf postRequest];
+        }
+    }];
+    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+    _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        curruntPage ++;
+        if ([_SearchDrup length]) {
+            [weakSelf search];
+        }else{
+            [weakSelf postRequest];
+        }
+    }];
+
     if ([_SearchDrup length]) {
         _searchDrug.text=_SearchDrup;
         [self search];
     }else{
         [self refreshAndLoad];
     }
-    
-
 }
 
 //刷新加载
 -(void)refreshAndLoad
 {
-    __unsafe_unretained __typeof(self) weakSelf = self;
-    
-    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
-    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        curruntPage = 1;
-        [weakSelf postRequest];
-    }];
-    
     // 马上进入刷新状态
     [_tableView.mj_header beginRefreshing];
-    
-    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
-    _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        curruntPage ++;
-        [weakSelf postRequest];
-    }];
-    
 }
 
 
@@ -209,7 +215,9 @@
     MDRequestModel * model = [[MDRequestModel alloc] init];
     model.path = MDPath;
     model.methodNum = 10304;
-    NSString * parameter=[NSString stringWithFormat:@"%@@`%@@`%@@`%@",_searchDrug.text,@"10",@"1",@"0"];
+    int pageIndex = curruntPage;
+    _SearchDrup=_searchDrug.text;
+    NSString * parameter=[NSString stringWithFormat:@"%@@`%@@`%d@`%@",_searchDrug.text,@"10",pageIndex,@"0"];
     //    //post键值对
     model.parameter = parameter;
     model.delegate = self;
@@ -364,6 +372,7 @@
     
     //搜索
     [self search];
+    [_searchDrug resignFirstResponder];
     return YES;
 }
 
