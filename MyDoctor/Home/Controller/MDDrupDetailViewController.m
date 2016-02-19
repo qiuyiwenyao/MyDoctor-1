@@ -90,7 +90,7 @@
 //    UIScrollView * bgView = [ui];
     //文字设置
     UILabel * titleLab = [[UILabel alloc] init];
-    titleLab.text = model.commonName;
+    titleLab.text = model.medicineName;
     titleLab.textAlignment = NSTextAlignmentCenter;
     titleLab.backgroundColor = [UIColor clearColor];
     titleLab.font = [UIFont systemFontOfSize:17];
@@ -140,7 +140,7 @@
     }];
     
     UILabel * nameLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, appWidth - 90, 0)];
-    nameLab.text = [NSString stringWithFormat:@"【药 品 名 称】: %@",model.commonName];
+    nameLab.text = [NSString stringWithFormat:@"【药 品 名 称】: %@",model.medicineName];
     nameLab.textColor = ColorWithRGB(97, 103, 111, 1);
     nameLab.textAlignment = NSTextAlignmentLeft;
     nameLab.font = [UIFont systemFontOfSize:14];
@@ -214,7 +214,7 @@
     [scrollView addSubview:approvalNumLab];
     
     UILabel * productionLab = [[UILabel alloc] initWithFrame:CGRectMake(0, approvalNumLab.y+approvalNumLab.height+12,appWidth - 90, 0)];
-    productionLab.text = [[NSString alloc] initWithFormat:@"【生 产 企 业】%@",model.habitat];
+    productionLab.text = [[NSString alloc] initWithFormat:@"【生 产 企 业】%@",model.commonName];
     productionLab.numberOfLines = 0;
     [productionLab sizeToFit];
     productionLab.textColor = ColorWithRGB(97, 103, 111, 1);

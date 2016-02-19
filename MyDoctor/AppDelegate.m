@@ -286,6 +286,8 @@
             break;
         case UIApplicationStateBackground:
             [[NSNotificationCenter defaultCenter] postNotificationName:@"newMessage" object:nil userInfo:@{@"message":message.from}];
+            
+            
             [self playSoundAndVibration];
 
             [self showNotificationWithMessage:message];

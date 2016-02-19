@@ -10,9 +10,9 @@
 #import "GeTuiSdk.h"
 #import "EaseMob.h"
 /// 个推开发者网站中申请App时注册的AppId、AppKey、AppSecret
-#define kGtAppId           @"i29qwXct9H8a9BHpyMn3x8"
-#define kGtAppKey          @"Q9ST24Qai08tk9LSHoDYM5"
-#define kGtAppSecret       @"VzeohIVH5i5geKQCUiDjO6"
+#define kGtAppId           @"vnt28BFd2X6sVc8meUi5o3"
+#define kGtAppKey          @"2FJr092RIQAon2pDRMmDX5"
+#define kGtAppSecret       @"4ltZCqB10w97oznE6hJB27"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,UITabBarControllerDelegate, GeTuiSdkDelegate,EMChatManagerDelegateBase,IChatManagerDelegate>
 @property (strong, nonatomic) NSDate *lastPlaySoundDate;
