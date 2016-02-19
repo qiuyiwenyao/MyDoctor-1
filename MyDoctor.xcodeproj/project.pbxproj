@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		152083BB1C72AC46006E90BA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 152083BA1C72AC46006E90BA /* Reachability.m */; };
 		1523EC6D1C5B613B00321DF8 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1523EC6B1C5B613B00321DF8 /* Bolts.framework */; };
 		1523EC6E1C5B613B00321DF8 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1523EC6C1C5B613B00321DF8 /* Parse.framework */; };
 		1523EC751C619B8C00321DF8 /* BRSSysUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 1523EC741C619B8C00321DF8 /* BRSSysUtil.m */; };
@@ -171,7 +172,6 @@
 		6A2582B81C0FE21D005E3404 /* topImg2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6A2582B71C0FE21D005E3404 /* topImg2.jpg */; };
 		6A2582C71C102ECF005E3404 /* 赞@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A2582C51C102ECF005E3404 /* 赞@2x.png */; };
 		6A2582C81C102ECF005E3404 /* 未赞@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A2582C61C102ECF005E3404 /* 未赞@2x.png */; };
-		6A26CE1D1C716602003C6AF6 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A26CE1C1C716602003C6AF6 /* Reachability.m */; };
 		6A3EF7B11C054E1E00923D03 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A3EF7AF1C054E1E00923D03 /* arrow@2x.png */; };
 		6A3EF7B51C054E2C00923D03 /* feedback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A3EF7B31C054E2C00923D03 /* feedback@2x.png */; };
 		6A3EF7B81C054E3400923D03 /* notes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A3EF7B71C054E3400923D03 /* notes@2x.png */; };
@@ -652,6 +652,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		152083B91C72AC46006E90BA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = MyDoctor/fundation/Reachability/Reachability.h; sourceTree = SOURCE_ROOT; };
+		152083BA1C72AC46006E90BA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = MyDoctor/fundation/Reachability/Reachability.m; sourceTree = SOURCE_ROOT; };
 		1523EC6B1C5B613B00321DF8 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		1523EC6C1C5B613B00321DF8 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		1523EC731C619B8C00321DF8 /* BRSSysUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BRSSysUtil.h; path = BRSSysUtil/BRSSysUtil.h; sourceTree = "<group>"; };
@@ -989,8 +991,6 @@
 		6A2582B71C0FE21D005E3404 /* topImg2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = topImg2.jpg; sourceTree = "<group>"; };
 		6A2582C51C102ECF005E3404 /* 赞@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "赞@2x.png"; sourceTree = "<group>"; };
 		6A2582C61C102ECF005E3404 /* 未赞@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未赞@2x.png"; sourceTree = "<group>"; };
-		6A26CE1B1C716602003C6AF6 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		6A26CE1C1C716602003C6AF6 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		6A3EF7AF1C054E1E00923D03 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
 		6A3EF7B31C054E2C00923D03 /* feedback@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedback@2x.png"; sourceTree = "<group>"; };
 		6A3EF7B71C054E3400923D03 /* notes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notes@2x.png"; sourceTree = "<group>"; };
@@ -2628,8 +2628,8 @@
 		6A26CE191C7165E0003C6AF6 /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
-				6A26CE1B1C716602003C6AF6 /* Reachability.h */,
-				6A26CE1C1C716602003C6AF6 /* Reachability.m */,
+				152083B91C72AC46006E90BA /* Reachability.h */,
+				152083BA1C72AC46006E90BA /* Reachability.m */,
 			);
 			name = Reachability;
 			path = ../../../NewDoctorSystem/MyDoctor/fundation/Reachability;
@@ -3911,7 +3911,7 @@
 				TargetAttributes = {
 					15AE53681C02F0680013FF1B = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = 8TUZW57LD3;
+						DevelopmentTeam = 5XDQ36V7UQ;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -4310,7 +4310,7 @@
 				15800F8A1C4C783500FCB87B /* EditNicknameViewController.m in Sources */,
 				6AB9BAD61C2BE348004BF6A7 /* PSTCollectionViewFlowLayout.m in Sources */,
 				6A8899AD1C4F1CF3003DB4BF /* UIScrollView+MJRefresh.m in Sources */,
-				6A26CE1D1C716602003C6AF6 /* Reachability.m in Sources */,
+				152083BB1C72AC46006E90BA /* Reachability.m in Sources */,
 				6A6523461C1E930E00227C63 /* SDWebImageManager.m in Sources */,
 				6A3EF8621C06FDB300923D03 /* MDTransfuseViewController.m in Sources */,
 				6AF2024D1C0C1A5600933EAF /* MDMyDoctorViewController.m in Sources */,
@@ -4666,7 +4666,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Tianjin Saibainuo Technology Co., Ltd. (8TUZW57LD3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Haocheng Zhang (N8TXHQB3RY)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_BITCODE = NO;
@@ -4691,7 +4691,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = SaBaiNuo.MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7367742d-8826-45a7-9562-3e43bd8ed4bb";
+				PROVISIONING_PROFILE = "a97813bf-8ffd-4f8d-8a62-48fbe427f52d";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "ad hoc distribution";
@@ -4812,7 +4812,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Tianjin Saibainuo Technology Co., Ltd. (8TUZW57LD3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Haocheng Zhang (N8TXHQB3RY)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_BITCODE = NO;
@@ -4837,7 +4837,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = SaBaiNuo.MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7367742d-8826-45a7-9562-3e43bd8ed4bb";
+				PROVISIONING_PROFILE = "a97813bf-8ffd-4f8d-8a62-48fbe427f52d";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4846,7 +4846,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Tianjin Saibainuo Technology Co., Ltd. (8TUZW57LD3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Haocheng Zhang (N8TXHQB3RY)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_BITCODE = NO;
@@ -4871,7 +4871,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = SaBaiNuo.MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7367742d-8826-45a7-9562-3e43bd8ed4bb";
+				PROVISIONING_PROFILE = "a97813bf-8ffd-4f8d-8a62-48fbe427f52d";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

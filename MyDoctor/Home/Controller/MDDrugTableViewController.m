@@ -125,7 +125,7 @@
                 type=array[i];
                 MDDrugVO * drug=[[MDDrugVO alloc] init];
                 drug.Untowardeffect=[type objectForKey:@"Untowardeffect"];
-                drug.Photo=[type objectForKey:@"Photo"];
+                drug.Photo=[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl, [type objectForKey:@"Photo"]];
                 drug.Medicinedosage=[type objectForKey:@"Medicinedosage"];
                 drug.Function=[type objectForKey:@"Function"];
                 drug.MedicineName=[type objectForKey:@"MedicineName"];

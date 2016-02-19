@@ -65,7 +65,7 @@
     NSLog(@"%@",model.validity);
     
     UIImageView * topImageView = [[UIImageView alloc] init];
-    [topImageView sd_setImageWithURL:[NSURL URLWithString:model.photo] placeholderImage:nil];
+    [topImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl, model.photo]] placeholderImage:[UIImage imageNamed:@"药"]];
     [self.view addSubview:topImageView];
     [topImageView mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX);
