@@ -272,17 +272,22 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    
     UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
     
     MDDrugTableViewController * drugTable=[[MDDrugTableViewController alloc] init];
     drugTable.title=mySearchBar.text;
     drugTable.SearchDrup=cell.textLabel.text;
-    [self.navigationController pushViewController:drugTable animated:YES];
     
+    [self.navigationController pushViewController:drugTable animated:YES];
+    [searchDisplayController setActive:NO animated:YES];
+
 }
+//-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+//{
+//    [searchBar resignFirstResponder];
+//}
 
 #pragma UISearchDisplayDelegate
 //searchBar开始编辑时改变取消按钮的文字
