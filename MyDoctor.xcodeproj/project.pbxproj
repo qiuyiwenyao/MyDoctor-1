@@ -125,6 +125,8 @@
 		6A3EF85C1C06FD5900923D03 /* MDRecoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3EF85B1C06FD5900923D03 /* MDRecoveryViewController.m */; };
 		6A3EF85F1C06FD7400923D03 /* MDExaminationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3EF85E1C06FD7400923D03 /* MDExaminationViewController.m */; };
 		6A3EF8621C06FDB300923D03 /* MDTransfuseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3EF8611C06FDB300923D03 /* MDTransfuseViewController.m */; };
+		6A5B011D1C8EBD2500D013D5 /* HWPopTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B011C1C8EBD2500D013D5 /* HWPopTool.m */; };
+		6A5B01201C8EC51E00D013D5 /* MDSelectNumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B011F1C8EC51E00D013D5 /* MDSelectNumView.m */; };
 		6A6522111C1A620200227C63 /* MDCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6522101C1A620200227C63 /* MDCommentViewController.m */; };
 		6A6522181C1ACDED00227C63 /* AdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6522171C1ACDED00227C63 /* AdView.m */; };
 		6A6522851C1E8B4700227C63 /* MDSmallADView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6522841C1E8B4700227C63 /* MDSmallADView.m */; };
@@ -216,7 +218,6 @@
 		6A9CE0EB1C8687D800E7A4C1 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A9CE09C1C8687D800E7A4C1 /* background@2x.png */; };
 		6A9CE0EC1C8687D800E7A4C1 /* c.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A9CE09D1C8687D800E7A4C1 /* c.png */; };
 		6A9CE0ED1C8687D800E7A4C1 /* Default-375w-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A9CE09E1C8687D800E7A4C1 /* Default-375w-667h@2x.png */; };
-		6A9CE0EE1C8687D800E7A4C1 /* Default-414w-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A9CE09F1C8687D800E7A4C1 /* Default-414w-736h@3x.png */; };
 		6A9CE0EF1C8687D800E7A4C1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A9CE0A01C8687D800E7A4C1 /* Default-568h@2x.png */; };
 		6A9CE0F01C8687D800E7A4C1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A9CE0A11C8687D800E7A4C1 /* Default.png */; };
 		6A9CE0F11C8687D800E7A4C1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A9CE0A21C8687D800E7A4C1 /* Default@2x.png */; };
@@ -627,6 +628,7 @@
 		6AF202641C0C4CDD00933EAF /* UIView+ViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF202631C0C4CDD00933EAF /* UIView+ViewExtension.m */; };
 		6AF2026B1C0D71AB00933EAF /* MDFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2026A1C0D71AB00933EAF /* MDFeedBackViewController.m */; };
 		6AF404731C2CD45800D46F2A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6AF404751C2CD45800D46F2A /* Localizable.strings */; };
+		6AF47C141C8FC26F00994094 /* YStepperView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF47C131C8FC26F00994094 /* YStepperView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -951,6 +953,10 @@
 		6A3EF85E1C06FD7400923D03 /* MDExaminationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDExaminationViewController.m; sourceTree = "<group>"; };
 		6A3EF8601C06FDB300923D03 /* MDTransfuseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDTransfuseViewController.h; sourceTree = "<group>"; };
 		6A3EF8611C06FDB300923D03 /* MDTransfuseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDTransfuseViewController.m; sourceTree = "<group>"; };
+		6A5B011B1C8EBD2500D013D5 /* HWPopTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HWPopTool.h; path = Home/Model/HWPopTool.h; sourceTree = "<group>"; };
+		6A5B011C1C8EBD2500D013D5 /* HWPopTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HWPopTool.m; path = Home/Model/HWPopTool.m; sourceTree = "<group>"; };
+		6A5B011E1C8EC51E00D013D5 /* MDSelectNumView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDSelectNumView.h; path = Home/View/MDSelectNumView.h; sourceTree = "<group>"; };
+		6A5B011F1C8EC51E00D013D5 /* MDSelectNumView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDSelectNumView.m; path = Home/View/MDSelectNumView.m; sourceTree = "<group>"; };
 		6A65220F1C1A620200227C63 /* MDCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDCommentViewController.h; path = Service/MDCommentViewController.h; sourceTree = "<group>"; };
 		6A6522101C1A620200227C63 /* MDCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDCommentViewController.m; path = Service/MDCommentViewController.m; sourceTree = "<group>"; };
 		6A6522161C1ACDED00227C63 /* AdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdView.h; path = ADView/AdView.h; sourceTree = "<group>"; };
@@ -1085,7 +1091,6 @@
 		6A9CE09C1C8687D800E7A4C1 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		6A9CE09D1C8687D800E7A4C1 /* c.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = c.png; sourceTree = "<group>"; };
 		6A9CE09E1C8687D800E7A4C1 /* Default-375w-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-375w-667h@2x.png"; sourceTree = "<group>"; };
-		6A9CE09F1C8687D800E7A4C1 /* Default-414w-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-414w-736h@3x.png"; sourceTree = "<group>"; };
 		6A9CE0A01C8687D800E7A4C1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		6A9CE0A11C8687D800E7A4C1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		6A9CE0A21C8687D800E7A4C1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -1646,6 +1651,8 @@
 		6AF404761C2CD51800D46F2A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		6AF404771C2CD51800D46F2A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		6AF404781C2CD51800D46F2A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		6AF47C121C8FC26F00994094 /* YStepperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YStepperView.h; sourceTree = "<group>"; };
+		6AF47C131C8FC26F00994094 /* YStepperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YStepperView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1890,7 +1897,6 @@
 				6A9CE09C1C8687D800E7A4C1 /* background@2x.png */,
 				6A9CE09D1C8687D800E7A4C1 /* c.png */,
 				6A9CE09E1C8687D800E7A4C1 /* Default-375w-667h@2x.png */,
-				6A9CE09F1C8687D800E7A4C1 /* Default-414w-736h@3x.png */,
 				6A9CE0A01C8687D800E7A4C1 /* Default-568h@2x.png */,
 				6A9CE0A11C8687D800E7A4C1 /* Default.png */,
 				6A9CE0A21C8687D800E7A4C1 /* Default@2x.png */,
@@ -2623,6 +2629,8 @@
 				15528BC81C28DFCF00B1F409 /* MDConsultDrugModel.m */,
 				6AB9B6911C2BBCCD004BF6A7 /* MDDocModel.h */,
 				6AB9B6921C2BBCCD004BF6A7 /* MDDocModel.m */,
+				6A5B011B1C8EBD2500D013D5 /* HWPopTool.h */,
+				6A5B011C1C8EBD2500D013D5 /* HWPopTool.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -2646,6 +2654,8 @@
 				6AB9B6891C2B8B91004BF6A7 /* MDDoctorServiceCell.h */,
 				6AB9B68A1C2B8B91004BF6A7 /* MDDoctorServiceCell.m */,
 				6AB9B68B1C2B8B91004BF6A7 /* MDDoctorServiceCell.xib */,
+				6A5B011E1C8EC51E00D013D5 /* MDSelectNumView.h */,
+				6A5B011F1C8EC51E00D013D5 /* MDSelectNumView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -2930,6 +2940,8 @@
 		6A8F12B31C040868001ABE2F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6AF47C121C8FC26F00994094 /* YStepperView.h */,
+				6AF47C131C8FC26F00994094 /* YStepperView.m */,
 				6A6522831C1E8B4700227C63 /* MDSmallADView.h */,
 				6A6522841C1E8B4700227C63 /* MDSmallADView.m */,
 			);
@@ -3976,7 +3988,6 @@
 				6AB9BBF71C2BEA0E004BF6A7 /* VoiceSearchFeedback017@2x.png in Resources */,
 				6A9CE1401C8687FA00E7A4C1 /* 进入@3x.png in Resources */,
 				6AB9BC161C2BEA40004BF6A7 /* account.png in Resources */,
-				6A9CE0EE1C8687D800E7A4C1 /* Default-414w-736h@3x.png in Resources */,
 				6AB9BC341C2BEA61004BF6A7 /* group_participant_add@2x.png in Resources */,
 				6AB9BC311C2BEA61004BF6A7 /* group_header@2x.png in Resources */,
 				6A9CE1581C8687FA00E7A4C1 /* 用户电话@3x.png in Resources */,
@@ -4413,6 +4424,7 @@
 				6A8899831C4F1C98003DB4BF /* MJRefreshBackFooter.m in Sources */,
 				6AB9BAA71C2BE32C004BF6A7 /* EMSDWebImageDecoder.m in Sources */,
 				6AB9BA7F1C2BE2EC004BF6A7 /* MWTapDetectingView.m in Sources */,
+				6AF47C141C8FC26F00994094 /* YStepperView.m in Sources */,
 				15800F8C1C4C783500FCB87B /* SettingsViewController.m in Sources */,
 				6AB9BB751C2BE866004BF6A7 /* EMChatTimeCell.m in Sources */,
 				6A88998D1C4F1CAD003DB4BF /* MJRefreshAutoGifFooter.m in Sources */,
@@ -4476,6 +4488,7 @@
 				6AB9B6881C2B8A9D004BF6A7 /* MDDoctorServiceViewController.m in Sources */,
 				15800F731C4C780500FCB87B /* AddFriendViewController.m in Sources */,
 				6AB9BA261C2BE21F004BF6A7 /* EMNavigationController.m in Sources */,
+				6A5B01201C8EC51E00D013D5 /* MDSelectNumView.m in Sources */,
 				6AB9BAAE1C2BE32C004BF6A7 /* UIButton+EMWebCache.m in Sources */,
 				6AB9BA7A1C2BE2EC004BF6A7 /* MWGridCell.m in Sources */,
 				6AB9BA271C2BE21F004BF6A7 /* EMSearchDisplayController.m in Sources */,
@@ -4508,6 +4521,7 @@
 				159049741C069FA600EE51FB /* BRSNewPasswordViewController.m in Sources */,
 				1532A6FB1C3F83A200D0582B /* FMDatabaseAdditions.m in Sources */,
 				15800F991C4C791800FCB87B /* DocPatientModel.m in Sources */,
+				6A5B011D1C8EBD2500D013D5 /* HWPopTool.m in Sources */,
 				6AB9BA131C2BE1E8004BF6A7 /* BaseTableViewCell.m in Sources */,
 				6A88998F1C4F1CAD003DB4BF /* MJRefreshAutoStateFooter.m in Sources */,
 				15CFF0101C3B991400DB6FAC /* MDSetViewController.m in Sources */,
