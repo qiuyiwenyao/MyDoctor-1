@@ -7,7 +7,8 @@
 //
 
 #import "MDBaseViewController.h"
+#import "WXApi.h"
 
-@interface BRSlogInViewController : MDBaseViewController<UITextFieldDelegate>
+@interface BRSlogInViewController : MDBaseViewController<UITextFieldDelegate,WXApiDelegate>
 
 @end
