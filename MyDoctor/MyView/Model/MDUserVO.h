@@ -16,6 +16,7 @@
 @property (nonatomic,copy) NSString * baseurl;
 @property (nonatomic,copy) NSString * photourl;
 @property (nonatomic,copy) NSString * photoPath;
+@property (nonatomic,copy) NSString * adverturl;
 
 +(MDUserVO*)userVO;
 +(MDUserVO*) setPersonInfoFromUserInfer:(NSDictionary *)dic;

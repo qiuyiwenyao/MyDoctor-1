@@ -37,9 +37,11 @@ static MDUserVO *user = nil;
     userVO.userID=[NSString stringWithFormat:@"%@",[[dic objectForKey:@"obj"] objectForKey:@"id"]];
 //    userVO.account=[[dic objectForKey:@"obj"] objectForKey:@"account"];
     userVO.photo = [[dic objectForKey:@"obj"] objectForKey:@"photo"];
-    userVO.baseurl = [[dic objectForKey:@"obj"] objectForKey:@"shoujiPara"][0][1];
-    userVO.photourl = [[dic objectForKey:@"obj"] objectForKey:@"shoujiPara"][1][1];
+    userVO.baseurl = [[[dic objectForKey:@"obj"] objectForKey:@"shoujiPara"] objectForKey:@"baseurl"];
+    userVO.photourl = [[[dic objectForKey:@"obj"] objectForKey:@"shoujiPara"] objectForKey:@"photourl"];
+    userVO.adverturl = [[[dic objectForKey:@"obj"] objectForKey:@"shoujiPara"] objectForKey:@"adverturl"];
     userVO.photoPath = [NSString stringWithFormat:@"Library/Caches/IMAGE/%@.png",[[dic objectForKey:@"obj"] objectForKey:@"id"]];
+
     
     return userVO;
 }

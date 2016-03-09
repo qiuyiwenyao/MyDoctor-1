@@ -23,6 +23,7 @@
     UIButton * buyButton;
     UIView * infoView;
     UIImage * drugImg;
+    NSString * price;
 }
 
 @end
@@ -130,6 +131,7 @@
     
     UILabel * priceLabel = [[UILabel alloc] init];
     priceLabel.text = @"¥10.0";
+    price = @"10.0";
     priceLabel.textAlignment = NSTextAlignmentLeft;
     priceLabel.numberOfLines = 0;
     priceLabel.backgroundColor = [UIColor clearColor];
@@ -296,7 +298,7 @@
     NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
     NSString * str=[stdDefault objectForKey:@"user_name"];
     if ([str length]>0) {
-        MDSelectNumView * view = [[MDSelectNumView alloc] initWithFrame:CGRectMake(0, appHeight * 0.60, appWidth, appHeight * 0.40) andImage:drugImg andReserveNum:@"9" andPlan:@"套餐二" andPrice:@"12.0"];
+        MDSelectNumView * view = [[MDSelectNumView alloc] initWithFrame:CGRectMake(0, appHeight * 0.60, appWidth, appHeight * 0.40) andImage:drugImg andReserveNum:@"9" andPlan:@"套餐二" andPrice:price];
         
         [HWPopTool sharedInstance].shadeBackgroundType = ShadeBackgroundTypeSolid;
         [HWPopTool sharedInstance].closeButtonType = ButtonPositionTypeRight;
@@ -319,7 +321,7 @@
     NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
     NSString * str=[stdDefault objectForKey:@"user_name"];
     if ([str length]>0) {
-        MDSelectNumView * view = [[MDSelectNumView alloc] initWithFrame:CGRectMake(0, appHeight * 0.60, appWidth, appHeight * 0.40) andImage:drugImg andReserveNum:@"11" andPlan:@"套餐二" andPrice:@"12.0"];
+        MDSelectNumView * view = [[MDSelectNumView alloc] initWithFrame:CGRectMake(0, appHeight * 0.60, appWidth, appHeight * 0.40) andImage:drugImg andReserveNum:@"11" andPlan:@"套餐二" andPrice:price];
         
         [HWPopTool sharedInstance].shadeBackgroundType = ShadeBackgroundTypeSolid;
         [HWPopTool sharedInstance].closeButtonType = ButtonPositionTypeRight;

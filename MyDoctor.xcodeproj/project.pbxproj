@@ -643,6 +643,8 @@
 		6AF2026B1C0D71AB00933EAF /* MDFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2026A1C0D71AB00933EAF /* MDFeedBackViewController.m */; };
 		6AF404731C2CD45800D46F2A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6AF404751C2CD45800D46F2A /* Localizable.strings */; };
 		6AF47C141C8FC26F00994094 /* YStepperView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF47C131C8FC26F00994094 /* YStepperView.m */; };
+		6AF47C161C900C4800994094 /* 关闭@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF47C151C900C4800994094 /* 关闭@2x.png */; };
+		6AF47C181C900C5600994094 /* 关闭@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF47C171C900C5600994094 /* 关闭@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1686,6 +1688,8 @@
 		6AF404781C2CD51800D46F2A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		6AF47C121C8FC26F00994094 /* YStepperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YStepperView.h; sourceTree = "<group>"; };
 		6AF47C131C8FC26F00994094 /* YStepperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YStepperView.m; sourceTree = "<group>"; };
+		6AF47C151C900C4800994094 /* 关闭@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "关闭@2x.png"; sourceTree = "<group>"; };
+		6AF47C171C900C5600994094 /* 关闭@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "关闭@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1883,6 +1887,7 @@
 		153ED8111C08022E00171DFA /* 2x */ = {
 			isa = PBXGroup;
 			children = (
+				6AF47C151C900C4800994094 /* 关闭@2x.png */,
 				1561AFD21C8FE6B80060F378 /* 订单分割线@2x.png */,
 				1561AFD31C8FE6B80060F378 /* 购买数量加@2x.png */,
 				1561AFD41C8FE6B80060F378 /* 地址进入@2x.png */,
@@ -1973,6 +1978,7 @@
 		153ED81A1C08022E00171DFA /* 3x */ = {
 			isa = PBXGroup;
 			children = (
+				6AF47C171C900C5600994094 /* 关闭@3x.png */,
 				1561AFDC1C8FE6ED0060F378 /* 地址进入@3x.png */,
 				1561AFDD1C8FE6ED0060F378 /* 订单分割线@3x.png */,
 				1561AFDE1C8FE6ED0060F378 /* 购买数量加@3x.png */,
@@ -4101,6 +4107,7 @@
 				6AB9BCED1C2BED12004BF6A7 /* chat_receiver_audio_playing_full@2x.png in Resources */,
 				6AB9BC511C2BEA7B004BF6A7 /* tabbar_contactsHL@2x.png in Resources */,
 				6A9CE0FB1C8687D800E7A4C1 /* imageDownloadFail@2x.png in Resources */,
+				6AF47C161C900C4800994094 /* 关闭@2x.png in Resources */,
 				6AB9BCF01C2BED12004BF6A7 /* chat_receiver_audio_playing001.png in Resources */,
 				6AB9BCF51C2BED12004BF6A7 /* chat_receiver_audio_playing003@2x.png in Resources */,
 				6AB9BD061C2BED22004BF6A7 /* chat_sender_audio_playing_001.png in Resources */,
@@ -4290,6 +4297,7 @@
 				6AB9BBEC1C2BEA0E004BF6A7 /* VoiceSearchFeedback012.png in Resources */,
 				6A9CE0FE1C8687D800E7A4C1 /* mx_selected_phone@2x.png in Resources */,
 				6A9CE0FA1C8687D800E7A4C1 /* Icon@2x.png in Resources */,
+				6AF47C181C900C5600994094 /* 关闭@3x.png in Resources */,
 				6A9CE14C1C8687FA00E7A4C1 /* 首页1@3x.png in Resources */,
 				6AB9BCAC1C2BECC6004BF6A7 /* chatBar_recordSelectedBg.png in Resources */,
 				6AB9BBF61C2BEA0E004BF6A7 /* VoiceSearchFeedback017.png in Resources */,

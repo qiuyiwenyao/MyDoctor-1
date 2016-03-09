@@ -101,9 +101,10 @@
         
         
         _stepper = [[YStepperView alloc] initWithFrame:CGRectMake(0, 0, 162, 40)];
-        [_stepper setStepperColor:RedColor withDisableColor:[UIColor blueColor]];
+        [_stepper setStepperColor:ColorWithRGB(133, 133, 133, 1) withDisableColor:[UIColor grayColor]];
         [_stepper setStepperRange:1 andMaxValue:[reserve intValue]];
         [_stepper setTextColor:[UIColor blackColor]];
+        [_stepper setBackgroundColor:ColorWithRGB(242, 242, 242, 1)];
         [_stepper setValue:1];
         [self addSubview:_stepper];
         [_stepper mas_makeConstraints:^(MX_MASConstraintMaker *make) {
