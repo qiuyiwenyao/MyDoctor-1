@@ -13,5 +13,5 @@
 @property (nonatomic, strong) NSString * coustomerName;
 @property (nonatomic, strong) NSString * phone;
 @property (nonatomic, strong) NSString * address;
-
+-(void)againDrawView;
 @end

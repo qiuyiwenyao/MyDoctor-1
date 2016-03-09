@@ -12,12 +12,13 @@
 #import "MDConst.h"
 
 @implementation AddressOrder
-
-
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
+{
+    UILabel * coustomer;
+    UILabel * phone;
+    UILabel * address;
+}
 - (void)drawRect:(CGRect)rect {
-    UILabel * coustomer=[[UILabel alloc] init];
+    coustomer=[[UILabel alloc] init];
     coustomer.text=[NSString stringWithFormat:@"收货人：%@",_coustomerName];
     coustomer.font=[UIFont boldSystemFontOfSize:16];
     [self addSubview:coustomer];
@@ -27,7 +28,7 @@
         make.size.mas_equalTo(CGSizeMake(150, 25));
     }];
     
-    UILabel * phone = [[UILabel alloc] init];
+    phone = [[UILabel alloc] init];
     phone.text = _phone;
     phone.textAlignment = NSTextAlignmentRight;
     phone.font=[UIFont boldSystemFontOfSize:15];
@@ -44,7 +45,7 @@
     [addressMark mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).with.offset(17);
         make.top.equalTo(self.mas_top).with.offset(44);
-        make.size.mas_equalTo(CGSizeMake(15, 19));
+        make.size.mas_equalTo(CGSizeMake(15, 22));
     }];
     
     UIImageView * enter=[[UIImageView alloc] init];
@@ -53,10 +54,10 @@
     [enter mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.right.equalTo(self.mas_right).with.offset(-8);
         make.top.equalTo(self.mas_top).with.offset(44);
-        make.size.mas_equalTo(CGSizeMake(11, 15));
+        make.size.mas_equalTo(CGSizeMake(10, 15));
     }];
     
-    UILabel * address=[[UILabel alloc] init];
+    address=[[UILabel alloc] init];
     address.text=[NSString stringWithFormat:@"收货地址：%@",_address];
     address.font=[UIFont systemFontOfSize:15];
     address.numberOfLines = 2;
@@ -78,6 +79,11 @@
     
     
 }
-
+-(void)againDrawView
+{
+    coustomer.text=[NSString stringWithFormat:@"收货人：%@",_coustomerName];
+    phone.text = _phone;
+    address.text=[NSString stringWithFormat:@"收货地址：%@",_address];
+}
 
 @end

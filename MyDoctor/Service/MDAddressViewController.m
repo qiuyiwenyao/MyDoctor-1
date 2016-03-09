@@ -93,7 +93,13 @@
     NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
     [userInfo setObject:[NSString stringWithFormat:@"%@  %@ %@",userVO.userName,userVO.phone,userVO.address] forKey:@"address"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"chooseAddress" object:nil userInfo:userInfo];
-
+    
+    NSMutableDictionary * userAddress=[[NSMutableDictionary alloc] init];
+    [userAddress setValue:userVO.userName forKey:@"userName"];
+    [userAddress setValue:userVO.phone forKey:@"phone"];
+    [userAddress setValue:userVO.address forKey:@"address"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"orderAddress" object:nil userInfo:userAddress];
+    
     [self.navigationController popViewControllerAnimated:YES];
 
 }
