@@ -40,8 +40,8 @@
         minBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [minBtn setBackgroundImage:[self getHighlitedImageWithColor:stepperColor] forState:UIControlStateHighlighted];
         [minBtn setTitle:@"-" forState:UIControlStateNormal];
-        [minBtn setFrame:CGRectMake(0.0, 0.0, BTN_SIZE.width, frame.size.height)];
-        [minBtn setContentEdgeInsets:UIEdgeInsetsMake(-2.0, 0.0, 0.0, 0.0)];
+        [minBtn setFrame:CGRectMake(0.0, 0.0, frame.size.height, frame.size.height)];
+        [minBtn setContentEdgeInsets:UIEdgeInsetsMake(0, 0.0, 0.0, 0.0)];
         [minBtn setTitleColor:stepperColor forState:UIControlStateNormal];
         [minBtn setTitleColor:stepperDisableColor forState:UIControlStateDisabled];
         [minBtn setEnabled:NO]; // Set it disable because minRange==defaultValue (both are=0)
@@ -52,18 +52,18 @@
         maxBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [maxBtn setBackgroundImage:[self getHighlitedImageWithColor:stepperColor] forState:UIControlStateHighlighted];
         [maxBtn setTitle:@"+" forState:UIControlStateNormal];
-        [maxBtn setFrame:CGRectMake(frame.size.width-BTN_SIZE.width, 0.0, BTN_SIZE.width, frame.size.height)];
-        [maxBtn setContentEdgeInsets:UIEdgeInsetsMake(-2.0, 0.0, 0.0, 0.0)];
+        [maxBtn setFrame:CGRectMake(frame.size.width-frame.size.height, 0.0, frame.size.height, frame.size.height)];
+        [maxBtn setContentEdgeInsets:UIEdgeInsetsMake(0, 0.0, 0.0, 0.0)];
         [maxBtn setTitleColor:stepperColor forState:UIControlStateNormal];
         [maxBtn setTitleColor:stepperDisableColor forState:UIControlStateDisabled];
         [maxBtn addTarget:self action:@selector(increaseValue:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:maxBtn];
         
         // Setup TextLabel to show value
-        textLabel = [[UILabel alloc] initWithFrame:CGRectMake(BTN_SIZE.width, 0.0, frame.size.width-BTN_SIZE.width*2.0, frame.size.height)];
-        [textLabel setBackgroundColor:[UIColor clearColor]];
+        textLabel = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.height, 0.0, frame.size.width-frame.size.height*2.0, frame.size.height)];
+        [textLabel setBackgroundColor:[UIColor whiteColor]];
         [textLabel setTextAlignment:NSTextAlignmentCenter];
-        [textLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15.0f]]; //HelveticaNeue-Thin
+        [textLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18.0f]]; //HelveticaNeue-Thin
         [textLabel setText:[NSString stringWithFormat:@"%i", value]];
         [self addSubview:textLabel];
     }
@@ -86,12 +86,12 @@
     CGContextSetLineWidth(context, BORDER_WIDTH);
 
     // Draw first line
-    CGContextMoveToPoint(context, BTN_SIZE.width, 0.0);
-    CGContextAddLineToPoint(context, BTN_SIZE.width, self.frame.size.height);
+    CGContextMoveToPoint(context, 40, 0.0);
+    CGContextAddLineToPoint(context, 40, self.frame.size.height);
 
     // Draw second line
-    CGContextMoveToPoint(context, self.frame.size.width-BTN_SIZE.width, 0.0);
-    CGContextAddLineToPoint(context, self.frame.size.width-BTN_SIZE.width, self.frame.size.height);
+    CGContextMoveToPoint(context, self.frame.size.width-40, 0.0);
+    CGContextAddLineToPoint(context, self.frame.size.width-40, self.frame.size.height);
     CGContextDrawPath(context, kCGPathStroke);
 
 }
