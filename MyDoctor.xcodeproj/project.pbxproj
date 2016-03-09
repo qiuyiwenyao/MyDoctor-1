@@ -645,6 +645,8 @@
 		6AF47C141C8FC26F00994094 /* YStepperView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF47C131C8FC26F00994094 /* YStepperView.m */; };
 		6AF47C161C900C4800994094 /* 关闭@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF47C151C900C4800994094 /* 关闭@2x.png */; };
 		6AF47C181C900C5600994094 /* 关闭@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF47C171C900C5600994094 /* 关闭@3x.png */; };
+		6AF47C1A1C90187C00994094 /* 购物车@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF47C191C90187C00994094 /* 购物车@2x.png */; };
+		6AF47C1C1C90188900994094 /* 购物车@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF47C1B1C90188900994094 /* 购物车@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1690,6 +1692,8 @@
 		6AF47C131C8FC26F00994094 /* YStepperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YStepperView.m; sourceTree = "<group>"; };
 		6AF47C151C900C4800994094 /* 关闭@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "关闭@2x.png"; sourceTree = "<group>"; };
 		6AF47C171C900C5600994094 /* 关闭@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "关闭@3x.png"; sourceTree = "<group>"; };
+		6AF47C191C90187C00994094 /* 购物车@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "购物车@2x.png"; sourceTree = "<group>"; };
+		6AF47C1B1C90188900994094 /* 购物车@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "购物车@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1890,6 +1894,7 @@
 				6AF47C151C900C4800994094 /* 关闭@2x.png */,
 				1561AFD21C8FE6B80060F378 /* 订单分割线@2x.png */,
 				1561AFD31C8FE6B80060F378 /* 购买数量加@2x.png */,
+				6AF47C191C90187C00994094 /* 购物车@2x.png */,
 				1561AFD41C8FE6B80060F378 /* 地址进入@2x.png */,
 				1561AFD51C8FE6B80060F378 /* 购买数量减@2x.png */,
 				1561AFD61C8FE6B80060F378 /* 订单地址@2x.png */,
@@ -1980,6 +1985,7 @@
 			children = (
 				6AF47C171C900C5600994094 /* 关闭@3x.png */,
 				1561AFDC1C8FE6ED0060F378 /* 地址进入@3x.png */,
+				6AF47C1B1C90188900994094 /* 购物车@3x.png */,
 				1561AFDD1C8FE6ED0060F378 /* 订单分割线@3x.png */,
 				1561AFDE1C8FE6ED0060F378 /* 购买数量加@3x.png */,
 				1561AFDF1C8FE6ED0060F378 /* 购买数量减@3x.png */,
@@ -4241,6 +4247,7 @@
 				6AB9BC4D1C2BEA7B004BF6A7 /* tabbar_chatsHL@2x.png in Resources */,
 				6A9CE0E81C8687D800E7A4C1 /* 专家头像@2x.png in Resources */,
 				6AB9BC371C2BEA61004BF6A7 /* groupPublicHeader@2x.png in Resources */,
+				6AF47C1A1C90187C00994094 /* 购物车@2x.png in Resources */,
 				6A9CE0BD1C8687D800E7A4C1 /* 按钮框@2x.png in Resources */,
 				6AB9B14F1C239E21004BF6A7 /* MDActivityBtnCell.xib in Resources */,
 				6A9CE0FF1C8687D800E7A4C1 /* my@2x.png in Resources */,
@@ -4306,6 +4313,7 @@
 				6A9CE0F91C8687D800E7A4C1 /* Icon.png in Resources */,
 				6AB9B13C1C2013D0004BF6A7 /* demo-avatar-jobs.png in Resources */,
 				6AB9BCA41C2BECC6004BF6A7 /* chatBar_moreSelected.png in Resources */,
+				6AF47C1C1C90188900994094 /* 购物车@3x.png in Resources */,
 				6A9CE0F21C8687D800E7A4C1 /* feedback@2x.png in Resources */,
 				6AB9BC6D1C2BEC46004BF6A7 /* chatBar_textBg@2x.png in Resources */,
 				6AB9BC9C1C2BECC6004BF6A7 /* chatBar_faceSelected.png in Resources */,

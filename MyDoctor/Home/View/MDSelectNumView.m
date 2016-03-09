@@ -101,10 +101,9 @@
         
         
         _stepper = [[YStepperView alloc] initWithFrame:CGRectMake(0, 0, 162, 40)];
-        [_stepper setStepperColor:ColorWithRGB(133, 133, 133, 1) withDisableColor:[UIColor grayColor]];
+        [_stepper setStepperColor:[UIColor clearColor] withDisableColor:[UIColor grayColor]];
         [_stepper setStepperRange:1 andMaxValue:[reserve intValue]];
         [_stepper setTextColor:[UIColor blackColor]];
-        [_stepper setBackgroundColor:ColorWithRGB(242, 242, 242, 1)];
         [_stepper setValue:1];
         [self addSubview:_stepper];
         [_stepper mas_makeConstraints:^(MX_MASConstraintMaker *make) {
@@ -143,13 +142,14 @@
 
 -(void)confirmClick
 {
+
     
     NSString * price = _priceLabel.text;
     NSString * reserve = _reserveLabel.text;
     NSString * plan = _planLabel.text;
     NSString * purchaseNum = [NSString stringWithFormat:@"%ld",(long)[_stepper getValue]];
     
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"confirmOrder" object:@{@"price":price,@"reserve":reserve,@"plan":plan,@"purchaseNum":purchaseNum}];
     
     NSLog(@"price = %@  reserve = %@  plan = %@  purchnum = %@",price,reserve,plan,purchaseNum);
 }

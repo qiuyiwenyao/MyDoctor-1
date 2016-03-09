@@ -159,12 +159,17 @@ static CGFloat const kDefaultCloseButtonPadding = 17.0f;
         }
     });
     
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(close) name:@"closeView" object:nil];
+
+    
 }
 
 - (void)close {
     [self hideAnimated:YES withCompletionBlock:nil];
     
 }
+
 - (void)closeWithBlcok:(void(^)())complete {
     [self hideAnimated:YES withCompletionBlock:complete];
 }
@@ -209,6 +214,8 @@ static CGFloat const kDefaultCloseButtonPadding = 17.0f;
 }
 - (void)dealloc{
     [self cleanup];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"closeView" object:nil];
+
 }
 
 
@@ -234,6 +241,7 @@ static CGFloat const kDefaultCloseButtonPadding = 17.0f;
     styleView.opaque = NO;
     [self.view addSubview:styleView];
     self.styleView = styleView;
+    
 }
 
 
@@ -318,10 +326,9 @@ static CGFloat const kDefaultCloseButtonPadding = 17.0f;
     if (self) {
         
         [self setBackgroundImage:[UIImage imageNamed:@"关闭"] forState:UIControlStateNormal];
-        //        self.backgroundColor = [UIColor greenColor];
+        
     }
     return self;
 }
-
 
 @end
