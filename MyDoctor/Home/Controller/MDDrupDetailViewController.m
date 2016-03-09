@@ -10,10 +10,19 @@
 #import "MDRequestModel.h"
 #import "MDDrupDetailModel.h"
 #import "UIImageView+WebCache.h"
+#import "BRSlogInViewController.h"
+
+#import "HWPopTool.h"
+#import "MDSelectNumView.h"
 
 @interface MDDrupDetailViewController ()<sendInfoToCtr>
 {
     NSMutableArray * dataSource;
+    UIScrollView * bgScrollView;
+    UIButton * shopCartButton;
+    UIButton * buyButton;
+    UIView * infoView;
+    UIImage * drugImg;
 }
 
 @end
@@ -24,6 +33,38 @@
     [super viewDidLoad];
     BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
     [util setNavigationLeftButton:self.navigationItem target:self selector:@selector(backBtnClick) image:[UIImage imageNamed:@"navigationbar_back"] title:nil];
+    
+    //下方按钮
+    shopCartButton = [[UIButton alloc] init];
+    [shopCartButton setTitle:@"加入购物车" forState:UIControlStateNormal];
+    [shopCartButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [shopCartButton setBackgroundColor:ColorWithRGB(227, 124, 2, 1)];
+    shopCartButton.titleLabel.font = [UIFont systemFontOfSize:21];
+    [shopCartButton addTarget:self action:@selector(shopCartClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:shopCartButton];
+    
+    buyButton = [[UIButton alloc] init];
+    [buyButton setTitle:@"立即购买" forState:UIControlStateNormal];
+    [buyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [buyButton setBackgroundColor:ColorWithRGB(227, 4, 47, 1)];
+    [buyButton addTarget:self action:@selector(buyClick) forControlEvents:UIControlEventTouchUpInside];
+    buyButton.titleLabel.font = [UIFont systemFontOfSize:21];
+    [self.view addSubview:buyButton];
+    
+    [shopCartButton mas_makeConstraints:^(MX_MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.height.equalTo(@(appWidth/2*0.26));
+        make.bottom.equalTo(self.view.mas_bottom);
+        make.width.equalTo(buyButton);
+    }];
+    [buyButton mas_makeConstraints:^(MX_MASConstraintMaker *make) {
+        make.right.equalTo(self.view.mas_right);
+        make.height.equalTo(shopCartButton);
+        make.left.equalTo(shopCartButton.mas_right);
+        make.top.equalTo(shopCartButton.mas_top);
+    }];
+
+
     
     [self requestData];
     
@@ -48,142 +89,135 @@
 
 -(void)createView
 {
-//    @property (nonatomic,assign) int id;
-//    @property (nonatomic,assign) NSString * photo;
-//    @property (nonatomic,assign) NSString * medicineName;
-//    @property (nonatomic,assign) NSString * commonName;
-//    @property (nonatomic,assign) NSString * function;
-//    @property (nonatomic,assign) NSString * medicinedosage;
-//    @property (nonatomic,assign) NSString * untowardeffect;
-//    @property (nonatomic,assign) NSString * taboo;
-//    @property (nonatomic,assign) NSString * pinyinCode;
-//    @property (nonatomic,assign) int categaryId;
-//    @property (nonatomic,assign) NSString * unit;
-//    @property (nonatomic,assign) NSString * specification;
-//    @property (nonatomic,assign) NSString * validity;
     MDDrupDetailModel * model = dataSource[0];
-    NSLog(@"%@",model.validity);
+
+    bgScrollView = [[UIScrollView alloc] init];
+    bgScrollView.scrollEnabled = YES;
+    [self.view addSubview:bgScrollView];
+    [bgScrollView mas_makeConstraints:^(MX_MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view.mas_centerX);
+        make.top.equalTo(self.view.mas_top).with.offset(TOPHEIGHT);
+        make.left.equalTo(self.view.mas_left);
+        make.bottom.equalTo(buyButton.mas_top);
+    }];
     
     UIImageView * topImageView = [[UIImageView alloc] init];
+    topImageView.contentMode = UIViewContentModeScaleAspectFit;
     [topImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl, model.photo]] placeholderImage:[UIImage imageNamed:@"药"]];
-    [self.view addSubview:topImageView];
+    drugImg = topImageView.image;
+    [bgScrollView addSubview:topImageView];
     [topImageView mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX);
-        make.top.equalTo(self.view.mas_top).with.offset(TOPHEIGHT+18);
-        make.left.equalTo(self.view.mas_left).with.offset(15);
-        make.height.equalTo(@((appWidth - 30)/2));
+        make.top.equalTo(bgScrollView.mas_top).with.offset(0);
+        make.left.equalTo(bgScrollView.mas_left);
+        make.height.equalTo(@(appWidth));
         
     }];
-
-    //下方空白view
-    UIView * bgView = [[UIView alloc] init];
-    bgView.userInteractionEnabled = YES;
-    [self.view addSubview:bgView];
-    bgView.backgroundColor = ColorWithRGB(255, 255, 255, 0.7);
-    [bgView mas_makeConstraints:^(MX_MASConstraintMaker *make) {
-        make.top.equalTo(topImageView.mas_bottom).with.offset(0);
-        make.centerX.mas_equalTo(self.view.mas_centerX);
-        make.width.equalTo(topImageView.mas_width);
-        make.bottom.equalTo(self.view.mas_bottom).with.offset(-15);
-    }];
     
-//    UIScrollView * bgView = [ui];
-    //文字设置
     UILabel * titleLab = [[UILabel alloc] init];
     titleLab.text = model.medicineName;
     titleLab.textAlignment = NSTextAlignmentCenter;
+    titleLab.numberOfLines = 0;
     titleLab.backgroundColor = [UIColor clearColor];
-    titleLab.font = [UIFont systemFontOfSize:17];
-    titleLab.textColor = RedColor;
+    titleLab.font = [UIFont boldSystemFontOfSize:22];
     [titleLab sizeToFit];
-    [bgView addSubview:titleLab];
-    
+    [bgScrollView addSubview:titleLab];
     [titleLab mas_makeConstraints:^(MX_MASConstraintMaker *make) {
-        make.top.equalTo(topImageView.mas_bottom).with.offset(15);
-        make.centerX.mas_equalTo(self.view.mas_centerX);
+        make.centerX.mas_equalTo(bgScrollView.mas_centerX);
+        make.left.equalTo(bgScrollView.mas_left).with.offset(35);
+        make.top.equalTo(topImageView.mas_bottom).with.offset(6);
     }];
     
-    //分割线
-    UIView * wireViewLeft = [[UIView alloc] init];
-    wireViewLeft.backgroundColor = RedColor;
-    UIView * wireViewRirght = [[UIView alloc] init];
-    wireViewRirght.backgroundColor = RedColor;
-    [bgView addSubview:wireViewLeft];
-    [bgView addSubview:wireViewRirght];
-    
-    [wireViewLeft mas_makeConstraints:^(MX_MASConstraintMaker *make) {
-        make.left.equalTo(bgView.mas_left).with.offset(40);
-        make.right.equalTo(titleLab.mas_left).with.offset(-25);
-        make.centerY.mas_equalTo(titleLab.mas_centerY);
-        make.height.equalTo(@1);
+    UILabel * priceLabel = [[UILabel alloc] init];
+    priceLabel.text = @"¥10.0";
+    priceLabel.textAlignment = NSTextAlignmentLeft;
+    priceLabel.numberOfLines = 0;
+    priceLabel.backgroundColor = [UIColor clearColor];
+    priceLabel.font = [UIFont systemFontOfSize:24];
+    priceLabel.textColor = ColorWithRGB(202, 0, 19, 1);
+    [bgScrollView addSubview:priceLabel];
+    [priceLabel mas_makeConstraints:^(MX_MASConstraintMaker *make) {
+        make.left.equalTo(titleLab.mas_left);
+        make.top.equalTo(titleLab.mas_bottom).with.offset(12);
+        make.centerX.mas_equalTo(bgScrollView.mas_centerX);
     }];
     
-    [wireViewRirght mas_makeConstraints:^(MX_MASConstraintMaker *make) {
-        make.right.equalTo(bgView.mas_right).with.offset(-40);
-        make.left.equalTo(titleLab.mas_right).with.offset(25);
-        make.centerY.mas_equalTo(titleLab.mas_centerY);
-        make.height.equalTo(@1);
+    UILabel * primePriceLabel = [[UILabel alloc] init];
+    NSMutableAttributedString *primePriceStr = [[NSMutableAttributedString alloc] initWithString:@"原价 ¥13.5"];
+    [primePriceStr setAttributes:@{NSStrikethroughStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleSingle]} range:NSMakeRange(2, primePriceStr.length-2)];
+    primePriceLabel.attributedText = primePriceStr;
+    primePriceLabel.textAlignment = NSTextAlignmentLeft;
+    primePriceLabel.numberOfLines = 0;
+    primePriceLabel.backgroundColor = [UIColor clearColor];
+    primePriceLabel.font = [UIFont systemFontOfSize:17];
+    primePriceLabel.textColor = ColorWithRGB(130, 130, 130, 1);
+    [bgScrollView addSubview:primePriceLabel];
+    [primePriceLabel mas_makeConstraints:^(MX_MASConstraintMaker *make) {
+        make.left.equalTo(titleLab.mas_left);
+        make.top.equalTo(priceLabel.mas_bottom).with.offset(8);
+        make.centerX.mas_equalTo(bgScrollView.mas_centerX);
+
     }];
     
-    UIScrollView * scrollView = [[UIScrollView alloc] init];
-    //    _scrollView.userInteractionEnabled = YES;
-    scrollView.showsHorizontalScrollIndicator = NO;
-    [bgView addSubview:scrollView];
-    
-    
-    [scrollView mas_makeConstraints:^(MX_MASConstraintMaker *make) {
-        make.top.equalTo(titleLab.mas_bottom).with.offset(15);
-        make.left.equalTo(bgView.mas_left).with.offset(30);
-        make.right.equalTo(bgView.mas_right).with.offset(-30);
-        make.bottom.equalTo(bgView.mas_bottom).with.offset(0);
-        
-    }];
-    
-    UILabel * nameLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, appWidth - 90, 0)];
+    UILabel * nameLab = [[UILabel alloc] init];
     nameLab.text = [NSString stringWithFormat:@"【药 品 名 称】: %@",model.medicineName];
     nameLab.textColor = ColorWithRGB(97, 103, 111, 1);
     nameLab.textAlignment = NSTextAlignmentLeft;
     nameLab.font = [UIFont systemFontOfSize:14];
     nameLab.numberOfLines = 0;
     [nameLab sizeToFit];
-    [scrollView addSubview:nameLab];
+    [bgScrollView addSubview:nameLab];
+    [nameLab mas_makeConstraints:^(MX_MASConstraintMaker *make) {
+        make.left.equalTo(titleLab.mas_left).with.offset(-8);
+        make.top.equalTo(primePriceLabel.mas_bottom).with.offset(50);
+        make.centerX.mas_equalTo(bgScrollView.mas_centerX);
+        
+    }];
     
-    UILabel * sizeLab = [[UILabel alloc] initWithFrame:CGRectMake(0, nameLab.y+nameLab.height+12, appWidth - 90, 0)];
+    UILabel * sizeLab = [[UILabel alloc] init];
     sizeLab.text = [NSString stringWithFormat:@"【规 格 型 号】%@",model.specification];
     sizeLab.textColor = ColorWithRGB(97, 103, 111, 1);
     sizeLab.textAlignment = NSTextAlignmentLeft;
     sizeLab.font = [UIFont systemFontOfSize:14];
     sizeLab.numberOfLines = 0;
     [sizeLab sizeToFit];
-    [scrollView addSubview:sizeLab];
+    [bgScrollView addSubview:sizeLab];
+    [sizeLab mas_makeConstraints:^(MX_MASConstraintMaker *make) {
+        make.left.equalTo(nameLab.mas_left);
+        make.top.equalTo(nameLab.mas_bottom).with.offset(12);
+        make.centerX.mas_equalTo(bgScrollView.mas_centerX);
+        
+    }];
     
-    UILabel * unitLab = [[UILabel alloc] initWithFrame:CGRectMake(0, sizeLab.y+sizeLab.height+12, appWidth - 90, 0)];
+    UILabel * unitLab = [[UILabel alloc] init];
     unitLab.text = [NSString stringWithFormat:@"【功 能 主 治】%@",model.function];
     unitLab.textColor = ColorWithRGB(97, 103, 111, 1);
     unitLab.textAlignment = NSTextAlignmentLeft;
     unitLab.font = [UIFont systemFontOfSize:14];
     unitLab.numberOfLines = 0;
     [unitLab sizeToFit];
-    [scrollView addSubview:unitLab];
+    [bgScrollView addSubview:unitLab];
+    [unitLab mas_makeConstraints:^(MX_MASConstraintMaker *make) {
+        make.left.equalTo(nameLab.mas_left);
+        make.top.equalTo(sizeLab.mas_bottom).with.offset(12);
+        make.centerX.mas_equalTo(bgScrollView.mas_centerX);
+        
+    }];
     
-    UILabel * usageLab = [[UILabel alloc] initWithFrame:CGRectMake(0, unitLab.y+unitLab.height+12, appWidth - 90, 0)];
+    UILabel * usageLab = [[UILabel alloc] init];
     usageLab.text = [NSString stringWithFormat:@"【用 法 用 量】%@",model.medicinedosage];
     usageLab.textColor = ColorWithRGB(97, 103, 111, 1);
     usageLab.textAlignment = NSTextAlignmentLeft;
     usageLab.font = [UIFont systemFontOfSize:14];
     usageLab.numberOfLines = 0;
     [usageLab sizeToFit];
-    [scrollView addSubview:usageLab];
-    
-//    UILabel * introduceLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, appWidth - 48*2, 0)];
-//    introduceLab.text = @"    工作经验丰富专业技能娴熟，各类证书齐全，本着尽心尽职的同时现利用空余时间为本市区内不方便去医院打针，挂水，输液的病人提供上门服务";
-//    introduceLab.textAlignment = NSTextAlignmentLeft;
-//    introduceLab.font = [UIFont systemFontOfSize:14];
-//    introduceLab.textColor = ColorWithRGB(97, 103, 111, 1);
-//    introduceLab.numberOfLines = 0;
-//    [introduceLab sizeToFit];
-//    [self.scrollView addSubview:introduceLab];
-
+    [bgScrollView addSubview:usageLab];
+    [usageLab mas_makeConstraints:^(MX_MASConstraintMaker *make) {
+        make.left.equalTo(nameLab.mas_left);
+        make.top.equalTo(unitLab.mas_bottom).with.offset(12);
+        make.centerX.mas_equalTo(bgScrollView.mas_centerX);
+        
+    }];
     
     UILabel * functionLab = [[UILabel alloc] initWithFrame:CGRectMake(0, usageLab.y+usageLab.height+12, appWidth - 92, 0)];
     functionLab.text = [NSString stringWithFormat:@"【不 良 反 应】%@",model.untowardeffect];
@@ -192,18 +226,30 @@
     functionLab.font = [UIFont systemFontOfSize:14];
     functionLab.numberOfLines = 0;
     [functionLab sizeToFit];
-    [scrollView addSubview:functionLab];
+    [bgScrollView addSubview:functionLab];
+    [functionLab mas_makeConstraints:^(MX_MASConstraintMaker *make) {
+        make.left.equalTo(nameLab.mas_left);
+        make.top.equalTo(usageLab.mas_bottom).with.offset(12);
+        make.centerX.mas_equalTo(bgScrollView.mas_centerX);
+        
+    }];
     
-    UILabel * ValidLab = [[UILabel alloc] initWithFrame:CGRectMake(0, functionLab.y+functionLab.height+12, scrollView.width, 0)];
+    UILabel * ValidLab = [[UILabel alloc] initWithFrame:CGRectMake(0, functionLab.y+functionLab.height+12, bgScrollView.width, 0)];
     ValidLab.text = [NSString stringWithFormat:@"【禁 忌】%@",model.taboo];
     ValidLab.textColor = ColorWithRGB(97, 103, 111, 1);
     ValidLab.textAlignment = NSTextAlignmentLeft;
     ValidLab.font = [UIFont systemFontOfSize:14];
     [ValidLab sizeToFit];
     ValidLab.numberOfLines = 0;
-    [scrollView addSubview:ValidLab];
+    [bgScrollView addSubview:ValidLab];
+    [ValidLab mas_makeConstraints:^(MX_MASConstraintMaker *make) {
+        make.left.equalTo(nameLab.mas_left);
+        make.top.equalTo(functionLab.mas_bottom).with.offset(12);
+        make.centerX.mas_equalTo(bgScrollView.mas_centerX);
+        
+    }];
     
-    UILabel * approvalNumLab = [[UILabel alloc] initWithFrame:CGRectMake(0, ValidLab.y+ValidLab.height+12, appWidth - 90, 0)];
+    UILabel * approvalNumLab = [[UILabel alloc] initWithFrame:CGRectMake(0, ValidLab.y+ValidLab.height+12, appWidth - 70, 0)];
     approvalNumLab.text = [NSString stringWithFormat:@"【保 质 期】%@",model.validity];
     approvalNumLab.numberOfLines = 0;
     [approvalNumLab sizeToFit];
@@ -211,25 +257,129 @@
     approvalNumLab.textAlignment = NSTextAlignmentLeft;
     approvalNumLab.font = [UIFont systemFontOfSize:14];
     [approvalNumLab sizeToFit];
-    [scrollView addSubview:approvalNumLab];
+    [bgScrollView addSubview:approvalNumLab];
+    [approvalNumLab mas_makeConstraints:^(MX_MASConstraintMaker *make) {
+        make.left.equalTo(nameLab.mas_left);
+        make.top.equalTo(ValidLab.mas_bottom).with.offset(12);
+        make.centerX.mas_equalTo(bgScrollView.mas_centerX);
+        
+    }];
     
-    UILabel * productionLab = [[UILabel alloc] initWithFrame:CGRectMake(0, approvalNumLab.y+approvalNumLab.height+12,appWidth - 90, 0)];
+    UILabel * productionLab = [[UILabel alloc] initWithFrame:CGRectMake(0, approvalNumLab.y+approvalNumLab.height+12,appWidth - 70, 0)];
     productionLab.text = [[NSString alloc] initWithFormat:@"【生 产 企 业】%@",model.commonName];
     productionLab.numberOfLines = 0;
     [productionLab sizeToFit];
     productionLab.textColor = ColorWithRGB(97, 103, 111, 1);
     productionLab.textAlignment = NSTextAlignmentLeft;
     productionLab.font = [UIFont systemFontOfSize:14];
-    [scrollView addSubview:productionLab];
-
-    CGFloat scrollViewHeight = 0.0;
-    for (UIView* view in scrollView.subviews)
-    {
-        scrollViewHeight += view.frame.size.height;
-    }
-    [scrollView setContentSize:(CGSizeMake(0, scrollViewHeight+12*7))];
-
+    [bgScrollView addSubview:productionLab];
+    [productionLab mas_makeConstraints:^(MX_MASConstraintMaker *make) {
+        make.left.equalTo(nameLab.mas_left);
+        make.top.equalTo(approvalNumLab.mas_bottom).with.offset(12);
+        make.centerX.mas_equalTo(bgScrollView.mas_centerX);
+        
+    }];
     
+    //重新设置bgScrollView内容物大小
+    [bgScrollView mas_updateConstraints:^(MX_MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view.mas_centerX);
+        make.top.equalTo(self.view.mas_top).with.offset(TOPHEIGHT);
+        make.left.equalTo(self.view.mas_left);
+        make.bottom.equalTo(productionLab.mas_bottom).with.offset(8);
+    
+    }];
+    
+}
+
+-(void)shopCartClick
+{
+    NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
+    NSString * str=[stdDefault objectForKey:@"user_name"];
+    if ([str length]>0) {
+        MDSelectNumView * view = [[MDSelectNumView alloc] initWithFrame:CGRectMake(0, appHeight * 0.60, appWidth, appHeight * 0.40) andImage:drugImg andReserveNum:@"9" andPlan:@"套餐二" andPrice:@"12.0"];
+        
+        [HWPopTool sharedInstance].shadeBackgroundType = ShadeBackgroundTypeSolid;
+        [HWPopTool sharedInstance].closeButtonType = ButtonPositionTypeRight;
+        [[HWPopTool sharedInstance] showWithPresentView:view animated:YES];
+        
+
+        
+    }else{
+        BRSlogInViewController * logIn=[[BRSlogInViewController alloc] init];
+        UINavigationController * nvc=[[UINavigationController alloc] initWithRootViewController:logIn];
+        
+        nvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:nvc animated:NO completion:nil];
+    }
+
+}
+
+-(void)buyClick
+{
+    NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
+    NSString * str=[stdDefault objectForKey:@"user_name"];
+    if ([str length]>0) {
+        MDSelectNumView * view = [[MDSelectNumView alloc] initWithFrame:CGRectMake(0, appHeight * 0.60, appWidth, appHeight * 0.40) andImage:drugImg andReserveNum:@"11" andPlan:@"套餐二" andPrice:@"12.0"];
+        
+        [HWPopTool sharedInstance].shadeBackgroundType = ShadeBackgroundTypeSolid;
+        [HWPopTool sharedInstance].closeButtonType = ButtonPositionTypeRight;
+        [[HWPopTool sharedInstance] showWithPresentView:view animated:YES];
+        
+        
+    }else{
+        BRSlogInViewController * logIn=[[BRSlogInViewController alloc] init];
+        UINavigationController * nvc=[[UINavigationController alloc] initWithRootViewController:logIn];
+        
+        nvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:nvc animated:NO completion:nil];
+    }
+}
+
+- (void)setInfoViewFrame:(BOOL)isDown{
+    if(isDown == NO)
+    {
+        [UIView animateWithDuration:0.1
+                              delay:0.0
+                            options:0
+                         animations:^{
+                             [infoView setFrame:CGRectMake(0, appHeight+60, 320, 90)];
+                         }
+                         completion:^(BOOL finished) {
+                             [UIView animateWithDuration:0.1
+                                                   delay:0.0
+                                                 options:UIViewAnimationOptionCurveEaseIn
+                                              animations:^{
+                                                  [infoView setFrame:CGRectMake(0, appHeight, 320, 90)];
+                                                  
+                                                  [bgScrollView addSubview:infoView];
+                                              }
+                                              completion:^(BOOL finished) {
+                                              }];
+                         }];
+        
+    }else
+    {
+        [UIView animateWithDuration:0.5
+                              delay:0.0
+                            options:0
+                         animations:^{
+                             [infoView setFrame:CGRectMake(0, 100, 320, 90)];
+                             
+                         }
+                         completion:^(BOOL finished) {
+                             [UIView animateWithDuration:0.5
+                                                   delay:0.0
+                                                 options:UIViewAnimationOptionCurveEaseIn
+                                              animations:^{
+                                                  [infoView setFrame:CGRectMake(0, 200 ,320, 90)];
+                                              }
+                                              completion:^(BOOL finished) {
+                                              }];
+                         }];
+        
+        [bgScrollView addSubview:infoView];
+
+    }
 }
 
 //请求数据
@@ -244,6 +394,7 @@
     [model starRequest];
 }
 
+#pragma mark - sendInfoToCtrDelegate
 -(void)sendInfoFromRequest:(id)response andPath:(NSString *)path number:(NSInteger)num
 {
     if (response) {

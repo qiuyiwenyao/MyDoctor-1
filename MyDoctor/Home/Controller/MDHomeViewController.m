@@ -229,7 +229,7 @@
     }
     
     [_adView setImageLinkURL:PicArr];
-    _adView.placeHoldImage = [UIImage imageNamed:@"topImg2.jpg"];
+    _adView.placeHoldImage = [UIImage imageNamed:@"topImg"];
 
     [_adView setPageControlShowStyle:UIPageControlShowStyleRight];
     
