@@ -34,6 +34,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    //微信注册
+//    [WXApi registerApp:@""];
     
     [[EaseMob sharedInstance] registerSDKWithAppKey:@"crossgk#ehealth" apnsCertName:@"MyDoctor_Client"];//环信
     [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
@@ -450,5 +452,12 @@
     
     return ret;
 }
-
+//-(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+//{
+//    return [WXApi handleOpenURL:url delegate:self];
+//}
+//-(BOOL)application:(UIApplication *)application openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<NSString *,id> *)options
+//{
+//    return [WXApi handleOpenURL:url delegate:self];
+//}
 @end

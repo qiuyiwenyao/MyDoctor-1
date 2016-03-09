@@ -25,7 +25,7 @@
 #import "MDDoctorServiceViewController.h"
 #import "BRSlogInViewController.h"
 
-
+#import "MDConfirmOrderViewController.h"
 @interface MDHomeViewController ()<UITableViewDataSource,UITableViewDelegate,UIViewControllerPreviewingDelegate,sendInfoToCtr>
 {
     UITableView * _tableView;
@@ -407,6 +407,10 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+//    MDConfirmOrderViewController * order = [[MDConfirmOrderViewController alloc] init];
+//    order.hidesBottomBarWhenPushed=YES;
+//    [self.navigationController pushViewController:order animated:YES];
+//    return;
     if (indexPath.section==0) {
         
         NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
