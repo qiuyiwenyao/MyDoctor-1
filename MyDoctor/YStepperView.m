@@ -38,8 +38,9 @@
         // Create Buttons to change values
         // Create Decrease value button on left side
         minBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [minBtn setBackgroundImage:[self getHighlitedImageWithColor:stepperColor] forState:UIControlStateHighlighted];
-        [minBtn setTitle:@"-" forState:UIControlStateNormal];
+//        [minBtn setBackgroundImage:[self getHighlitedImageWithColor:stepperColor] forState:UIControlStateHighlighted];
+        [minBtn setBackgroundImage:[UIImage imageNamed:@"购买数量减"] forState:UIControlStateNormal];
+//        [minBtn setTitle:@"-" forState:UIControlStateNormal];
         [minBtn setFrame:CGRectMake(0.0, 0.0, frame.size.height, frame.size.height)];
         [minBtn setContentEdgeInsets:UIEdgeInsetsMake(0, 0.0, 0.0, 0.0)];
         [minBtn setTitleColor:stepperColor forState:UIControlStateNormal];
@@ -51,7 +52,8 @@
         // Create Increase value button on right side
         maxBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [maxBtn setBackgroundImage:[self getHighlitedImageWithColor:stepperColor] forState:UIControlStateHighlighted];
-        [maxBtn setTitle:@"+" forState:UIControlStateNormal];
+//        [maxBtn setTitle:@"+" forState:UIControlStateNormal];
+        [maxBtn setBackgroundImage:[UIImage imageNamed:@"购买数量加"] forState:UIControlStateNormal];
         [maxBtn setFrame:CGRectMake(frame.size.width-frame.size.height, 0.0, frame.size.height, frame.size.height)];
         [maxBtn setContentEdgeInsets:UIEdgeInsetsMake(0, 0.0, 0.0, 0.0)];
         [maxBtn setTitleColor:stepperColor forState:UIControlStateNormal];

@@ -14,6 +14,7 @@
 
 #import "HWPopTool.h"
 #import "MDSelectNumView.h"
+#import "MDConfirmOrderViewController.h"
 
 @interface MDDrupDetailViewController ()<sendInfoToCtr>
 {
@@ -40,7 +41,10 @@
     [shopCartButton setTitle:@"加入购物车" forState:UIControlStateNormal];
     [shopCartButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [shopCartButton setBackgroundColor:ColorWithRGB(227, 124, 2, 1)];
-    shopCartButton.titleLabel.font = [UIFont systemFontOfSize:21];
+    shopCartButton.titleLabel.font = [UIFont systemFontOfSize:19];
+    [shopCartButton setImage:[UIImage imageNamed:@"购物车"] forState:UIControlStateNormal];
+    shopCartButton.imageEdgeInsets = UIEdgeInsetsMake(0, appWidth/2 - 40, 0, 0);
+    shopCartButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 40);
     [shopCartButton addTarget:self action:@selector(shopCartClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:shopCartButton];
     
@@ -49,7 +53,7 @@
     [buyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [buyButton setBackgroundColor:ColorWithRGB(227, 4, 47, 1)];
     [buyButton addTarget:self action:@selector(buyClick) forControlEvents:UIControlEventTouchUpInside];
-    buyButton.titleLabel.font = [UIFont systemFontOfSize:21];
+    buyButton.titleLabel.font = [UIFont systemFontOfSize:19];
     [self.view addSubview:buyButton];
     
     [shopCartButton mas_makeConstraints:^(MX_MASConstraintMaker *make) {
@@ -71,6 +75,8 @@
     
 //    [self createView];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(confirmOrder:) name:@"confirmOrder" object:nil];
+    
     
     // Do any additional setup after loading the view.
 }
@@ -79,6 +85,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"confirmOrder" object:nil];
+
 }
 
 -(void)backBtnClick
@@ -337,51 +349,14 @@
     }
 }
 
-- (void)setInfoViewFrame:(BOOL)isDown{
-    if(isDown == NO)
-    {
-        [UIView animateWithDuration:0.1
-                              delay:0.0
-                            options:0
-                         animations:^{
-                             [infoView setFrame:CGRectMake(0, appHeight+60, 320, 90)];
-                         }
-                         completion:^(BOOL finished) {
-                             [UIView animateWithDuration:0.1
-                                                   delay:0.0
-                                                 options:UIViewAnimationOptionCurveEaseIn
-                                              animations:^{
-                                                  [infoView setFrame:CGRectMake(0, appHeight, 320, 90)];
-                                                  
-                                                  [bgScrollView addSubview:infoView];
-                                              }
-                                              completion:^(BOOL finished) {
-                                              }];
-                         }];
-        
-    }else
-    {
-        [UIView animateWithDuration:0.5
-                              delay:0.0
-                            options:0
-                         animations:^{
-                             [infoView setFrame:CGRectMake(0, 100, 320, 90)];
-                             
-                         }
-                         completion:^(BOOL finished) {
-                             [UIView animateWithDuration:0.5
-                                                   delay:0.0
-                                                 options:UIViewAnimationOptionCurveEaseIn
-                                              animations:^{
-                                                  [infoView setFrame:CGRectMake(0, 200 ,320, 90)];
-                                              }
-                                              completion:^(BOOL finished) {
-                                              }];
-                         }];
-        
-        [bgScrollView addSubview:infoView];
-
-    }
+-(void)confirmOrder:(NSNotification *)notif
+{
+    NSLog(@"%@",notif.object);
+    MDConfirmOrderViewController * confirmVC = [[MDConfirmOrderViewController alloc] init];
+    //向HWPoptool发送通知关闭弹出的View
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"closeView" object:nil];
+    [self.navigationController pushViewController:confirmVC animated:YES];
+    
 }
 
 //请求数据
