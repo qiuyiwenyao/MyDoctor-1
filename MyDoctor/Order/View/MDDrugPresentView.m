@@ -22,20 +22,12 @@
 
 - (void)drawRect:(CGRect)rect {
     
-    UILabel * coustomer=[[UILabel alloc] init];
-    coustomer.text=_drugstore;
-    coustomer.font=[UIFont boldSystemFontOfSize:15];
-    [self addSubview:coustomer];
-    [coustomer mas_makeConstraints:^(MX_MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left).with.offset(20);
-        make.top.equalTo(self.mas_top).with.offset(15);
-        make.size.mas_equalTo(CGSizeMake(appWidth-20, 20));
-    }];
-    UILabel * backGround=[[UILabel alloc] initWithFrame:CGRectMake(0, 45, appWidth, 140-45)];
-    backGround.backgroundColor=ColorWithRGB(247, 247, 247, 1);
+    
+    UILabel * backGround=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, appWidth, 140-45)];
+    backGround.backgroundColor=ColorWithRGB(240, 240, 240, 1);
     [self addSubview:backGround];
     
-    UIImageView * drugPicture = [[UIImageView alloc] initWithFrame:CGRectMake(5, 50, 85, 85)];
+    UIImageView * drugPicture = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 85, 85)];
     drugPicture.contentMode = UIViewContentModeScaleAspectFit;
     [drugPicture sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl, _picture]] placeholderImage:[UIImage imageNamed:@"药"]];
     [self addSubview:drugPicture];
@@ -47,7 +39,7 @@
     [self addSubview: title];
     [title mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).with.offset(100);
-        make.top.equalTo(self.mas_top).with.offset(55);
+        make.top.equalTo(self.mas_top).with.offset(10);
         make.size.mas_equalTo(CGSizeMake(appWidth-150, 50));
     }];
     
@@ -58,7 +50,7 @@
     [self addSubview:price];
     [price mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.right.equalTo(self.mas_right).with.offset(-10);
-        make.top.equalTo(self.mas_top).with.offset(61);
+        make.top.equalTo(self.mas_top).with.offset(61-45);
         make.size.mas_equalTo(CGSizeMake(50, 20));
     }];
 
@@ -69,49 +61,23 @@
     [self addSubview:type];
     [type mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).with.offset(100);
-        make.top.equalTo(self.mas_top).with.offset(95);
+        make.top.equalTo(self.mas_top).with.offset(95-45);
         make.size.mas_equalTo(CGSizeMake(appWidth-150, 20));
     }];
     
-    UILabel * label=[[UILabel alloc] init];
-    label.text=[NSString stringWithFormat:@"x%@",_amount];
-    label.textColor=ColorWithRGB(181, 181, 181, 1);
-    label.font=[UIFont systemFontOfSize:15];
-    label.textAlignment = NSTextAlignmentRight;
-    [self addSubview:label];
-    [label mas_makeConstraints:^(MX_MASConstraintMaker *make) {
-        make.right.equalTo(self.mas_right).with.offset(-10);
-        make.top.equalTo(self.mas_top).with.offset(95);
-        make.size.mas_equalTo(CGSizeMake(40, 20));
-    }];
-    
-    
-    UIView * write=[[UIView alloc] initWithFrame:CGRectMake(0, 140, appWidth, 36)];
-    write.backgroundColor=[UIColor whiteColor];
-    [self addSubview:write];
-    
-    
-    
-    
-    UILabel * payNumber=[[UILabel alloc] initWithFrame:CGRectMake(10, 9+140, 120, 20)];//314
-    payNumber.text=@"购买数量";
-    payNumber.font=[UIFont boldSystemFontOfSize:16];
-    [self addSubview:payNumber];
-    UIView * line=[[UIView alloc] initWithFrame:CGRectMake(10, 35+140, appWidth-20, 1)];//36//176
-    line.backgroundColor=ColorWithRGB(240, 240, 240, 1);
-    [self addSubview:line];
-    
-    UIButton * add=[[UIButton alloc] initWithFrame:CGRectMake(appWidth-45, 4+140, 30, 30)];
+    UIButton * add=[[UIButton alloc] initWithFrame:CGRectMake(appWidth-35, 4+140-45-40, 30, 30)];
     [add setBackgroundImage:[UIImage imageNamed:@"购买数量加"] forState:UIControlStateNormal];
     [add addTarget:self action:@selector(add:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:add];
     
-    number =[[UILabel alloc] initWithFrame:CGRectMake(appWidth-65, 4+140, 30, 30)];
+    number =[[UILabel alloc] initWithFrame:CGRectMake(appWidth-70, 4+140-45-40, 30, 30)];
     number.font=[UIFont systemFontOfSize:15];
+    number.backgroundColor=[UIColor whiteColor];
+    number.textAlignment = NSTextAlignmentCenter;
     number.text=[NSString stringWithFormat:@"%d",_number];
     [self addSubview:number];
     
-    UIButton *reduct = [[UIButton alloc] initWithFrame:CGRectMake(appWidth-105, 4+140, 30, 30)];
+    UIButton *reduct = [[UIButton alloc] initWithFrame:CGRectMake(appWidth-105, 4+140-45-40, 30, 30)];
     [reduct setBackgroundImage:[UIImage imageNamed:@"购买数量减"] forState:UIControlStateNormal];
     [reduct addTarget:self action:@selector(reduct:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:reduct];
