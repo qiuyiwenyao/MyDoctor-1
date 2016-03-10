@@ -70,6 +70,7 @@
 		1561AFE31C8FE6ED0060F378 /* 购买数量加@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1561AFDE1C8FE6ED0060F378 /* 购买数量加@3x.png */; };
 		1561AFE41C8FE6ED0060F378 /* 购买数量减@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1561AFDF1C8FE6ED0060F378 /* 购买数量减@3x.png */; };
 		1561AFE51C8FE6ED0060F378 /* 订单地址@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1561AFE01C8FE6ED0060F378 /* 订单地址@3x.png */; };
+		1561AFEB1C91197A0060F378 /* defineOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561AFEA1C91197A0060F378 /* defineOrderView.m */; };
 		156263071C293C8E00B725EF /* MyDoctor.c in Sources */ = {isa = PBXBuildFile; fileRef = 156263051C293C8E00B725EF /* MyDoctor.c */; };
 		1578343C1C20051E00421167 /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1578343B1C20051E00421167 /* FileUtils.m */; };
 		15800F241C488B3100FCB87B /* MDChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15800F231C488B3100FCB87B /* MDChangePasswordViewController.m */; };
@@ -780,6 +781,8 @@
 		1561AFDE1C8FE6ED0060F378 /* 购买数量加@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "购买数量加@3x.png"; sourceTree = "<group>"; };
 		1561AFDF1C8FE6ED0060F378 /* 购买数量减@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "购买数量减@3x.png"; sourceTree = "<group>"; };
 		1561AFE01C8FE6ED0060F378 /* 订单地址@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "订单地址@3x.png"; sourceTree = "<group>"; };
+		1561AFE91C91197A0060F378 /* defineOrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = defineOrderView.h; sourceTree = "<group>"; };
+		1561AFEA1C91197A0060F378 /* defineOrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = defineOrderView.m; sourceTree = "<group>"; };
 		156263051C293C8E00B725EF /* MyDoctor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MyDoctor.c; sourceTree = "<group>"; };
 		156263061C293C8E00B725EF /* MyDoctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDoctor.h; sourceTree = "<group>"; };
 		1578343A1C20051E00421167 /* FileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileUtils.h; path = FileUtils/FileUtils.h; sourceTree = "<group>"; };
@@ -3946,6 +3949,8 @@
 				6AF47C2D1C910DA100994094 /* AddressOrder.m */,
 				6AF47C2F1C910DB200994094 /* MDDrugPresentView.h */,
 				6AF47C301C910DB200994094 /* MDDrugPresentView.m */,
+				1561AFE91C91197A0060F378 /* defineOrderView.h */,
+				1561AFEA1C91197A0060F378 /* defineOrderView.m */,
 			);
 			name = View;
 			path = Order/View;
@@ -4450,6 +4455,7 @@
 				153C1E821C03FB8C00F87014 /* MX_MASLayoutConstraint.m in Sources */,
 				15528BC91C28DFCF00B1F409 /* MDConsultDrugModel.m in Sources */,
 				153C1E871C03FB8C00F87014 /* View+MASAdditions.m in Sources */,
+				1561AFEB1C91197A0060F378 /* defineOrderView.m in Sources */,
 				6AB9BAD91C2BE348004BF6A7 /* PSTCollectionViewUpdateItem.m in Sources */,
 				6AB9B8791C2BE095004BF6A7 /* InvitationManager.m in Sources */,
 				6AB9BB2C1C2BE78E004BF6A7 /* amrFileCodec.mm in Sources */,
