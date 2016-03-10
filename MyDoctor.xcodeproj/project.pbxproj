@@ -649,6 +649,7 @@
 		6AF47C2E1C910DA100994094 /* AddressOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF47C2D1C910DA100994094 /* AddressOrder.m */; };
 		6AF47C311C910DB200994094 /* MDDrugPresentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF47C301C910DB200994094 /* MDDrugPresentView.m */; };
 		6AF47C341C910DE100994094 /* MDDrugOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF47C331C910DE100994094 /* MDDrugOrderModel.m */; };
+		6AF47C811C9157C000994094 /* MDConfirmOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF47C801C9157C000994094 /* MDConfirmOrderCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1700,6 +1701,8 @@
 		6AF47C301C910DB200994094 /* MDDrugPresentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDrugPresentView.m; sourceTree = "<group>"; };
 		6AF47C321C910DE100994094 /* MDDrugOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDrugOrderModel.h; sourceTree = "<group>"; };
 		6AF47C331C910DE100994094 /* MDDrugOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDrugOrderModel.m; sourceTree = "<group>"; };
+		6AF47C7F1C9157C000994094 /* MDConfirmOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDConfirmOrderCell.h; sourceTree = "<group>"; };
+		6AF47C801C9157C000994094 /* MDConfirmOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDConfirmOrderCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3951,6 +3954,8 @@
 				6AF47C301C910DB200994094 /* MDDrugPresentView.m */,
 				1561AFE91C91197A0060F378 /* defineOrderView.h */,
 				1561AFEA1C91197A0060F378 /* defineOrderView.m */,
+				6AF47C7F1C9157C000994094 /* MDConfirmOrderCell.h */,
+				6AF47C801C9157C000994094 /* MDConfirmOrderCell.m */,
 			);
 			name = View;
 			path = Order/View;
@@ -4669,6 +4674,7 @@
 				6AB9BB3D1C2BE7D6004BF6A7 /* ChatListCell.m in Sources */,
 				6AB9BA4F1C2BE25D004BF6A7 /* EMAudioPlayerUtil.m in Sources */,
 				1532A6FD1C3F83A200D0582B /* FMDatabaseQueue.m in Sources */,
+				6AF47C811C9157C000994094 /* MDConfirmOrderCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
