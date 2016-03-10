@@ -15,7 +15,10 @@
 #import "MDUserVO.h"
 
 @implementation MDDrugPresentView
-
+{
+    UILabel * number;
+}
+@synthesize controller;
 
 - (void)drawRect:(CGRect)rect {
     
@@ -34,7 +37,7 @@
     
     UIImageView * drugPicture = [[UIImageView alloc] initWithFrame:CGRectMake(5, 50, 85, 85)];
     drugPicture.contentMode = UIViewContentModeScaleAspectFit;
-    drugPicture.image = _picture;
+    [drugPicture sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl, _picture]] placeholderImage:[UIImage imageNamed:@"药"]];
     [self addSubview:drugPicture];
     
     UILabel * title=[[UILabel alloc] init];
@@ -55,7 +58,7 @@
     [self addSubview:price];
     [price mas_makeConstraints:^(MX_MASConstraintMaker *make) {
         make.right.equalTo(self.mas_right).with.offset(-10);
-        make.top.equalTo(self.mas_top).with.offset(56);
+        make.top.equalTo(self.mas_top).with.offset(61);
         make.size.mas_equalTo(CGSizeMake(50, 20));
     }];
 
@@ -83,7 +86,50 @@
     }];
     
     
+    UIView * write=[[UIView alloc] initWithFrame:CGRectMake(0, 140, appWidth, 36)];
+    write.backgroundColor=[UIColor whiteColor];
+    [self addSubview:write];
+    
+    
+    
+    
+    UILabel * payNumber=[[UILabel alloc] initWithFrame:CGRectMake(10, 9+140, 120, 20)];//314
+    payNumber.text=@"购买数量";
+    payNumber.font=[UIFont boldSystemFontOfSize:16];
+    [self addSubview:payNumber];
+    UIView * line=[[UIView alloc] initWithFrame:CGRectMake(10, 35+140, appWidth-20, 1)];//36//176
+    line.backgroundColor=ColorWithRGB(240, 240, 240, 1);
+    [self addSubview:line];
+    
+    UIButton * add=[[UIButton alloc] initWithFrame:CGRectMake(appWidth-45, 4+140, 30, 30)];
+    [add setBackgroundImage:[UIImage imageNamed:@"购买数量加"] forState:UIControlStateNormal];
+    [add addTarget:self action:@selector(add:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:add];
+    
+    number =[[UILabel alloc] initWithFrame:CGRectMake(appWidth-65, 4+140, 30, 30)];
+    number.font=[UIFont systemFontOfSize:15];
+    number.text=[NSString stringWithFormat:@"%d",_number];
+    [self addSubview:number];
+    
+    UIButton *reduct = [[UIButton alloc] initWithFrame:CGRectMake(appWidth-105, 4+140, 30, 30)];
+    [reduct setBackgroundImage:[UIImage imageNamed:@"购买数量减"] forState:UIControlStateNormal];
+    [reduct addTarget:self action:@selector(reduct:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:reduct];
+    
 }
-
-
+-(void)add:(UIButton *)button
+{
+    _number++;
+    number.text=[NSString stringWithFormat:@"%d",_number];
+    [self.controller add:button];
+}
+-(void)reduct:(UIButton *)button
+{
+    if (_number==1) {
+        return;
+    }
+    _number--;
+    number.text=[NSString stringWithFormat:@"%d",_number];
+    [self.controller reduct:button];
+}
 @end
