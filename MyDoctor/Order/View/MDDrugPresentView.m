@@ -34,7 +34,7 @@
     
     UIImageView * drugPicture = [[UIImageView alloc] initWithFrame:CGRectMake(5, 50, 85, 85)];
     drugPicture.contentMode = UIViewContentModeScaleAspectFit;
-    [drugPicture sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[MDUserVO userVO].photourl, _picture]] placeholderImage:[UIImage imageNamed:@"药"]];
+    drugPicture.image = _picture;
     [self addSubview:drugPicture];
     
     UILabel * title=[[UILabel alloc] init];
@@ -71,7 +71,7 @@
     }];
     
     UILabel * label=[[UILabel alloc] init];
-    label.text=@"x1";
+    label.text=[NSString stringWithFormat:@"x%@",_amount];
     label.textColor=ColorWithRGB(181, 181, 181, 1);
     label.font=[UIFont systemFontOfSize:15];
     label.textAlignment = NSTextAlignmentRight;

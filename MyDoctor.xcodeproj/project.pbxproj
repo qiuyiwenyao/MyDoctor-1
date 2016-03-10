@@ -60,8 +60,6 @@
 		155CEC401C0E8367006B5CFA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 155CEC3F1C0E8367006B5CFA /* UIKit.framework */; };
 		155CEC421C0E8371006B5CFA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 155CEC411C0E8371006B5CFA /* Foundation.framework */; };
 		155CEC481C0E8993006B5CFA /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 155CEC461C0E8993006B5CFA /* GTMBase64.m */; };
-		1561AFA41C8FBDF60060F378 /* MDConfirmOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561AFA31C8FBDF60060F378 /* MDConfirmOrderViewController.m */; };
-		1561AFA91C8FBE580060F378 /* AddressOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561AFA81C8FBE580060F378 /* AddressOrder.m */; };
 		1561AFD71C8FE6B80060F378 /* 订单分割线@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1561AFD21C8FE6B80060F378 /* 订单分割线@2x.png */; };
 		1561AFD81C8FE6B80060F378 /* 购买数量加@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1561AFD31C8FE6B80060F378 /* 购买数量加@2x.png */; };
 		1561AFD91C8FE6B80060F378 /* 地址进入@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1561AFD41C8FE6B80060F378 /* 地址进入@2x.png */; };
@@ -72,7 +70,6 @@
 		1561AFE31C8FE6ED0060F378 /* 购买数量加@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1561AFDE1C8FE6ED0060F378 /* 购买数量加@3x.png */; };
 		1561AFE41C8FE6ED0060F378 /* 购买数量减@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1561AFDF1C8FE6ED0060F378 /* 购买数量减@3x.png */; };
 		1561AFE51C8FE6ED0060F378 /* 订单地址@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1561AFE01C8FE6ED0060F378 /* 订单地址@3x.png */; };
-		1561AFE81C8FF3DF0060F378 /* MDDrugPresentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561AFE71C8FF3DF0060F378 /* MDDrugPresentView.m */; };
 		156263071C293C8E00B725EF /* MyDoctor.c in Sources */ = {isa = PBXBuildFile; fileRef = 156263051C293C8E00B725EF /* MyDoctor.c */; };
 		1578343C1C20051E00421167 /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1578343B1C20051E00421167 /* FileUtils.m */; };
 		15800F241C488B3100FCB87B /* MDChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15800F231C488B3100FCB87B /* MDChangePasswordViewController.m */; };
@@ -647,6 +644,10 @@
 		6AF47C181C900C5600994094 /* 关闭@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF47C171C900C5600994094 /* 关闭@3x.png */; };
 		6AF47C1A1C90187C00994094 /* 购物车@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF47C191C90187C00994094 /* 购物车@2x.png */; };
 		6AF47C1C1C90188900994094 /* 购物车@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF47C1B1C90188900994094 /* 购物车@3x.png */; };
+		6AF47C2B1C910D9100994094 /* MDConfirmOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF47C2A1C910D9100994094 /* MDConfirmOrderViewController.m */; };
+		6AF47C2E1C910DA100994094 /* AddressOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF47C2D1C910DA100994094 /* AddressOrder.m */; };
+		6AF47C311C910DB200994094 /* MDDrugPresentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF47C301C910DB200994094 /* MDDrugPresentView.m */; };
+		6AF47C341C910DE100994094 /* MDDrugOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF47C331C910DE100994094 /* MDDrugOrderModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -769,10 +770,6 @@
 		155CEC451C0E8993006B5CFA /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
 		155CEC461C0E8993006B5CFA /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
 		155CEC471C0E8993006B5CFA /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
-		1561AFA21C8FBDF60060F378 /* MDConfirmOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDConfirmOrderViewController.h; path = Order/MDConfirmOrderViewController.h; sourceTree = "<group>"; };
-		1561AFA31C8FBDF60060F378 /* MDConfirmOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDConfirmOrderViewController.m; path = Order/MDConfirmOrderViewController.m; sourceTree = "<group>"; };
-		1561AFA71C8FBE580060F378 /* AddressOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddressOrder.h; path = Order/AddressOrder.h; sourceTree = "<group>"; };
-		1561AFA81C8FBE580060F378 /* AddressOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressOrder.m; path = Order/AddressOrder.m; sourceTree = "<group>"; };
 		1561AFD21C8FE6B80060F378 /* 订单分割线@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "订单分割线@2x.png"; sourceTree = "<group>"; };
 		1561AFD31C8FE6B80060F378 /* 购买数量加@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "购买数量加@2x.png"; sourceTree = "<group>"; };
 		1561AFD41C8FE6B80060F378 /* 地址进入@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地址进入@2x.png"; sourceTree = "<group>"; };
@@ -783,8 +780,6 @@
 		1561AFDE1C8FE6ED0060F378 /* 购买数量加@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "购买数量加@3x.png"; sourceTree = "<group>"; };
 		1561AFDF1C8FE6ED0060F378 /* 购买数量减@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "购买数量减@3x.png"; sourceTree = "<group>"; };
 		1561AFE01C8FE6ED0060F378 /* 订单地址@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "订单地址@3x.png"; sourceTree = "<group>"; };
-		1561AFE61C8FF3DF0060F378 /* MDDrugPresentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDDrugPresentView.h; path = Order/MDDrugPresentView.h; sourceTree = "<group>"; };
-		1561AFE71C8FF3DF0060F378 /* MDDrugPresentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDDrugPresentView.m; path = Order/MDDrugPresentView.m; sourceTree = "<group>"; };
 		156263051C293C8E00B725EF /* MyDoctor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MyDoctor.c; sourceTree = "<group>"; };
 		156263061C293C8E00B725EF /* MyDoctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDoctor.h; sourceTree = "<group>"; };
 		1578343A1C20051E00421167 /* FileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileUtils.h; path = FileUtils/FileUtils.h; sourceTree = "<group>"; };
@@ -1694,6 +1689,14 @@
 		6AF47C171C900C5600994094 /* 关闭@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "关闭@3x.png"; sourceTree = "<group>"; };
 		6AF47C191C90187C00994094 /* 购物车@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "购物车@2x.png"; sourceTree = "<group>"; };
 		6AF47C1B1C90188900994094 /* 购物车@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "购物车@3x.png"; sourceTree = "<group>"; };
+		6AF47C291C910D9100994094 /* MDConfirmOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDConfirmOrderViewController.h; sourceTree = "<group>"; };
+		6AF47C2A1C910D9100994094 /* MDConfirmOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDConfirmOrderViewController.m; sourceTree = "<group>"; };
+		6AF47C2C1C910DA100994094 /* AddressOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddressOrder.h; path = ../Model/AddressOrder.h; sourceTree = "<group>"; };
+		6AF47C2D1C910DA100994094 /* AddressOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressOrder.m; path = ../Model/AddressOrder.m; sourceTree = "<group>"; };
+		6AF47C2F1C910DB200994094 /* MDDrugPresentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDrugPresentView.h; sourceTree = "<group>"; };
+		6AF47C301C910DB200994094 /* MDDrugPresentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDrugPresentView.m; sourceTree = "<group>"; };
+		6AF47C321C910DE100994094 /* MDDrugOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDrugOrderModel.h; sourceTree = "<group>"; };
+		6AF47C331C910DE100994094 /* MDDrugOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDrugOrderModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2165,30 +2168,11 @@
 		1561AFA11C8FBDCF0060F378 /* Order */ = {
 			isa = PBXGroup;
 			children = (
-				1561AFA61C8FBE210060F378 /* controller */,
-				1561AFA51C8FBE040060F378 /* view */,
+				6AF47C1D1C910D7D00994094 /* Controller */,
+				6AF47C201C910D7D00994094 /* Model */,
+				6AF47C231C910D7D00994094 /* View */,
 			);
 			name = Order;
-			sourceTree = "<group>";
-		};
-		1561AFA51C8FBE040060F378 /* view */ = {
-			isa = PBXGroup;
-			children = (
-				1561AFA71C8FBE580060F378 /* AddressOrder.h */,
-				1561AFA81C8FBE580060F378 /* AddressOrder.m */,
-				1561AFE61C8FF3DF0060F378 /* MDDrugPresentView.h */,
-				1561AFE71C8FF3DF0060F378 /* MDDrugPresentView.m */,
-			);
-			name = view;
-			sourceTree = "<group>";
-		};
-		1561AFA61C8FBE210060F378 /* controller */ = {
-			isa = PBXGroup;
-			children = (
-				1561AFA21C8FBDF60060F378 /* MDConfirmOrderViewController.h */,
-				1561AFA31C8FBDF60060F378 /* MDConfirmOrderViewController.m */,
-			);
-			name = controller;
 			sourceTree = "<group>";
 		};
 		157834391C20050B00421167 /* FileUtils */ = {
@@ -3935,6 +3919,38 @@
 			name = NIDropDown;
 			sourceTree = "<group>";
 		};
+		6AF47C1D1C910D7D00994094 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6AF47C291C910D9100994094 /* MDConfirmOrderViewController.h */,
+				6AF47C2A1C910D9100994094 /* MDConfirmOrderViewController.m */,
+			);
+			name = Controller;
+			path = Order/Controller;
+			sourceTree = "<group>";
+		};
+		6AF47C201C910D7D00994094 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6AF47C321C910DE100994094 /* MDDrugOrderModel.h */,
+				6AF47C331C910DE100994094 /* MDDrugOrderModel.m */,
+			);
+			name = Model;
+			path = Order/Model;
+			sourceTree = "<group>";
+		};
+		6AF47C231C910D7D00994094 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6AF47C2C1C910DA100994094 /* AddressOrder.h */,
+				6AF47C2D1C910DA100994094 /* AddressOrder.m */,
+				6AF47C2F1C910DB200994094 /* MDDrugPresentView.h */,
+				6AF47C301C910DB200994094 /* MDDrugPresentView.m */,
+			);
+			name = View;
+			path = Order/View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -4385,6 +4401,7 @@
 				6AB9BAD61C2BE348004BF6A7 /* PSTCollectionViewFlowLayout.m in Sources */,
 				6A8899AD1C4F1CF3003DB4BF /* UIScrollView+MJRefresh.m in Sources */,
 				152083BB1C72AC46006E90BA /* Reachability.m in Sources */,
+				6AF47C2E1C910DA100994094 /* AddressOrder.m in Sources */,
 				6A6523461C1E930E00227C63 /* SDWebImageManager.m in Sources */,
 				6A3EF8621C06FDB300923D03 /* MDTransfuseViewController.m in Sources */,
 				6AF2024D1C0C1A5600933EAF /* MDMyDoctorViewController.m in Sources */,
@@ -4393,6 +4410,7 @@
 				153C1E7F1C03FB8C00F87014 /* MX_MASCompositeConstraint.m in Sources */,
 				6AB9BA7B1C2BE2EC004BF6A7 /* MWGridViewController.m in Sources */,
 				6AB9BAA61C2BE32C004BF6A7 /* EMSDWebImageCompat.m in Sources */,
+				6AF47C2B1C910D9100994094 /* MDConfirmOrderViewController.m in Sources */,
 				6ABBACEA1C34D578008F064C /* UIPopoverListView.m in Sources */,
 				6AB9BB691C2BE845004BF6A7 /* EMChatAudioBubbleView.m in Sources */,
 				6A3EF8411C05BAFE00923D03 /* MDAllServiceViewController.m in Sources */,
@@ -4417,9 +4435,9 @@
 				159049721C069FA600EE51FB /* BRSlogInViewController.m in Sources */,
 				6AE2EBF51C50728B00AA4D51 /* MDResetPsdViewController.m in Sources */,
 				153C1E851C03FB8C00F87014 /* NSArray+MASAdditions.m in Sources */,
+				6AF47C311C910DB200994094 /* MDDrugPresentView.m in Sources */,
 				6A3EF7E01C058F8600923D03 /* MDMyViewItem.m in Sources */,
 				15800F891C4C783500FCB87B /* DebugViewController.m in Sources */,
-				1561AFE81C8FF3DF0060F378 /* MDDrugPresentView.m in Sources */,
 				6AB9BB551C2BE80B004BF6A7 /* DXFaceView.m in Sources */,
 				154169A11C34CFAE00A69A7D /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				6A3EF8421C05BAFE00923D03 /* MDOngoingViewController.m in Sources */,
@@ -4477,6 +4495,7 @@
 				6AB9BA651C2BE2D4004BF6A7 /* MBProgressHUD+Add.m in Sources */,
 				6AB9BB4A1C2BE7E7004BF6A7 /* ChatViewController.m in Sources */,
 				153ED8481C08523600171DFA /* MDAddressViewController.m in Sources */,
+				6AF47C341C910DE100994094 /* MDDrugOrderModel.m in Sources */,
 				6AB9BB6B1C2BE845004BF6A7 /* EMChatImageBubbleView.m in Sources */,
 				6A6523451C1E930E00227C63 /* SDWebImageDownloaderOperation.m in Sources */,
 				15800F661C4C77EC00FCB87B /* ContactsViewController.m in Sources */,
@@ -4492,7 +4511,6 @@
 				6A65234B1C1E930E00227C63 /* UIImage+WebP.m in Sources */,
 				6A3EF8561C0603DE00923D03 /* MDActivityViewController.m in Sources */,
 				1541699F1C34CFAE00A69A7D /* AFImageDownloader.m in Sources */,
-				1561AFA41C8FBDF60060F378 /* MDConfirmOrderViewController.m in Sources */,
 				6AF202501C0C1B4F00933EAF /* MDMyDoctorModel.m in Sources */,
 				6AB9B6901C2BA47C004BF6A7 /* MDMoreDocViewController.m in Sources */,
 				1532A6FA1C3F83A200D0582B /* FMDatabase.m in Sources */,
@@ -4624,7 +4642,6 @@
 				6AB9BB6C1C2BE845004BF6A7 /* EMChatLocationBubbleView.m in Sources */,
 				6AB9BAD51C2BE348004BF6A7 /* PSTCollectionViewData.m in Sources */,
 				153ED8521C0BE4D700171DFA /* MDAddressTableViewCell.m in Sources */,
-				1561AFA91C8FBE580060F378 /* AddressOrder.m in Sources */,
 				154168E41C34BB0500A69A7D /* AFNetworkReachabilityManager.m in Sources */,
 				6AB9BA641C2BE2D4004BF6A7 /* MBProgressHUD.m in Sources */,
 				1532A6FC1C3F83A200D0582B /* FMDatabasePool.m in Sources */,
