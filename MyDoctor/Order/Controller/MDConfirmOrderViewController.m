@@ -61,6 +61,7 @@
     [self.view addSubview:white];
 
     define=[[defineOrderView alloc] initWithFrame:CGRectMake(0, appHeight-50, appWidth, 50)];
+    define.controller=self;
     define.backgroundColor=[UIColor whiteColor];
     define.number=4;
     define.price=10.3;
@@ -68,10 +69,20 @@
     
     [self createView];
     
+    BRSSysUtil *util = [BRSSysUtil sharedSysUtil];
+    [util setNavigationLeftButton:self.navigationItem target:self selector:@selector(back) image:[UIImage imageNamed:@"navigationbar_back"] title:nil];
+    
 }
 -(void)dealloc
 {
      [[NSNotificationCenter defaultCenter] removeObserver:self name:@"orderAddress" object:nil];
+}
+
+-(void)back
+
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 -(void)createView
@@ -131,7 +142,8 @@
 }
 -(void)define
 {
-    
+    UIAlertView * alert  = [[UIAlertView alloc] initWithTitle:@"提示" message:@"尚未开通" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+    [alert show];
 }
 
 #pragma mark - UITableViewDelegate
