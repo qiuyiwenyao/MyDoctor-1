@@ -2373,6 +2373,7 @@
 		15AE53951C03EEDD0013FF1B /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				6A8F12B11C040845001ABE2F /* Category */,
 				6A3EF7F01C059C9800923D03 /* Controller */,
 				6A3EF7C61C058B5200923D03 /* View */,
 				6A3EF7C41C058B4D00923D03 /* Model */,
@@ -3004,7 +3005,6 @@
 				6A8F12B41C04087A001ABE2F /* Model */,
 				6A8F12B31C040868001ABE2F /* View */,
 				6A8F12B21C040853001ABE2F /* Controller */,
-				6A8F12B11C040845001ABE2F /* Category */,
 			);
 			name = Other;
 			sourceTree = "<group>";

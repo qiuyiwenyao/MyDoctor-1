@@ -62,7 +62,7 @@
 
     define=[[defineOrderView alloc] initWithFrame:CGRectMake(0, appHeight-50, appWidth, 50)];
     define.backgroundColor=[UIColor whiteColor];
-    define.number=1;
+    define.number=4;
     define.price=10.3;
     [self.view addSubview:define];
     
@@ -111,16 +111,23 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
--(void)add:(UIButton *)button
+-(void)addWithNumber:(int)num
 {
-    define.number=DrugPresent.number;
-    [define reload];
+//    define.number=DrugPresent.number;
+    [define reloadWithNum:0];
+    
+//    for (NSIndexPath* i in [tableView indexPathsForVisibleRows])
+//    {
+//        NSUInteger sectionPath = [i indexAtPosition:0];
+//        
+//    }
+    
     
 }
--(void)reduct:(UIButton *)button
+-(void)reductWithNumber:(int)num
 {
-    define.number=DrugPresent.number;
-    [define reload];
+//    define.number=DrugPresent.number;
+    [define reloadWithNum:1];
 }
 -(void)define
 {
@@ -141,7 +148,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 141;
+    return 95;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -167,12 +174,12 @@
     }
     UIView * headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, appWidth, height)];
     
-    UILabel * coustomer=[[UILabel alloc] initWithFrame:CGRectMake(0, height - 20, appWidth, 22)];
+    UILabel * coustomer=[[UILabel alloc] initWithFrame:CGRectMake(0, height - 40, appWidth, 40)];
     coustomer.backgroundColor = [UIColor whiteColor];
     coustomer.text=@"    一好大药房旗舰店";
     coustomer.font=[UIFont boldSystemFontOfSize:15];
     [headerView addSubview:coustomer];
-    UIView * bgView = [[UIView alloc] initWithFrame:CGRectMake(0, height - 20, appWidth, height - 20)];
+    UIView * bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, appWidth, height - 40)];
     bgView.backgroundColor = [UIColor clearColor];
     [headerView addSubview:bgView];
 
@@ -189,11 +196,7 @@
     if (cell == nil) {
         cell = [[MDConfirmOrderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
     }
-    
-//    if (indexPath.row == 0) {
-//        <#statements#>
-//    }
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor=[UIColor clearColor];
     for (UIView *item in cell.contentView.subviews) {
         [item removeFromSuperview];
@@ -218,10 +221,13 @@
     cell.amount=@"1";
     cell.number=1;
     
+    
     [cell drawCell];
     
     return cell;
 }
+
+
 
 
 @end

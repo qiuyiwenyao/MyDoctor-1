@@ -10,7 +10,7 @@
 
 @interface MDConfirmOrderViewController : MDBaseViewController
 
--(void)add:(UIButton *)button;
--(void)reduct:(UIButton *)button;
+-(void)addWithNumber:(int)num;
+-(void)reductWithNumber:(int)num;
 -(void)define;
 @end

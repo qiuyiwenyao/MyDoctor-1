@@ -62,8 +62,15 @@
     
     
 }
--(void)reload
+-(void)reloadWithNum:(int)num
 {
+    if (num == 0) {
+        _number ++;
+    }
+    else
+    {
+        _number --;
+    }
     label2.text=[NSString stringWithFormat:@"%d",_number];
     allPrice.text=[NSString stringWithFormat:@"%f",_price*_number];
 }

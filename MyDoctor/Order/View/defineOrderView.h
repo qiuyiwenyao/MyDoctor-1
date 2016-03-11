@@ -16,5 +16,5 @@
 @property (nonatomic, assign) float price;
 
 
--(void)reload;
+-(void)reloadWithNum:(int)num;
 @end

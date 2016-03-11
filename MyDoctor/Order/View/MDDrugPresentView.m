@@ -83,19 +83,19 @@
     [self addSubview:reduct];
     
 }
--(void)add:(UIButton *)button
-{
-    _number++;
-    number.text=[NSString stringWithFormat:@"%d",_number];
-    [self.controller add:button];
-}
--(void)reduct:(UIButton *)button
-{
-    if (_number==1) {
-        return;
-    }
-    _number--;
-    number.text=[NSString stringWithFormat:@"%d",_number];
-    [self.controller reduct:button];
-}
+//-(void)add:(UIButton *)button
+//{
+//    _number++;
+//    number.text=[NSString stringWithFormat:@"%d",_number];
+//    [self.controller addwi
+//}
+//-(void)reduct:(UIButton *)button
+//{
+//    if (_number==1) {
+//        return;
+//    }
+//    _number--;
+//    number.text=[NSString stringWithFormat:@"%d",_number];
+//    [self.controller reduct:button];
+//}
 @end

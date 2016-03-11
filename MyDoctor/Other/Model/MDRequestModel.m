@@ -22,7 +22,8 @@
 -(void)starRequest
 {
     if ([MDBaseViewController checkNetWork]) {
-    
+        
+        
     if (_isHideHud) {
         hud = nil;
     }
@@ -42,6 +43,7 @@
             hud.labelText = _hudTitle;
             
         }
+     
 
     }
     }
