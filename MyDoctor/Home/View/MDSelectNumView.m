@@ -10,12 +10,14 @@
 #import "MX_MASConstraintMaker.h"
 #import "View+MASAdditions.h"
 #import "MDConst.h"
+#import "MDConfirmOrderViewController.h"
+#import "MDShopCartSQL.h"
 
 
 @implementation MDSelectNumView
 
 
--(instancetype)initWithFrame:(CGRect)frame andImage:(UIImage *)image andReserveNum:(NSString *)reserve andPlan:(NSString *)plan andPrice:(NSString *)price
+-(instancetype)initWithFrame:(CGRect)frame andImage:(UIImage *)image andReserveNum:(int)reserve andPlan:(NSString *)plan andPrice:(float)price
 {
     self = [super initWithFrame:frame];// 先调用父类的initWithFrame方法
     if (self) {
@@ -32,7 +34,7 @@
 //        }];
         
         _priceLabel = [[UILabel alloc] init];
-        _priceLabel.text = [NSString stringWithFormat:@"¥%@",price];
+        _priceLabel.text = [NSString stringWithFormat:@"¥%0.2f",price];
         _priceLabel.textAlignment = NSTextAlignmentLeft;
         _priceLabel.font = [UIFont systemFontOfSize:16];
         _priceLabel.textColor = ColorWithRGB(209, 3, 23, 1);
@@ -41,7 +43,7 @@
         [self addSubview:_priceLabel];
         
         _reserveLabel = [[UILabel alloc] init];
-        _reserveLabel.text = [NSString stringWithFormat:@"库存%@件",reserve];
+        _reserveLabel.text = [NSString stringWithFormat:@"库存%d件",reserve];
         _reserveLabel.textAlignment = NSTextAlignmentLeft;
         _reserveLabel.font = [UIFont systemFontOfSize:14];
         _reserveLabel.numberOfLines = 0;
@@ -102,7 +104,7 @@
         
         _stepper = [[YStepperView alloc] initWithFrame:CGRectMake(0, 0, 162, 40)];
         [_stepper setStepperColor:[UIColor clearColor] withDisableColor:[UIColor grayColor]];
-        [_stepper setStepperRange:1 andMaxValue:[reserve intValue]];
+        [_stepper setStepperRange:1 andMaxValue:reserve];
         [_stepper setTextColor:[UIColor blackColor]];
         [_stepper setValue:1];
         [self addSubview:_stepper];
@@ -142,16 +144,24 @@
 
 -(void)confirmClick
 {
-
+    MDConfirmOrderViewController * confirmOrderVC = [[MDConfirmOrderViewController alloc] init];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"closeView" object:nil];//发送通知关闭view
+    [self.model setValue:@([_stepper getValue]) forKey:@"amount"];//得到购买数量
+    confirmOrderVC.model = self.model;
+    [self.controller.navigationController pushViewController:confirmOrderVC animated:YES];
     
-    NSString * price = _priceLabel.text;
-    NSString * reserve = _reserveLabel.text;
-    NSString * plan = _planLabel.text;
-    NSString * purchaseNum = [NSString stringWithFormat:@"%ld",(long)[_stepper getValue]];
+    MDShopCartSQL * shopCart = [[MDShopCartSQL alloc] init];
+    [shopCart createAttachmentsDBTableWithDrug];
+//
+//    NSLog(@"%@%@%f%d",self.model.medicineName,self.model.plan,self.model.price,self.model.amount);
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"confirmOrder" object:@{@"price":price,@"reserve":reserve,@"plan":plan,@"purchaseNum":purchaseNum}];
     
-    NSLog(@"price = %@  reserve = %@  plan = %@  purchnum = %@",price,reserve,plan,purchaseNum);
+    [shopCart insertInfoWithName:self.model.medicineName plan:self.model.plan amount:self.model.amount price:self.model.price picture:self.model.photo];
+//
+    [shopCart selectInfo];
+    
+    
+//    NSLog(@"%d  %d",self.model.amount,self.model.amount);
 }
 
 

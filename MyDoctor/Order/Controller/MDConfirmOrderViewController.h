@@ -7,9 +7,11 @@
 //
 
 #import "MDBaseViewController.h"
+#import "MDDrupDetailModel.h"
 
 @interface MDConfirmOrderViewController : MDBaseViewController
 
+@property (nonatomic,strong)MDDrupDetailModel * model;
 -(void)addWithNumber:(int)num;
 -(void)reductWithNumber:(int)num;
 -(void)define;

@@ -33,6 +33,23 @@
     [super viewDidLoad];
     self.title=@"确认订单";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orderAddress:) name:@"orderAddress" object:nil];
+    
+    dataSource = [[NSMutableArray alloc] initWithObjects:self.model, nil];
+    
+    //计算总件数:
+    int sum = 0;
+    float sumPrice = 0.00;
+
+    for (MDDrupDetailModel * model in dataSource) {
+        sum = sum + model.amount;
+        sumPrice = sumPrice + sum*1.00 * model.price;
+        
+        NSLog(@"%0.2f  %f",sumPrice,model.price);
+    }
+    //计算总价
+    
+    
+    NSLog(@"%@   %d",self.model.pinyinCode,self.model.amount);
 //    
 //    address=[[AddressOrder alloc] initWithFrame:CGRectMake(0, 64, appWidth, 100)];
 //    address.backgroundColor=[UIColor whiteColor];
@@ -63,8 +80,8 @@
     define=[[defineOrderView alloc] initWithFrame:CGRectMake(0, appHeight-50, appWidth, 50)];
     define.controller=self;
     define.backgroundColor=[UIColor whiteColor];
-    define.number=4;
-    define.price=10.3;
+    define.amount = sum;
+    define.sumPrice = sumPrice;
     [self.view addSubview:define];
     
     [self createView];
@@ -150,12 +167,12 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return dataSource.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -213,25 +230,19 @@
     for (UIView *item in cell.contentView.subviews) {
         [item removeFromSuperview];
     }
-    
-//    cell.contentView = DrugPresent;
-    
-//    if ([dataArray count]>0) {
+    if ([dataSource count]>0) {
+        MDDrupDetailModel * model = dataSource[indexPath.row];
 //        MDDrugVO * service=dataArray[indexPath.row];
-//        cell.name=service.MedicineName;
-//        cell.image=service.Photo;
-//        cell.number=service.Specification;
-//        cell.money=service.Validity;
-//    }
-    cell.controller=self;
-    cell.backgroundColor=[UIColor whiteColor];
-//    cell.drugstore=@"一好大药房旗舰店";
-    cell.title=@"2盒999感冒灵颗粒9带专制感冒发烧头疼";
-    cell.picture=@"221";
-    cell.type=@"标准装";
-    cell.price=@"10.3";
-    cell.amount=@"1";
-    cell.number=1;
+        cell.title=model.medicineName;
+        cell.picture=model.photo;
+        cell.type = model.plan;
+        cell.price = model.price;
+        cell.controller=self;
+        cell.backgroundColor=[UIColor whiteColor];
+        cell.amount = model.amount;
+        
+        NSLog(@"%d",model.amount);
+    }
     
     
     [cell drawCell];
