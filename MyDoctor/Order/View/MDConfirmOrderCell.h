@@ -19,9 +19,9 @@
 @property (nonatomic, strong) NSString * title;
 @property (nonatomic, strong) NSString * picture;
 @property (nonatomic, strong) NSString * type;
-@property (nonatomic, strong) NSString * price;
-@property (nonatomic, strong) NSString * amount;
-@property (nonatomic, assign) int number;
+@property (nonatomic, assign) float price;
+@property (nonatomic, assign) int amount;
+//@property (nonatomic, assign) int number;
 
 
 -(void)drawCell;

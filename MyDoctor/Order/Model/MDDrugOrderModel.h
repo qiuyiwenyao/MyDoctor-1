@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) NSString * drugstore;
 @property (nonatomic, strong) NSString * title;
-//@property (nonatomic, strong)  * picture;
+@property (nonatomic, strong) NSString * picture;
 @property (nonatomic, strong) NSString * type;
 @property (nonatomic, strong) NSString * price;
 @property (nonatomic,strong) NSString * amount;

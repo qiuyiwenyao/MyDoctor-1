@@ -40,14 +40,16 @@
     [view addSubview:label1];
     
     label2=[[UILabel alloc] initWithFrame:CGRectMake(13, 13, 20, 20)];
-    label2.text=[NSString stringWithFormat:@"%d",_number];
+    label2.text=[NSString stringWithFormat:@"%d",_amount];
     label2.textAlignment = NSTextAlignmentCenter;
     label2.textColor=[UIColor redColor];
     label2.font=[UIFont systemFontOfSize:15];
     [view addSubview:label2];
     
     allPrice=[[UILabel alloc] initWithFrame:CGRectMake(105, 13, 100, 20)];
-    allPrice.text=[NSString stringWithFormat:@"%f",_price*_number];
+    allPrice.text=[NSString stringWithFormat:@"%0.2f",_sumPrice];
+//    NSLog(@"%f  %d",_price,_amount);
+    
     allPrice.textColor=[UIColor redColor];
     allPrice.font=[UIFont systemFontOfSize:15];
     [view addSubview:allPrice];
@@ -65,14 +67,14 @@
 -(void)reloadWithNum:(int)num
 {
     if (num == 0) {
-        _number ++;
+        _amount ++;
     }
     else
     {
-        _number --;
+        _amount --;
     }
-    label2.text=[NSString stringWithFormat:@"%d",_number];
-    allPrice.text=[NSString stringWithFormat:@"%f",_price*_number];
+    label2.text=[NSString stringWithFormat:@"%d",_amount];
+    allPrice.text=[NSString stringWithFormat:@"%0.2f",_price*_amount];
 }
 
 -(void)define

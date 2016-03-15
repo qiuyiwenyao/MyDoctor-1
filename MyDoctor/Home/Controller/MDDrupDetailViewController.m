@@ -74,10 +74,6 @@
     [self requestData];
     
 //    [self createView];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(confirmOrder:) name:@"confirmOrder" object:nil];
-    
-    
     // Do any additional setup after loading the view.
 }
 
@@ -85,12 +81,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"confirmOrder" object:nil];
-
 }
 
 -(void)backBtnClick
@@ -310,7 +300,11 @@
     NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
     NSString * str=[stdDefault objectForKey:@"user_name"];
     if ([str length]>0) {
-        MDSelectNumView * view = [[MDSelectNumView alloc] initWithFrame:CGRectMake(0, appHeight * 0.60, appWidth, appHeight * 0.40) andImage:drugImg andReserveNum:@"9" andPlan:@"套餐二" andPrice:price];
+        MDDrupDetailModel * model = dataSource[0];
+    
+        MDSelectNumView * view = [[MDSelectNumView alloc] initWithFrame:CGRectMake(0, appHeight * 0.60, appWidth, appHeight * 0.40) andImage:drugImg andReserveNum:model.reserve andPlan:model.plan andPrice:model.price];
+        view.controller = self;
+        view.model =model;
         
         [HWPopTool sharedInstance].shadeBackgroundType = ShadeBackgroundTypeSolid;
         [HWPopTool sharedInstance].closeButtonType = ButtonPositionTypeRight;
@@ -333,8 +327,11 @@
     NSUserDefaults * stdDefault = [NSUserDefaults standardUserDefaults];
     NSString * str=[stdDefault objectForKey:@"user_name"];
     if ([str length]>0) {
-        MDSelectNumView * view = [[MDSelectNumView alloc] initWithFrame:CGRectMake(0, appHeight * 0.60, appWidth, appHeight * 0.40) andImage:drugImg andReserveNum:@"11" andPlan:@"套餐二" andPrice:price];
-        
+        MDDrupDetailModel * model = dataSource[0];
+
+        MDSelectNumView * view = [[MDSelectNumView alloc] initWithFrame:CGRectMake(0, appHeight * 0.60, appWidth, appHeight * 0.40) andImage:drugImg andReserveNum:model.reserve andPlan:model.plan andPrice:model.price];
+        view.controller = self;
+        view.model = model;
         [HWPopTool sharedInstance].shadeBackgroundType = ShadeBackgroundTypeSolid;
         [HWPopTool sharedInstance].closeButtonType = ButtonPositionTypeRight;
         [[HWPopTool sharedInstance] showWithPresentView:view animated:YES];
@@ -349,15 +346,15 @@
     }
 }
 
--(void)confirmOrder:(NSNotification *)notif
-{
-    NSLog(@"%@",notif.object);
-    MDConfirmOrderViewController * confirmVC = [[MDConfirmOrderViewController alloc] init];
-    //向HWPoptool发送通知关闭弹出的View
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"closeView" object:nil];
-    [self.navigationController pushViewController:confirmVC animated:YES];
-    
-}
+//-(void)confirmOrder:(NSNotification *)notif
+//{
+//    NSLog(@"%@",notif.object);
+//    MDConfirmOrderViewController * confirmVC = [[MDConfirmOrderViewController alloc] init];
+//    //向HWPoptool发送通知关闭弹出的View
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"closeView" object:nil];
+//    [self.navigationController pushViewController:confirmVC animated:YES];
+//    
+//}
 
 //请求数据
 -(void)requestData
@@ -379,10 +376,13 @@
         NSDictionary * dictionary = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
         MDDrupDetailModel * model = [[MDDrupDetailModel alloc] init];
         [model setValuesForKeysWithDictionary:[dictionary objectForKey:@"obj"]];
+        [model setValue:@(9.9) forKey:@"price"];
+        [model setValue:@(11) forKey:@"reserve"];
+        [model setValue:@"套餐二" forKey:@"plan"];
         
         dataSource = [[NSMutableArray alloc] initWithObjects:model, nil];
         
-        MDLog(@"=====%@",model.validity);
+        NSLog(@"=====%@",model.plan);
         
         [self createView];
 

@@ -17,6 +17,7 @@
 #import "FMDB.h"
 #import "DocPatientModel.h"
 #import "DocPatientSQL.h"
+#import "MDGuideView.h"
 
 @interface AppDelegate ()
 
@@ -30,12 +31,28 @@
     MDMyViewController * my;
     MDServiceViewController * service;
     MDHomeViewController * home;
+    BOOL isOut;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    //微信注册
-//    [WXApi registerApp:@""];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Override point for customization after application launch.
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    isOut =NO;
+    //在沙盒做一个文件，判断沙盒有没有这个文件
+    
+    NSFileManager *manager=[NSFileManager defaultManager];
+    
+    BOOL isHasFile=[manager fileExistsAtPath:[NSHomeDirectory() stringByAppendingString:@"aa.txt"]];
+    
+    if (isHasFile) {
+        [self showMainView]; //为真表示已有文件 曾经进入过主页
+    }else{
+        [self makeLaunchView];//为假表示没有文件，没有进入过主页
+    }
+    [self.window makeKeyAndVisible];
     
     [[EaseMob sharedInstance] registerSDKWithAppKey:@"crossgk#ehealth" apnsCertName:@"MyDoctor_Client"];//环信
     [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
@@ -71,30 +88,69 @@
     NSString *homeDirectory = NSHomeDirectory();
     NSLog(@"path:%@", homeDirectory);
     
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"showBRSMainView"  object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showMainView) name:@"showBRSMainView" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"backselected1"  object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backselected1) name:@"backselected1" object:nil];
     
-//    UIImage*draw = [UIImage imageNamed:@"topImg"];
-//    UIImageView *drawView = [[UIImageView alloc]initWithImage:draw];
-//    [drawView setFrame:appFrame];
-//    [self.window addSubview:drawView];
     
     
-    [self showMainView];
-    [[UINavigationBar appearance] setBackgroundColor:RGBACOLOR(239, 239, 239, 1)];
+     [[UINavigationBar appearance] setBackgroundColor:RGBACOLOR(239, 239, 239, 1)];
 //    [[UINavigationBar appearance] setBackgroundColor:[UIColor whiteColor]];
 //    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     UIView *statusBarView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, appWidth, 20)];
     
     statusBarView.backgroundColor=RGBACOLOR(247, 247, 247, 1);
+
     
     [self.window addSubview:statusBarView];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
     
     return YES;
+}
+
+//假引导页面
+-(void)makeLaunchView{
+    NSArray * imagesArr = @[@"导图-1",@"导图-2",@"导图-3"];
+    
+    //设置滚动视图
+    
+    self.window.userInteractionEnabled = YES;
+    UIScrollView * scroll = [[UIScrollView alloc] initWithFrame:self.window.bounds];
+    scroll.contentSize = CGSizeMake(appWidth * imagesArr.count, appHeight);
+    scroll.pagingEnabled = YES;
+    scroll.delegate = self;
+    scroll.userInteractionEnabled = YES;
+    scroll.scrollEnabled = YES;
+    [self.window addSubview:scroll];
+    
+    //设置内容视图
+    for (int i = 0; i < imagesArr.count; i ++) {
+        UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(appWidth * i, 0, appWidth, appHeight)];
+        imageView.image = [UIImage imageNamed:imagesArr[i]];
+        [scroll addSubview:imageView];
+    }
+
+}
+#pragma mark scrollView的代理
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    //实时获取滚动视图的contentoffset的值  如果值大于最后一张图片视图的坐标  那么就跳转到主界面
+    if (scrollView.contentOffset.x == 2 * appWidth) {
+        isOut = YES;//可以进入主界面
+    }
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (isOut)
+    {
+        [UIView animateWithDuration:1.5 animations:^{
+            scrollView.alpha = 0;
+        } completion:^(BOOL finished) {
+            [scrollView removeFromSuperview];
+            [self showMainView];
+        }];
+    }
 }
 
 /** 注册用户通知 */
@@ -142,22 +198,19 @@
     }
 }
 
-
-
-//-(void)logIn
-//{
-//    BRSlogInViewController * liv=[[BRSlogInViewController alloc] init];
-//    UINavigationController * nvc=[[UINavigationController alloc] initWithRootViewController:liv];
-//    self.window.rootViewController=nvc;
-//    [self.window makeKeyAndVisible];
-//
-//}
-
 #pragma mark - mainView
 @synthesize tabBarController = _tabBarController;
 
 -(void)showMainView
 {
+    //将aa.txt写入沙盒路径 将aa.txt
+    NSFileManager * manager = [NSFileManager defaultManager];
+    
+    if (![manager fileExistsAtPath:[NSHomeDirectory() stringByAppendingString:@"/aa.txt"]])
+    {
+        //判断如果文件不存在  就写入 如果存在就不要重复写入
+        [manager createFileAtPath:[NSHomeDirectory() stringByAppendingString:@"/aa.txt"] contents:nil attributes:nil];
+    }
     
     _tabBarController = [[UITabBarController alloc] init];
     _tabBarController.delegate = self;
@@ -185,7 +238,7 @@
     _tabBarController.viewControllers = [NSArray arrayWithObjects:homeNav,serviceNav,myNav, nil];
 
     [self.window setRootViewController:_tabBarController];
-    [self.window makeKeyAndVisible];
+//    [self.window makeKeyAndVisible];
     [self applicationWillEnterForeground:nil];//主动触发一次fromlastseen
 
 }

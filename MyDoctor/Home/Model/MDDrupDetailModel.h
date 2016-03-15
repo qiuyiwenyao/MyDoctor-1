@@ -25,20 +25,33 @@
 
 @interface MDDrupDetailModel : NSObject
 
+//drugstore;
+//@property (nonatomic, strong) NSString * title;
+//@property (nonatomic, strong) NSString * picture;
+//@property (nonatomic, strong) NSString * type;
+//@property (nonatomic, strong) NSString * price;
+//@property (nonatomic,strong) NSString * amount;
+
 @property (nonatomic,assign) int id;
-@property (nonatomic,assign) NSString * photo;
-@property (nonatomic,assign) NSString * medicineName;
-@property (nonatomic,assign) NSString * commonName;
-@property (nonatomic,assign) NSString * function;
-@property (nonatomic,assign) NSString * medicinedosage;
-@property (nonatomic,assign) NSString * untowardeffect;
-@property (nonatomic,assign) NSString * taboo;
-@property (nonatomic,assign) NSString * pinyinCode;
+@property (nonatomic,copy) NSString * photo;
+@property (nonatomic,copy) NSString * medicineName;
+@property (nonatomic,copy) NSString * commonName;
+@property (nonatomic,copy) NSString * function;
+@property (nonatomic,copy) NSString * medicinedosage;
+@property (nonatomic,copy) NSString * untowardeffect;
+@property (nonatomic,copy) NSString * taboo;
+@property (nonatomic,copy) NSString * pinyinCode;
 @property (nonatomic,assign) int categaryId;
-@property (nonatomic,assign) NSString * unit;
-@property (nonatomic,assign) NSString * specification;
-@property (nonatomic,assign) NSString * validity;
-@property (nonatomic,assign) NSString * habitat;
+@property (nonatomic,copy) NSString * unit;
+@property (nonatomic,copy) NSString * specification;
+@property (nonatomic,copy) NSString * validity;
+@property (nonatomic,copy) NSString * habitat;
+@property (nonatomic,assign) int reserve;//库存
+@property (nonatomic,assign) float price;//价格
+@property (nonatomic,copy) NSString * plan;//套餐
+@property (nonatomic,assign) int amount;//购买数量
+
+
 
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key;
 

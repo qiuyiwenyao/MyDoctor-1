@@ -12,9 +12,9 @@
 @interface defineOrderView : UIView
 
 @property (nonatomic,assign) MDConfirmOrderViewController *controller;
-@property (nonatomic, assign) int number;
+@property (nonatomic, assign) int amount;
 @property (nonatomic, assign) float price;
-
+@property (nonatomic,assign) float sumPrice;
 
 -(void)reloadWithNum:(int)num;
 @end

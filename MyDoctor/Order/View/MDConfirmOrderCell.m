@@ -26,6 +26,8 @@
 
 -(void)drawCell
 {
+    
+//    NSLog(@"");
     UILabel * backGround=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, appWidth, 140-45)];
     backGround.backgroundColor=ColorWithRGB(240, 240, 240, 1);
     [self addSubview:backGround];
@@ -47,7 +49,7 @@
     }];
     
     UILabel * price=[[UILabel alloc] init];
-    price.text=[NSString stringWithFormat:@"¥%@",_price];
+    price.text=[NSString stringWithFormat:@"¥%0.2f",_price];
     price.font=[UIFont systemFontOfSize:15];
     price.textAlignment = NSTextAlignmentRight;
     [self addSubview:price];
@@ -77,7 +79,7 @@
     number.font=[UIFont systemFontOfSize:15];
     number.backgroundColor=[UIColor whiteColor];
     number.textAlignment = NSTextAlignmentCenter;
-    number.text=[NSString stringWithFormat:@"%d",_number];
+    number.text=[NSString stringWithFormat:@"%d",_amount];
     [self addSubview:number];
     
     UIButton *reduct = [[UIButton alloc] initWithFrame:CGRectMake(appWidth-105, 4+140-45-40, 30, 30)];
@@ -88,18 +90,18 @@
 
 -(void)add:(UIButton *)button
 {
-    _number++;
-    number.text=[NSString stringWithFormat:@"%d",_number];
-    [self.controller addWithNumber:_number];
+    _amount++;
+    number.text=[NSString stringWithFormat:@"%d",_amount];
+    [self.controller addWithNumber:_amount];
 }
 -(void)reduct:(UIButton *)button
 {
-    if (_number==1) {
+    if (_amount==1) {
         return;
     }
-    _number--;
-    number.text=[NSString stringWithFormat:@"%d",_number];
-    [self.controller reductWithNumber:_number];
+    _amount--;
+    number.text=[NSString stringWithFormat:@"%d",_amount];
+    [self.controller reductWithNumber:_amount];
 }
 
 @end
