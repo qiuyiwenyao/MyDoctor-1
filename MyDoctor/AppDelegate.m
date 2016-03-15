@@ -18,6 +18,7 @@
 #import "DocPatientModel.h"
 #import "DocPatientSQL.h"
 #import "MDGuideView.h"
+#import "LZQStratViewController_25.h"
 
 @interface AppDelegate ()
 
@@ -31,7 +32,6 @@
     MDMyViewController * my;
     MDServiceViewController * service;
     MDHomeViewController * home;
-    BOOL isOut;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -39,15 +39,12 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+   
+    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
     
-    isOut =NO;
-    //在沙盒做一个文件，判断沙盒有没有这个文件
+    BOOL firstStart = [defaults boolForKey:@"First_Start"];
     
-    NSFileManager *manager=[NSFileManager defaultManager];
-    
-    BOOL isHasFile=[manager fileExistsAtPath:[NSHomeDirectory() stringByAppendingString:@"aa.txt"]];
-    
-    if (isHasFile) {
+    if (firstStart) {
         [self showMainView]; //为真表示已有文件 曾经进入过主页
     }else{
         [self makeLaunchView];//为假表示没有文件，没有进入过主页
@@ -96,12 +93,6 @@
      [[UINavigationBar appearance] setBackgroundColor:RGBACOLOR(239, 239, 239, 1)];
 //    [[UINavigationBar appearance] setBackgroundColor:[UIColor whiteColor]];
 //    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    UIView *statusBarView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, appWidth, 20)];
-    
-    statusBarView.backgroundColor=RGBACOLOR(247, 247, 247, 1);
-
-    
-    [self.window addSubview:statusBarView];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
     
@@ -110,47 +101,38 @@
 
 //假引导页面
 -(void)makeLaunchView{
-    NSArray * imagesArr = @[@"导图-1",@"导图-2",@"导图-3"];
-    
-    //设置滚动视图
-    
-    self.window.userInteractionEnabled = YES;
-    UIScrollView * scroll = [[UIScrollView alloc] initWithFrame:self.window.bounds];
-    scroll.contentSize = CGSizeMake(appWidth * imagesArr.count, appHeight);
-    scroll.pagingEnabled = YES;
-    scroll.delegate = self;
-    scroll.userInteractionEnabled = YES;
-    scroll.scrollEnabled = YES;
-    [self.window addSubview:scroll];
-    
-    //设置内容视图
-    for (int i = 0; i < imagesArr.count; i ++) {
-        UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(appWidth * i, 0, appWidth, appHeight)];
-        imageView.image = [UIImage imageNamed:imagesArr[i]];
-        [scroll addSubview:imageView];
-    }
+//    NSArray * imagesArr = @[@"导图-1",@"导图-2",@"导图-3"];
+//    
+//    //设置滚动视图
+//    
+//    self.window.userInteractionEnabled = YES;
+//    UIScrollView * scroll = [[UIScrollView alloc] initWithFrame:self.window.bounds];
+//    scroll.contentSize = CGSizeMake(appWidth * imagesArr.count, appHeight);
+//    scroll.pagingEnabled = YES;
+//    scroll.delegate = self;
+//    scroll.userInteractionEnabled = YES;
+//    scroll.scrollEnabled = YES;
+//    [self.window addSubview:scroll];
+//    
+//    //设置内容视图
+//    for (int i = 0; i < imagesArr.count; i ++) {
+//        UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(appWidth * i, 0, appWidth, appHeight)];
+//        imageView.image = [UIImage imageNamed:imagesArr[i]];
+//        [scroll addSubview:imageView];
+//    }
+    LZQStratViewController_25 *lzqStartViewController = [[LZQStratViewController_25 alloc] init];
+    lzqStartViewController.delegate=self;
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.rootViewController = lzqStartViewController;
+    [self.window makeKeyAndVisible];
+    return;
 
 }
-#pragma mark scrollView的代理
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
+-(void)introDidFinish
 {
-    //实时获取滚动视图的contentoffset的值  如果值大于最后一张图片视图的坐标  那么就跳转到主界面
-    if (scrollView.contentOffset.x == 2 * appWidth) {
-        isOut = YES;//可以进入主界面
-    }
-}
-
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    if (isOut)
-    {
-        [UIView animateWithDuration:1.5 animations:^{
-            scrollView.alpha = 0;
-        } completion:^(BOOL finished) {
-            [scrollView removeFromSuperview];
-            [self showMainView];
-        }];
-    }
+    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+    [defaults setBool:YES forKey:@"First_Start"];
+    [self showMainView];
 }
 
 /** 注册用户通知 */
@@ -203,6 +185,12 @@
 
 -(void)showMainView
 {
+    
+    UIView *statusBarView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, appWidth, 20)];
+    
+    statusBarView.backgroundColor=RGBACOLOR(247, 247, 247, 1);
+    [self.window addSubview:statusBarView];
+
     //将aa.txt写入沙盒路径 将aa.txt
     NSFileManager * manager = [NSFileManager defaultManager];
     
