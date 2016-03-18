@@ -27,10 +27,31 @@
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
 			<string>weixin</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wx8addd6e93c41749f</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>e+康</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>SaBaiNuo.MX.MyDoctor</string>
+			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.11</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>wechat</string>
+		<string>mqqapi</string>
+		<string>mqq</string>
+		<string>weixin</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

@@ -74,6 +74,8 @@
 		1561B0201C97ED430060F378 /* 导图-3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1561B01F1C97ED420060F378 /* 导图-3@2x.png */; };
 		1561B0221C97ED4E0060F378 /* 导图-3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1561B0211C97ED4E0060F378 /* 导图-3@3x.png */; };
 		1561B0311C97F3730060F378 /* LZQStratViewController_25.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561B0301C97F3730060F378 /* LZQStratViewController_25.m */; };
+		1561B0341C98EE290060F378 /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1561B0321C98EE290060F378 /* read_me.txt */; };
+		1561B0351C98EE4C0060F378 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB9B1441C213F2A004BF6A7 /* CoreTelephony.framework */; };
 		156263071C293C8E00B725EF /* MyDoctor.c in Sources */ = {isa = PBXBuildFile; fileRef = 156263051C293C8E00B725EF /* MyDoctor.c */; };
 		1578343C1C20051E00421167 /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1578343B1C20051E00421167 /* FileUtils.m */; };
 		15800F241C488B3100FCB87B /* MDChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15800F231C488B3100FCB87B /* MDChangePasswordViewController.m */; };
@@ -794,6 +796,8 @@
 		1561B0211C97ED4E0060F378 /* 导图-3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "导图-3@3x.png"; sourceTree = "<group>"; };
 		1561B02F1C97F3730060F378 /* LZQStratViewController_25.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZQStratViewController_25.h; sourceTree = "<group>"; };
 		1561B0301C97F3730060F378 /* LZQStratViewController_25.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZQStratViewController_25.m; sourceTree = "<group>"; };
+		1561B0321C98EE290060F378 /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = read_me.txt; path = WXLogIn/read_me.txt; sourceTree = "<group>"; };
+		1561B0331C98EE290060F378 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WechatAuthSDK.h; path = WXLogIn/WechatAuthSDK.h; sourceTree = "<group>"; };
 		156263051C293C8E00B725EF /* MyDoctor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MyDoctor.c; sourceTree = "<group>"; };
 		156263061C293C8E00B725EF /* MyDoctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDoctor.h; sourceTree = "<group>"; };
 		1578343A1C20051E00421167 /* FileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileUtils.h; path = FileUtils/FileUtils.h; sourceTree = "<group>"; };
@@ -1725,6 +1729,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1561B0351C98EE4C0060F378 /* CoreTelephony.framework in Frameworks */,
 				6A0D68CC1C44964700F207C3 /* CoreBluetooth.framework in Frameworks */,
 				6A0D68CA1C44962B00F207C3 /* AVFoundation.framework in Frameworks */,
 				15CC649F1C8698ED00998E29 /* libWeChatSDK.a in Frameworks */,
@@ -2437,6 +2442,8 @@
 		15CC649B1C86954A00998E29 /* WXLogIn */ = {
 			isa = PBXGroup;
 			children = (
+				1561B0321C98EE290060F378 /* read_me.txt */,
+				1561B0331C98EE290060F378 /* WechatAuthSDK.h */,
 				15CC649C1C8698ED00998E29 /* libWeChatSDK.a */,
 				15CC649D1C8698ED00998E29 /* WXApi.h */,
 				15CC649E1C8698ED00998E29 /* WXApiObject.h */,
@@ -4042,7 +4049,7 @@
 				TargetAttributes = {
 					15AE53681C02F0680013FF1B = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = 8TUZW57LD3;
+						DevelopmentTeam = 5XDQ36V7UQ;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -4113,6 +4120,7 @@
 				6AB9BC651C2BEC46004BF6A7 /* chatBar_more_card@2x.png in Resources */,
 				6A9CE1481C8687FA00E7A4C1 /* 评分4@3x.png in Resources */,
 				6AB9BC791C2BEC62004BF6A7 /* chat_location_detail_disclosure@2x.png in Resources */,
+				1561B0341C98EE290060F378 /* read_me.txt in Resources */,
 				6A9CE1051C8687D800E7A4C1 /* navigationbar_rightbtn@2x.png in Resources */,
 				6AB9BC4E1C2BEA7B004BF6A7 /* tabbar_contacts.png in Resources */,
 				6A9CE0DE1C8687D800E7A4C1 /* 下拉框@2x.png in Resources */,
@@ -4814,7 +4822,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Haocheng Zhang (N8TXHQB3RY)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_BITCODE = NO;
@@ -4840,7 +4848,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = SaBaiNuo.MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7367742d-8826-45a7-9562-3e43bd8ed4bb";
+				PROVISIONING_PROFILE = "a97813bf-8ffd-4f8d-8a62-48fbe427f52d";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "ad hoc distribution";
@@ -4962,7 +4970,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Haocheng Zhang (N8TXHQB3RY)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_BITCODE = NO;
@@ -4988,7 +4996,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = SaBaiNuo.MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7367742d-8826-45a7-9562-3e43bd8ed4bb";
+				PROVISIONING_PROFILE = "a97813bf-8ffd-4f8d-8a62-48fbe427f52d";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4998,7 +5006,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Haocheng Zhang (N8TXHQB3RY)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_BITCODE = NO;
@@ -5024,7 +5032,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = SaBaiNuo.MX.MyDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7367742d-8826-45a7-9562-3e43bd8ed4bb";
+				PROVISIONING_PROFILE = "a97813bf-8ffd-4f8d-8a62-48fbe427f52d";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

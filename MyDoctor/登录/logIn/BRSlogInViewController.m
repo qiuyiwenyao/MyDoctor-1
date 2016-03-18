@@ -20,6 +20,8 @@
 #define IMAGECACHE  @"IMAGE/"
 #import "FileUtils.h"
 #import "MDForgetViewController.h"
+#import "WXApi.h"
+#import "MBProgressHUD.h"
 
 @interface BRSlogInViewController ()<sendInfoToCtr>
 
@@ -286,10 +288,12 @@
 }
 -(void)tunch1:(UIButton *)tunch
 {
-    BRSSignInViewController * sic=[[BRSSignInViewController alloc] init];
-    sic.navigationItem.title=@"注册";
-    sic.type=0;
-    [self.navigationController pushViewController:sic animated:YES];
+    [self wechatLoginClick:nil];
+    
+//    BRSSignInViewController * sic=[[BRSSignInViewController alloc] init];
+//    sic.navigationItem.title=@"注册";
+//    sic.type=0;
+//    [self.navigationController pushViewController:sic animated:YES];
 }
 -(void)forget:(UIButton *)forget
 {
@@ -354,4 +358,27 @@
     [logInField resignFirstResponder];
     [password resignFirstResponder];
 }
+
+
+- (IBAction)wechatLoginClick:(id)sender {
+    
+    if ([WXApi isWXAppInstalled]) {
+        SendAuthReq *req = [[SendAuthReq alloc] init];
+        req.scope = @"snsapi_userinfo";
+        req.state = @"App";
+        [WXApi sendReq:req];
+    }
+    else {
+        [self setupAlertController];
+    }
+}
+#pragma mark - 设置弹出提示语
+- (void)setupAlertController {
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请先安装微信客户端" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *actionConfirm = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:actionConfirm];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 @end

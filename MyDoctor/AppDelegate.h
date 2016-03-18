@@ -11,6 +11,7 @@
 #import "EaseMob.h"
 #import "WXApi.h"
 #import "LZQStratViewController_25.h"
+#include "MDConst.h"
 
 /// 个推开发者网站中申请App时注册的AppId、AppKey、AppSecret
 #define kGtAppId           @"vnt28BFd2X6sVc8meUi5o3"

@@ -19,6 +19,9 @@
 #import "DocPatientSQL.h"
 #import "MDGuideView.h"
 #import "LZQStratViewController_25.h"
+#import "WXApi.h"
+#import "AFNetworking.h"
+#import "UIKit+AFNetworking.h"
 
 @interface AppDelegate ()
 
@@ -35,7 +38,8 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+    //微信登录
+    [WXApi registerApp:@"wx8addd6e93c41749f" withDescription:@"Wechat"];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
@@ -493,12 +497,120 @@
     
     return ret;
 }
-//-(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-//{
-//    return [WXApi handleOpenURL:url delegate:self];
-//}
+-(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    [WXApi handleOpenURL:url delegate:self];
+    return YES;
+}
 //-(BOOL)application:(UIApplication *)application openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<NSString *,id> *)options
 //{
 //    return [WXApi handleOpenURL:url delegate:self];
 //}
+
+- (void)onResp:(BaseResp *)resp {
+    // 向微信请求授权后,得到响应结果
+//    if ([resp isKindOfClass:[SendAuthResp class]]) {
+//        SendAuthResp *temp = (SendAuthResp *)resp;
+//        
+//        NSString * parameters = [NSString stringWithFormat:@"%@/oauth2/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code", WX_BASE_URL, @"wx8addd6e93c41749f", @"1f2ca74f132c152029af8effa4b0d46d", temp.code];
+//        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+//        session.responseSerializer=[AFHTTPResponseSerializer serializer];
+//        [session GET:parameters parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+//            
+//        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//            NSLog(@"请求access的response = %@", responseObject);
+//            NSDictionary *accessDict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];//[NSDictionary dictionaryWithDictionary:responseObject];
+//            NSString *accessToken = [accessDict objectForKey:@"WX_ACCESS_TOKEN"];
+//            NSString *openID = [accessDict objectForKey:@"WX_OPEN_ID"];
+//            NSString *refreshToken = [accessDict objectForKey:@"WX_REFRESH_TOKEN"];
+//            
+//            NSLog(@"%@---%@---%@",accessDict,accessToken,openID);
+//            // 本地持久化，以便access_token的使用、刷新或者持续
+//            if (accessToken && ![accessToken isEqualToString:@""] && openID && ![openID isEqualToString:@""]) {
+//                [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:@"WX_ACCESS_TOKEN"];
+//                [[NSUserDefaults standardUserDefaults] setObject:openID forKey:@"WX_OPEN_ID"];
+//                [[NSUserDefaults standardUserDefaults] setObject:refreshToken forKey:@"WX_REFRESH_TOKEN"];
+//                [[NSUserDefaults standardUserDefaults] synchronize]; // 命令直接同步到文件里，来避免数据的丢失
+//            }
+//            [self wechatLoginByRequestForUserInfo];
+//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//            NSLog(@"获取access_token时出错 = %@", error);
+//        }];
+//    }
+    
+    SendAuthResp *temp = (SendAuthResp *)resp;
+    NSString *url =[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code",@"wx8addd6e93c41749f",@"1f2ca74f132c152029af8effa4b0d46d",temp.code];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSURL *zoneUrl = [NSURL URLWithString:url];
+        NSString *zoneStr = [NSString stringWithContentsOfURL:zoneUrl encoding:NSUTF8StringEncoding error:nil];
+        NSData *data = [zoneStr dataUsingEncoding:NSUTF8StringEncoding];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (data) {
+                NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                
+                NSString * access_token = [dic objectForKey:@"access_token"];
+                NSString * openid = [dic objectForKey:@"openid"];
+                NSString * refreshToken = [dic objectForKey:@"refresh_token"];
+                NSLog(@"%@---%@---%@",dic,access_token,openid);
+                
+                if (access_token && ![access_token isEqualToString:@""] && openid && ![openid isEqualToString:@""]) {
+                    [[NSUserDefaults standardUserDefaults] setObject:access_token forKey:@"WX_ACCESS_TOKEN"];
+                    [[NSUserDefaults standardUserDefaults] setObject:openid forKey:@"WX_OPEN_ID"];
+                    [[NSUserDefaults standardUserDefaults] setObject:refreshToken forKey:@"WX_REFRESH_TOKEN"];
+                    [[NSUserDefaults standardUserDefaults] synchronize]; // 命令直接同步到文件里，来避免数据的丢失
+                }
+                [self wechatLoginByRequestForUserInfo];
+            }
+        });
+    });
+}
+
+-(void)wechatLoginByRequestForUserInfo {
+    
+//    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+//    session.responseSerializer=[AFHTTPResponseSerializer serializer];
+//    NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ACCESS_TOKEN"];
+//    NSString *openID = [[NSUserDefaults standardUserDefaults] objectForKey:@"WX_OPEN_ID"];
+//    NSString *userUrlStr = [NSString stringWithFormat:@"%@/userinfo?access_token=%@&openid=%@", WX_BASE_URL, accessToken, openID];
+//    // 请求用户数据
+//    
+//    [session GET:userUrlStr parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+//        
+//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSLog(@"请求用户信息的response = %@", responseObject);
+//        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+//        NSString * nick = [dic objectForKey:@"nickname"];
+//        NSLog(@"%@+======%@",dic,nick);
+//
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        NSLog(@"获取用户信息时出错 = %@", error);
+//    }];
+    
+    NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ACCESS_TOKEN"];
+    NSString *openID = [[NSUserDefaults standardUserDefaults] objectForKey:@"WX_OPEN_ID"];
+    NSString *userUrlStr = [NSString stringWithFormat:@"%@userinfo?access_token=%@&openid=%@&lang=zh_CN", WX_BASE_URL, accessToken, openID];
+    NSLog(@"------%@",userUrlStr);
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSURL *zoneUrl = [NSURL URLWithString:userUrlStr];
+        NSString *zoneStr = [NSString stringWithContentsOfURL:zoneUrl encoding:NSUTF8StringEncoding error:nil];
+        NSData *data = [zoneStr dataUsingEncoding:NSUTF8StringEncoding];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (data) {
+                NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                
+                NSString * nick = [dic objectForKey:@"nickname"];
+                
+               
+                UIImageView * imageView = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[dic objectForKey:@"headimgurl"]]]];
+                
+                NSLog(@"%@+======%@======%@",dic,nick,imageView);
+            }
+        });
+        
+    });
+    
+
+}
+
 @end

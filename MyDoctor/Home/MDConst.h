@@ -181,4 +181,6 @@ static NSString *const kTrackingId = @"UA-39607394-5";
 //项目接口
 #define MDPath @"http://111.160.245.75:8082/CommunityWs//servlet/ShequServlet?"
 
+#define WX_BASE_URL @"https://api.weixin.qq.com/sns/"
+
 #endif
